@@ -9,26 +9,19 @@
                 @role((['accountmanagersales']))
                 @include('orderApproval.partials.accountmanagersale')
                 @endrole
-                @role((['admin']))
+
+                @role((['admin', 'generalmanager', 'director']))
                 @include('orderApproval.partials.adminview')
                 @endrole
-
 
                 @role((['salesmanager']))
                 @include('orderApproval.partials.salesmanview')
                 @endrole
-                </div>
-
-
-
-
 
             </div>
 
+        </div>
 
     </section>
-
-
-
 
 @endsection

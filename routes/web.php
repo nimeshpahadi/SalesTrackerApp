@@ -88,6 +88,7 @@ Route::resource('/orderApproval','OrderApprovalController');
 
 //password change
 Route::get('/user/{id}/password', 'Auth\RegisterController@password')->name("password");
+Route::get('/user/{id}/resetpassword', 'Auth\RegisterController@passwordreset')->name("passwordreset");
 Route::patch('/user/{id}/password', 'Auth\RegisterController@changepassword')->name("changepassword");
 Route::patch('/user/{id}/reset/password', 'Auth\RegisterController@resetpassword')->name("resetpassword");
 

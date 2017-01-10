@@ -26,20 +26,25 @@
                             @foreach($customerList as $list)
 
                                 <tr>
+                                    {{--Salesmanager--}}
                                     <td>{{$list['company_name']}}</td>
                                     <td>{{$list['contact_name']}}</td>
                                     <td>
-                                        SalesManager :  {{(isset($list["approval"]["sales_approval"])
+                                        {{isset($list['approval']['username'])?$list['approval']['username']:"SM"}}
+                                        ({{isset($list['approval']['display_name'])?$list['approval']['display_name']:""}})
+                                                                :  {{(isset($list["approval"]["sales_approval"])
                                                                 && $list["approval"]["sales_approval"]!=null)
                                                                 ?ucfirst($list["approval"]["sales_approval"])
                                                                 :"Not defined"}}
 
                                         <br>
 
-                                        GM :  {{(isset($list["approval"]["admin_approval"])
-                                                        && ($list["approval"]["admin_approval"] !=null))
-                                                        ?ucfirst($list["approval"]["admin_approval"])
-                                                        :"Not defined"}}
+                                        {{--Admin--}}
+                                        {{isset($list['adminApproval']['username'])?$list['adminApproval']['username']:"Admin"}}
+                                        ({{isset($list['adminApproval']['display_name'])?$list['adminApproval']['display_name']:""}})
+                                                        : {{(isset($list["adminApproval"]["admin_approval"])
+                                                        && $list["adminApproval"]["admin_approval"]!=null)
+                                                        ?ucfirst($list["adminApproval"]["admin_approval"]):"Not defined"}}
 
                                     </td>
 

@@ -40,9 +40,9 @@ class RegisterController extends Controller
     private $userService;
 
     public function __construct(UserService $userService)
-{
-    $this->userService = $userService;
-}
+    {
+        $this->userService = $userService;
+    }
 
     public function register(RegisterRequest $request)
     {
@@ -60,11 +60,11 @@ class RegisterController extends Controller
                     'warehouse_id' => $request->get('warehouse_id')
 
                 ];
-                
+
                 $this->assignWarehouse($assignWarehouse);
 
             }
-            
+
             $this->assignRole($userRole);
 
             return redirect('/user')->withSuccess("user added!");
@@ -111,6 +111,12 @@ class RegisterController extends Controller
         return view('user.password',compact('user'));
     }
 
+    public function passwordreset($id)
+    {
+        $user = $this->userService->selectUsers($id);
+        return view('user.resetPassword',compact('user'));
+    }
+
     public function changepassword(RegisterRequest $request, $id)
     {
         if ($this->userService->changePassword($request, $id)) {
@@ -118,6 +124,7 @@ class RegisterController extends Controller
         }
         return back()->withErrors('old password may be wrong');
     }
+
     public function resetpassword(RegisterRequest $request, $id)
     {
         if ($this->userService->resetPassword($request, $id)) {
