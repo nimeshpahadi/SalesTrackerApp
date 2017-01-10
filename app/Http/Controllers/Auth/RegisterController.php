@@ -58,13 +58,10 @@ class RegisterController extends Controller
                 $assignWarehouse=[
                     'user_id' => $user->id,
                     'warehouse_id' => $request->get('warehouse_id')
-
                 ];
 
                 $this->assignWarehouse($assignWarehouse);
-
             }
-
             $this->assignRole($userRole);
 
             return redirect('/user')->withSuccess("user added!");

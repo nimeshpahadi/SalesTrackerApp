@@ -14,13 +14,13 @@
                         <div align="right " style="padding: 10px">
                             @role((['admin','salesmanager','accountmanagersales','salesman','director','generalmanager']))
                             <a href="{{route('distributor.create')}}">
-                                <span class=" btn btn-success glyphicon glyphicon-plus">Create Distributor</span>
+                                <span class=" btn btn-success glyphicon glyphicon-plus">Create Customer</span>
                             </a>
                             @endrole
                         </div>
 
                         <div class="box-header">
-                            <h3 class="box-title">List of All Distributor</h3>
+                            <h3 class="box-title">List of All Customer</h3>
                         </div>
 
                         <!-- /.box-header -->

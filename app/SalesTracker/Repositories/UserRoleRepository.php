@@ -9,8 +9,10 @@
 namespace App\SalesTracker\Repositories;
 
 
+use App\FactoryinchargeWarehouse;
 use App\Role;
 use App\Roleuser;
+use App\SalesTracker\Entities\Inventory\Warehouse;
 use App\User;
 use Illuminate\Contracts\Logging\Log;
 use League\Flysystem\Exception;
@@ -33,6 +35,10 @@ class UserRoleRepository
      * @var Log
      */
     private $log;
+    /**
+     * @var FactoryinchargeWarehouse
+     */
+    private $factoryinchargeWarehouse;
 
     /**
      * UserRoleRepository constructor.
@@ -40,13 +46,14 @@ class UserRoleRepository
      * @param Roleuser $roleuser
      * @param Role $role
      */
-    public function __construct(User $user, Roleuser $roleuser, Role $role, Log $log)
+    public function __construct(User $user, Roleuser $roleuser, Role $role, Log $log, FactoryinchargeWarehouse $factoryinchargeWarehouse)
     {
 
         $this->user = $user;
         $this->roleuser = $roleuser;
         $this->role = $role;
         $this->log = $log;
+        $this->factoryinchargeWarehouse = $factoryinchargeWarehouse;
     }
 
     /**
@@ -67,11 +74,11 @@ class UserRoleRepository
     public function getReportsToRepo($id)
     {
 
-        $query = $this->user->select('roles.display_name')
+        $query = $this->user->select('roles.display_name','roles.id as role_id')
                             ->join('roles', 'roles.id', 'users.reportsto')
                             ->where('users.id', $id);
 
-        return $query->get();
+        return $query->first();
     }
 
     public function getUserRolesid($id)
@@ -163,6 +170,16 @@ class UserRoleRepository
     {
         $query = $this->roleuser->find($user_id);
         return $query;
+    }
+
+    public function getWarehouseforFactory($id)
+    {
+        $query = $this->factoryinchargeWarehouse->select('warehouses.name as warehousename','warehouses.id as warehouse_id')
+            ->join('users', 'users.id', 'factoryincharge_warehouses.user_id')
+            ->join('warehouses', 'warehouses.id', 'factoryincharge_warehouses.warehouse_id')
+            ->where('users.id', $id);
+//dd($query->toSql());
+        return $query->first();
     }
 
 

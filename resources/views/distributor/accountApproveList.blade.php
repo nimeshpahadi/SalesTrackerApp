@@ -63,7 +63,7 @@
                                                 {!! Html::linkRoute('customerAccountApprove', 'Approve',
                                                              array("distributor_id"=>$list['distributor_id'],
                                                                    "approval_status"=> "approved"),
-                                                             array('class'=>'btn btn-primary btn-block'))
+                                                             array('class'=>'btn btn-success btn-block'))
                                                 !!}
                                             @endif
 

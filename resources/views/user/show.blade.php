@@ -72,9 +72,7 @@
                                 </div>
                                 <div class="row">
                                     <label class="col-sm-6 ">Reports To :</label>
-                                    @foreach($reportsTo  as $role)
-                                        <td>{{$role->display_name}}</td>
-                                    @endforeach
+                                        <td>{{$reportsTo->display_name}}</td>
 
                                 </div>
 
