@@ -29,14 +29,14 @@
         <div class="form-group clearfix" id="bank_name">
             <label for="type" class="col-sm-4 control-label">Bank name</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control bank-name" name="bank_name" value="{{ old('bank_name') }}" required>
+                <input type="text" class="form-control bank-name" name="bank_name" value="{{ old('bank_name') }}">
             </div>
         </div>
 
         <div class="form-group clearfix" id="cheque_no">
             <label for="type" class="col-sm-4 control-label">Cheque no</label>
             <div class="col-sm-4">
-                <input type="text" class="form-control cheque-no" name="cheque_no" value="{{ old('cheque_no') }}" required>
+                <input type="text" class="form-control cheque-no" name="cheque_no" value="{{ old('cheque_no') }}">
             </div>
         </div>
 
@@ -46,7 +46,7 @@
             <label for="amount" class="col-sm-4 control-label">Amount</label>
 
             <div class="col-sm-4">
-                <input id="amount" type="text"  class="form-control amount" name="amount" min=0  value="{{ old('amount') }}" required>
+                <input id="amount" type="text"  class="form-control amount" name="amount" min=0  value="{{ old('amount') }}">
 
                 @if ($errors->has('amount'))
                     <span class="help-block">

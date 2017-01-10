@@ -243,7 +243,7 @@ class DistributorController extends Controller
 
     }
 
-    public function updateguarantee(GuaranteeRequest $request, $id)
+    public function updateguarantee(Request $request, $id)
     {
         if ($this->distributorService->update_dis_guarantee($request, $id)) {
             return redirect()->route('distributor.show', compact('id'))->withSuccess('guarentee update success');

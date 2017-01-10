@@ -152,7 +152,7 @@
                 </li>
                 @endrole
 
-                @role((['admin','salesmanager','accountmanagersales', 'director','generalmanager','salesman', 'factoryincharge']))
+                @role((['admin','salesmanager','accountmanagersales', 'director','generalmanager','salesman']))
                 <li class="active treeview">
                     <a href="{{ url('/order') }}">
                         <i class="fa fa-shopping-cart"></i> <span>Order</span>
@@ -160,7 +160,7 @@
                 </li>
                 @endrole
 
-                @role((['admin','salesmanager','accountmanagersales', 'director','generalmanager', 'factoryincharge']))
+                @role((['admin','salesmanager','accountmanagersales', 'director','generalmanager']))
                 <li class="active treeview">
                     <a href="{{ url('/orderApproval') }}">
                         <i class="fa fa-angle-left"></i> <span>Order Approval</span>
