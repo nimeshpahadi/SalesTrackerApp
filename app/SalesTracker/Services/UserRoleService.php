@@ -90,6 +90,12 @@ class UserRoleService
         return $userroles;
     }
 
+    public function getwarehouseforfactory($id)
+    {
+        $factware = $this->roleRepository->getWarehouseforFactory($id);
+        return $factware;
+    }
+
 
 }
 

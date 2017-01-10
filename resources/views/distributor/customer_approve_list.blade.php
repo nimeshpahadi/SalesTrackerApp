@@ -40,9 +40,9 @@
                                         @if(isset($list['approval']['sales_approval'])
                                                  && $list["approval"]["sales_approval"]=="rejected")
 
-                                            <button class="btn btn-primary"
+                                            <button class="btn btn-primary glyphicon glyphicon-info-sign"
                                                     data-toggle="popover" data-trigger="hover"
-                                                    data-content="{{$list['approval']['sale_remark']}}">Status
+                                                    data-content="{{$list['approval']['sale_remark']}}">
                                             </button>
                                         @endif
 
@@ -59,9 +59,9 @@
                                         @if(isset($list['approval']['admin_approval'])
                                                  && $list["approval"]["admin_approval"]=="rejected")
 
-                                            <button id="pop" class="btn btn-primary"
+                                            <button id="pop" class="btn btn-primary glyphicon glyphicon-info-sign "
                                                     data-toggle="popover" data-trigger="hover"
-                                                    data-content="{{$list['approval']['admin_remark']}}">Status
+                                                    data-content="{{$list['approval']['admin_remark']}}">
                                             </button>
                                         @endif
                                     </td>
@@ -78,7 +78,7 @@
                                             {!! Html::linkRoute('customerApproveUpdate', 'Approve',
                                                                 array("distributor_id"=>$list['distributor_id'],
                                                                 "sales_approval"=> "approved"),
-                                                                array('class'=>'btn btn-primary btn-block'))
+                                                                array('class'=>'btn btn-success btn-block'))
                                             !!}
                                            @endif
 
@@ -88,10 +88,10 @@
                                                                 array("distributor_id"=>$list['distributor_id'],
                                                                 "salesmanager"=> Auth::user()->id,
                                                                 "sales_approval"=> "approved"),
-                                                                array('class'=>'btn btn-primary btn-block'))
+                                                                array('class'=>'btn btn-success btn-block'))
                                             !!}
 
-                                            <button class="btn btn-primary btn-block" data-toggle="modal"
+                                            <button class="btn btn-danger btn-block" data-toggle="modal"
                                                     data-target="#reject{{$list['distributor_id']}}">Reject
                                             </button>
                                         @endif

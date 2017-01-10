@@ -245,18 +245,14 @@ class StockRepository
 
     public function getOrderWarehouse($id)
     {
-        $query = $this->order_out->select('order_outs.id', 'order_outs.created_at as senddate', 'distributor_details.company_name as distributor',
-            'distributor_details.id as dis_id', 'order_outs.order_id', 'distributor_addresses.zone as Dzone', 'distributor_addresses.district as Ddistrict', 'distributor_addresses.city as Dcity',
-            'distributor_addresses.latitude as lat', 'distributor_addresses.longitude as long', 'products.sub_category as productname', 'users.fullname as username', 'warehouses.name as warehousename')
+        $query = $this->order_out->select('order_outs.id','order_outs.order_id', 'order_outs.created_at as senddate','distributor_details.company_name as distributor',
+            'distributor_details.id as dis_id','products.sub_category as productname','users.fullname as username')
             ->join('orders', 'order_outs.order_id', 'orders.id')
             ->join('users', 'order_outs.user_id', 'users.id')
             ->join('products', 'orders.product_id', 'products.id')
-            ->join('warehouses', 'order_outs.warehouse_id', 'warehouses.id')
             ->join('distributor_details', 'orders.distributor_id', 'distributor_details.id')
-            ->join('distributor_addresses', 'distributor_addresses.distributor_id', 'distributor_details.id')
-            ->where('order_outs.warehouse_id', $id)
-            ->where('distributor_addresses.type', 'Shipping');
-
+            ->where('order_outs.warehouse_id', $id);
+        
         return $query->get();
     }
 

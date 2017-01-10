@@ -89,28 +89,28 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-
+        $ware = $this->stockService->get_allwarehouse();
         $user = $this->userService->selectUsers($id);
         $role = $this->userRoleService->getallrole();
         $userRoleid = $this->userRoleService->getUsersRoleId($id);
+        $factoryWarehouse = $this->userRoleService->getwarehouseforfactory($id);
         $reportsTo = $this->userRoleService->getReportsto($id);
-        return view('user.edit', compact('user', 'role', 'userRoleid', 'reportsTo'));
+        return view('user.edit', compact('user', 'role', 'userRoleid', 'reportsTo','ware','factoryWarehouse'));
     }
 
 
     public function update(RegisterRequest $request, $id)
     {
-
-        if (
-        $this->userService->updateUser($request, $id)
-        ) {
+            $data= $request->all();
+        if ($this->userService->updateUser($request, $id))
+        {
             $userRole = [
                 'user_id' => $id,
                 'role_id' => $request->get('role')
             ];
             $this->updateRole($userRole);
 
-            if ($request['role']=="factroyincharge")
+            if ((int)$data['role']==4)
             {
                 $assignWarehouse=[
                     'user_id' => $id,

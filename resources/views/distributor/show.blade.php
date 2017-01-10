@@ -246,22 +246,28 @@
                 <div class="col-md-12 clearfix ">
                     <div class="tabbable box box-primary " id="tabs-512934">
                         <ul class="nav nav-tabs nav-justified ">
-                            <li class="active">
+
+                            @if($dist->status==1 )
+                                <li class="active">
                                 <a class="btn btn-primary" href="#order" data-toggle="tab">Order</a>
+
                             </li>
                             <li>
                                 <a class="btn btn-primary" href="#payment" data-toggle="tab">Payment</a>
                             </li>
+                            @endif
 
 
+                            @if($dist->status==0 )
                             <li>
                                 <a class="btn btn-google" href="#visit" data-toggle="tab">Visit</a>
                             </li>
-
+                            @endif
+                            @if($dist->status==0 || $dist->status==1)
                             <li>
                                 <a class="btn btn-success" href="#min" data-toggle="tab">Minute</a>
                             </li>
-
+                            @endif
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="order">
@@ -313,16 +319,16 @@
                                 @endrole
                                 <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
                                      id="price{{$dist->id}}" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-sm ">
+                                    <div class="modal-dialog modal-md ">
                                         <div class="modal-content " style="padding: 10px">
 
                                             {!! Form::open(array('route' => 'minute_store'))!!}
                                             <h3>Add Minute</h3>
                                             <div class="form-group col-md-12">
-                                                <input type="text" class="form-control" name="report"
-                                                       style="padding: 30px" required>
+                                                <textarea type="text" class="form-control" name="report"
+                                                      height="100px" required></textarea>
 
-                                                {{--</input>--}}
+
                                                 <input name="user_id" hidden value='{{ Auth::user()->id }}'>
                                                 <input name="distributor_id" hidden value='{{$dist->id}}'>
 
@@ -371,11 +377,14 @@
                                 </table>
                             </div>
                             <div class="tab-pane " id="payment">
+
+                                @role((['admin','salesmanager','accountmanagersales','director','generalmanager']))
                                 <div align="right">
                                     <a href="{{route('create_payment',$dist->id)}}">
                                         <span class=" btn btn-success glyphicon glyphicon-plus">payment</span>
                                     </a>
                                 </div>
+                                @endrole
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                     <tr>

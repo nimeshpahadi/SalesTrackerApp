@@ -84,7 +84,7 @@ class DistributorController extends Controller
         $billing_transaction = $this->distributorService->getBillingAmount($id);
         $paying_transaction = $this->distributorService->getPayingAmount($id);
 
-        return view('distributor/show', compact('dist', 'address', 'guarantee', 'tracking', 'minute',
+        return view('distributor/show', compact('dist', 'address', 'guarantee', 'tracking', 'minute','distributor',
                                                 'order', 'payment', 'billing_transaction', 'paying_transaction'));
     }
 

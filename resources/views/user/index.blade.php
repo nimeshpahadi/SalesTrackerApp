@@ -52,10 +52,8 @@
 
                                 <td>
                                     {!! Html::linkRoute('user.show','View',array($users->id),array('class'=>'btn btn-success '))!!}
-
-
+                                    
                                     {!! Html::linkRoute('passwordreset','Reset password',array( $users->id),array('class'=>''))!!}
-
                                 </td>
                             </tr>
                         @endforeach
