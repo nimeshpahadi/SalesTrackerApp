@@ -26,14 +26,14 @@
 
             </div>
             <div class="form-group clearfix" id="bank_name">
-                <label for="type" id="bank_name" class="col-sm-4 control-label bank-name">Bank name</label>
+                <label for="type" id="bank_name" class="col-sm-4 control-label bank-name">Bank Name</label>
                 <div class="col-md-8">
                     {{ Form::text('bank_name',$guarantee->bank_name,array('class'=>'"col-sm-8 form-control bank-name'))}}
                 </div>
             </div>
 
             <div class="form-group clearfix" id="cheque_no">
-                <label for="type" id="cheque_no" class="col-sm-4 control-label cheque-no">Cheque no</label>
+                <label for="type" id="cheque_no" class="col-sm-4 control-label cheque-no">Cheque No</label>
                 <div class="col-md-8">
                     {{ Form::text('cheque_no',$guarantee->cheque_no,array('class'=>'"col-sm-8 form-control cheque-no'))}}
                 </div>
@@ -56,7 +56,7 @@
 
             <div align="right">
                 {{Form::submit('Save Changes', array('class'=>'btn btn-primary'))}}
-                <a type="button" class="btn btn-warning " href="/distributor">Cancel</a>
+                <a type="button" class="btn btn-warning " href="{{ URL::previous() }}">Cancel</a>
                 {!! Form::close() !!}
             </div>
 
@@ -64,16 +64,3 @@
     </div>
 
 @endsection
-
-
-
-
-
-
-
-
-
-
-
-{{--{!! Form::open(array('route' => 'guarantee_store'))!!}--}}
-{{--        {!! Form::model($dist,array('route' => 'guarantee_update'),$dist->id !!}--}}

@@ -194,16 +194,15 @@ class OrderRepository
      */
     public function getorderlistbydistributor($id)
     {
-        $query = $this->order->select(DB::raw('orders.quantity, orders.price, orders.priority, orders.payment_term,
-         orders.proposed_delivery_date, orders.created_at,
-          products.sub_category as subCategory,
-          users.fullname as userName, 
-          distributor_details.company_name as distributor_name,orders.id as distributor_id'))
+        $query = $this->order->select(DB::raw('orders.*, products.sub_category as subCategory, users.fullname as userName, 
+          distributor_details.company_name as distributor_name, orders.id as distributor_id'))
             ->orderBy('created_at', 'desc')
             ->join('users', 'orders.user_id', 'users.id')
             ->join('products', 'orders.product_id', 'products.id')
             ->join('distributor_details', 'orders.distributor_id', 'distributor_details.id')
-         ->where('orders.distributor_id', $id);
+            ->join('order_approvals', 'order_approvals.order_id', 'orders.id')
+            ->where('orders.distributor_id', $id)
+            ->where('order_approvals.admin_approval', '<>', "Approved");
         return $query->get();
     }
 
@@ -359,12 +358,10 @@ class OrderRepository
 
     public function getadminapproval($id)
     {
-        $query = $this->orderApproval->select('order_approvals.id','order_approvals.admin_approval'
-            ,'order_approvals.sales_approval','order_approvals.marketing_approval','order_approvals.salesmanager'
-            ,'order_approvals.marketingmanager','order_approvals.order_id',
-            'order_approvals.admin','users.fullname as user_name')
+        $query = $this->orderApproval->select('order_approvals.*', 'users.fullname as user_name', 'roles.display_name')
             ->join('users', 'users.id', 'order_approvals.admin')
             ->join('role_user', 'users.id', 'role_user.user_id')
+            ->join('roles', 'roles.id', 'role_user.role_id')
             ->join('orders', 'order_approvals.order_id', 'orders.id')
             ->where('orders.id',$id)->first();
         return $query;

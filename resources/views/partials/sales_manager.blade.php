@@ -9,7 +9,7 @@
                         <h3>{{ 0 }}</h3>
                     @endif
                 @endforeach
-                <p><b>Quantity Ordered today</b></p>
+                <p><b>Quantity Ordered Today</b></p>
             </div>
         </div>
 
@@ -17,7 +17,7 @@
             <div class="small-box bg-aqua">
                 @foreach($billing_amount as $bill)
                     @if($bill->billing_amount!=0)
-                        <h3>Rs {{$bill->billing_amount}}</h3>
+                        <h3>Rs {{number_format($bill->billing_amount, 2)}}</h3>
                     @else
                         <h3>Rs {{ 0 }}</h3>
                     @endif
@@ -30,7 +30,7 @@
             <div class="small-box bg-aqua">
                 @foreach($paying_amount as $pay)
                     @if($pay->paying_amount!=0)
-                        <h3>Rs {{$pay->paying_amount}}</h3>
+                        <h3>Rs {{number_format($pay->paying_amount, 2)}}</h3>
                     @else
                         <h3>Rs {{ 0 }}</h3>
                     @endif

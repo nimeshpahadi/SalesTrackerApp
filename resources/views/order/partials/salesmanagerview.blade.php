@@ -17,11 +17,11 @@
             </div>
 
             <div class="form-group clearfix">
-                <label for="" class="col-md-1 distributor">Distributor</label>
+                <label for="" class="col-md-1 distributor">Customer</label>
                 <div class="col-md-2">
 
                     <select name="distributor" class="form-control">
-                        <option selected="selected" value="" >Choose Distributor</option>
+                        <option selected="selected" value="" >Choose Customer</option>
                         @foreach($dis as $d)
                             <option value="{{ $d->id}}" @if($d->id==$filters['distributor']) selected @endif>
                                 {{ $d->company_name  }}
