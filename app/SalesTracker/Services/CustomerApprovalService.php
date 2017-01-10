@@ -39,13 +39,15 @@ class CustomerApprovalService
         foreach ($data as $dis)
         {
             $distDataList = $this->approvalRepository->saleApproveRepo($dis->id);
+            $distAdminList = $this->approvalRepository->adminApproveRepo($dis->id);
 
             $distData[] = [
 
                 "distributor_id" => $dis->id,
                 "company_name" => $dis->company_name,
                 "contact_name" => $dis->contact_name,
-                "approval" => $distDataList
+                "approval" => $distDataList,
+                "adminApproval" => $distAdminList,
             ];
         }
         return $distData;
