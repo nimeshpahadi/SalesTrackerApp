@@ -46,19 +46,21 @@ class RegisterController extends Controller
 
     public function register(RegisterRequest $request)
     {
+        $data= $request->all();
         if ($user = $this->create($request->all()))
         {
             $userRole = [
                 'user_id' => $user->id,
                 'role_id' => $request->get('role')
             ];
-            if ($user['role']=4)
+            if ((int)$data['role']==4)
             {
                 $assignWarehouse=[
                     'user_id' => $user->id,
                     'warehouse_id' => $request->get('warehouse_id')
 
                 ];
+                
                 $this->assignWarehouse($assignWarehouse);
 
             }
@@ -81,7 +83,7 @@ class RegisterController extends Controller
                 'department' => $data['department'],
                 'role' => $data['role'],
                 'reportsto' => $data['reportsto'],
-                'warehouse_id' => $data['warehouse_id'],
+                'warehouse_id' => isset($data['warehouse_id'])?$data['warehouse_id']:"",
                 'email' => $data['email'],
                 'contact' => $data['contact'],
                 'password' => bcrypt($data['password']),
