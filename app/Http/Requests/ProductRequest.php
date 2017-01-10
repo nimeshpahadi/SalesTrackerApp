@@ -31,6 +31,8 @@ class ProductRequest extends FormRequest
             'code' => 'required',
             'description' => 'required|max:500',
             'price' => 'required',
+            'category' => 'required',
+            'sub_category' => 'required',
 
         ];
     }

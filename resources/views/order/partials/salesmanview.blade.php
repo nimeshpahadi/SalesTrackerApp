@@ -18,7 +18,7 @@
             <input id="datefield1" type="date" class="form-control" name="to">
 
         </div>
-        <label for="from" class="col-md-1 control-label">Distributor</label>
+        <label for="from" class="col-md-1 control-label">Customer</label>
         <div class="col-md-2">
             <input id="distributor" type="text" class="form-control" name="distributor">
 

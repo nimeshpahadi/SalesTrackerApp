@@ -113,7 +113,7 @@
         <div class="clearfix"></div>
         <div align="right" class="col-md-10 col-md-offset-1 ">
         {{Form::submit('Create Product', array('class'=>'btn btn-primary '))}}
-        <a type="button" class="btn btn-warning" href="/user">Cancel</a>
+        <a type="button" class="btn btn-warning" href="/product">Cancel</a>
         {!! Form::close() !!}
             </div>
 

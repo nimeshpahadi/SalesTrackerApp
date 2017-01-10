@@ -130,14 +130,14 @@
                                         </div>
                                         @if(isset($guarantee->bank_name))
                                             <div class="row">
-                                                <label class="col-sm-6 ">Bank name :</label>
+                                                <label class="col-sm-6 ">Bank Name :</label>
                                                 {{($guarantee->bank_name)}}
                                             </div>
                                         @endif
                                         @if(isset($guarantee->cheque_no))
                                             <div class="row">
-                                                <label class="col-sm-6 ">Cheque no :</label>
-{{--                                                {{($guarantee->cheque_no)}}--}}
+                                                <label class="col-sm-6 ">Cheque No :</label>
+                                                {{($guarantee->cheque_no)}}
                                             </div>
                                         @endif
                                         @if(isset($guarantee->remark))
@@ -209,18 +209,17 @@
                             @if(empty($address["Billing"]))
                                 <a class=" btn btn-success"
                                    href="{{route('distributor_address',["id"=>$dist->id,"type"=>1])}}">Add
-                                    Billing address</a>
+                                    Billing Address</a>
                             @endif
                             @if(empty($address["Shipping"]))
                                 <a class=" btn btn-success"
                                    href="{{route('distributor_address',["id"=>$dist->id,"type"=>2])}}">Add
-                                    shipping address</a>
+                                    Shipping Address</a>
                             @endif
                             @if(empty($address["Billing"]) && empty($address["Shipping"]))
                                 <a class=" btn btn-success"
                                    href="{{route('distributor_address',["id"=>$dist->id,"type"=>3])}}">Add
-                                    Both
-                                    address</a>
+                                    Both Address</a>
                             @endif
                             @endrole
 
@@ -248,7 +247,7 @@
                     <div class="tabbable box box-primary " id="tabs-512934">
                         <ul class="nav nav-tabs nav-justified ">
                             <li class="active">
-                                <a class="btn btn-primary" href="#order" data-toggle="tab">ORDER</a>
+                                <a class="btn btn-primary" href="#order" data-toggle="tab">Order</a>
                             </li>
                             <li>
                                 <a class="btn btn-primary" href="#payment" data-toggle="tab">Payment</a>
@@ -256,11 +255,11 @@
 
 
                             <li>
-                                <a class="btn btn-google" href="#visit" data-toggle="tab">VISIT</a>
+                                <a class="btn btn-google" href="#visit" data-toggle="tab">Visit</a>
                             </li>
 
                             <li>
-                                <a class="btn btn-success" href="#min" data-toggle="tab">MINUTE</a>
+                                <a class="btn btn-success" href="#min" data-toggle="tab">Minute</a>
                             </li>
 
                         </ul>
@@ -274,8 +273,8 @@
                                         <th>Price/sack</th>
                                         <th>Quantity</th>
                                         <th>Priority</th>
-                                        <th>Payment term</th>
-                                        <th>Delivery date</th>
+                                        <th>Payment Term</th>
+                                        <th>Delivery Date</th>
 
                                         <th>Username</th>
 
@@ -374,7 +373,7 @@
                             <div class="tab-pane " id="payment">
                                 <div align="right">
                                     <a href="{{route('create_payment',$dist->id)}}">
-                                        <span class=" btn btn-success glyphicon glyphicon-plus"> payment</span>
+                                        <span class=" btn btn-success glyphicon glyphicon-plus">payment</span>
                                     </a>
                                 </div>
                                 <table class="table table-bordered table-striped">
@@ -417,7 +416,7 @@
                                     <table class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
-                                            <th>Created at</th>
+                                            <th>Created At</th>
                                             <th>Stage</th>
                                             <th>Business Probability</th>
                                             <th>Activity</th>

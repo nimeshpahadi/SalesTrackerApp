@@ -17,11 +17,11 @@
                     </div>
                     <div class="row">
                         <label class="col-sm-6 "> Price/sack:</label>
-                        {{$orderId->price}}
+                        Rs. {{number_format($orderId->price, 2)}}
                     </div>
                     <div class="row">
                         <label class="col-sm-6 "> Gross Price:</label>
-                        {{$orderId->price * $orderId->quantity}}
+                        Rs. {{number_format($orderId->price * $orderId->quantity, 2)}}
                     </div>
                     <div class="row">
                         <label class="col-sm-6 "> Salesman:</label>
@@ -67,11 +67,11 @@
                         </div>
                         <div class="row">
                             <label class="col-sm-6 "> Shipping Charge:</label>
-                           Rs. {{$ob->shipping_charge}}
+                           Rs. {{number_format($ob->shipping_charge, 2)}}
                         </div>
                         <div class="row">
                             <label class="col-sm-6 "> Grand Total:</label>
-                           Rs. {{$ob->grand_total}}
+                           Rs. {{number_format($ob->grand_total, 2)}}
                         </div>
                         <div class="row">
                             <label class="col-sm-6 "> created at:</label>

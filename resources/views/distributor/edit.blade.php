@@ -142,7 +142,7 @@
 
             <div align="right" class=" row">
             {{Form::submit('Save Changes', array('class'=>'btn btn-primary '))}}
-            <a type="button" class="btn btn-warning " href="/distributor">Cancel</a>
+            <a type="button" class="btn btn-warning " href="/distributor/{{ $dist->id }}">Cancel</a>
             {!! Form::close() !!}
             </div>
 

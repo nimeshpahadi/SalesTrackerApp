@@ -30,12 +30,12 @@
                                     <td>{{$list['company_name']}}</td>
                                     <td>{{$list['contact_name']}}</td>
                                     <td>
-                                        {{isset($list['approval']['username'])?$list['approval']['username']:"SM"}}
+                                        {{isset($list['approval']['username'])?$list['approval']['username']:"SalesManager"}}
                                         ({{isset($list['approval']['display_name'])?$list['approval']['display_name']:""}})
                                                                 :  {{(isset($list["approval"]["sales_approval"])
                                                                 && $list["approval"]["sales_approval"]!=null)
                                                                 ?ucfirst($list["approval"]["sales_approval"])
-                                                                :"Not defined"}}
+                                                                :"Waiting For Approval"}}
 
                                         <br>
 
@@ -44,7 +44,7 @@
                                         ({{isset($list['adminApproval']['display_name'])?$list['adminApproval']['display_name']:""}})
                                                         : {{(isset($list["adminApproval"]["admin_approval"])
                                                         && $list["adminApproval"]["admin_approval"]!=null)
-                                                        ?ucfirst($list["adminApproval"]["admin_approval"]):"Not defined"}}
+                                                        ?ucfirst($list["adminApproval"]["admin_approval"]):"Waiting For Approval"}}
 
                                     </td>
 

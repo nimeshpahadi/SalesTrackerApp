@@ -52,7 +52,7 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         if ($this->productService->storeproduct($request)) {
-            return back()->withSuccess('Product Added');
+            return redirect('/product')->withSuccess('Product Added');
         }
         return back()->withErrors('something went wrong');
     }

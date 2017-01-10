@@ -41,15 +41,15 @@
         @if(isset($adminapproval->admin) && isset($salesapproval->salesmanager)
                                          && $salesapproval->sales_approval!=null)
 
-            @if($adminapproval->user_name=="admin")
+            @if($adminapproval->display_name=="Admin")
                 <label> Admin : </label>
             @endif
 
-            @if($adminapproval->user_name=="generalmanager")
+            @if($adminapproval->display_name=="General Manager")
                 <label> GM : </label>
             @endif
 
-            @if($adminapproval->user_name=="director")
+            @if($adminapproval->display_name=="Director")
                 <label> Director : </label>
             @endif
 
