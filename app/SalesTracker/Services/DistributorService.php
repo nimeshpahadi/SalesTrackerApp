@@ -81,15 +81,14 @@ class DistributorService
 
             "distributor_id" => isset($formData['distributor_id'])?$formData['distributor_id']:"",
             "type"           => isset($formData['type'])?$formData['type']:"",
-            "bank_name"      => isset($formData['bank_name'])?$formData["bank_name"]:"",
-            "cheque_no"      => isset($formData['cheque_no'])?$formData["cheque_no"]:"",
+            "bank_name"      => isset($formData['bank_name'])?$formData["bank_name"]:null,
+            "cheque_no"      => isset($formData['cheque_no'])?$formData["cheque_no"]:null,
             "amount"         => isset($formData['amount'])?$formData["amount"]:"",
-            "remark"         => isset($formData['remark'])?$formData["remark"]:"",
+            "remark"         => isset($formData['remark'])?$formData["remark"]:null,
 
         ];
 
         $store_guarantee = $this->distributorRepository->guarantee_store($data);
-
         return $store_guarantee;
     }
 

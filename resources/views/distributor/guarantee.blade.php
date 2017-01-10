@@ -47,7 +47,6 @@
 
             <div class="col-sm-4">
                 <input id="amount" type="text"  class="form-control amount" name="amount" min=0  value="{{ old('amount') }}">
-
                 @if ($errors->has('amount'))
                     <span class="help-block">
                         <strong>{{ $errors->first('amount') }}</strong>

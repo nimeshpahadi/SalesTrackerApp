@@ -13,7 +13,7 @@
                 <label for="type" class="col-sm-4 control-label">Type</label>
                 <div class="col-md-8">
                     <select id="select" name="type" class="form-control" required>
-                            <option>{{$guarantee->type}}</option>
+                        <option>{{$guarantee->type}}</option>
                         <option value="Bank">Bank</option>
                         <option value="Pdp">Pdp</option>
                         <option value="Cash">Cash</option>
