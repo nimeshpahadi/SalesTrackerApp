@@ -186,7 +186,7 @@
                 </li>
                 @endrole
 
-                @role((['admin', 'marketingmanager', 'salesmanager', 'factoryincharge']))
+                @role((['admin','director','generalmanager', 'marketingmanager', 'salesmanager', 'factoryincharge']))
                 <li class="active treeview">
                     <a href="{{ url('/stock') }}">
                         <i class="fa fa-book"></i> <span>Inventory</span>

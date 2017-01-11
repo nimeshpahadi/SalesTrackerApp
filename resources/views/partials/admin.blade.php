@@ -13,7 +13,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="small-box bg-aqua">
+            <div class="small-box bg-maroon">
                 @foreach($billing_amount as $bill)
                     @if($bill->billing_amount!=0)
                         <h3>Rs {{number_format($bill->billing_amount, 2)}}</h3>
@@ -25,7 +25,7 @@
             </div>
         </div>
         <div class="col-md-4">
-            <div class="small-box bg-aqua">
+            <div class="small-box bg-green">
                 @foreach($paying_amount as $pay)
                     @if($pay->paying_amount!=0)
                         <h3>Rs {{number_format($pay->paying_amount, 2)}}</h3>
