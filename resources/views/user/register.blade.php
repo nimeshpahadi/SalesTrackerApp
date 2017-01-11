@@ -14,18 +14,18 @@
                             <div class="form-group{{ $errors->has('fullname') ? ' has-error' : '' }}">
 
 
-                                    <label for="fullname" class="col-md-2 control-label">FullName :</label>
+                                <label for="fullname" class="col-md-2 control-label">FullName :</label>
 
-                                    <div class=" col-md-9">
-                                        <input id="fullname" type="text" class="form-control" name="fullname"
-                                               value="{{ old('fullname') }}" required autofocus>
+                                <div class=" col-md-9">
+                                    <input id="fullname" type="text" class="form-control" name="fullname"
+                                           value="{{ old('fullname') }}" required autofocus>
 
-                                        @if ($errors->has('fullname'))
-                                            <span class="help-block">
+                                    @if ($errors->has('fullname'))
+                                        <span class="help-block">
                                         <strong>{{ $errors->first('fullname') }}</strong>
                                     </span>
-                                        @endif
-                                    </div>
+                                    @endif
+                                </div>
                             </div>
                             <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
                                 <label for="username" class="col-md-2 control-label">UserName :</label>
@@ -63,116 +63,115 @@
                                 </div>
                             </div>
                             <div class="form-group{{ $errors->has('department') ? ' has-error' : '' }}">
-                                        <label for="department" class="col-md-2 control-label">Department :</label>
+                                <label for="department" class="col-md-2 control-label">Department :</label>
 
 
-                                        <div class="col-md-9">
-                                            <?php $x = Config::get('department.name');?>
+                                <div class="col-md-9">
+                                    <?php $x = Config::get('department.name');?>
 
-                                            <select name="department" class="form-control">
-                                                <option selected="selected" disabled>Choose Department</option>
-                                                @foreach($x as $dep)
-                                                    <option value="{{ $dep}}">
-                                                        {{ $dep  }}
-                                                    </option>
-                                                @endforeach
+                                    <select name="department" class="form-control">
+                                        <option selected="selected" disabled>Choose Department</option>
+                                        @foreach($x as $dep)
+                                            <option value="{{ $dep}}">
+                                                {{ $dep  }}
+                                            </option>
+                                        @endforeach
 
-                                            </select>
-                                        </div>
-                                    </div>
+                                    </select>
+                                </div>
+                            </div>
                             <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
-                                        <label for="role" class="col-md-2 control-label">Role :</label>
+                                <label for="role" class="col-md-2 control-label">Role :</label>
 
-                                        <div class="col-md-9">
-                                            <select id="role" name="role" class=" form-control role">
+                                <div class="col-md-9">
+                                    <select id="role" name="role" class=" form-control role">
 
-                                                <option selected="selected" disabled>Choose Role</option>
-                                                @foreach ($role as $allrole)
-                                                    <option value="{{$allrole->id}}">
-                                                        {{$allrole->display_name}}
-                                                    </option>
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                        <option selected="selected" disabled>Choose Role</option>
+                                        @foreach ($role as $allrole)
+                                            <option value="{{$allrole->id}}">
+                                                {{$allrole->display_name}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
-                                    </div>
+                            </div>
                             <div class="form-group{{ $errors->has('reportsto') ? ' has-error' : '' }}">
-                                        <label for="reportsto" class="col-md-2 control-label">ReportsTo:</label>
+                                <label for="reportsto" class="col-md-2 control-label">ReportsTo:</label>
 
 
-                                        <div class="col-md-9">
-                                            <select name="reportsto" class="form-control">
+                                <div class="col-md-9">
+                                    <select name="reportsto" class="form-control">
 
-                                                <option selected="selected" disabled>Choose Reports to</option>
-                                                @foreach ($role as $allrole)
-                                                    @if($allrole->name!='salesman')
-                                                        <option value="{{$allrole->id}}">
+                                        <option selected="selected" disabled>Choose Reports to</option>
+                                        @foreach ($role as $allrole)
+                                            @if($allrole->name!='salesman')
+                                                <option value="{{$allrole->id}}">
 
-                                                            {{$allrole->display_name}}
+                                                    {{$allrole->display_name}}
 
-                                                        </option>
-                                                    @endif
-                                                @endforeach
-                                            </select>
-                                        </div>
+                                                </option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                </div>
 
 
-                                    </div>
+                            </div>
                             <div class="form-group{{ $errors->has('warehouse_id') ? ' has-error' : '' }}">
-                                            <label for="warehouse_id" class="col-md-2 control-label">Warehouse :</label>
+                                <label for="warehouse_id" class="col-md-2 control-label">Warehouse :</label>
 
-                                            <div class="col-md-9">
-                                                <select id="warehouse_id" name="warehouse_id"
-                                                        class=" form-control warehouse" disabled>
+                                <div class="col-md-9">
+                                    <select id="warehouse_id" name="warehouse_id"
+                                            class=" form-control warehouse" disabled>
 
-                                                    <option selected="selected" disabled>For Factoryincharge</option>
-                                                    @foreach ($ware as $warehouse)
-                                                        <option value="{{$warehouse->id}}">
-                                                            {{$warehouse->name}}
-                                                        </option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
+                                        <option selected="selected" disabled>For Factoryincharge</option>
+                                        @foreach ($ware as $warehouse)
+                                            <option value="{{$warehouse->id}}">
+                                                {{$warehouse->name}}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                </div>
 
-                                        </div>
+                            </div>
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 
 
-                                        <label for="password" class="col-md-2 control-label">Password :</label>
+                                <label for="password" class="col-md-2 control-label">Password :</label>
 
-                                        <div class="col-md-9">
-                                            <input id="password" type="password" class="form-control" name="password"
-                                                   required>
+                                <div class="col-md-9">
+                                    <input id="password" type="password" class="form-control" name="password"
+                                           required>
 
-                                            @if ($errors->has('password'))
-                                                <span class="help-block">
+                                    @if ($errors->has('password'))
+                                        <span class="help-block">
                                         <strong>{{ $errors->first('password') }}</strong>
                                     </span>
-                                            @endif
-                                        </div>
-                                        </div>
-                            <div class="form-group">
-                                            <label for="password-confirm"
-                                                   class="col-md-2 control-label">RePassword :</label>
-
-                                            <div class="col-md-9">
-                                                <input id="password-confirm" type="password" class="form-control"
-                                                       name="password_confirmation" required>
-                                            </div>
-                                        </div>
-
-
-
-                                <div class="form-group">
-                                    <div class="col-md-9 col-md-offset-4">
-                                        <button type="submit" class="btn btn-primary">
-                                            Register
-                                        </button>
-                                        <a type="button" class="btn btn-default" href="/user">
-                                            Cancel
-                                        </a>
-                                    </div>
+                                    @endif
                                 </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="password-confirm"
+                                       class="col-md-2 control-label">RePassword :</label>
+
+                                <div class="col-md-9">
+                                    <input id="password-confirm" type="password" class="form-control"
+                                           name="password_confirmation" required>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="col-md-9 col-md-offset-4">
+                                    <button type="submit" class="btn btn-primary">
+                                        Register
+                                    </button>
+                                    <a type="button" class="btn btn-default" href="/user">
+                                        Cancel
+                                    </a>
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>
