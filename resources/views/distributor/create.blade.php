@@ -171,7 +171,7 @@
             <label for="open_date" class="col-sm-4 control-label">Open Date</label>
 
             <div class="col-sm-8">
-                <input id="open_date" type="date" class="form-control" name="open_date" value="{{ old('open_date') }}"
+                <input id="date" type="text" class="form-control" name="open_date" value="{{ old('open_date') }}"
                        required autofocus>
 
                 @if ($errors->has('open_date'))

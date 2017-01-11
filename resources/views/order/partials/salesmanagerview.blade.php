@@ -8,12 +8,12 @@
         <div class="row " style="padding-bottom: 5px">
             <label for="from" class="col-sm-1 control-label">From:</label>
             <div class="col-md-2">
-                <input id="datefield" type="date" value="{{$filters['from']}}" class="form-control" name="from">
+                <input id="date" type="text" value="{{$filters['from']}}" class="form-control" name="from">
 
             </div>
             <label for="from" class="col-md-1 control-label">To:</label>
             <div class="col-md-2">
-                <input id="datefield1" type="date" value="{{$filters['to']}}" class="form-control" name="to">
+                <input id="date1" type="text" value="{{$filters['to']}}" class="form-control" name="to">
 
             </div>
 
@@ -21,10 +21,10 @@
 
 
             <div class="form-group clearfix">
-                <label for="" class="col-md-1 distributor">Customer</label>
+                <label for="" class="col-md-1 distributor ">Customer</label>
                 <div class="col-md-2">
 
-                    <select name="distributor" class="form-control">
+                    <select name="distributor" class="form-control select2">
                         <option selected="selected" value="" >Choose Customer</option>
                         @foreach($dis as $d)
                             <option value="{{ $d->id}}" @if($d->id==$filters['distributor']) selected @endif>
@@ -39,7 +39,13 @@
         </div>
 
     </form>
+    <script>$(".select2").select2();</script>
 </div>
+
+
+
+
+
 
 
 
@@ -61,7 +67,7 @@
             </tr>
             </thead>
             <tbody>
-          
+
             @foreach($order as $o)
                 <tr>
                     <td><a href="{{route('distributor.show',$o->distributor_id)}}">{{$o->distributor_name}}</a></td>
@@ -75,7 +81,7 @@
                         </a>
                         @foreach($undispatched as $undis)
                             @if($o->id == $undis->id)
-                                <button class="btn btn-primary"><i class=""></i>On Hold</button>
+                                On Hold
                             @else
 
                             @endif
