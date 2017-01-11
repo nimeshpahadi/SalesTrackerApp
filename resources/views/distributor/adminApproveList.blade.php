@@ -40,7 +40,7 @@
                                         @if(isset($list['approval']['sales_approval'])
                                                  && $list["approval"]["sales_approval"]=="rejected")
 
-                                            <button class="btn btn-primary glyphicon glyphicon-info-sign"
+                                            <button class="btn btn-danger glyphicon glyphicon-info-sign"
                                                     data-toggle="popover" data-trigger="hover"
                                                     data-content="{{$list['approval']['sale_remark']}}">
                                             </button>
@@ -59,7 +59,7 @@
                                         @if(isset($list['approval']['admin_approval'])
                                                  && $list["approval"]["admin_approval"]=="rejected")
 
-                                            <button id="pop" class="btn btn-primary glyphicon glyphicon-info-sign"
+                                            <button id="pop" class="btn btn-danger glyphicon glyphicon-info-sign"
                                                     data-toggle="popover" data-trigger="hover"
                                                     data-content="{{$list['approval']['admin_remark']}}">
                                             </button>
