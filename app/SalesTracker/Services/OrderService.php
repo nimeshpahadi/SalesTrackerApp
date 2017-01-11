@@ -35,8 +35,14 @@ class OrderService
     }
 
 
-    public function getTotalOrderToday(){
-        $data=$this->orderRepository->gettotalordertoday();
+    public function getOrderQuantiySum(){
+        $data=$this->orderRepository->getOrderQuantitySumRepo();
+
+        return $data;
+    }
+
+    public function getOrders(){
+        $data=$this->orderRepository->getOrdersRepo();
         return $data;
     }
 

@@ -19,7 +19,7 @@
                 <th>Product</th>
                 <th>Quantity</th>
                 <th>Price</th>
-                <th>Order date</th>
+                <th>Order Date</th>
                 <th>Actions</th>
 
             </tr>

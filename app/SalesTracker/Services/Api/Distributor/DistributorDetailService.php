@@ -161,8 +161,8 @@ class DistributorDetailService extends BaseService
 
         $distAddress = [
 
-            "billing"  => [],
-            "shipping" => []
+            "Billing"  => [],
+            "Shipping" => []
 
         ];
 
@@ -170,9 +170,9 @@ class DistributorDetailService extends BaseService
 
             $ad = (array)$ad;
 
-            if ($ad['type']=='billing') {
+            if ($ad['type']=='Billing') {
 
-                  $distAddress['billing'][] = [
+                  $distAddress['Billing'][] = [
 
                       "zone"      =>  $ad['zone'],
                       "district"  =>  $ad['district'],
@@ -186,9 +186,9 @@ class DistributorDetailService extends BaseService
                 ];
             }
 
-            if ($ad['type']=='shipping') {
+            if ($ad['type']=='Shipping') {
 
-                  $distAddress['shipping'][] = [
+                  $distAddress['Shipping'][] = [
                       "zone"      =>  $ad['zone'],
                       "district"  =>  $ad['district'],
                       "city"      =>  $ad['city'],

@@ -8,36 +8,38 @@
 
 
                 <div class="panel panel-info col-md-8">
-                    <div class="panel-heading"><h3>ORDER DETAILS</h3></div>
+                    <div class="panel-heading"><h3>Order Details</h3></div>
 
-                    <div class="panel-body">{{$orderId->distributor_name}}</div>
+                    <div class="panel-body"><h1 align="center">{{$orderId->distributor_name}}</h1>
+                    </div>
+
                     <div class="row">
-                        <label class="col-sm-6 "> Quantity:</label>
+                        <label class="col-sm-6 "> Quantity :</label>
                         {{$orderId->quantity}}
                     </div>
                     <div class="row">
-                        <label class="col-sm-6 "> Price/sack:</label>
+                        <label class="col-sm-6 "> Price/Sack :</label>
                         Rs. {{number_format($orderId->price, 2)}}
                     </div>
                     <div class="row">
-                        <label class="col-sm-6 "> Gross Price:</label>
+                        <label class="col-sm-6 "> Gross Price :</label>
                         Rs. {{number_format($orderId->price * $orderId->quantity, 2)}}
                     </div>
                     <div class="row">
-                        <label class="col-sm-6 "> Salesman:</label>
+                        <label class="col-sm-6 "> Salesman :</label>
                         {{$orderId->userName}}
                     </div>
                     <div class="row">
-                        <label class="col-sm-6 "> Distributor:</label>
+                        <label class="col-sm-6 "> Customer :</label>
                         {{$orderId->distributor_name}}
                     </div>
                     <div class="row">
-                        <label class="col-sm-6 "> Ordered Date:</label>
+                        <label class="col-sm-6 "> Ordered Date :</label>
                         {{$orderId->created_at}}
                     </div>
 
                     <div class="row">
-                        <label class="col-sm-6 "> Delivery Date:</label>
+                        <label class="col-sm-6 "> Delivery Date :</label>
                         {{$orderId->proposed_delivery_date}}
                     </div>
 
@@ -45,7 +47,7 @@
 
                     <div class="">
 
-                        <h4> ORDER BILLING</h4>
+                        <h4> Order Billing</h4>
                         @role((['admin', 'gm', 'salesmanager', 'accountmanagersales', 'director']))
                         <div align="right">
                             <a href="{{route('create_payment',$orderId->distributor_id)}}">
@@ -57,24 +59,24 @@
                     @foreach($order_billings as $ob)
 
                         <div class="row">
-                            <label class="col-sm-6 "> Discount:</label>
+                            <label class="col-sm-6 "> Discount :</label>
                             {{$ob->discount}}%
                         </div>
 
                         <div class="row">
-                            <label class="col-sm-6 "> VAT:</label>
+                            <label class="col-sm-6 "> Vat :</label>
                             {{$ob->vat}}%
                         </div>
                         <div class="row">
-                            <label class="col-sm-6 "> Shipping Charge:</label>
-                           Rs. {{number_format($ob->shipping_charge, 2)}}
+                            <label class="col-sm-6 "> Shipping Charge :</label>
+                            Rs. {{number_format($ob->shipping_charge, 2)}}
                         </div>
                         <div class="row">
-                            <label class="col-sm-6 "> Grand Total:</label>
-                           Rs. {{number_format($ob->grand_total, 2)}}
+                            <label class="col-sm-6 "> Grand Total :</label>
+                            Rs. {{number_format($ob->grand_total, 2)}}
                         </div>
                         <div class="row">
-                            <label class="col-sm-6 "> created at:</label>
+                            <label class="col-sm-6 "> Created At :</label>
                             {{$ob->created_at}}
                         </div>
 
@@ -101,17 +103,17 @@
 
                         @if(isset($dispatched->orderoutid) && $dispatched->orderid==$orderId->id)
                             <div class="panel panel-success ">
-                                <div class="panel-heading"><h3>Order already dispatched</h3></div>
+                                <div class="panel-heading"><h3>Order Already Dispatched</h3></div>
 
                                 <div class="row">
-                                    <label class="col-sm-6 "> Dispatched By:</label>
+                                    <label class="col-sm-6 "> Dispatched By :</label>
                                     {{$dispatched->username}}
                                 </div>
+
                                 <div class="row">
-                                    <label class="col-sm-6 "> Dispatched On:</label>
+                                    <label class="col-sm-6 "> Dispatched On :</label>
                                     {{$dispatched->created_at}}
                                 </div>
-
 
                             </div>
                         @endif
@@ -121,11 +123,6 @@
 
                 <div class="col-md-4 ">
                     @role((['admin','salesmanager', 'generalmanager', 'director']))
-
-
-
-
-
 
                     @if(count($order_billings)<1)
 
@@ -146,8 +143,6 @@
                                     <input type="text" name="total_price"
                                            value="{{$orderId->price * $orderId->quantity}}" readonly
                                            id="textone">
-
-
                                 </div>
                             </div>
 
@@ -164,12 +159,10 @@
 
 
                             <div class="form-group{{ $errors->has('vat') ? ' has-error' : '' }} clearfix">
-                                <label for="vat" class="col-sm-4 control-label">VAT</label>
+                                <label for="vat" class="col-sm-4 control-label">Vat</label>
 
                                 <div class="col-sm-8">
                                     <input type="text" name="vat" id="textthree" placeholder="in %" required>
-
-
                                 </div>
                             </div>
 
@@ -179,18 +172,15 @@
 
                                 <div class="col-sm-8">
                                     <input type="text" name="shipping_charge" id="textfour" required>
-
-
                                 </div>
                             </div>
 
 
                             <div class="form-group{{ $errors->has('grand_total') ? ' has-error' : '' }} clearfix">
-                                <label for="grand_total" class="col-sm-4 control-label">Grand total</label>
+                                <label for="grand_total" class="col-sm-4 control-label">Grand Total</label>
 
                                 <div class="col-sm-8">
                                     <input type="text" name="grand_total" id="result" readonly>
-
                                 </div>
                             </div>
                             <div align="center" class="col-md-2 col-md-offset-4 ">
@@ -202,8 +192,6 @@
 
                         </div>
                     @endif
-                    {{--@endforeach--}}
-
 
                     @endrole
 
@@ -268,13 +256,12 @@
 
                             <div class="panel panel-info ">
                                 <div class="panel-heading"><h3>Details of Order Out</h3></div>
-                                <h4>Order Send:</h4> {{$orderout->senddate}}
-                                <h4>Distributor: </h4> {{$orderout->distributor}}
-                                <h4>Product Category:</h4>{{$orderout->productname}}
-                                <h4>Send by:</h4> {{$orderout->username}}
-                                <h4>Send To: </h4> {{$orderout->warehousename}}
+                                <h4>Order Send :</h4> {{$orderout->senddate}}
+                                <h4>Customer : </h4> {{$orderout->distributor}}
+                                <h4>Product Category :</h4>{{$orderout->productname}}
+                                <h4>Send By :</h4> {{$orderout->username}}
+                                <h4>Send To : </h4> {{$orderout->warehousename}}
                             </div>
-
 
                         @endif
 

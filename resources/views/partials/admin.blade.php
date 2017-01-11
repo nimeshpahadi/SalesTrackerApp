@@ -2,9 +2,9 @@
     <div class="col-md-12">
         <div class="col-md-4">
             <div class="small-box bg-aqua">
-                @foreach($today_order as $order)
-                    @if($order->total_order!=0)
-                        <h3>{{$order->total_order}}</h3>
+                @foreach($orderQuantitySum  as $sum)
+                    @if($sum->total_order!=0)
+                        <h3>{{$sum->total_order}}</h3>
                     @else
                         <h3>{{ 0 }}</h3>
                     @endif
@@ -105,14 +105,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($today_order as $order)
+                        @foreach($todayOrders as $o)
                             <tr>
-                                <td>{{$order->fullname}}</td>
-                                <td>{{$order->contact_name}}</td>
-                                <td>{{$order->sub_category}}</td>
-                                <td>{{$order->quantity}}</td>
-                                <td>{{$order->price}}</td>
-                                <td>{{$order->proposed_delivery_date}}</td>
+                                <td>{{$o->fullname}}</td>
+                                <td>{{$o->contact_name}}</td>
+                                <td>{{$o->sub_category}}</td>
+                                <td>{{$o->quantity}}</td>
+                                <td>{{$o->price}}</td>
+                                <td>{{$o->proposed_delivery_date}}</td>
                             </tr>
                         @endforeach
                         </tbody>

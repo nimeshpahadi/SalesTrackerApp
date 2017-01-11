@@ -22,20 +22,9 @@
                                 <h3> Details</h3>
                                 <div align="right">
                                     <div class="col-md-11 col-sm-10">
-
-
-                                        {!! Html::linkRoute('user.edit','edit',array($user->id),array('class'=>'btn btn-success glyphicon glyphicon-edit '))!!}
-
-                                        @if(Auth::user()->id==$user->id)
-                                            {!! Html::linkRoute('password','change password',array($user->id),array('class'=>'btn btn-primary'))!!}
-                                        @endif
+                                        {!! Html::linkRoute('user.edit','edit',array($user->id),
+                                                  array('class'=>'btn btn-success glyphicon glyphicon-edit '))!!}
                                     </div>
-                                    {!! Form::open(['method' => 'DELETE','route' => ['user.destroy', $user->id]]) !!}
-                                    <button type="submit" class="btn btn-danger glyphicon glyphicon-trash "
-                                            onclick="return confirm('Are you sure you want to delete this item?');">
-
-                                    </button>
-                                    {!! Form::close() !!}
 
                                 </div>
                             </div>

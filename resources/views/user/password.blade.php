@@ -10,7 +10,7 @@
 
 
                     {!! Form::model($user,array('route'=>['changepassword',$user->id],'method'=>'PATCH' ))!!}
-                    <h3>Change password</h3>
+                    <h3>Change Password</h3>
                     <div class="form-group ">
 
                        <div class="row">
