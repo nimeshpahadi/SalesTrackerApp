@@ -2,7 +2,6 @@
 
 @section('main-content')
 
-
     <h3>Edit Stocks</h3>
     <div class="box box-info clearfix ">
 
@@ -49,7 +48,6 @@
             </div>
         </div>
 
-
         <div class="clearfix"></div>
         {{Form::submit('Save Changes', array('class'=>'btn btn-primary btn-lg btn-block', 'style'=>'margin-top:20px;'))}}
         <a type="button" class="btn btn-warning btn-block" href="/stock">Cancel</a>
@@ -57,13 +55,5 @@
 
 
     </div>
-
-
-
-
-
-
-
-
 
 @endsection

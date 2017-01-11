@@ -2,10 +2,8 @@
 
 @section('main-content')
 
-
     <h3>Create Stocks</h3>
     <div class="box box-info clearfix ">
-
 
         {!! Form::open(array('id'=>'form','route'=>'stock.store'))!!}
         <div class="form-group clearfix">
@@ -39,6 +37,7 @@
 
             </div>
         </div>
+
         <input name="created_by" hidden value='{{ Auth::user()->username }}'>
 
         <div class="form-group clearfix">
@@ -56,15 +55,6 @@
             {!! Form::close() !!}
         </div>
 
-
     </div>
-
-
-
-
-
-
-
-
 
 @endsection

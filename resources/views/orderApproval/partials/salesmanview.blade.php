@@ -7,11 +7,11 @@
             <tr>
                 <th>Distributor</th>
                 <th>Product</th>
-                <th>Created by</th>
+                <th>Created By</th>
                 <th>Quantity</th>
                 <th>Proirity</th>
-                <th>Payment term</th>
-                <th>Order date</th>
+                <th>Payment Term</th>
+                <th>Order Date</th>
                 <th>Actions</th>
 
             </tr>

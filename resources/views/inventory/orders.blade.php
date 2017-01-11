@@ -17,10 +17,10 @@
                             <thead>
                             <tr>
 
-                                <th>Send date</th>
+                                <th>Send Date</th>
                                 <th>Distributor</th>
                                 <th>Product Name</th>
-                                <th>Order-out by</th>
+                                <th>Order-Out By</th>
                                 <th>Actions</th>
 
                             </tr>
