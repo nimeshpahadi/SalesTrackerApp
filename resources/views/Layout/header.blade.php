@@ -26,10 +26,20 @@
     {!! Html::style('/plugins/datatables/dataTables.bootstrap.css') !!}
     {!! Html::style('/plugins/datatables/dataTables.bootstrap.min.css') !!}
     {!! Html::style('/plugins/datatables/responsive.bootstrap.min.css') !!}
-
     {{--leaflet--}}
     {!! Html::style('/leaflet/leaflet.css') !!}
     {!! Html::style('/css/custom.css') !!}
+
+    {{--datepicker--}}
+
+    {!! Html::style('/css/datepicker3.css') !!}
+    {{--select2--}}
+    {!! Html::style('/css/select2.min.css') !!}
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+
+
 
 
     <script>

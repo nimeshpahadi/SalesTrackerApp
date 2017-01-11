@@ -94,6 +94,30 @@ $(document).ready(function(){
     $('[data-toggle="popover"]').popover();
 });
 
+//warehouse disabled for other role
+$('.role').change(function () {
+    $(".warehouse").prop("disabled", this.value != 4);
+});
+
+//datepicker
+$(function () {
+    $('#date').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+    $('#date1').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+    $('#date2').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+});
+
+//select2
+$(".select2").select2();
+
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("datefield").setAttribute("max", today);
 document.getElementById("datefield1").setAttribute("max", today);

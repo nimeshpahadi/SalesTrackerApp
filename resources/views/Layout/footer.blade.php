@@ -17,6 +17,24 @@
 <!-- AdminLTE App -->
 {!!Html::script('dist/js/app.min.js') !!}
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+
+
+{!!Html::script('js/custom.js') !!}
+
+<!-- DataTables -->
+{!!Html::script('/plugins/datatables/jquery.dataTables.min.js') !!}
+{!!Html::script('/plugins/datatables/dataTables.bootstrap.min.js') !!}
+{!!Html::script('/plugins/datatables/dataTables.responsive.min.js') !!}
+{!!Html::script('/plugins/datatables/responsive.bootstrap.min.js') !!}
+
+
+{!!Html::script('/js/bootstrap-datepicker.js') !!}
+{!!Html::script('/js/select2.full.min.js') !!}
+
+
+{!!Html::script('/leaflet/leaflet.js') !!}
+
+
 <script>
     $('input[type="checkbox"].minimal, input[type="radio"].minimal').iCheck({
         checkboxClass: 'icheckbox_minimal-blue',
@@ -35,17 +53,6 @@
     });
 </script>
 
-{!!Html::script('js/custom.js') !!}
-
-<!-- DataTables -->
-{!!Html::script('/plugins/datatables/jquery.dataTables.min.js') !!}
-{!!Html::script('/plugins/datatables/dataTables.bootstrap.min.js') !!}
-{!!Html::script('/plugins/datatables/dataTables.responsive.min.js') !!}
-{!!Html::script('/plugins/datatables/responsive.bootstrap.min.js') !!}
-
-
-
-{!!Html::script('/leaflet/leaflet.js') !!}
 
 
 </body>

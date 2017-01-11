@@ -53,7 +53,9 @@
                                 <td>
                                     {!! Html::linkRoute('user.show','View',array($users->id),array('class'=>'btn btn-success '))!!}
 
+                                  @role(('admin'))
                                     {!! Html::linkRoute('passwordreset','Reset password',array( $users->id),array('class'=>''))!!}
+                                @endrole
                                 </td>
                             </tr>
                         @endforeach
