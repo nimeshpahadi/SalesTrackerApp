@@ -58,7 +58,7 @@ class DistributorController extends Controller
      */
     public function store(DistributorDetailRequest $request)
     {
-
+//dd($request->all());
         if ($this->distributorService->storedistributor($request)) {
             return redirect('/distributor')->withSuccess("Distributor created!");
         }

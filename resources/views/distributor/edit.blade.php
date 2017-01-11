@@ -85,19 +85,19 @@
             <div class="form-group clearfix">
                 <label for="latitude" class="col-sm-4 control-label">Latitude</label>
                 <div class="col-sm-8">
-                    {{ Form::text('latitude',null,array('class'=>'"col-sm-8 form-control'))}}
+                    {{ Form::text('latitude',null,array('class'=>'col-sm-8 form-control'))}}
                 </div>
             </div>
             <div class="form-group clearfix">
                 <label for="longitude" class="col-sm-4 control-label">Longitude</label>
                 <div class="col-sm-8">
-                    {{ Form::text('longitude',null,array('class'=>'"col-sm-8 form-control'))}}
+                    {{ Form::text('longitude',null,array('class'=>'col-sm-8 form-control'))}}
                 </div>
             </div>
             <div class="form-group clearfix">
                 <label for="open_date" class="col-sm-4 control-label">Open Date</label>
                 <div class="col-sm-8">
-                    {{ Form::text('open_date',null,array('class'=>'"col-sm-8 form-control'))}}
+                    {{ Form::text('open_date',null,array('class'=>'col-sm-8 form-control','id'=>'date'))}}
                 </div>
             </div>
 

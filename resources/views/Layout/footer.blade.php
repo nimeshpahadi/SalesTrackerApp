@@ -28,6 +28,9 @@
 {!!Html::script('/plugins/datatables/responsive.bootstrap.min.js') !!}
 
 
+{!!Html::script('/js/bootstrap-datepicker.js') !!}
+{!!Html::script('/js/select2.full.min.js') !!}
+
 
 {!!Html::script('/leaflet/leaflet.js') !!}
 
