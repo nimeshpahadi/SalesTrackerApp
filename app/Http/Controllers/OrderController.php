@@ -55,8 +55,9 @@ class OrderController extends Controller
 
         $dis=$this->distributorService->distributor_list();
         $order = $this->orderService->filterOrders($filters);
+        $undispatched= $this->orderService->unDispatchedOrder();
 
-        return view('order.index',compact('order','dis','ordertoday','filters'));
+        return view('order.index',compact('order','dis','ordertoday','filters','undispatched'));
     }
     /**
      * Show the form for creating a new resource.

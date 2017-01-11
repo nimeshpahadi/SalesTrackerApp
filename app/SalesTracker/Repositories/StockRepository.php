@@ -230,13 +230,12 @@ class StockRepository
      */
     public function getStockoutHistory($pid, $wid)
     {
-        $query = $this->stock_out->select('stock_outs.id', 'warehouses.name as warehouse_name', 'warehouses.id as ware_id',
-            'products.sub_category as product_subcatname', 'products.id as prod_id', 'stock_outs.quantity', 'users.fullname as username',
+        $query = $this->stock_out->select('stock_outs.id', 'distributor_details.company_name as customername',
+             'stock_outs.quantity', 'users.fullname as username',
             'stock_outs.created_at', 'stock_outs.updated_at')
             ->leftjoin('order_outs', 'stock_outs.order_out_id', 'order_outs.id')
             ->leftjoin('orders', 'orders.id', 'order_outs.order_id')
-            ->leftjoin('warehouses', 'order_outs.warehouse_id', 'warehouses.id')
-            ->leftjoin('products', 'orders.product_id', 'products.id')
+            ->leftjoin('distributor_details', 'distributor_details.id', 'orders.distributor_id')
             ->leftjoin('users', 'users.id', 'stock_outs.dispatched_by')
             ->where('orders.product_id', '=', $pid)
             ->where('order_outs.warehouse_id', '=', $wid);
@@ -245,14 +244,19 @@ class StockRepository
 
     public function getOrderWarehouse($id)
     {
+        $query1=$this->stock_out->select('order_outs.order_id')
+            ->join('order_outs','order_outs.id','stock_outs.order_out_id')->get();
+
         $query = $this->order_out->select('order_outs.id','order_outs.order_id', 'order_outs.created_at as senddate','distributor_details.company_name as distributor',
             'distributor_details.id as dis_id','products.sub_category as productname','users.fullname as username')
             ->join('orders', 'order_outs.order_id', 'orders.id')
             ->join('users', 'order_outs.user_id', 'users.id')
             ->join('products', 'orders.product_id', 'products.id')
             ->join('distributor_details', 'orders.distributor_id', 'distributor_details.id')
-            ->where('order_outs.warehouse_id', $id);
-        
+            ->where('order_outs.warehouse_id', $id)
+            ->whereNotIn('orders.id',$query1) ;
+
+
         return $query->get();
     }
 

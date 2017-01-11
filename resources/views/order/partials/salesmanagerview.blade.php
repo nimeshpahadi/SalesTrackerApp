@@ -1,3 +1,4 @@
+
 <div class="box">
 
     <div class="box-header">
@@ -15,6 +16,9 @@
                 <input id="datefield1" type="date" value="{{$filters['to']}}" class="form-control" name="to">
 
             </div>
+
+
+
 
             <div class="form-group clearfix">
                 <label for="" class="col-md-1 distributor">Customer</label>
@@ -38,6 +42,7 @@
 </div>
 
 
+
 <div class="box">
 
     <!-- /.box-header -->
@@ -56,17 +61,27 @@
             </tr>
             </thead>
             <tbody>
+          
             @foreach($order as $o)
                 <tr>
                     <td><a href="{{route('distributor.show',$o->distributor_id)}}">{{$o->distributor_name}}</a></td>
                     <td>{{$o->userName}}</td>
-                    <td>{{--<a href="{{route('product.index')}}">--}}{{$o->subCategory}}</td>
+                    <td><a href="{{route('product.index')}}">{{$o->subCategory}}</td>
                     <td>{{$o->quantity}}</td>
                     <td>{{$o->created_at}}</td>
                     <td>
                         <a href="{{route('order.show',$o->id)}}">
                             <button class="btn btn-success"><i class=""></i>View</button>
                         </a>
+                        @foreach($undispatched as $undis)
+                            @if($o->id == $undis->id)
+                                <button class="btn btn-primary"><i class=""></i>On Hold</button>
+                            @else
+
+                            @endif
+
+                        @endforeach
+
 
                     </td>
 

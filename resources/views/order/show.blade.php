@@ -156,7 +156,7 @@
                                 <label for="discount" class="col-sm-4 control-label">Discount</label>
 
                                 <div class="col-sm-8">
-                                    <input type="text" name="discount" id="texttwo" placeholder="in %">
+                                    <input type="text" name="discount" id="texttwo" placeholder="in %" required>
 
 
                                 </div>
@@ -167,7 +167,7 @@
                                 <label for="vat" class="col-sm-4 control-label">VAT</label>
 
                                 <div class="col-sm-8">
-                                    <input type="text" name="vat" id="textthree" placeholder="in %">
+                                    <input type="text" name="vat" id="textthree" placeholder="in %" required>
 
 
                                 </div>
@@ -178,7 +178,7 @@
                                 <label for="shipping_charge" class="col-sm-4 control-label">Shipping Charge</label>
 
                                 <div class="col-sm-8">
-                                    <input type="text" name="shipping_charge" id="textfour">
+                                    <input type="text" name="shipping_charge" id="textfour" required>
 
 
                                 </div>
