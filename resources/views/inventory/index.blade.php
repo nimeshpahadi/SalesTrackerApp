@@ -34,11 +34,11 @@
 
                             <h3>{{$ware}}</h3>
 
-
+                            @role(('factoryincharge'))
                             <a href="{{route('orderwarehouse',['warehouse_id'=>$value['ware_id']])}}">
                                 <span class=" btn btn-success">Order</span>
                             </a>
-
+                            @endrole
                             <table class="table table-bordered table-responsive">
 
                                 <tr>

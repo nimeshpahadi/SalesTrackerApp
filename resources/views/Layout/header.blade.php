@@ -26,10 +26,13 @@
     {!! Html::style('/plugins/datatables/dataTables.bootstrap.css') !!}
     {!! Html::style('/plugins/datatables/dataTables.bootstrap.min.css') !!}
     {!! Html::style('/plugins/datatables/responsive.bootstrap.min.css') !!}
-
     {{--leaflet--}}
     {!! Html::style('/leaflet/leaflet.css') !!}
     {!! Html::style('/css/custom.css') !!}
+
+    {{--datepicker--}}
+    {!! Html::style('/plugins/daterangepicker/daterangepicker.css') !!}
+
 
 
     <script>

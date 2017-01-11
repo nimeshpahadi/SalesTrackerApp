@@ -369,8 +369,8 @@ class OrderRepository
 
     public function filterOrders($filters)
     {
-        $query1=$this->stock_out->select('order_outs.order_id')
-                                ->join('order_outs','order_outs.id','stock_outs.order_out_id')->get();
+//        $query1=$this->stock_out->select('order_outs.order_id')
+//                                ->join('order_outs','order_outs.id','stock_outs.order_out_id')->get();
 
         $query = $this->order->select(
                 DB::raw('orders.quantity,orders.id,orders.distributor_id, orders.price, orders.priority, orders.payment_term,
@@ -380,8 +380,8 @@ class OrderRepository
                     distributor_details.company_name as distributor_name'))
                         ->join('users', 'orders.user_id', 'users.id')
                         ->join('products', 'orders.product_id', 'products.id')
-                        ->join('distributor_details', 'orders.distributor_id', 'distributor_details.id')
-                       ->whereNotIn('orders.id',$query1) ;
+                        ->join('distributor_details', 'orders.distributor_id', 'distributor_details.id');
+//                       ->whereNotIn('orders.id',$query1) ;
 
 
             if($filters['from']!=null)
@@ -398,6 +398,28 @@ class OrderRepository
         }
 
         return $query->get();
+    }
+
+
+    public function undispatchedorder(){
+        $query1=$this->stock_out->select('order_outs.order_id')
+                                ->join('order_outs','order_outs.id','stock_outs.order_out_id')->get();
+
+        $query = $this->order->select(
+            DB::raw('orders.quantity,orders.id,orders.distributor_id, orders.price, orders.priority, orders.payment_term,
+                    orders.proposed_delivery_date,orders.created_at,
+                    products.sub_category as subCategory,
+                    users.fullname as userName,
+                    distributor_details.company_name as distributor_name'))
+                        ->join('users', 'orders.user_id', 'users.id')
+                        ->join('products', 'orders.product_id', 'products.id')
+                        ->join('distributor_details', 'orders.distributor_id', 'distributor_details.id')
+                       ->whereNotIn('orders.id',$query1) ;
+
+        return $query->get();
+
+
+
     }
 
     public function OrderOut($formData)

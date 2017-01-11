@@ -166,6 +166,11 @@ class OrderService
         $orders = $this->orderRepository->getOrderOutDetailId($id);
         return $orders;
     }
+    public function unDispatchedOrder()
+    {
+        $orders = $this->orderRepository->undispatchedorder();
+        return $orders;
+    }
 
     public function orderDispatch($request)
     {

@@ -17,6 +17,7 @@
                 <thead>
                 <tr>
 
+                    <th align="center">Customer</th>
                     <th align="center">Quantity(s)</th>
                     <th>Dispatched by</th>
                     <th>Created Date</th>
@@ -30,7 +31,8 @@
                 @foreach($ware_name as $as)
                     <tr>
 
-                        <td align="center">{{$as->quantity}}</td>
+                        <td >{{$as->customername}}</td>
+                        <td >{{$as->quantity}}</td>
                         <td>{{$as->username}}</td>
                         <td>{{$as->created_at}}</td>
                         <td>{{$as->updated_at}}</td>
