@@ -180,7 +180,7 @@
                 </li>
                 @endrole
 
-                @role((['admin','salesmanager','director','generalmanager','salesman']))
+                @role((['admin','salesmanager','director','generalmanager','salesman', 'factoryincharge']))
                 <li class="active treeview">
                     <a href="{{ url('/product') }}">
                         <i class="fa fa-briefcase"></i> <span>Product</span>

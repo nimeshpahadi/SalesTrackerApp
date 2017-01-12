@@ -25,30 +25,30 @@
                 </div>
 
             </div>
-            @if($guarantee->type=='Bank' || $guarantee->type=='Pdp')
-                <div class="form-group clearfix" id="bank_name">
-                    <label for="type" id="bank_name" class="col-sm-4 control-label bank-name">Bank Name</label>
-                    <div class="col-md-8">
-                        {{ Form::text('bank_name',$guarantee->bank_name,array('class'=>'"col-sm-8 form-control bank-name'))}}
-                    </div>
-                </div>
 
-                <div class="form-group clearfix" id="cheque_no">
-                    <label for="type" id="cheque_no" class="col-sm-4 control-label cheque-no">Cheque No</label>
-                    <div class="col-md-8">
-                        {{ Form::text('cheque_no',$guarantee->cheque_no,array('class'=>'"col-sm-8 form-control cheque-no'))}}
-                    </div>
+            <div class="form-group clearfix" id="bank_name">
+                <label for="type" id="bank_name" class="col-sm-4 control-label bank-name">Bank Name</label>
+                <div class="col-md-8">
+                    {{ Form::text('bank_name',$guarantee->bank_name,array('class'=>'"col-sm-8 form-control bank-name'))}}
                 </div>
-            @endif
+            </div>
+
+            <div class="form-group clearfix" id="cheque_no">
+                <label for="type" id="cheque_no" class="col-sm-4 control-label cheque-no">Cheque No</label>
+                <div class="col-md-8">
+                    {{ Form::text('cheque_no',$guarantee->cheque_no,array('class'=>'"col-sm-8 form-control cheque-no'))}}
+                </div>
+            </div>
+
             {{ Form::hidden('distributor_id', $dist->id) }}
-            @if($guarantee->type!='Collateral')
-                <div class="form-group clearfix" id="amount">
-                    <label for="amount" class="col-sm-4 control-label amount">Amount</label>
-                    <div class="col-md-8">
-                        {{ Form::text('amount',$guarantee->amount,array('class'=>'col-sm-8 form-control amount','min'=>'0'))}}
-                    </div>
+
+            <div class="form-group clearfix" id="amount">
+                <label for="amount" class="col-sm-4 control-label amount">Amount</label>
+                <div class="col-md-8">
+                    {{ Form::text('amount',$guarantee->amount,array('class'=>'col-sm-8 form-control amount','min'=>'0'))}}
                 </div>
-            @endif
+            </div>
+
             <div class="form-group clearfix" id="remark">
                 <label for="type" class="col-sm-4 control-label">Remark</label>
                 <div class="col-md-8">
@@ -64,5 +64,11 @@
 
         </div>
     </div>
+
+    <script>
+        var editGuarantee=true;
+        var guaranteeType = '{{$guarantee->type}}';
+    </script>
+
 
 @endsection
