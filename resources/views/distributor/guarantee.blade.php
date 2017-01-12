@@ -65,7 +65,7 @@
 
         <div  align="right">
         {{Form::submit('Create Guarentee', array('class'=>'btn btn-primary'))}}
-        <a type="button" class="btn btn-warning " href="/distributor">Cancel</a>
+        <a type="button" class="btn btn-warning " href="/distributor/{{ $disid->id }}">Cancel</a>
         {!! Form::close() !!}
         </div>
 

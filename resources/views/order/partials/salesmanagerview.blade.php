@@ -6,12 +6,12 @@
     </div>
     <form method="get" action="{{route('filter_order')}}">
         <div class="row " style="padding-bottom: 5px">
-            <label for="from" class="col-sm-1 control-label">From:</label>
+            <label for="from" class="col-sm-1 control-label">From :</label>
             <div class="col-md-2">
                 <input id="date" type="text" value="{{$filters['from']}}" class="form-control" name="from">
 
             </div>
-            <label for="from" class="col-md-1 control-label">To:</label>
+            <label for="from" class="col-md-1 control-label">To :</label>
             <div class="col-md-2">
                 <input id="date1" type="text" value="{{$filters['to']}}" class="form-control" name="to">
 
@@ -58,10 +58,10 @@
             <tr>
 
                 <th>Distributor</th>
-                <th>Order taken</th>
+                <th>Order Taken</th>
                 <th>Product</th>
                 <th>Quantity</th>
-                <th>Order date</th>
+                <th>Order Date</th>
                 <th>Actions</th>
 
             </tr>
@@ -70,7 +70,7 @@
 
             @foreach($order as $o)
                 <tr>
-                    <td><a href="{{route('distributor.show',$o->distributor_id)}}">{{$o->distributor_name}}</a></td>
+                    <td><a href="{{route('distributor.show', $o->distributor_id)}}">{{$o->distributor_name}}</a></td>
                     <td>{{$o->userName}}</td>
                     <td><a href="{{route('product.index')}}">{{$o->subCategory}}</td>
                     <td>{{$o->quantity}}</td>

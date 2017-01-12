@@ -19,15 +19,15 @@
                     <th>Warehouse Name</th>
                     <th>Product Subcategory Name</th>
                     <th>Quantity(s)</th>
-                    <th>Dispatched by</th>
+                    <th>Dispatched By</th>
                     <th>Created Date</th>
                     <th>Updated Date</th>
 
 
                 </tr>
                 </thead>
+
                 <tbody>
-{{--{{$stockout}}--}}
                 @foreach($stockout as $as)
                     <tr>
                         <td>{{$as->warehouse_name}}</td>

@@ -172,16 +172,25 @@ class OrderRepository
      * get the total order number for the current date
      * @return mixed
      */
-    public function gettotalordertoday()
+    public function getOrderQuantitySumRepo()
     {
-        $query = $this->order
-                      ->join('distributor_details', 'orders.distributor_id', '=', 'distributor_details.id')
-                      ->join('users', 'orders.user_id', '=', 'users.id')
-                      ->join('products', 'orders.product_id', '=', 'products.id')
-                      ->select(DB::raw('sum(orders.quantity) as total_order'), 'distributor_details.contact_name',
-                                        'users.fullname', 'products.sub_category', 'orders.quantity',
-                                        'orders.price', 'orders.proposed_delivery_date')
+        $query = $this->order->select(DB::raw('sum(orders.quantity) as total_order'))
                       ->whereDate('orders.created_at',date('Y-m-d'));
+
+        return $query->get();
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getOrdersRepo()
+    {
+        $query = $this->order->select('orders.*', 'distributor_details.contact_name',
+                                      'users.fullname', 'products.sub_category')
+                        ->join('distributor_details', 'orders.distributor_id', '=', 'distributor_details.id')
+                        ->join('users', 'orders.user_id', '=', 'users.id')
+                        ->join('products', 'orders.product_id', '=', 'products.id')
+                        ->whereDate('orders.created_at',date('Y-m-d'));
 
         return $query->get();
     }

@@ -18,10 +18,9 @@
                 <tr>
 
                     <th align="center">Quantity(s)</th>
-                    <th>Added by</th>
+                    <th>Added By</th>
                     <th>Created Date</th>
                     <th>Updated Date</th>
-
 
                 </tr>
                 </thead>

@@ -8,12 +8,12 @@
     </div>
 
     <div class="row " style="padding-bottom: 5px">
-        <label for="from" class="col-sm-1 control-label">From:</label>
+        <label for="from" class="col-sm-1 control-label">From :</label>
         <div class="col-md-2">
             <input id="datefield" type="date" class="form-control" name="from">
 
         </div>
-        <label for="from" class="col-md-1 control-label">To:</label>
+        <label for="from" class="col-md-1 control-label">To :</label>
         <div class="col-md-2">
             <input id="datefield1" type="date" class="form-control" name="to">
 
@@ -34,14 +34,14 @@
         <table id="example1" class="table table-bordered table-striped">
             <thead>
             <tr>
-                <th>Product id</th>
-                <th>Distributor id</th>
-                <th>User id</th>
+                <th>Product Id</th>
+                <th>Distributor Id</th>
+                <th>User Id</th>
                 <th>Quantity</th>
                 <th>Proirity</th>
-                <th>Payment term</th>
-                <th>Order date</th>
-                <th>discount</th>
+                <th>Payment Term</th>
+                <th>Order Date</th>
+                <th>Discount</th>
                 <th>Actions</th>
 
             </tr>

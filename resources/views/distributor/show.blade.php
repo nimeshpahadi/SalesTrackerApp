@@ -23,20 +23,11 @@
                                 <h3> Details</h3>
                                 @role((['admin','salesmanager','accountmanagersales','director','generalmanager','salesman']))
                                 <div align="right">
-                                    <div class="col-md-11 col-sm-10">
+                                    <div class="col-md-11 col-sm-10" style="padding: 10px">
                                         <a href="{!! route('distributor.edit',$dist->id)!!}">
                                             <span class="  btn btn-primary glyphicon glyphicon-pencil"></span>
                                         </a>
                                     </div>
-                                    @role((['admin','salesmanager','accountmanagersales','director','generalmanager']))
-                                    {!! Form::open(['method' => 'DELETE','route' => ['distributor.destroy', $dist->id]]) !!}
-                                    <button type="submit" class="btn btn-danger glyphicon glyphicon-trash"
-                                            onclick="return confirm('Are you sure you want to delete this item?');">
-
-                                    </button>
-
-                                    {!! Form::close() !!}
-                                    @endrole
                                 </div>
                                 @endrole
                                 <hr>
@@ -238,8 +229,6 @@
                             </div>
                         </div>
                     </div>
-
-
                 </div>
             </div>
             <div class="row clearfix">
@@ -249,25 +238,26 @@
 
                             @if($dist->status==1 )
                                 <li class="active">
-                                <a class="btn btn-primary" href="#order" data-toggle="tab">Order</a>
+                                    <a class="btn btn-primary" href="#order" data-toggle="tab">Order</a>
 
-                            </li>
-                            <li>
-                                <a class="btn btn-primary" href="#payment" data-toggle="tab">Payment</a>
-                            </li>
+                                </li>
+                                <li>
+                                    <a class="btn btn-primary" href="#payment" data-toggle="tab">Payment</a>
+                                </li>
                             @endif
-
 
                             @if($dist->status==0 )
-                            <li>
-                                <a class="btn btn-google" href="#visit" data-toggle="tab">Visit</a>
-                            </li>
+                                <li>
+                                    <a class="btn btn-google" href="#visit" data-toggle="tab">Visit</a>
+                                </li>
                             @endif
+
                             @if($dist->status==0 || $dist->status==1)
-                            <li>
-                                <a class="btn btn-success" href="#min" data-toggle="tab">Minute</a>
-                            </li>
+                                <li>
+                                    <a class="btn btn-success" href="#min" data-toggle="tab">Minute</a>
+                                </li>
                             @endif
+
                         </ul>
                         <div class="tab-content">
                             <div class="tab-pane active" id="order">
@@ -276,23 +266,17 @@
                                     <tr>
                                         <th>Date</th>
                                         <th>Product</th>
-                                        <th>Price/sack</th>
+                                        <th>Price/Sack</th>
                                         <th>Quantity</th>
                                         <th>Priority</th>
                                         <th>Payment Term</th>
                                         <th>Delivery Date</th>
-
                                         <th>Username</th>
-
-
                                     </tr>
                                     </thead>
                                     <tbody>
                                     @foreach($order as $orders)
-
-
                                         <tr>
-
                                             <td>{{$orders->created_at}}</td>
                                             <td>{{$orders->subCategory}}</td>
                                             <td>{{$orders->price}}</td>
@@ -301,8 +285,6 @@
                                             <td>{{$orders->payment_term}}</td>
                                             <td>{{$orders->proposed_delivery_date}}</td>
                                             <td>{{$orders->userName}}</td>
-
-
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -326,7 +308,7 @@
                                             <h3>Add Minute</h3>
                                             <div class="form-group col-md-12">
                                                 <textarea type="text" class="form-control" name="report"
-                                                      height="100px" required></textarea>
+                                                          height="100px" required></textarea>
 
 
                                                 <input name="user_id" hidden value='{{ Auth::user()->id }}'>
@@ -349,8 +331,8 @@
                                 <table class="table table-bordered table-striped">
                                     <thead>
                                     <tr>
-                                        <th>Created at</th>
-                                        <th>User name</th>
+                                        <th>Created At</th>
+                                        <th>User Name</th>
                                         <th>Minute</th>
 
                                     </tr>
@@ -389,12 +371,9 @@
                                     <thead>
                                     <tr>
                                         <th>Date</th>
-
                                         <th>Amount</th>
                                         <th>Type</th>
                                         <th>Username</th>
-
-
                                     </tr>
                                     </thead>
                                     <tbody>

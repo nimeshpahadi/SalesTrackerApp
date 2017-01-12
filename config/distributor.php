@@ -8,6 +8,7 @@
 return
     [
         'zone' => [
+
             'Mechi',
             'Koshi',
             'Sagarmatha',
@@ -27,78 +28,84 @@ return
 
 
         'lead_source' => [
-            'Employee referral',
+
             'Advertisement',
+            'Customer event',
+            'Employee referral',
+            'Other',
+            'Partner',
             'Trade Show',
             'Website',
-            'Customer event',
-            'Partner',
-            'Other'
 
         ],
+
         'orderApproval' => [
+
             'Approved',
             'On hold',
             'Rejected',
+
         ],
 
 
         'distributor_type' => [
 
-            'New Business',
-            'Existing Business'
+            'Existing Business',
+            'New Business'
         ],
 
         'address_type' => [
+
             1 => 'Billing',
             2 => 'Shipping',
             3 => "Billing and Shipping"
+
         ],
 
         'guarantee_type' => [
 
             'Bank',
-            'Pdp',
             'Cash ',
             'Collateral',
-            'Others'
+            'Others',
+            'Pdp'
         ],
 
         'tracking_stage' => [
 
-            'Negotiation',
+            'Closed',
             'Need Analysis ',
-            'Closed'
+            'Negotiation',
         ],
 
         'tracking_activity' => [
 
-            'Follow-Up',
             'Email ',
+            'Follow-Up',
             'Phone'
         ],
 
         'tracking_loss_reason' => [
 
-            'Price ',
             'Lost to competitor',
             'No discussion',
             'No Responsive',
-            ' Other'
+            'Other',
+            'Price '
 
         ],
+
         'is_our_customer' => [
 
             'Yes ',
             'No',
 
-
         ],
+
         'status' => [
 
             'Active ',
             'Inactive',
-
 
         ],
 

@@ -14,7 +14,7 @@
                 <label for="category" class="col-sm-4 control-label">Category</label>
                 <div class="col-md-8">
                     <?php $x = Config::get('product.category');?>
-                    <select name="category" class="form-control">
+                    <select name="category" class="form-control" required>
                         <option selected="selected" value="" disabled>Category</option>
                         @foreach($x as $dep)
                             <option value=" {{ $dep}}">
@@ -28,7 +28,7 @@
                 <label for="sub_category" class="col-sm-4 control-label">Sub-Category</label>
                 <div class="col-md-8">
                     <?php $x = Config::get('product.sub_category');?>
-                    <select name="sub_category" class="form-control">
+                    <select name="sub_category" class="form-control" required>
                         <option selected="selected" value="" disabled>Sub-Category</option>
                         @foreach($x as $dep)
                             <option value=" {{ $dep}}">

@@ -33,9 +33,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $today_order    = $this->orderService->getTotalOrderToday();
-        $billing_amount = $this->orderService->billingAmount();
-        $paying_amount  = $this->orderService->payingAmount();
+        $orderQuantitySum = $this->orderService->getOrderQuantiySum();
+        $todayOrders      = $this->orderService->getOrders();
+        $billing_amount   = $this->orderService->billingAmount();
+        $paying_amount    = $this->orderService->payingAmount();
 
 
 
@@ -44,7 +45,7 @@ class HomeController extends Controller
                             ->select('users.fullname', 'user_locations.latitude', 'user_locations.longitude')
                             ->whereDate('user_locations.created_at', date('Y-m-d'))
                             ->get();
-
+        
         $users = [];
 
         foreach ($locations as $loc) {
@@ -54,7 +55,7 @@ class HomeController extends Controller
 
         $users = array_unique($users);
 
-        return view('index',compact('today_order', 'locations',
-                                    'billing_amount', 'paying_amount', 'users'));
+        return view('index',compact('orderQuantitySum', 'locations',
+                                    'billing_amount', 'paying_amount', 'users', 'todayOrders'));
     }
 }

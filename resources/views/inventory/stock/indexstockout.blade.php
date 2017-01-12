@@ -2,7 +2,6 @@
 
 @section('main-content')
 
-
     <div class="box">
         <div class="box-header">
             <h3 class="box-title">List of Stocks Out</h3>
@@ -19,10 +18,9 @@
 
                     <th align="center">Customer</th>
                     <th align="center">Quantity(s)</th>
-                    <th>Dispatched by</th>
+                    <th>Dispatched By</th>
                     <th>Created Date</th>
                     <th>Updated Date</th>
-
 
                 </tr>
                 </thead>
