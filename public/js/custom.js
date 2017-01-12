@@ -116,7 +116,7 @@ $(function () {
 });
 
 //select2
-$(".select2").select2();
+$("select").select2();
 
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("datefield").setAttribute("max", today);

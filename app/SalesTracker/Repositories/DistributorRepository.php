@@ -214,7 +214,10 @@ class DistributorRepository
             $query = DistributorGuarantee::find($id);
             $query->distributor_id = $request->distributor_id;
             $query->type = $request->type;
+            $query->bank_name = $request->bank_name;
+            $query->cheque_no = $request->cheque_no;
             $query->amount = $request->amount;
+            $query->remark = $request->remark;
             $query->save();
             $this->log->info("Distributor Guarantee Updated ");
             return true;

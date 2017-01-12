@@ -118,7 +118,6 @@
                                     @else
 
 
-
                                         <h3> Guarantee</h3>
                                         <hr>
                                         <a href="{!! route('guarantee_edit',$dist->id)!!}">
@@ -128,29 +127,30 @@
                                             <label class="col-sm-6 ">Type :</label>
                                             {{($guarantee->type)}}
                                         </div>
-                                        @if(isset($guarantee->bank_name))
+                                        @if(($guarantee->bank_name)!=null)
                                             <div class="row">
                                                 <label class="col-sm-6 ">Bank Name :</label>
                                                 {{($guarantee->bank_name)}}
                                             </div>
                                         @endif
-                                        @if(isset($guarantee->cheque_no))
+                                        @if(($guarantee->cheque_no)!=null)
                                             <div class="row">
                                                 <label class="col-sm-6 ">Cheque No :</label>
                                                 {{($guarantee->cheque_no)}}
                                             </div>
                                         @endif
-                                        @if(isset($guarantee->remark))
-                                            <div class="row">
-                                                <label class="col-sm-6 ">Remarks :</label>
-                                                {{($guarantee->remark)}}
-                                            </div>
-                                        @endif
+
 
                                         <div class="row">
                                             <label class="col-sm-6 ">Amount :</label>
                                             {{strtoupper($guarantee->amount)}}
                                         </div>
+                                        @if(($guarantee->remark)!=null)
+                                            <div class="row">
+                                                <label class="col-sm-6 ">Remarks :</label>
+                                                {{($guarantee->remark)}}
+                                            </div>
+                                        @endif
 @endif
 
 

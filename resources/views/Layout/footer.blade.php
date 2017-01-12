@@ -19,7 +19,7 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 
 
-{!!Html::script('js/custom.js') !!}
+
 
 <!-- DataTables -->
 {!!Html::script('/plugins/datatables/jquery.dataTables.min.js') !!}
@@ -31,8 +31,8 @@
 {!!Html::script('/js/bootstrap-datepicker.js') !!}
 {!!Html::script('/js/select2.full.min.js') !!}
 
-
 {!!Html::script('/leaflet/leaflet.js') !!}
+{!!Html::script('js/custom.js') !!}
 
 
 <script>

@@ -200,9 +200,9 @@ class OrderRepository
             ->join('users', 'orders.user_id', 'users.id')
             ->join('products', 'orders.product_id', 'products.id')
             ->join('distributor_details', 'orders.distributor_id', 'distributor_details.id')
-            ->join('order_approvals', 'order_approvals.order_id', 'orders.id')
-            ->where('orders.distributor_id', $id)
-            ->where('order_approvals.admin_approval', '<>', "Approved");
+//            ->join('order_approvals', 'order_approvals.order_id', 'orders.id')
+            ->where('orders.distributor_id', $id);
+//            ->where('order_approvals.admin_approval', '<>', "Approved");
         return $query->get();
     }
 
