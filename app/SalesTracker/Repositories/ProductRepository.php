@@ -65,7 +65,6 @@ class ProductRepository
     public function store_product($request)
     {
         try {
-
             $data = new Product();
             $data->category = $request->category;
             $data->sub_category = $request->sub_category;
@@ -81,7 +80,7 @@ class ProductRepository
             $data->save();
             $this->log->info("Product Created");
 
-            return true;
+            return $data;
         } catch (Exception $e) {
             $this->log->error("Product Creation Failed");
 

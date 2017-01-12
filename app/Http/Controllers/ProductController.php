@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductRequest;
+use App\SalesTracker\Entities\Inventory\Warehouse_Product;
 use App\SalesTracker\Entities\Product\Product;
 use App\SalesTracker\Services\productService;
+use App\SalesTracker\Services\StockService;
 use Illuminate\Http\Request;
 
 
@@ -14,16 +16,21 @@ class ProductController extends Controller
      * @var productService
      */
     public $productService;
+    /**
+     * @var stockService
+     */
+    private $stockService;
 
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function __construct(productService $productService)
+    public function __construct(productService $productService,stockService $stockService)
     {
         $this->middleware(['auth']);
         $this->productService = $productService;
+        $this->stockService = $stockService;
     }
 
     public function index()
@@ -40,7 +47,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('product.create');
+        $ware = $this->stockService->get_allwarehouse();
+        return view('product.create',compact('ware'));
     }
 
     /**
@@ -51,10 +59,23 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
-        if ($this->productService->storeproduct($request)) {
+        if ($product=$this->productService->storeproduct($request))
+        {
+
+            $productwarehouse = [
+                'product_id' => $product->id,
+                'warehouse_id' => $request->get('warehouse_id')
+            ];
+        $this->assignwarehouse($productwarehouse);
+
             return redirect('/product')->withSuccess('Product Added');
         }
         return back()->withErrors('something went wrong');
+    }
+
+    protected function assignwarehouse(array $data)
+    {
+        return Warehouse_Product::create($data);
     }
 
     /**
