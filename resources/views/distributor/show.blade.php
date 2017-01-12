@@ -144,6 +144,13 @@
                                             </div>
                                         @endif
                                     @endif
+                                        @if(($guarantee->remark)!=null)
+                                            <div class="row">
+                                                <label class="col-sm-6 ">Remarks :</label>
+                                                {{($guarantee->remark)}}
+                                            </div>
+                                        @endif
+                                    @endif
 
                                 </div>
 
