@@ -131,11 +131,12 @@
                                             </div>
                                         @endif
 
-
-                                        <div class="row">
-                                            <label class="col-sm-6 ">Amount :</label>
-                                            {{strtoupper($guarantee->amount)}}
-                                        </div>
+                                        @if(($guarantee->amount)!=null)
+                                            <div class="row">
+                                                <label class="col-sm-6 ">Amount :</label>
+                                                {{strtoupper($guarantee->amount)}}
+                                            </div>
+                                        @endif
 
                                         @if(($guarantee->remark)!=null)
                                             <div class="row">
@@ -144,13 +145,7 @@
                                             </div>
                                         @endif
                                     @endif
-                                        @if(($guarantee->remark)!=null)
-                                            <div class="row">
-                                                <label class="col-sm-6 ">Remarks :</label>
-                                                {{($guarantee->remark)}}
-                                            </div>
-                                        @endif
-                                    @endif
+
 
                                 </div>
 
