@@ -102,6 +102,7 @@
                             <th>Quantity</th>
                             <th>Cost</th>
                             <th>Delivery Date</th>
+                            <th>Actions</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -113,6 +114,11 @@
                                 <td>{{$o->quantity}}</td>
                                 <td>{{$o->price}}</td>
                                 <td>{{$o->proposed_delivery_date}}</td>
+                                <td>
+                                    <a href="{{route('order.show',$o->id)}}">
+                                        <button class="btn btn-success"><i class=""></i>View</button>
+                                    </a>
+                                </td>
                             </tr>
                         @endforeach
                         </tbody>

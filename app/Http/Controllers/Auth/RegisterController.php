@@ -125,7 +125,7 @@ class RegisterController extends Controller
     public function resetpassword(RegisterRequest $request, $id)
     {
         if ($this->userService->resetPassword($request, $id)) {
-            return redirect('/home')->withSuccess('password reset');
+            return redirect('/user')->withSuccess('password reset');
         }
         return back()->withErrors('something may be wrong');
     }

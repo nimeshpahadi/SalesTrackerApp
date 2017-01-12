@@ -111,13 +111,15 @@
 
             <ul class="sidebar-menu">
                 <li class="header">MAIN NAVIGATION</li>
+                @role((['admin','generalmanager','director', 'salesmanager', 'accountmanagersales']))
                 <li class="active treeview">
                     <a href="{{ url('/home') }}">
-                        <i class="fa fa-home"></i> <span>Home</span>
+                        <i class="fa fa-home"></i> <span>Dashboard</span>
 
                     </a>
 
                 </li>
+                @endrole
 
 
                 @role((['admin','salesmanager','director','generalmanager']))
@@ -129,7 +131,7 @@
                 </li>
                 @endrole
 
-                @role((['admin','salesmanager', 'director','generalmanager','salesman','factoryincharge','account']))
+                @role((['admin','salesmanager', 'director','generalmanager','salesman','factoryincharge','account', 'accountmanagersales']))
                 <li class="active treeview">
                     <a href="{{ url('/distributor') }}">
                         <i class="fa fa-user"></i> <span>Customer</span>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\OrderRequest;
 use App\SalesTracker\Entities\Order\Order_out;
 use App\SalesTracker\Services\DistributorService;
 use App\SalesTracker\Services\OrderService;
@@ -145,7 +146,7 @@ class OrderController extends Controller
 
     }
 
-    public function orderBilling(Request $request)
+    public function orderBilling(OrderRequest $request)
     {
         $orderid = $request['order_id'];
         if ($this->orderService->OrderBilling($request)) {

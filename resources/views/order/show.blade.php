@@ -159,7 +159,7 @@
 
 
                             <div class="form-group{{ $errors->has('vat') ? ' has-error' : '' }} clearfix">
-                                <label for="vat" class="col-sm-4 control-label">Vat</label>
+                                <label for="vat" class="col-sm-4 control-label"><VAT></VAT></label>
 
                                 <div class="col-sm-8">
                                     <input type="text" name="vat" id="textthree" placeholder="in %" required>
