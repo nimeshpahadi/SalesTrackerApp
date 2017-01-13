@@ -406,6 +406,7 @@
                                     <table class="table table-bordered table-striped">
                                         <thead>
                                         <tr>
+                                            <th>Created By</th>
                                             <th>Created At</th>
                                             <th>Stage</th>
                                             <th>Business Probability</th>
@@ -417,6 +418,7 @@
                                         <tbody>
                                         @foreach($tracking as $t)
                                             <tr>
+                                                <td>{{$t->user_fullname}}</td>
                                                 <td>{{$t->created_at}}</td>
                                                 <td>{{$t->stage}}</td>
                                                 <td>{{$t->business_probability}}%</td>

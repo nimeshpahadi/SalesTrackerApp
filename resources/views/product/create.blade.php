@@ -100,9 +100,28 @@
                 @endif
             </div>
         </div>
+
+
+        <div class="form-group{{ $errors->has('warehouse_id') ? ' has-error' : '' }} clearfix">
+            <label for="warehouse_id" class="col-sm-4 control-label">Warehouse :</label>
+
+            <div class="col-md-8">
+                <select id="warehouse_id" name="warehouse_id"
+                        class=" form-control warehouse" multiple>
+
+                    <option selected="selected" disabled >choose warehouse</option>
+                    @foreach ($ware as $warehouse)
+                        <option value="{{$warehouse->id}}">
+                            {{$warehouse->name}}
+                        </option>
+                    @endforeach
+                </select>
+            </div>
+
+        </div>
         <div class="form-group ">
             <label for="price" class="col-sm-4 control-label">Image</label>
-            <div class="input-group col-sm-8 ">
+            <div class=" col-sm-8 ">
 
                     <span class="input-group-addon "><i class="fa fa-file"></i></span>
                 <input type="file" class="form-control" name="image" id="image" required autofocus>

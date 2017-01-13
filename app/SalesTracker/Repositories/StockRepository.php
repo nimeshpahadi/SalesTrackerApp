@@ -334,10 +334,11 @@ class StockRepository
     public function getallstockout()
     {
         $query = $this->stock_out->select('stock_outs.id', 'warehouses.name as warehouse_name', 'warehouses.id as ware_id',
-            'products.sub_category as product_subcatname', 'products.id as prod_id', 'stock_outs.quantity', 'users.fullname as username',
+            'products.sub_category as product_subcatname', 'products.id as prod_id','distributor_details.company_name as customername', 'stock_outs.quantity', 'users.fullname as username',
             'stock_outs.created_at', 'stock_outs.updated_at')
             ->leftjoin('order_outs', 'stock_outs.order_out_id', 'order_outs.id')
             ->leftjoin('orders', 'orders.id', 'order_outs.order_id')
+            ->leftjoin('distributor_details', 'orders.distributor_id', 'distributor_details.id')
             ->leftjoin('warehouses', 'order_outs.warehouse_id', 'warehouses.id')
             ->leftjoin('products', 'orders.product_id', 'products.id')
             ->leftjoin('users', 'users.id', 'stock_outs.dispatched_by');

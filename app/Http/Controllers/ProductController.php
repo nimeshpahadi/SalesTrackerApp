@@ -8,6 +8,7 @@ use App\SalesTracker\Entities\Product\Product;
 use App\SalesTracker\Services\productService;
 use App\SalesTracker\Services\StockService;
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\String_;
 
 
 class ProductController extends Controller
@@ -59,12 +60,13 @@ class ProductController extends Controller
      */
     public function store(ProductRequest $request)
     {
+        //dd($request->all());
         if ($product=$this->productService->storeproduct($request))
         {
-
-            $productwarehouse = [
+           $productwarehouse = [
                 'product_id' => $product->id,
                 'warehouse_id' => $request->get('warehouse_id')
+
             ];
         $this->assignwarehouse($productwarehouse);
 

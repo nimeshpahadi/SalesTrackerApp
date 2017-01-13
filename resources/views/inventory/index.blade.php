@@ -14,11 +14,11 @@
                 <a href="{{route('stockout')}}">
                     <span class=" btn btn-primary">View StockOut</span>
                 </a>
-                @role(('factoryincharge'))
-                <a href="{{route('stock.create')}}">
-                    <span class=" btn btn-success glyphicon glyphicon-plus"> Stocks_In</span>
-                </a>
-                @endrole
+               {{--         @role(('factoryincharge'))
+                        <a href="{{route('stock.create')}}">
+                            <span class=" btn btn-success glyphicon glyphicon-plus"> Stocks_In</span>
+                        </a>
+                        @endrole--}}
 
             </div>
 
@@ -32,7 +32,7 @@
 
                             <h3>{{$ware}}</h3>
 
-                            @role((['admin','factoryincharge']))
+                            @role((['admin','factoryincharge','generalmanager','director', 'accountmanagersales', 'salesmanager']))
                             <a href="{{route('orderwarehouse',['warehouse_id'=>$value['ware_id']])}}">
                                 <span class=" btn btn-success">Order</span>
                             </a>

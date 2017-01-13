@@ -17,11 +17,12 @@
                 <thead>
                 <tr>
                     <th>Warehouse Name</th>
-                    <th>Product Subcategory Name</th>
+                    <th>Subcategory Name</th>
+                    <th>Customer Name</th>
                     <th>Quantity(s)</th>
                     <th>Dispatched By</th>
                     <th>Created Date</th>
-                    <th>Updated Date</th>
+                    {{--<th>Updated Date</th>--}}
 
 
                 </tr>
@@ -32,10 +33,11 @@
                     <tr>
                         <td>{{$as->warehouse_name}}</td>
                         <td>{{$as->product_subcatname}}</td>
+                        <td>{{$as->customername}}</td>
                         <td>{{$as->quantity}}</td>
                         <td>{{$as->username}}</td>
                         <td>{{$as->created_at}}</td>
-                        <td>{{$as->updated_at}}</td>
+                        {{--<td>{{$as->updated_at}}</td>--}}
 
 
                     </tr>
