@@ -26,6 +26,7 @@
             <!-- /.box-header -->
             <div class="box-body">
                 <div class="col-md-12 ">
+                    @if(isset($stocks))
                     @foreach($stocks as $ware=>$value)
 
                         <div class="box box-primary">
@@ -47,7 +48,7 @@
                                     <th> Action</th>
                                 </tr>
 
-
+                                @if(isset($value['product'] ))
                                 @foreach($value['product'] as $prodCat=>$stock)
                                     <tr>
                                         <td align="center">{{$prodCat}}</td>
@@ -105,9 +106,11 @@
                                     </tr>
 
                                 @endforeach
+                                    @endif
                             </table>
                         </div>
                     @endforeach
+                        @endif
                 </div>
             </div>
         </div>

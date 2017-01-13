@@ -44,6 +44,7 @@
                                 </tr>
                                 </thead>
                                 <tbody>
+                                @if(isset($data))
                                 @foreach($data as $row)
                                     <tr>
                                         <td><img width="200px" height="80px" src="/images/{{ $row->image }}"></td>
@@ -102,6 +103,7 @@
                                         @endrole
                                     </tr>
                                 @endforeach
+                                    @endif
 
                                 </tbody>
 
