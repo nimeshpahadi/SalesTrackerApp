@@ -1,9 +1,9 @@
 // distributor list
-$(function () {
+$(document).ready(function(){
+
     $("#example1").DataTable();
     $("#example2").DataTable();
 
-});
 
 
 //district choose as per zones
@@ -93,15 +93,6 @@ function  guaranteeForm(gType) {
 
 
 
-
-$(document).ready(function(){
-
-    if (editGuarantee)
-    {
-        guaranteeForm("Others");
-    }
-
-
     $("#select").change(function(){
 
         $("select option:selected").each(function(){
@@ -109,14 +100,17 @@ $(document).ready(function(){
 
         });
     }).change();
+    if (editGuarantee)
+    {
+        guaranteeForm("Others");
+    }
+
+
 });
 
 
-
-
-$(document).ready(function(){
     $('[data-toggle="popover"]').popover();
-});
+
 
 //warehouse disabled for other role
 $('.role').change(function () {
@@ -124,7 +118,7 @@ $('.role').change(function () {
 });
 
 //datepicker
-$(function () {
+
     $('#date').datepicker({
         autoclose: true,
         todayHighlight: true
@@ -137,7 +131,7 @@ $(function () {
         autoclose: true,
         todayHighlight: true
     });
-});
+
 
 //select2
 $("select").select2();
@@ -145,3 +139,4 @@ $("select").select2();
 today = yyyy+'-'+mm+'-'+dd;
 document.getElementById("datefield").setAttribute("max", today);
 document.getElementById("datefield1").setAttribute("max", today);
+
