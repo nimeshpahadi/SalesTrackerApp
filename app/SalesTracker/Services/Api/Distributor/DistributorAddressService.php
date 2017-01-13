@@ -55,22 +55,27 @@ class DistributorAddressService extends BaseService
 
         $this->storeData($this->baseRepository, $serviceAddress);
 
-        $address=[
+        $distAddress = [];
 
-            "type"           => $serviceAddress['type'],
-            "zone"           => $serviceAddress['zone'],
-            "district"       => $serviceAddress['district'],
-            "city"           => $serviceAddress['city'],
-            "latitude"       => $serviceAddress['latitude'],
-            "longitude"      => $serviceAddress['longitude'],
-            "phone"          => $serviceAddress['phone'],
-            "mobile"         => $serviceAddress['mobile'],
-            "fax"            => $serviceAddress['fax'],
-            "distributor_id" => $serviceAddress['distributor_id'],
+        if ($serviceAddress['type']=='Billing') {
 
-        ];
+            $distAddress = $this->getAddress($serviceAddress, "Billing");
+        }
 
-        if ($this->addressRepository->insertAddress($address)) {
+        if ($serviceAddress['type']=='Shipping') {
+
+            $distAddress = $this->getAddress($serviceAddress, "Shipping");
+        }
+
+        if ($serviceAddress['type']=='Both') {
+
+            $distAddress = [
+                $this->getAddress($serviceAddress, "Billing"),
+                $this->getAddress($serviceAddress, "Shipping")
+            ];
+        }
+
+        if ($this->addressRepository->insertAddress($distAddress)) {
 
             $respo = [
 
@@ -92,5 +97,28 @@ class DistributorAddressService extends BaseService
         ];
 
         return $respo;
+    }
+
+    /**
+     * @param $address
+     * @param $type
+     * @return array
+     */
+    public function getAddress($address, $type)
+    {
+        return [
+
+            "zone"           => $address['zone'],
+            "district"       => $address['district'],
+            "city"           => $address['city'],
+            "latitude"       => $address['latitude'],
+            "longitude"      => $address['longitude'],
+            "phone"          => $address['phone'],
+            "mobile"         => $address['mobile'],
+            "fax"            => $address['fax'],
+            "type"           => $type,
+            "distributor_id" => $address['distributor_id']
+
+        ];
     }
 }

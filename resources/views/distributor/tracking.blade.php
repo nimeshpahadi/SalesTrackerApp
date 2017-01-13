@@ -65,22 +65,6 @@
                 </div>
             </div>
 
-            <div class="form-group clearfix">
-                <label for="is_our_customer" class="col-sm-4 control-label">Is Our Customer</label>
-                <div class="col-md-8">
-                    <?php $x = Config::get('distributor.is_our_customer');?>
-                    <select name="is_our_customer" class="form-control" required>
-                        <option selected="selected" value="" disabled>Choose If Already Our Customer</option>
-                        @foreach($x as $dep)
-                            <option value=" {{ $dep}}">
-                                {{ $dep  }}
-                            </option>
-                        @endforeach
-                    </select>
-                </div>
-            </div>
-
-
             <div class="clearfix"></div>
             {{Form::submit('Save Tracking', array('class'=>'btn btn-primary btn-lg btn-block', 'style'=>'margin-top:20px;'))}}
             <a type="button" class="btn btn-warning btn-block" href="/distributor/{{$disid->id}}">Cancel</a>

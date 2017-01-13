@@ -412,7 +412,6 @@
                                             <th>Business Probability</th>
                                             <th>Activity</th>
                                             <th>Loss Reason</th>
-                                            <th>Is Our Customer</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -424,7 +423,6 @@
                                                 <td>{{$t->business_probability}}%</td>
                                                 <td>{{$t->activity}}</td>
                                                 <td>{{$t->loss_reason}}</td>
-                                                <td>{{$t->is_our_customer}}</td>
                                                 <td>
                                                     <a class="btn btn-primary"
                                                        href="{{route("visit_location",["id"=>$t->distributor_id,

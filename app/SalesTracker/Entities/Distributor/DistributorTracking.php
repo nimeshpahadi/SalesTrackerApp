@@ -18,7 +18,8 @@ class DistributorTracking extends Model
         'is_our_customer',
         'latitude',
         'longitude',
-        'user_id'
+        'user_id',
+        'remark'
 
     ];
 }

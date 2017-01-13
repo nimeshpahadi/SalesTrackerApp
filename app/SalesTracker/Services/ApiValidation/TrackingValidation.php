@@ -50,8 +50,6 @@ class TrackingValidation
             'stage'                => 'required|max:255',
             'business_probability' => 'required|integer',
             'activity'             => 'required|max:255',
-            'loss_reason'          => 'required|max:255',
-            'is_our_customer'      => 'required|integer',
             'latitude'             => array('required', 'regex:'.$regex),
             'longitude'            => array('required', 'regex:'.$regex),
 

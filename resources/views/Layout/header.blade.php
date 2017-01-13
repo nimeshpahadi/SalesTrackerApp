@@ -52,7 +52,7 @@
 
     <header class="main-header">
         <!-- Logo -->
-        <a href="#" class="logo">
+        <a href="/home" class="logo">
             <!-- mini logo for sidebar mini 50x50 pixels -->
             <span class="logo-mini"><b>A</b>G</span>
             <!-- logo for regular state and mobile devices -->
@@ -111,7 +111,7 @@
 
             <ul class="sidebar-menu">
                 <li class="header">MAIN NAVIGATION</li>
-                @role((['admin','generalmanager','director', 'salesmanager', 'accountmanagersales']))
+                @role((['admin','generalmanager','director', 'salesmanager', 'accountmanagersales', 'factoryincharge']))
                 <li class="active treeview">
                     <a href="{{ url('/home') }}">
                         <i class="fa fa-home"></i> <span>Dashboard</span>

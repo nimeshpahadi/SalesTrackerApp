@@ -80,7 +80,7 @@ class DistributorDetailRepository
             return null;
         }
 
-        return $query->get()->toArray();
+        return $query->get();
     }
 
     /**

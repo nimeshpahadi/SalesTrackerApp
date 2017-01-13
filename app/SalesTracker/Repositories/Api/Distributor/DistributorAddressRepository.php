@@ -37,10 +37,10 @@ class DistributorAddressRepository
      * @param $dist_address
      * @return static
      */
-    public function insertAddress($dist_address)
+    public function insertAddress($distAddress)
     {
         try {
-            $this->distributorAddress->create($dist_address);
+            $this->distributorAddress->insert($distAddress);
             $this->log->info("Distributor Address Created");
             return true;
 

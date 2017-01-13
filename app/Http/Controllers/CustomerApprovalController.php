@@ -51,7 +51,7 @@ class CustomerApprovalController extends Controller
 
         Session::put('url.intended', URL::previous());
 
-        return Redirect::intended('/')->withSuccess('Customer approved by sales manager ');
+        return Redirect::intended('/')->withSuccess('customer approved by sales manager ');
     }
 
     /**
@@ -77,7 +77,7 @@ class CustomerApprovalController extends Controller
 
         Session::put('url.intended', URL::previous());
 
-        return Redirect::intended('/')->withSuccess('sales manager status rejected');
+        return Redirect::intended('/')->withSuccess('customer rejected by sales manager');
     }
 
     /**
@@ -100,7 +100,7 @@ class CustomerApprovalController extends Controller
 
         Session::put('url.intended', URL::previous());
 
-        return Redirect::intended('/')->withSuccess('Customer approved by general manager');
+        return Redirect::intended('/')->withSuccess('customer approved by general manager');
     }
 
     /**

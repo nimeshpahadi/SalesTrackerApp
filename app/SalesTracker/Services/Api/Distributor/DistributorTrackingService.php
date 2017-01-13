@@ -58,15 +58,15 @@ class DistributorTrackingService extends BaseService
 
         $trackData = [
 
-            'distributor_id'       => $serviceTrack['distributor_id'],
-            'stage'                => $serviceTrack['stage'],
-            'business_probability' => $serviceTrack['business_probability'],
-            'activity'             => $serviceTrack['activity'],
-            'loss_reason'          => $serviceTrack['loss_reason'],
-            'is_our_customer'      => $serviceTrack['is_our_customer'],
+            "distributor_id"       => $serviceTrack['distributor_id'],
+            "stage"                => $serviceTrack['stage'],
+            "business_probability" => $serviceTrack['business_probability'],
+            "activity"             => $serviceTrack['activity'],
+            "loss_reason"          => $serviceTrack['loss_reason'],
             "latitude"             => $serviceTrack['latitude'],
             "longitude"            => $serviceTrack['longitude'],
             "user_id"              => $serviceTrack['user_id'],
+            "remark"               => $serviceTrack['remark'],
 
         ];
 

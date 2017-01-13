@@ -172,33 +172,12 @@ class DistributorDetailService extends BaseService
 
             if ($ad['type']=='Billing') {
 
-                  $distAddress['Billing'][] = [
-
-                      "zone"      =>  $ad['zone'],
-                      "district"  =>  $ad['district'],
-                      "city"      =>  $ad['city'],
-                      "latitude"  =>  $ad['latitude'],
-                      "longitude" =>  $ad['longitude'],
-                      "phone"     =>  $ad['phone'],
-                      "mobile"    =>  $ad['mobile'],
-                      "fax"       =>  $ad['fax']
-
-                ];
+                $distAddress['Billing'][] = $this->getAddress($ad);
             }
 
             if ($ad['type']=='Shipping') {
 
-                  $distAddress['Shipping'][] = [
-                      "zone"      =>  $ad['zone'],
-                      "district"  =>  $ad['district'],
-                      "city"      =>  $ad['city'],
-                      "latitude"  =>  $ad['latitude'],
-                      "longitude" =>  $ad['longitude'],
-                      "phone"     =>  $ad['phone'],
-                      "mobile"    =>  $ad['mobile'],
-                      "fax"       =>  $ad['fax']
-
-                  ];
+                $distAddress['Shipping'][] = $this->getAddress($ad);
             }
         }
 
@@ -207,6 +186,26 @@ class DistributorDetailService extends BaseService
         $detailData['distributor_details'][] = $data;
 
         return $detailData;
+    }
+
+    /**
+     * @param $ad
+     * @return array
+     */
+    public function getAddress($ad)
+    {
+        return [
+
+            "zone"      =>  $ad['zone'],
+            "district"  =>  $ad['district'],
+            "city"      =>  $ad['city'],
+            "latitude"  =>  $ad['latitude'],
+            "longitude" =>  $ad['longitude'],
+            "phone"     =>  $ad['phone'],
+            "mobile"    =>  $ad['mobile'],
+            "fax"       =>  $ad['fax'],
+
+        ];
     }
 
     /**

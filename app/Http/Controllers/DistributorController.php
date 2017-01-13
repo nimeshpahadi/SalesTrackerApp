@@ -145,14 +145,11 @@ class DistributorController extends Controller
 
     public function addTracking(Request $request)
     {
-
-
         $this->validate($request, array(
-            'stage' => 'required|max:255',
+            'stage'                => 'required|max:255',
             'business_probability' => 'required|max:3',
-            'activity' => 'required',
-            'loss_reason' => 'required',
-            'is_our_customer' => 'required',
+            'activity'             => 'required',
+            'loss_reason'          => 'required',
 
         ));
 

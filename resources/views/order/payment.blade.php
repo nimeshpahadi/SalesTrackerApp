@@ -30,7 +30,7 @@
         </div>
         {{--</input>--}}
         <input name="user_id" hidden value='{{ Auth::user()->id }}'>
-        <input name="distributor_id" hidden value='{{$orderId->id}}'>
+        <input name="distributor_id" hidden value='{{$id}}'>
 
 
     </div>
