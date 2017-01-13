@@ -44,7 +44,6 @@ if(mm<10){
 
 function  guaranteeForm(gType) {
     if(gType=="Cash"){
-
         $(".bank-name").attr("type", "hidden");
         $(".bank-name").val("");
         $(".cheque-no").attr("type", "hidden");
@@ -52,6 +51,7 @@ function  guaranteeForm(gType) {
         $("#bank_name").hide();
         $("#cheque_no").hide();
         $("#amount").show();
+
     }
     else if(gType=="Collateral"){
         $(".bank-name").attr("type", "hidden");

@@ -66,7 +66,6 @@ class ProductController extends Controller
            $productwarehouse = [
                 'product_id' => $product->id,
                 'warehouse_id' => $request->get('warehouse_id')
-
             ];
         $this->assignwarehouse($productwarehouse);
 
