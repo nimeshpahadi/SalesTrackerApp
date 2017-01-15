@@ -89,8 +89,24 @@ $(document).ready(function () {
 
     }
 
+    function visitForm1(stage) {
+        // console.log(stage);
+        if (stage=="Closed") {
+            $("#lossreason").show();
+            $(".lossreason").attr("type", "show");
+
+        }
+        else {
+            $("#lossreason").hide();
+            $(".lossreason").attr("type", "hide");
+            $("#remark").hide();
+            $(".remark").attr("type", "hide");
+        }
+
+    }
+
     function visitForm(lossreason) {
-        if (lossreason == "Other") {
+        if (lossreason =="Other") {
             $("#remark").show();
             $(".remark").attr("type", "show");
         }
@@ -99,20 +115,52 @@ $(document).ready(function () {
             $(".remark").attr("type", "hide");
         }
 
-        }
+    }
 
-    $("#select").change(function () {
+
+
+
+
+
+
+    $("#stage").change(function () {
+        $("select option:selected").each(function () {
+            visitForm1($(this).attr("value"));
+            // console.log( visitForm1($(this).attr("value")))
+        });
+    }).change();
+
+
+
+    $("#lossreason").change(function () {
+        $("select option:selected").each(function () {
+            visitForm($(this).attr("value"));
+            console.log( visitForm($(this).attr("value")))
+        });
+    }).change();
+
+
+    $("#select").change(function() {
 
         $("select option:selected").each(function () {
             guaranteeForm($(this).attr("value"));
-            visitForm($(this).attr("value"))
+            // visitForm1($(this).attr("value"));
 
         });
     }).change();
 
+
     if (editGuarantee) {
         guaranteeForm(guaranteeType);
     }
+
+
+
+
+
+
+
+
 
 });
 

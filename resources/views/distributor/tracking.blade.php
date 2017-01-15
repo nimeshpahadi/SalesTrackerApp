@@ -14,15 +14,16 @@
 
             {{ Form::hidden('distributor_id', $disid->id) }}
             {{ Form::hidden('user_id', Auth::user()->id) }}
-            <div class="form-group clearfix">
-                <label for="type" class="col-sm-4 control-label">Stage</label>
+
+            <div class="form-group clearfix stage" id="stage">
+                <label for="stage" class="col-sm-4 control-label stage">Stage</label>
                 <div class="col-md-8">
                     <?php $x = Config::get('distributor.tracking_stage');?>
-                    <select name="stage" class="form-control" required>
+                    <select id ="stage" name="stage" class="form-control stage" required>
                         <option selected="selected" value="" disabled>Choose Visit Stage</option>
                         @foreach($x as $dep)
-                            <option value=" {{ $dep}}">
-                                {{ $dep  }}
+                            <option value="{{$dep}}">
+                              {{$dep}}
                             </option>
                         @endforeach
                     </select>
@@ -50,11 +51,11 @@
                     </select>
                 </div>
             </div>
-            <div class="form-group clearfix">
-                <label for="type" class="col-sm-4 control-label">Loss Reason</label>
+            <div class="form-group clearfix lossreason" id="lossreason">
+                <label for="lossreason" class="col-sm-4 control-label lossreason">Loss Reason</label>
                 <div class="col-md-8">
                     <?php $x = Config::get('distributor.tracking_loss_reason');?>
-                    <select name="loss_reason" class="form-control select" required>
+                    <select  id="lossreason"  name="loss_reason" class="form-control select" required>
                         <option selected="selected" value="" disabled>Choose Visit Loss Reason</option>
                         @foreach($x as $dep)
                             <option value="{{$dep}}">
@@ -66,9 +67,9 @@
             </div>
 
 
-            <div class="form-group clearfix" id="remark">
-                <label for="type" class="col-sm-4 control-label">Remark</label>
-                <div class="col-md-8">
+            <div class="form-group clearfix remark" id="remark">
+                <label for="type" class="col-sm-4 control-label remark">Remark</label>
+                <div class="col-md-8 ">
                     <textarea id="remark"type="text" name="remark" class="form-control"></textarea>
                 </div>
             </div>
