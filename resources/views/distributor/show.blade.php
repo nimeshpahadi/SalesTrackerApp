@@ -412,6 +412,7 @@
                                             <th>Business Probability</th>
                                             <th>Activity</th>
                                             <th>Loss Reason</th>
+                                            <th>Remark</th>
                                         </tr>
                                         </thead>
                                         <tbody>
@@ -423,6 +424,12 @@
                                                 <td>{{$t->business_probability}}%</td>
                                                 <td>{{$t->activity}}</td>
                                                 <td>{{$t->loss_reason}}</td>
+                                                <td>
+                                                    <button class="btn btn-primary glyphicon glyphicon-info-sign"
+                                                            data-toggle="popover" data-trigger="hover"
+                                                            data-content="{{$t->remark}}">
+                                                    </button>
+                                                </td>
                                                 <td>
                                                     <a class="btn btn-primary"
                                                        href="{{route("visit_location",["id"=>$t->distributor_id,

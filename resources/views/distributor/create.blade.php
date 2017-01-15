@@ -228,19 +228,7 @@
             </div>
         </div>
 
-
-        <div class="form-group clearfix">
-            <label for="status" class="col-sm-4 control-label">Status</label>
-            <div class="col-md-8">
-                <label class="radio-inline">
-                    <input type="radio" name="status" id="inlineRadio1" value="1" checked="checked">Active
-                </label>
-                <label class="radio-inline">
-                    <input type="radio" name="status" id="inlineRadio2" value="0"> Inactive
-                </label>
-            </div>
-        </div>
-        <div class="clearfix"></div>
+        {{ Form::hidden('status', 0) }}
 
         <div align="center" class="col-md-4 col-md-offset-4 ">
             <div class="row">
