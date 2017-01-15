@@ -89,16 +89,29 @@ $(document).ready(function () {
 
     }
 
+    function visitForm(lossreason) {
+        if (lossreason == "Other") {
+            $("#remark").show();
+            $(".remark").attr("type", "show");
+        }
+        else {
+            $("#remark").hide();
+            $(".remark").attr("type", "hide");
+        }
+
+        }
+
     $("#select").change(function () {
 
         $("select option:selected").each(function () {
-            guaranteeForm($(this).attr("value"))
+            guaranteeForm($(this).attr("value"));
+            visitForm($(this).attr("value"))
 
         });
     }).change();
 
     if (editGuarantee) {
-        guaranteeForm("Others");
+        guaranteeForm(guaranteeType);
     }
 
 });

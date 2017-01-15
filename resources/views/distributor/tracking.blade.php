@@ -19,7 +19,7 @@
                 <div class="col-md-8">
                     <?php $x = Config::get('distributor.tracking_stage');?>
                     <select name="stage" class="form-control" required>
-                        <option selected="selected" value="" disabled>Choose Tracking Stage</option>
+                        <option selected="selected" value="" disabled>Choose Visit Stage</option>
                         @foreach($x as $dep)
                             <option value=" {{ $dep}}">
                                 {{ $dep  }}
@@ -41,7 +41,7 @@
                 <div class="col-md-8">
                     <?php $x = Config::get('distributor.tracking_activity');?>
                     <select name="activity" class="form-control" required>
-                        <option selected="selected" value="" disabled>Choose Tracking Activity</option>
+                        <option selected="selected" value="" disabled>Choose Visit Activity</option>
                         @foreach($x as $dep)
                             <option value=" {{ $dep}}">
                                 {{ $dep  }}
@@ -54,19 +54,28 @@
                 <label for="type" class="col-sm-4 control-label">Loss Reason</label>
                 <div class="col-md-8">
                     <?php $x = Config::get('distributor.tracking_loss_reason');?>
-                    <select name="loss_reason" class="form-control" required>
-                        <option selected="selected" value="" disabled>Choose Tracking Loss Reason</option>
+                    <select name="loss_reason" class="form-control select" required>
+                        <option selected="selected" value="" disabled>Choose Visit Loss Reason</option>
                         @foreach($x as $dep)
-                            <option value=" {{ $dep}}">
-                                {{ $dep  }}
+                            <option value="{{$dep}}">
+                                {{$dep }}
                             </option>
                         @endforeach
                     </select>
                 </div>
             </div>
 
+
+            <div class="form-group clearfix" id="remark">
+                <label for="type" class="col-sm-4 control-label">Remark</label>
+                <div class="col-md-8">
+                    <textarea id="remark"type="text" name="remark" class="form-control"></textarea>
+                </div>
+            </div>
+
+
             <div class="clearfix"></div>
-            {{Form::submit('Save Tracking', array('class'=>'btn btn-primary btn-lg btn-block', 'style'=>'margin-top:20px;'))}}
+            {{Form::submit('Save Visit', array('class'=>'btn btn-primary btn-lg btn-block', 'style'=>'margin-top:20px;'))}}
             <a type="button" class="btn btn-warning btn-block" href="/distributor/{{$disid->id}}">Cancel</a>
             {!! Form::close() !!}
 

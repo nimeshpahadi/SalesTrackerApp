@@ -106,7 +106,7 @@
             <label for="warehouse_id" class="col-sm-4 control-label">Warehouse :</label>
 
             <div class="col-md-8">
-                <select id="warehouse_id" name="warehouse_id"
+                <select id="warehouse_id" name="warehouse_id[]"
                         class=" form-control warehouse" multiple>
 
                     <option selected="selected" disabled >choose warehouse</option>
