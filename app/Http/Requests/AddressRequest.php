@@ -40,7 +40,7 @@ class AddressRequest extends FormRequest
             'phone' => 'required|min:6',
             'latitude' => 'required',
             'longitude' => 'required',
-            'fax' => 'required|min:6',
+            'fax' => 'min:6',
 
         ];
 

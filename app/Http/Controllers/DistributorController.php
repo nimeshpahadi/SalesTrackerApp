@@ -150,6 +150,7 @@ class DistributorController extends Controller
             'business_probability' => 'required|max:3',
             'activity'             => 'required',
             'loss_reason'          => 'required',
+            'remark'                =>'min:5',
 
         ));
 

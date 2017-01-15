@@ -21,9 +21,13 @@
                 <label for="type" class="col-sm-4 control-label">Type</label>
                 <div class="col-md-8">
                     <?php $addressType = Config::get('distributor.address_type');?>
-                    <select name="type" class="form-control" required>
+                    <select name="type" class="form-control" required >
                         @foreach($addressType as $index=>$value)
-                            <option value="{{$index}}" @if($type==$index) selected @endif>{{$value}}</option>
+                            <option value="{{$index}}"
+                                    @if($type==$index) selected
+                                         @else
+                                             disabled
+                                    @endif >{{$value}} </option>
                         @endforeach
 
                     </select>
@@ -140,7 +144,7 @@
                 <label for="fax" class="col-sm-4 control-label">Fax</label>
 
                 <div class="col-sm-8">
-                    <input id="fax" type="number" class="form-control" name="fax" value="{{ old('fax') }}" required
+                    <input id="fax" type="number" class="form-control" name="fax" value="{{ old('fax') }}"
                            autofocus>
 
                     @if ($errors->has('fax'))

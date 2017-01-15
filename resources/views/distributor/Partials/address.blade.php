@@ -23,9 +23,15 @@
             <label class="col-sm-2 ">Mobile :</label>
             {{$add['mobile']}}
         </div>
-        <div class="row">
+
+    <div class="row">
             <label class="col-sm-2 ">Fax :</label>
+        @if($add['fax']!=null)
             {{$add['fax']}}
+        @else
+       <p>Not Available</p>
+
+        @endif
         </div>
 
     </div>
