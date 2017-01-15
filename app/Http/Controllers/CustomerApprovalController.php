@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 
 use App\SalesTracker\Services\CustomerApprovalService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
@@ -100,7 +101,18 @@ class CustomerApprovalController extends Controller
 
         Session::put('url.intended', URL::previous());
 
-        return Redirect::intended('/')->withSuccess('customer approved by general manager');
+        if (Auth::user()->roles[0]['display_name']=="Admin") {
+            return Redirect::intended('/')->withSuccess('customer approved by Admin');
+        }
+
+        elseif (Auth::user()->roles[0]['display_name']=="General Manager") {
+
+            return Redirect::intended('/')->withSuccess('customer approved by General Manager');
+        }
+
+        else {
+            return Redirect::intended('/')->withSuccess('customer approved by Director');
+        }
     }
 
     /**
@@ -113,7 +125,18 @@ class CustomerApprovalController extends Controller
 
         Session::put('url.intended', URL::previous());
 
-        return Redirect::intended('/')->withSuccess('customer rejected by general manager');
+        if (Auth::user()->roles[0]['display_name']=="Admin") {
+            return Redirect::intended('/')->withSuccess('customer rejected by Admin');
+        }
+
+        elseif (Auth::user()->roles[0]['display_name']=="General Manager") {
+
+            return Redirect::intended('/')->withSuccess('customer rejected by General Manager');
+        }
+
+        else {
+            return Redirect::intended('/')->withSuccess('customer rejected by Director');
+        }
     }
 
     /**
