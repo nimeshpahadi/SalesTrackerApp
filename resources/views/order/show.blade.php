@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="row">
-                            <label class="col-sm-6 "> Vat :</label>
+                            <label class="col-sm-6 "> VAT :</label>
                             {{$ob->vat}}%
                         </div>
                         <div class="row">
@@ -159,7 +159,7 @@
 
 
                             <div class="form-group{{ $errors->has('vat') ? ' has-error' : '' }} clearfix">
-                                <label for="vat" class="col-sm-4 control-label"><VAT></VAT></label>
+                                <label for="vat" class="col-sm-4 control-label">VAT</label>
 
                                 <div class="col-sm-8">
                                     <input type="text" name="vat" id="textthree" placeholder="in %" required>

@@ -28,31 +28,31 @@ class warehouseSeeder extends Seeder
                 'location' => "rolpa"
             ]
         );
-        DB::table("warehouse_product")->insert([
-            "product_id" => "1",
-            "warehouse_id" => "1",
-        ]);
-        DB::table("warehouse_product")->insert([
-            "product_id" => "1",
-            "warehouse_id" => "2",
-        ]);
-        DB::table("warehouse_product")->insert([
-            "product_id" => "1",
-            "warehouse_id" => "3",
-        ]);
-        DB::table("warehouse_product")->insert([
-            "product_id" => "2",
-            "warehouse_id" => "1",
-        ]);
-        DB::table("warehouse_product")->insert([
-            "product_id" => "2",
-            "warehouse_id" => "2",
-        ]);
-
-        DB::table("warehouse_product")->insert([
-            "product_id" => "2",
-            "warehouse_id" => "3",
-        ]);
+//        DB::table("warehouse_product")->insert([
+//            "product_id" => "1",
+//            "warehouse_id" => "1",
+//        ]);
+//        DB::table("warehouse_product")->insert([
+//            "product_id" => "1",
+//            "warehouse_id" => "2",
+//        ]);
+//        DB::table("warehouse_product")->insert([
+//            "product_id" => "1",
+//            "warehouse_id" => "3",
+//        ]);
+//        DB::table("warehouse_product")->insert([
+//            "product_id" => "2",
+//            "warehouse_id" => "1",
+//        ]);
+//        DB::table("warehouse_product")->insert([
+//            "product_id" => "2",
+//            "warehouse_id" => "2",
+//        ]);
+//
+//        DB::table("warehouse_product")->insert([
+//            "product_id" => "2",
+//            "warehouse_id" => "3",
+//        ]);
     }
 }
 

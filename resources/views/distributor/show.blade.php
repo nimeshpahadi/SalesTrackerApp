@@ -77,12 +77,12 @@
 
                                     <div class="row">
                                         <label class="col-sm-6 ">Billing Amount :</label>
-                                        {{$billing_transaction->billing_amount}}
+                                        Rs. {{number_format($billing_transaction->billing_amount)}}
                                     </div>
 
                                     <div class="row">
                                         <label class="col-sm-6 ">Paid Amount :</label>
-                                        {{$paying_transaction->paid_amount}}
+                                        Rs. {{number_format($paying_transaction->paid_amount)}}
                                     </div>
 
                                     <div class="row">
@@ -90,9 +90,9 @@
                                         <?php  $due = $paying_transaction->paid_amount -
                                                 $billing_transaction->billing_amount ?>
                                         @if($due<0)
-                                            {{ -$due }}
+                                            Rs. {{number_format(-$due)}}
                                         @else
-                                            {{ $due }} (Advance)
+                                            Rs. {{number_format($due)}} (Advance)
                                         @endif
                                     </div>
 
@@ -134,7 +134,7 @@
                                         @if(($guarantee->amount)!=null)
                                             <div class="row">
                                                 <label class="col-sm-6 ">Amount :</label>
-                                                {{strtoupper($guarantee->amount)}}
+                                                Rs. {{number_format($guarantee->amount)}}
                                             </div>
                                         @endif
 

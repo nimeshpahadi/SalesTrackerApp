@@ -20,7 +20,7 @@ class userSeeder extends Seeder
             "department" => "X",
             "password" => bcrypt("admin123"),
             "contact" => "1234567890",
-            "reportsto" => "admin",
+            "reportsto" => 1,
 
         ]);
 
