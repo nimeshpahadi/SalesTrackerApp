@@ -2,8 +2,14 @@
 namespace App\SalesTracker\Repositories;
 
 use App\SalesTracker\Entities\Product\Product;
+use File;
 use Illuminate\Contracts\Logging\Log;
+//use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Exception;
+//use PhpParser\Node\Scalar\MagicConst\File;
+//use Symfony\Component\HttpFoundation\File\File;
+
 
 /**
  * Created by PhpStorm.
@@ -120,11 +126,19 @@ class ProductRepository
     {
         try {
             $data = Product::find($id);
-            $data->delete();
-            $this->log->info("Product Deleted ", ['id' => $id]);
+            $filename = $data['image'];
+            $path = public_path().'/images/';
 
-            return true;
-        } catch (Exception $e) {
+            if (File::exists($path . $filename) && !File::delete($path . $filename)) {
+                    $this->log->info("Product image not found ", ['id' => $id]);
+            } else {
+                $data->delete();
+                $this->log->info("Product Deleted ", ['id' => $id]);
+                return true;
+            }
+
+        }
+        catch (Exception $e) {
             $this->log->info("Product Deletion Failed", ['id' => $id]);
             return false;
         }
