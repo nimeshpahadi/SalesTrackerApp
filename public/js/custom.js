@@ -89,10 +89,8 @@ $(document).ready(function () {
 
     }
 
-
-
-    function visitForm1(Stage) {
-        // console.log(stage);
+    function selectStage(Stage) {
+        console.log("hello as"+Stage);
         if (Stage=="Closed") {
             $("#lossreason").show();
             $(".lossreason").attr("type", "show");
@@ -119,29 +117,29 @@ $(document).ready(function () {
 
     }
 
-        $("#select").change(function () {
-            $("select option:selected").each(function () {
-                guaranteeForm($(this).attr("value"));
 
-            });
-        }).change();
-
-        $("#stage").change(function () {
-            $("select option:selected").each(function () {
-                visitForm1($(this).attr("value"));
-            });
-        }).change();
+    $("#stage").on('change',function () {
+        var stage = $('#stage :selected').text();
+        selectStage(stage.trim());
+    }).change();
 
 
-        $("#lossreason").change(function () {
-            $("select option:selected").each(function () {
-                visitForm($(this).attr("value"));
-            });
-        }).change();
+    $("#lossreason").change(function () {
+        $("select option:selected").each(function () {
+            visitForm($(this).attr("value"));
+        });
+    }).change();
 
-        if (editGuarantee) {
-            guaranteeForm(guaranteeType);
-        }
+    $("#select").change(function () {
+        $("select option:selected").each(function () {
+            guaranteeForm($(this).attr("value"));
+
+        });
+    }).change();
+    if (editGuarantee) {
+        guaranteeForm(guaranteeType);
+    }
+
 
 });
 
@@ -171,7 +169,10 @@ $('#date2').datepicker({
 
 
 //select2
-$("select").select2();
+$("select").select2({
+    theme: "classic",
+    placeholder:"Select Item"
+});
 
 today = yyyy + '-' + mm + '-' + dd;
 document.getElementById("datefield").setAttribute("max", today);
