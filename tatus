@@ -1,0 +1,94 @@
+[1mdiff --git a/public/js/custom.js b/public/js/custom.js[m
+[1mindex db11e6f..98e26b5 100644[m
+[1m--- a/public/js/custom.js[m
+[1m+++ b/public/js/custom.js[m
+[36m@@ -89,6 +89,8 @@[m [m$(document).ready(function () {[m
+ [m
+     }[m
+ [m
+[32m+[m
+[32m+[m
+     function visitForm1(stage) {[m
+         // console.log(stage);[m
+         if (stage=="Closed") {[m
+[36m@@ -105,63 +107,47 @@[m [m$(document).ready(function () {[m
+ [m
+     }[m
+ [m
+[31m-    function visitForm(lossreason) {[m
+[31m-        if (lossreason =="Other") {[m
+[31m-            $("#remark").show();[m
+[31m-            $(".remark").attr("type", "show");[m
+[31m-        }[m
+[31m-        else {[m
+[31m-            $("#remark").hide();[m
+[31m-            $(".remark").attr("type", "hide");[m
+[31m-        }[m
+[31m-[m
+[31m-    }[m
+[31m-[m
+[31m-[m
+[31m-[m
+[32m+[m[32m        function visitForm(lossreason) {[m
+[32m+[m[32m            if (lossreason =="Other") {[m
+[32m+[m[32m                $("#remark").show();[m
+[32m+[m[32m                $(".remark").attr("type", "show");[m
+[32m+[m[32m            }[m
+[32m+[m[32m            else {[m
+[32m+[m[32m                $("#remark").hide();[m
+[32m+[m[32m                $(".remark").attr("type", "hide");[m
+[32m+[m[32m            }[m
+ [m
+[32m+[m[32m        }[m
+[32m+[m[32m    $("#select").change(function () {[m
+ [m
+[32m+[m[32m        $("select option:selected").each(function () {[m
+[32m+[m[32m            guaranteeForm($(this).attr("value"));[m
+[32m+[m[32m            // visitForm1($(this).attr("value"));[m
+ [m
+[32m+[m[32m        });[m
+[32m+[m[32m    }).change();[m
+ [m
+     $("#stage").change(function () {[m
+         $("select option:selected").each(function () {[m
+             visitForm1($(this).attr("value"));[m
+[31m-            // console.log( visitForm1($(this).attr("value")))[m
+[32m+[m[32m            console.log( visitForm1($(this).attr("value")))[m
+         });[m
+     }).change();[m
+ [m
+ [m
+[31m-[m
+     $("#lossreason").change(function () {[m
+         $("select option:selected").each(function () {[m
+             visitForm($(this).attr("value"));[m
+[31m-            console.log( visitForm($(this).attr("value")))[m
+         });[m
+     }).change();[m
+ [m
+ [m
+[31m-    $("#select").change(function() {[m
+[31m-[m
+[31m-        $("select option:selected").each(function () {[m
+[31m-            guaranteeForm($(this).attr("value"));[m
+[31m-            // visitForm1($(this).attr("value"));[m
+[31m-[m
+[31m-        });[m
+[31m-    }).change();[m
+ [m
+ [m
+     if (editGuarantee) {[m
+         guaranteeForm(guaranteeType);[m
+     }[m
+ [m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+[31m-[m
+ });[m
+ [m
+ [m
