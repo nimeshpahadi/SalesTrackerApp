@@ -55,7 +55,7 @@
                 <label for="lossreason" class="col-sm-4 control-label lossreason">Loss Reason</label>
                 <div class="col-md-8">
                     <?php $x = Config::get('distributor.tracking_loss_reason');?>
-                    <select  id="lossreason"  name="loss_reason" class="form-control select" required>
+                    <select  id="lossreason"  name="loss_reason" class="form-control select">
                         <option selected="selected" value="" disabled>Choose Visit Loss Reason</option>
                         @foreach($x as $dep)
                             <option value="{{$dep}}">

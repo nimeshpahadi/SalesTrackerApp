@@ -425,10 +425,12 @@
                                                 <td>{{$t->activity}}</td>
                                                 <td>{{$t->loss_reason}}</td>
                                                 <td>
-                                                    <button class="btn btn-primary glyphicon glyphicon-info-sign"
+                                                   @if($t->remark!=null)
+                                                        <button class="btn btn-primary glyphicon glyphicon-info-sign"
                                                             data-toggle="popover" data-trigger="hover"
                                                             data-content="{{$t->remark}}">
                                                     </button>
+                                                       @endif
                                                 </td>
                                                 <td>
                                                     <a class="btn btn-primary"
