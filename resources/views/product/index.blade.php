@@ -13,7 +13,7 @@
                     <!-- /.box -->
 
                     <div class="box" style="padding: 10px">
-                        @role(('admin'))
+                        @role((['admin','generalmanager','director']))
                         <div align="right" style="padding: 10px">
                             <a href="{{route('product.create')}}">
                                 <span class=" btn btn-success glyphicon glyphicon-plus">Create Product</span>
@@ -90,20 +90,25 @@
                                         </td>
                                         <td>
                                             <a href="{{route('product.edit',$row->id)}}">
-                                                <button class="btn btn-warning"><i class="fa fa-edit"></i></button>
+                                                <button class="btn btn-warning" data-toggle="popover" data-trigger="hover"
+                                                        data-placement="top" data-content="Edit"><i class="fa fa-edit"  ></i></button>
                                             </a>
                                             {!! Form::open(['method' => 'DELETE','route' => ['product.destroy', $row->id]]) !!}
-                                            <button type="submit" class="btn btn-danger glyphicon glyphicon-trash"
+                                            <button type="submit" class="btn btn-danger glyphicon glyphicon-trash"  data-toggle="popover" data-trigger="hover"
+                                                    data-placement="top" data-content="Delete"
                                                     onclick="return confirm('Are you sure you want to delete this item?');">
 
                                             </button>
                                             {!! Form::close() !!}
+
 
                                         </td>
                                         @endrole
                                     </tr>
                                 @endforeach
                                     @endif
+
+
 
                                 </tbody>
 

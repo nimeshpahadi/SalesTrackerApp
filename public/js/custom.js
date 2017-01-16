@@ -147,6 +147,9 @@ $(document).ready(function () {
 $('[data-toggle="popover"]').popover();
 
 
+
+
+
 //warehouse disabled for other role
 $('.role').change(function () {
     $(".warehouse").prop("disabled", this.value != 4);

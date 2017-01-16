@@ -25,7 +25,8 @@
                                 <div align="right">
                                     <div class="col-md-11 col-sm-10" style="padding: 10px">
                                         <a href="{!! route('distributor.edit',$dist->id)!!}">
-                                            <span class="  btn btn-primary glyphicon glyphicon-pencil"></span>
+                                            <span class="  btn btn-primary glyphicon glyphicon-pencil"  data-toggle="popover" data-trigger="hover"
+                                                  data-placement="top"   data-content="Edit"></span>
                                         </a>
                                     </div>
                                 </div>
