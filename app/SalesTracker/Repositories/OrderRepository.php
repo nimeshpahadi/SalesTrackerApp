@@ -276,7 +276,8 @@ class OrderRepository
 
     public function getpaymentdistributor($id)
     {
-        $query = $this->orderPayment->select(DB::raw('order_payments.amount,order_payments.type,order_payments.created_at,
+        $query = $this->orderPayment->select(DB::raw('order_payments.amount,order_payments.type,
+        order_payments.bank_name,order_payments.cheque_no,order_payments.cheque_date,order_payments.remark,order_payments.created_at,
                         users.fullname as userName,users.id as userId,distributor_details.id as distributor_id,
           distributor_details.company_name as distributor_name'))
             ->orderBy('created_at', 'desc')

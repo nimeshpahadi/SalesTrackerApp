@@ -25,7 +25,8 @@
                                 <div align="right">
                                     <div class="col-md-11 col-sm-10" style="padding: 10px">
                                         <a href="{!! route('distributor.edit',$dist->id)!!}">
-                                            <span class="  btn btn-primary glyphicon glyphicon-pencil"></span>
+                                            <span class="  btn btn-primary glyphicon glyphicon-pencil"  data-toggle="popover" data-trigger="hover"
+                                                  data-placement="top"   data-content="Edit"></span>
                                         </a>
                                     </div>
                                 </div>
@@ -375,7 +376,11 @@
                                         <th>Date</th>
                                         <th>Amount</th>
                                         <th>Type</th>
-                                        <th>Username</th>
+                                        <th>Bank Name</th>
+                                        <th>Cheque No.</th>
+                                        <th>Cheque Date.</th>
+                                        <th>Created By</th>
+                                        <th>Remarks</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -385,7 +390,12 @@
                                             <td>{{$pay->created_at}}</td>
                                             <td>{{$pay->amount}}</td>
                                             <td>{{$pay->type}}</td>
+                                            <td>{{$pay->bank_name}}</td>
+                                            <td>{{$pay->cheque_no}}</td>
+                                            <td>{{$pay->cheque_date}}</td>
                                             <td>{{$pay->userName}}</td>
+                                            <td>{{$pay->remark}}</td>
+
 
 
                                         </tr>

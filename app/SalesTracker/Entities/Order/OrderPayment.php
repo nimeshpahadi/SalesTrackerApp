@@ -13,5 +13,9 @@ class OrderPayment extends Model
         'distributor_id',
         'amount',
         'type',
+        'bank_name',
+        'cheque_no',
+        'cheque_date',
+        'remark',
            ];
 }

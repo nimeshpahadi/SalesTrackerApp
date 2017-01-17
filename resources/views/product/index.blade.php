@@ -13,7 +13,7 @@
                     <!-- /.box -->
 
                     <div class="box" style="padding: 10px">
-                        @role(('admin'))
+                        @role((['admin','generalmanager','director']))
                         <div align="right" style="padding: 10px">
                             <a href="{{route('product.create')}}">
                                 <span class=" btn btn-success glyphicon glyphicon-plus">Create Product</span>
@@ -90,14 +90,17 @@
                                         </td>
                                         <td>
                                             <a href="{{route('product.edit',$row->id)}}">
-                                                <button class="btn btn-warning"><i class="fa fa-edit"></i></button>
+                                                <button class="btn btn-warning" data-toggle="popover" data-trigger="hover"
+                                                        data-placement="top" data-content="Edit"><i class="fa fa-edit"  ></i></button>
                                             </a>
                                             {!! Form::open(['method' => 'DELETE','route' => ['product.destroy', $row->id]]) !!}
-                                            <button type="submit" class="btn btn-danger glyphicon glyphicon-trash"
+                                            <button type="submit" class="btn btn-danger glyphicon glyphicon-trash"  data-toggle="popover" data-trigger="hover"
+                                                    data-placement="top" data-content="Delete"
                                                     onclick="return confirm('Are you sure you want to delete this item?');">
 
                                             </button>
                                             {!! Form::close() !!}
+
 
                                         </td>
                                         @endrole
@@ -105,9 +108,36 @@
                                 @endforeach
                                     @endif
 
+
+
                                 </tbody>
 
                             </table>
+                        </div>
+
+
+                        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+                        <script type="text/javascript">
+                            window.onload = function () {
+                                var mapOptions = {
+                                    center: new google.maps.LatLng(27.6868, 85.3352),
+                                    zoom: 14,
+                                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                                };
+                                var infoWindow = new google.maps.InfoWindow();
+                                var latlngbounds = new google.maps.LatLngBounds();
+                                var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+                                google.maps.event.addListener(map, 'click', function (e) {
+
+                                   var latitude= e.latLng.lat();
+                                    var longitude= e.latLng.lng();
+                                        console.log(latitude,longitude);
+//                                    document.body.innerHTML=latitude;
+//                                    alert("Latitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
+                                });
+                            }
+                        </script>
+                        <div id="dvMap" style="width: 500px; height: 500px">
                         </div>
 
 

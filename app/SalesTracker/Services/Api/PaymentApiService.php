@@ -60,7 +60,11 @@ class PaymentApiService extends BaseService
             "user_id"        => $paymentService['user_id'],
             "distributor_id" => $paymentService['distributor_id'],
             "amount"         => $paymentService['amount'],
-            "type"           => $paymentService['type']
+            "type"           => $paymentService['type'],
+            "bank_name"      => $paymentService['bank_name'],
+            "cheque_no"      => $paymentService['cheque_no'],
+            "cheque_date"    => $paymentService['cheque_date'],
+            "remark"         => $paymentService['remark'],
 
         ];
 
