@@ -376,7 +376,11 @@
                                         <th>Date</th>
                                         <th>Amount</th>
                                         <th>Type</th>
-                                        <th>Username</th>
+                                        <th>Bank Name</th>
+                                        <th>Cheque No.</th>
+                                        <th>Cheque Date.</th>
+                                        <th>Created By</th>
+                                        <th>Remarks</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -386,7 +390,12 @@
                                             <td>{{$pay->created_at}}</td>
                                             <td>{{$pay->amount}}</td>
                                             <td>{{$pay->type}}</td>
+                                            <td>{{$pay->bank_name}}</td>
+                                            <td>{{$pay->cheque_no}}</td>
+                                            <td>{{$pay->cheque_date}}</td>
                                             <td>{{$pay->userName}}</td>
+                                            <td>{{$pay->remark}}</td>
+
 
 
                                         </tr>

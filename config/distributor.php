@@ -70,6 +70,11 @@ return
             'Others',
             'Pdp'
         ],
+        'payment_type' => [
+
+            'Cash ',
+            'Cheque',
+        ],
 
         'tracking_stage' => [
 
