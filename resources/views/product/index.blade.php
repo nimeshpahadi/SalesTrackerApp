@@ -116,6 +116,31 @@
                         </div>
 
 
+                        <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+                        <script type="text/javascript">
+                            window.onload = function () {
+                                var mapOptions = {
+                                    center: new google.maps.LatLng(27.6868, 85.3352),
+                                    zoom: 14,
+                                    mapTypeId: google.maps.MapTypeId.ROADMAP
+                                };
+                                var infoWindow = new google.maps.InfoWindow();
+                                var latlngbounds = new google.maps.LatLngBounds();
+                                var map = new google.maps.Map(document.getElementById("dvMap"), mapOptions);
+                                google.maps.event.addListener(map, 'click', function (e) {
+
+                                   var latitude= e.latLng.lat();
+                                    var longitude= e.latLng.lng();
+                                        console.log(latitude,longitude);
+//                                    document.body.innerHTML=latitude;
+//                                    alert("Latitude: " + e.latLng.lat() + "\r\nLongitude: " + e.latLng.lng());
+                                });
+                            }
+                        </script>
+                        <div id="dvMap" style="width: 500px; height: 500px">
+                        </div>
+
+
                         <!-- /.box-body -->
                     </div>
                     <!-- /.box -->

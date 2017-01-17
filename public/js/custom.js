@@ -117,6 +117,27 @@ $(document).ready(function () {
 
     }
 
+    function paymentForm(type) {
+        if (type =="Cheque") {
+            $("#bankname").show();
+            $(".bankname").attr("type", "show");
+            $("#chequeno").show();
+            $(".chequeno").attr("type", "show");
+            $("#chequedate").show();
+            $(".chequedate").attr("type", "show");
+        }
+        else {
+            $("#bankname").hide();
+            $(".bankname").attr("type", "hide");
+            $("#chequeno").hide();
+            $(".chequeno").attr("type", "hide");
+            $("#chequedate").hide();
+            $(".chequedate").attr("type", "hide");
+
+        }
+
+    }
+
 
     $("#stage").on('change',function () {
         var stage = $('#stage :selected').text();
@@ -127,6 +148,12 @@ $(document).ready(function () {
     $("#lossreason").change(function () {
         $("select option:selected").each(function () {
             visitForm($(this).attr("value"));
+        });
+    }).change();
+
+    $("#type").change(function () {
+        $("select option:selected").each(function () {
+            paymentForm($(this).attr("value"));
         });
     }).change();
 
