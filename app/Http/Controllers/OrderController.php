@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\OrderRequest;
 use App\SalesTracker\Entities\Order\Order_out;
+use App\SalesTracker\Entities\Order\OrderApprovalRemarks;
 use App\SalesTracker\Services\DistributorService;
 use App\SalesTracker\Services\OrderService;
 use App\SalesTracker\Services\StockService;
@@ -26,13 +27,18 @@ class OrderController extends Controller
      * @var StockService
      */
     private $stockService;
+    /**
+     * @var OrderApprovalRemarks
+     */
+    private $orderApprovalRemarks;
 
-    public function __construct(OrderService $orderService, DistributorService $distributorService,StockService $stockService)
+    public function __construct( OrderService $orderService, DistributorService $distributorService,StockService $stockService,OrderApprovalRemarks $orderApprovalRemarks)
     {
         $this->middleware(['role:admin|salesman|salesmanager|factoryincharge|accountmanagersales|generalmanager|director']);
         $this->orderService = $orderService;
         $this->distributorService = $distributorService;
         $this->stockService = $stockService;
+        $this->orderApprovalRemarks = $orderApprovalRemarks;
     }
 
     /**
@@ -167,10 +173,39 @@ class OrderController extends Controller
 
     public function orderapproval(Request $request)
     {
-        $orderid = $request['order_id'];
+
+        $user = Auth::user();
+        $role = $user->roles[0]->name;
+
+        if ($orderRemark=$this->orderService->OrderApproval($request))
+        {
+            if ($role=='admin')
+                $status=$request->get('admin_approval');
+            elseif($role=='salesmanager')
+                $status=$request->get('salesmanager_approval');
+            else
+                $status=$request->get('marketing_approval');
+
+            $orderApprovalRemark = [
+                'user_id' => Auth::user()->id,
+                'order_approval_id' => $orderRemark->id,
+                'remark'=>$request->get('remark'),
+                'status'=>$status
+
+
+            ];
+//            dd($orderApprovalRemark);
+            $this->orderApprovalRemark($orderApprovalRemark);
+
+            return back()->withSuccess("Order Approval created by ".$role);
+        }
+
+
+
+       /* $orderid = $request['order_id'];
         if ($this->orderService->OrderApproval($request)) {
             return redirect()->route('order.show', compact('orderid'))->withSuccess("Approval created success");
-        }
+        }*/
         return back()->withErrors("Something went wrong");
 
 
@@ -178,10 +213,31 @@ class OrderController extends Controller
 
     public function orderapprovalupdate(Request $request,$id)
     {
-        $orderid = $request['order_id'];
-        if ($this->orderService->OrderApprovalUpdate($request,$id)) {
-            return redirect()->route('order.show', compact('orderid'))->withSuccess("Approval update success");
+
+        $user = Auth::user();
+        $role = $user->roles[0]->name;
+        if ($orderRemark=$this->orderService->OrderApprovalUpdate($request,$id))
+        {
+            if ($role=='admin')
+                $status=$request->get('admin_approval');
+            elseif($role=='salesmanager')
+                $status=$request->get('salesmanager_approval');
+            else
+                $status=$request->get('marketing_approval');
+
+            $orderApprovalRemark = [
+                'user_id' => Auth::user()->id,
+                'order_approval_id' => $orderRemark->id,
+                'remark'=>$request->get('remark'),
+                'status'=>$status
+
+
+            ];
+            $this->orderApprovalRemark($orderApprovalRemark);
+
+            return back()->withSuccess("Order Approval created by ".$role);
         }
+
         return back()->withErrors("Something went wrong");
 
 
@@ -211,11 +267,34 @@ class OrderController extends Controller
         $user = Auth::user();
         $role = $user->roles[0]->name;
         $formData = $request->all();
-
-        if($this->orderService->updateAdminOrder($formData,$role))
+        if ($orderApproval=$this->orderService->updateAdminOrder($formData,$role))
         {
+            $orderAppId = $this->orderService->getOrderApproval($formData['order_id']);
+            if ($role=='admin')
+                $status=$request->get('admin_approval');
+            elseif($role=='salesmanager')
+                    $status=$request->get('sales_approval');
+            else
+                    $status=$request->get('marketing_approval');
+            $orderApprovalRemark = [
+                'user_id' => Auth::user()->id,
+                'order_approval_id' => $orderAppId->id,
+                'remark'=>$request->get('remark'),
+                'status'=>$status
+
+
+            ];
+            $this->orderApprovalRemark($orderApprovalRemark);
+
             return back()->withSuccess("Order Approval created by ".$role);
         }
+
         return back()->withErrors("Something went wrong");
     }
+    protected function orderApprovalRemark(array $data)
+    {
+        return OrderApprovalRemarks::create($data);
+    }
 }
+
+

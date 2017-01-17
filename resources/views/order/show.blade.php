@@ -87,15 +87,40 @@
                     <div class="col-md-12">
                         @if(isset($orderout->orderoutid)&& !isset($dispatched->orderoutid))
                             @role((['factoryincharge']))
+
+                            <div class="panel panel-success col-md-11">
+                                <div class="panel-heading"><h>Dispatch the Order</h></div>
+
                             <div align="right">
                                 {!! Form::open(array('route' => 'dispatch','method'=>'post'))!!}
                                 {{ Form::hidden('dispatched_by',  Auth::user()->id) }}
                                 {{ Form::hidden('order_out_id', $orderout->orderoutid) }}
                                 {{ Form::hidden('quantity', $orderout->qty) }}
 
+
+                                <div class="form-group clearfix" style="padding: 10px">
+                                    <label class="col-sm-4 control-label">Driver Name</label>
+                                    <div class="col-sm-8">
+                                        <input  type="text" name="driver_name"  class="form-control" required >
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix" >
+                                    <label class="col-sm-4 control-label">Driver's Contact</label>
+                                    <div class="col-sm-8">
+                                        <input  type="text" name="driver_contact"  class="form-control" required >
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix" >
+                                    <label class="col-sm-4 control-label"> Vehicle No.</label>
+                                    <div class="col-sm-8">
+                                        <input  type="text" name="vehicle_no"  class="form-control" required>
+                                    </div>
+                                </div>
+
                                 {{Form::submit('Dispatch', array('class'=>'btn btn-primary'))}}
                                 {!! Form::close() !!}
 
+                            </div>
                             </div>
                             @endrole
                         @endif
@@ -103,7 +128,7 @@
 
                         @if(isset($dispatched->orderoutid) && $dispatched->orderid==$orderId->id)
                             <div class="panel panel-success ">
-                                <div class="panel-heading"><h3>Order Already Dispatched</h3></div>
+                                <div class="panel-heading"><h5>Order Already Dispatched</h5></div>
 
                                 <div class="row">
                                     <label class="col-sm-6 "> Dispatched By :</label>
@@ -255,7 +280,7 @@
                         @elseif(isset($orderout->order_id))
 
                             <div class="panel panel-info ">
-                                <div class="panel-heading"><h3>Details of Order Out</h3></div>
+                                <div class="panel-heading"><h5>Details of Order Out</h5></div>
                                 <h4>Order Send :</h4> {{$orderout->senddate}}
                                 <h4>Customer : </h4> {{$orderout->distributor}}
                                 <h4>Product Category :</h4>{{$orderout->productname}}

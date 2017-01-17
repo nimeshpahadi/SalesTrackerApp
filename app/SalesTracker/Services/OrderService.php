@@ -118,7 +118,8 @@ class OrderService
     {
         $formData = $request->all();
         $formData = array_except($formData, ['_token', 'to', 'remove']);
-
+        $formData = array_except($formData, ['remark', 'to', 'remove']);
+//dd($formData);
         $data=$this->orderRepository->orderapproval($formData);
         return $data;
     }
@@ -219,6 +220,7 @@ class OrderService
     public function updateAdminOrder($formData,$role)
     {
         $data = $this->orderRepository->orderAdminUpdate($formData,$role);
+
         return $data;
     }
 
@@ -252,5 +254,11 @@ class OrderService
         $data=$this->orderRepository->payingAmountRepo();
 
         return $data;
+    }
+
+    public function getOrderApproval($orderId)
+    {
+        $ordApp=$this->orderRepository->gerorderapproval($orderId);
+        return $ordApp;
     }
 }

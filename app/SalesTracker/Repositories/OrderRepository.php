@@ -291,9 +291,9 @@ class OrderRepository
     public function orderapproval($formData)
     {
         try {
-            $this->orderApproval->insert($formData);
+            $query=$this->orderApproval->create($formData);
             $this->log->info("Order Approval Created");
-            return true;
+            return $query;
         } catch (QueryException $e) {
             $this->log->error("Oreder Approval Creation Failed");
             return false;
@@ -322,7 +322,7 @@ class OrderRepository
             $approvalId->marketing_approval = $request->marketing_approval;
             $approvalId->save();
             $this->log->info("Order Approval updated");
-            return true;
+            return $approvalId;
         } catch (QueryException $e) {
             $this->log->error("Oreder Approval Update Failed");
             return false;
@@ -495,15 +495,17 @@ class OrderRepository
         if ($role=="salesmanager")
         {
             $query = $this->orderApproval->where("order_id",$formData['order_id'])
-                ->update(["salesmanager"=>$formData['user_id'],"sales_approval"=>$formData['sales_approval']])
-            ;
+                ->update(["salesmanager"=>$formData['user_id'],"sales_approval"=>$formData['sales_approval']]);
+
+            return $query;
         }
         if ($role=="admin" || $role=="generalmanager")
         {
             $query = $this->orderApproval  ->where("order_id",$formData['order_id'])
                 ->update(["admin"=>$formData['user_id'],"admin_approval"=>$formData['admin_approval']]);
+            return $query;
         }
-        return $query;
+
     }
 
     public function getorderapprovalAdmin()
@@ -564,5 +566,12 @@ class OrderRepository
         return $this->orderPayment->select(DB::raw('sum(order_payments.amount) as paying_amount'))
                                         ->whereDate('created_at', date('Y-m-d'))
                                         ->get();
+    }
+
+    public function gerorderapproval($id)
+    {
+        $orderApp = $this->orderApproval->select('*')
+                                        ->where('order_id',$id);
+        return $orderApp->first();
     }
 }
