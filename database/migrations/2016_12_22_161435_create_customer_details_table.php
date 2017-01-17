@@ -26,6 +26,9 @@ class CreateCustomerDetailsTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('distributor_details', function (Blueprint $table) {
+            $table->dropColumn('vat_no');
+
+        });
     }
 }

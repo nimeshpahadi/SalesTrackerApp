@@ -37,6 +37,18 @@ class Addminutevisit extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('distributor_minutes', function ($table) {
+            $table->dropColumn('latitude')->nullable(false)->change();
+            $table->dropColumn('longitude')->nullable(false)->change();
+
+        });
+
+        Schema::table('distributor_trackings', function ($table) {
+            $table->dropColumn('latitude')->nullable(false)->change();
+            $table->dropForeign('distributor_trackings_user_id_foreign');
+            $table->dropColumn('user_id');
+            $table->dropColumn('longitude')->nullable(false)->change();
+
+        });
     }
 }

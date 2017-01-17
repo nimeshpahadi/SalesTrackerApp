@@ -28,6 +28,11 @@ class CreateCustomerGuaranteesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('distributor_guarantees', function (Blueprint $table) {
+            $table->dropColumn('bank_name');
+            $table->dropColumn('cheque_no');
+            $table->dropColumn('remark');
+
+        });
     }
 }

@@ -41,6 +41,19 @@ class ChangeOrderApproval extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('order_approvals', function ($table) {
+
+            $table->string('approval_status');
+            $table->dropForeign('order_approvals_salesmanager_foreign');
+            $table->dropColumn('salesmanager')->nullable(false)->change();
+            $table->dropForeign('order_approvals_marketingmanager_foreign');
+            $table->dropColumn('marketingmanager')->nullable(false)->change();
+            $table->dropForeign('order_approvals_admin_foreign');
+            $table->dropColumn('admin')->nullable(false)->change();
+            $table->dropColumn('sales_approval');
+            $table->dropColumn('marketing_approval');
+            $table->dropColumn('admin_approval');
+
+        });
     }
 }

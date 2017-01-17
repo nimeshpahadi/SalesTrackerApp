@@ -38,6 +38,20 @@ class AddColumnStockouts extends Migration
      */
     public function down()
     {
+        Schema::table('stock_outs', function ($table) {
+            $table->foreign('warehouse_id')->references('id')->on('warehouses')
+                ->onUpdate('cascade')->onDelete('cascade');
+            $table->foreign('product_id')->references('id')->on('products')
+                  ->onUpdate('cascade')->onDelete('cascade');
 
+            $table->integer('warehouse_id')->unsigned();
+            $table->string('created_by');
+            $table->integer('product_id')->unsigned();
+            $table->dropForeign('stock_outs_dispatched_by_foreign');
+            $table->dropColumn('dispatched_by');
+            $table->dropForeign('stock_outs_order_out_id_foreign');
+            $table->dropColumn('order_out_id');
+
+        });
     }
 }
