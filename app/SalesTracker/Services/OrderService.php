@@ -261,4 +261,10 @@ class OrderService
         $ordApp=$this->orderRepository->gerorderapproval($orderId);
         return $ordApp;
     }
+
+    public function getApprovalRemark($id)
+    {
+        $ordApp=$this->orderRepository->gerapprovalremark($id);
+        return $ordApp;
+    }
 }

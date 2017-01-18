@@ -14,6 +14,7 @@ use App\SalesTracker\Entities\Inventory\Stock_out;
 use App\SalesTracker\Entities\Order\Order;
 use App\SalesTracker\Entities\Order\Order_out;
 use App\SalesTracker\Entities\Order\OrderApproval;
+use App\SalesTracker\Entities\Order\OrderApprovalRemarks;
 use App\SalesTracker\Entities\Order\OrderBilling;
 use App\SalesTracker\Entities\Order\OrderPayment;
 use App\SalesTracker\Entities\Product\Product;
@@ -68,9 +69,13 @@ class OrderRepository
      * @var Stock_out
      */
     private $stock_out;
+    /**
+     * @var OrderApprovalRemarks
+     */
+    private $orderApprovalRemarks;
 
     public function __construct(Order $order, Product $product,
-                                DistributorDetails $distributorDetails, User $user,OrderBilling $orderBilling,
+                                DistributorDetails $distributorDetails, User $user,OrderBilling $orderBilling,OrderApprovalRemarks $orderApprovalRemarks,
                                 OrderPayment $orderPayment,Stock_out $stock_out, OrderApproval $orderApproval, Order_out $order_out,Log $log)
     {
 
@@ -78,13 +83,13 @@ class OrderRepository
         $this->product = $product;
         $this->distributorDetails = $distributorDetails;
         $this->user = $user;
-
         $this->log = $log;
         $this->orderBilling = $orderBilling;
         $this->orderPayment = $orderPayment;
         $this->orderApproval = $orderApproval;
         $this->order_out = $order_out;
         $this->stock_out = $stock_out;
+        $this->orderApprovalRemarks = $orderApprovalRemarks;
     }
 
     public function getorderlist()
@@ -573,5 +578,15 @@ class OrderRepository
         $orderApp = $this->orderApproval->select('*')
                                         ->where('order_id',$id);
         return $orderApp->first();
+    }
+
+    public function gerapprovalremark($id)
+    {
+        return $this->orderApprovalRemarks->select('*','users.fullname as username' )
+            ->join('order_approvals','order_approvals.id','order_approval_remark.order_approval_id')
+            ->join('orders','orders.id','order_approvals.order_id')
+            ->join('users','users.id','order_approval_remark.user_id')
+            ->where('order_id',$id)
+            ->get();
     }
 }

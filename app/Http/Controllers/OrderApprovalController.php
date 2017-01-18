@@ -43,6 +43,7 @@ class OrderApprovalController extends Controller
         return view('orderApproval.index',compact('orderA','ordersales','orderadmin','dis'));
     }
 
+
     /**
      * Show the form for creating a new resource.
      *

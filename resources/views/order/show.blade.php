@@ -89,41 +89,108 @@
                             @role((['factoryincharge']))
 
                             <div class="panel panel-success col-md-11">
-                                <div class="panel-heading"><h>Dispatch the Order</h></div>
-
-                            <div align="right">
-                                {!! Form::open(array('route' => 'dispatch','method'=>'post'))!!}
-                                {{ Form::hidden('dispatched_by',  Auth::user()->id) }}
-                                {{ Form::hidden('order_out_id', $orderout->orderoutid) }}
-                                {{ Form::hidden('quantity', $orderout->qty) }}
-
-
-                                <div class="form-group clearfix" style="padding: 10px">
-                                    <label class="col-sm-4 control-label">Driver Name</label>
-                                    <div class="col-sm-8">
-                                        <input  type="text" name="driver_name"  class="form-control" required >
-                                    </div>
-                                </div>
-                                <div class="form-group clearfix" >
-                                    <label class="col-sm-4 control-label">Driver's Contact</label>
-                                    <div class="col-sm-8">
-                                        <input  type="text" name="driver_contact"  class="form-control" required >
-                                    </div>
-                                </div>
-                                <div class="form-group clearfix" >
-                                    <label class="col-sm-4 control-label"> Vehicle No.</label>
-                                    <div class="col-sm-8">
-                                        <input  type="text" name="vehicle_no"  class="form-control" required>
-                                    </div>
+                                <div class="panel-heading">
+                                    <h>Dispatch the Order</h>
                                 </div>
 
-                                {{Form::submit('Dispatch', array('class'=>'btn btn-primary'))}}
-                                {!! Form::close() !!}
+                                <div align="right">
+                                    {!! Form::open(array('route' => 'dispatch','method'=>'post'))!!}
+                                    {{ Form::hidden('dispatched_by',  Auth::user()->id) }}
+                                    {{ Form::hidden('order_out_id', $orderout->orderoutid) }}
+                                    {{ Form::hidden('quantity', $orderout->qty) }}
 
-                            </div>
+
+                                    <div class="form-group clearfix" style="padding: 10px">
+                                        <label class="col-sm-4 control-label">Driver Name</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="driver_name" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-sm-4 control-label">Driver's Contact</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="driver_contact" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-sm-4 control-label"> Vehicle No.</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="vehicle_no" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    {{Form::submit('Dispatch', array('class'=>'btn btn-primary'))}}
+                                    {!! Form::close() !!}
+
+                                </div>
                             </div>
                             @endrole
                         @endif
+
+                        @if(isset($adminapproval->admin) && trim($adminapproval->admin_approval)=='Approved' && !isset($orderout->order_id))
+                            @role((['admin','salesmanager','marketingmanager', 'factoryincharge', 'generalmanager', 'director', 'accountmanagersales']))
+                            <h3>Send to warehouse</h3>
+                            {!! Form::open(array('route'=>'sendToWarehouse','method'=>'post'))!!}
+
+                            <input name="user_id" value="{{Auth::user()->id}}" hidden>
+                            <input name="order_id" value="{{$orderId->id}}" hidden>
+
+                            <div class="form-group clearfix">
+                                <label for="warehouse_id"
+                                       class="col-sm-4 control-label">Warehouse</label>
+                                <div class="col-md-8">
+                                    <select id="warehouse" name="warehouse_id" class="form-control"
+                                            required>
+                                        <option selected="selected" value="" disabled>Choose
+                                            Warehouse
+                                        </option>
+
+                                        @foreach($ware as $wares)
+                                            <option value="{{$wares->id}}">
+                                                {{$wares->name}}
+                                            </option>
+                                        @endforeach
+
+                                    </select>
+                                </div>
+                            </div>
+                            <div align="right">
+                                {{Form::submit('Send', array('class'=>'btn btn-primary'))}}
+                            </div>
+                            {!! Form::close() !!}
+                            @endrole
+
+                        @elseif(isset($orderout->order_id))
+
+                            <div class="panel panel-info  ">
+                                <div class="panel-heading"><h5>Details of Order Out</h5></div>
+                                <div class="row">
+                                    <label class="col-sm-6 "> Order Send :</label>
+                                    {{$orderout->senddate}}
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-6 ">Customer :</label>
+                                    {{$orderout->distributor}}
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-6 "> Product Category :</label>
+                                    {{$orderout->productname}}
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-6 "> Send By :</label>
+                                    {{$orderout->username}}
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-6 "> Send To : </label>
+                                    {{$orderout->warehousename}}
+                                </div>
+
+                            </div>
+
+                        @endif
+
+
+
 
 
                         @if(isset($dispatched->orderoutid) && $dispatched->orderid==$orderId->id)
@@ -244,61 +311,65 @@
                         @include('order.partialapproval.salesmanager')
                         @include('order.partialapproval.admin')
 
-                        @if(isset($adminapproval->admin) && trim($adminapproval->admin_approval)=='Approved' && !isset($orderout->order_id))
-                            @role((['admin','salesmanager','marketingmanager', 'factoryincharge', 'generalmanager', 'director', 'accountmanagersales']))
-                            <h3>Send to warehouse</h3>
-                            {!! Form::open(array('route'=>'sendToWarehouse','method'=>'post'))!!}
+                        {{--                        {{$approvalremark}}--}}
 
-                            <input name="user_id" value="{{Auth::user()->id}}" hidden>
-                            <input name="order_id" value="{{$orderId->id}}" hidden>
 
-                            <div class="form-group clearfix">
-                                <label for="warehouse_id"
-                                       class="col-sm-4 control-label">Warehouse</label>
-                                <div class="col-md-8">
-                                    <select id="warehouse" name="warehouse_id" class="form-control"
-                                            required>
-                                        <option selected="selected" value="" disabled>Choose
-                                            Warehouse
-                                        </option>
+                        <div class="panel panel-info  ">
+                            <div class="box-body table-responsive no-padding">
 
-                                        @foreach($ware as $wares)
-                                            <option value="{{$wares->id}}">
-                                                {{$wares->name}}
-                                            </option>
-                                        @endforeach
+                                <table class="table  table-bordered   table-responsive ">
+                                    <thead>
+                                    <tr>
 
-                                    </select>
-                                </div>
+                                        <th>Status</th>
+                                        <th>Created By</th>
+                                        <th>Remark</th>
+
+
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+
+                                    @foreach($approvalremark as $ar)
+                                        <tr>
+                                            <td>{{$ar->status}}</td>
+
+                                            <td>{{$ar->username}}</td>
+                                            @if($ar->remark!=null)
+                                           <td> <button id="pop"
+                                                        @if($ar->status=='Approved')
+                                                        class="btn btn-success glyphicon glyphicon-info-sign    "
+                                                      @elseif($ar->status=='On hold')
+                                                        class="btn btn-info glyphicon glyphicon-info-sign"
+                                                        @else
+                                                        class="btn btn-danger glyphicon glyphicon-info-sign"
+                                                        @endif
+                                                        data-placement="top" data-toggle="popover" data-trigger="hover"
+                                                    data-content="{{$ar->remark}}">
+                                            </button>
+                                           </td>
+                                            @endif
+
+                                            {{--<td>{{$ar->remark}}</td>--}}
+
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+
+
                             </div>
-                            <div align="right">
-                                {{Form::submit('Send', array('class'=>'btn btn-primary'))}}
-                            </div>
-                            {!! Form::close() !!}
-                            @endrole
 
-                        @elseif(isset($orderout->order_id))
 
-                            <div class="panel panel-info ">
-                                <div class="panel-heading"><h5>Details of Order Out</h5></div>
-                                <h4>Order Send :</h4> {{$orderout->senddate}}
-                                <h4>Customer : </h4> {{$orderout->distributor}}
-                                <h4>Product Category :</h4>{{$orderout->productname}}
-                                <h4>Send By :</h4> {{$orderout->username}}
-                                <h4>Send To : </h4> {{$orderout->warehousename}}
-                            </div>
-
-                        @endif
+                        </div>
 
 
                     </div>
 
-
                 </div>
 
             </div>
-
-        </div>
 
     </section>
 

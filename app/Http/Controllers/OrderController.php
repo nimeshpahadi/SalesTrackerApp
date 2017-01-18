@@ -101,11 +101,12 @@ class OrderController extends Controller
         $salesapproval=$this->orderService->getSalesmanApproval($id);
         $marketingapproval=$this->orderService->getMarketingApproval($id);
         $adminapproval=$this->orderService->getAdminApproval($id);
+        $approvalremark=$this->orderService->getApprovalRemark($id);
         $orderId= $this->orderService->getorderbyid($id);
         $order_billings=$this->orderService->getcountorderBilling($id);
         $order_payment=$this->orderService->getpayment($id);
         $order=$this->orderService->getOrderListDetails();
-        return view('order.show',compact('order','orderId','order_payment','dispatched','order_billings','orderout','ware','order_approval','salesapproval','adminapproval','marketingapproval'));
+        return view('order.show',compact('order','orderId','order_payment','approvalremark','dispatched','order_billings','orderout','ware','order_approval','salesapproval','adminapproval','marketingapproval'));
     }
 
     /**
@@ -295,6 +296,7 @@ class OrderController extends Controller
     {
         return OrderApprovalRemarks::create($data);
     }
+
 }
 
 
