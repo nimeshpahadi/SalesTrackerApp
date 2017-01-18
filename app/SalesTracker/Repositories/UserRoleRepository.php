@@ -66,9 +66,10 @@ class UserRoleRepository
         $query = $this->user->select('users.username as user_name', 'users.reportsto', 'roles.name as role_name', 'roles.display_name as display_name', 'users.id as user_id', 'roles.id as roles_id')
             ->join('role_user', 'users.id', 'role_user.user_id')
             ->join('roles', 'role_user.role_id', 'roles.id')
-            ->orderBy('display_name');
+            ->orderBy('display_name')
+            ->get();
 
-        return $query->get();
+        return $query;
     }
 
     public function getReportsToRepo($id)

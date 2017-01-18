@@ -75,6 +75,12 @@ class UserService
         $data = $this->userRepository->ResetPassword($request,$id);
         return $data;
     }
+
+    public function getfactorywarehouse($id)
+    {
+        $data = $this->userRepository->getFactoryWarehouse($id);
+        return $data;
+    }
 }
 
 

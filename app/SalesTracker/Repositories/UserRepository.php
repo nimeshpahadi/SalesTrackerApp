@@ -9,6 +9,7 @@
 namespace App\SalesTracker\Repositories;
 
 
+use App\FactoryinchargeWarehouse;
 use App\User;
 use Illuminate\Contracts\Logging\Log;
 use Illuminate\Database\QueryException;
@@ -25,11 +26,16 @@ class UserRepository
      * @var Log
      */
     private $log;
+    /**
+     * @var FactoryinchargeWarehouse
+     */
+    private $factoryinchargeWarehouse;
 
-    public function __construct(User $user, Log $log)
+    public function __construct(User $user, Log $log,FactoryinchargeWarehouse $factoryinchargeWarehouse)
     {
         $this->user = $user;
         $this->log = $log;
+        $this->factoryinchargeWarehouse = $factoryinchargeWarehouse;
     }
 
     /**
@@ -135,6 +141,15 @@ class UserRepository
             $this->log->error("Password Reseting Failed", ['id' => $id]);
             return false;
         }
+    }
+
+    public function getFactoryWarehouse($id)
+    {
+        $query = $this->factoryinchargeWarehouse->select('warehouses.name as wname','factoryincharge_warehouses.user_id as userid')
+                ->join('warehouses','warehouses.id','factoryincharge_warehouses.warehouse_id')
+            ->where('user_id',$id);
+        return $query->first();
+
     }
 
 

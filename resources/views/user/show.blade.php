@@ -59,6 +59,16 @@
                                     @endforeach
 
                                 </div>
+{{--                                @if($assignwarehouse->userid!=null)--}}
+{{--@if($assignwarehouse->userid==$user->id)--}}
+
+                                <div class="row">
+                                    <label class="col-sm-6 ">Assigned Warehouse :</label>
+{{--                                            <td>{{$assignwarehouse->wname}}</td>--}}
+                                </div>
+{{--@endif--}}
+{{--@endif--}}
+
                                 <div class="row">
                                     <label class="col-sm-6 ">Reports To :</label>
                                         <td>{{$reportsTo->display_name}}</td>
