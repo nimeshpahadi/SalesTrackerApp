@@ -21,6 +21,13 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="form-group clearfix">
+                    <label class="col-md-8">Remark</label>
+
+                    <div class="col-md-12">
+                        <textarea  class="form-control" type="text" name="remark"  ></textarea>
+                    </div>
+                </div>
                 {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
                 {!! Form::close() !!}
             </div>
@@ -56,6 +63,13 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="form-group clearfix">
+                    <label class="col-md-8">Remark</label>
+
+                    <div class="col-md-12">
+                        <textarea  class="form-control" type="text" name="remark"  ></textarea>
+                    </div>
+                </div>
                 {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
                 {!! Form::close() !!}
             </div>
@@ -82,6 +96,13 @@
                                 </option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="col-md-8">Remark</label>
+
+                        <div class="col-md-12">
+                            <textarea  class="form-control" type="text" name="remark"  ></textarea>
+                        </div>
                     </div>
                     {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
                     {!! Form::close() !!}

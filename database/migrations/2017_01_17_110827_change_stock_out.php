@@ -15,8 +15,8 @@ class ChangeStockOut extends Migration
     {
         Schema::table('stock_outs', function ($table) {
             $table->string('driver_name');
-            $table->string('vechile_no');
-            $table->string('driver_contact');
+            $table->string('vehicle_no');
+            $table->bigInteger('driver_contact');
 
         });
     }
@@ -32,7 +32,7 @@ class ChangeStockOut extends Migration
 
         Schema::table('stock_outs', function ($table) {
             $table->dropColumn('driver_name');
-            $table->dropColumn('vechile_no');
+            $table->dropColumn('vehicle_no');
             $table->dropColumn('driver_contact');
 
         });

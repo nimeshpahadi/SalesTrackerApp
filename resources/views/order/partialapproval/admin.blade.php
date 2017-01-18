@@ -21,7 +21,7 @@
             <div class="form-group row">
                 <div class="col-md-8">
                     <?php $x = Config::get('distributor.orderApproval');?>
-                    <select name="admin_approval" class="form-control" required>
+                    <select name="admin_approval" class="form-control col-md-4" required>
                         <option selected="selected" value="" disabled>Choose approval type
                         </option>
                         @foreach($x as $dep)
@@ -30,6 +30,13 @@
                             </option>
                         @endforeach
                     </select>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-md-8">Remark</label>
+
+                    <div class="col-md-12">
+                        <textarea  class="form-control" type="text" name="remark"  ></textarea>
+                    </div>
                 </div>
                 {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
                 {!! Form::close() !!}
@@ -78,7 +85,7 @@
             <div class="form-group row">
                 <div class="col-md-8">
                     <?php $x = Config::get('distributor.orderApproval');?>
-                    <select name="admin_approval" class="form-control" required>
+                    <select name="admin_approval" class="form-control col-md-10" required>
                         <option selected="selected" value="" disabled>{{$adminapproval->admin_approval}}
                         </option>
                         @foreach($x as $dep)
@@ -87,6 +94,13 @@
                             </option>
                         @endforeach
                     </select>
+                </div>
+                <div class="form-group clearfix">
+                    <label class="col-md-8">Remark</label>
+
+                    <div class="col-md-12">
+                        <textarea  class="form-control" type="text" name="remark"></textarea>
+                    </div>
                 </div>
                 {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
                 {!! Form::close() !!}
@@ -125,6 +139,13 @@
                                 </option>
                             @endforeach
                         </select>
+                    </div>
+                    <div class="form-group clearfix">
+                        <label class="col-md-8">Remark</label>
+
+                        <div class="col-md-12">
+                            <textarea  class="form-control" type="text" name="remark"></textarea>
+                        </div>
                     </div>
                     {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
                     {!! Form::close() !!}
