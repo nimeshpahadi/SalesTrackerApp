@@ -9,7 +9,10 @@
                         <h3>{{ 0 }}</h3>
                     @endif
                 @endforeach
-                <p><b>Quantity Ordered Today</b></p>
+                <p style="padding-left:10px "><b>Quantity Ordered Today</b></p>
+                    <div class="icon">
+                        <i class="ion ion-android-cart"></i>
+                    </div>
             </div>
         </div>
 
@@ -23,6 +26,9 @@
                     @endif
                 @endforeach
                 <p><b>Total Billing Amount</b></p>
+                    <div class="icon">
+                        <i class="ion ion-cash"></i>
+                    </div>
             </div>
         </div>
 
@@ -36,13 +42,19 @@
                     @endif
                 @endforeach
                 <p><b>Total Paid Amount</b></p>
+                    <div class="icon">
+                        <i class="ion ion-cash"></i>
+                    </div>
             </div>
         </div>
     </div>
 
 
-    <div class="col-md-12 map">
-        <div class="box-header"><b>Active SalesMan</b></div>
+    <div class="nav-tabs-custom col-md-12 map">
+        <ul class="nav nav-tabs pull-right">
+
+            <li class="pull-left header"><i class="fa fa-user multiple active"></i> Active SalesMan</li>
+        </ul>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
         <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyBShym8Shyfuu-7t0nll6rzesjl9TOGf_I"></script>
         <script type="text/javascript">
@@ -91,19 +103,19 @@
             });
         </script>
 
-        <div id="map_canvas" style=" height:670px;"></div>
+        <div id="map_canvas" style=" height:400px;"></div>
 
+        <div class="panel panel-info col-md-12">
+            <ul>
+                @foreach($users as $u)
+
+                    <li>{{$u}}</li>
+                @endforeach
+            </ul>
+        </div>
     </div>
 
 
-    <div class="panel panel-info col-md-12">
-        <ul>
-            @foreach($users as $u)
-
-                <li>{{$u}}</li>
-            @endforeach
-        </ul>
-    </div>
 
 
     <div class="col-md-12">

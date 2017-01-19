@@ -195,7 +195,6 @@ class OrderController extends Controller
 
 
             ];
-//            dd($orderApprovalRemark);
             $this->orderApprovalRemark($orderApprovalRemark);
 
             return back()->withSuccess("Order Approval created by ".$role);
@@ -203,11 +202,7 @@ class OrderController extends Controller
 
 
 
-       /* $orderid = $request['order_id'];
-        if ($this->orderService->OrderApproval($request)) {
-            return redirect()->route('order.show', compact('orderid'))->withSuccess("Approval created success");
-        }*/
-        return back()->withErrors("Something went wrong");
+       back()->withErrors("Something went wrong");
 
 
     }

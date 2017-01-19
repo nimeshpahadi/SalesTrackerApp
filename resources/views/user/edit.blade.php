@@ -23,14 +23,14 @@
                         <?php $x = Config::get('department.name');?>
                         <select name="department" class="form-control">
                             @foreach($x as $dep)
-                                <option value="{{ $dep}}">
+                                <option value="{{$dep}}">
                                     {{ $dep  }}
                                 </option>
                             @endforeach
                         </select>
 
                         {{ Form::label('role','Role:')}}
-                        <select name="role" class="form-control role">
+                        <select id="role" name="role" class="form-control role">
                             <option selected="selected"
                                     value="{{$userRoleid->roles_id}}"> {{$userRoleid->role_name}}</option>
 
@@ -57,14 +57,17 @@
                             @endforeach
                         </select>
 
+
+
+
                         @if( $userRoleid->role_name=='factoryincharge')
                             {{ Form::label('warehouse_id','Warehouse:')}}
 
 
                             <select id="warehouse_id" name="warehouse_id"
                                     class=" form-control warehouse">
-                                <option selected="selected"
-                                        value="{{$factoryWarehouse->warehouse_id}}"> {{$factoryWarehouse->warehousename}}</option>
+                                {{--<option selected="selected"--}}
+                                        {{--value="{{$factoryWarehouse->warehouse_id}}"> {{$factoryWarehouse->warehousename}}</option>--}}
 
                                 @foreach ($ware as $warehouse)
                                     <option value="{{$warehouse->id}}">
@@ -72,11 +75,20 @@
                                     </option>
                                 @endforeach
                             </select>
-                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-                            <script>$('.role').change(function () {
-                                    $(".warehouse").prop("disabled", this.value != 4);
-                                });
-                            </script>
+                        @else
+
+                            {{ Form::label('warehouse_id','Warehouse:')}}
+
+
+                            <select id="warehouse_id" name="warehouse_id"
+                                    class=" form-control warehouse">
+                                <option selected="selected" disabled>For Factoryincharge</option>
+                            @foreach ($ware as $warehouse)
+                                    <option value="{{$warehouse->id}}">
+                                        {{$warehouse->name}}
+                                    </option>
+                                @endforeach
+                            </select>
                         @endif
 
 

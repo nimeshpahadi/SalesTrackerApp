@@ -21,16 +21,20 @@ class UserController extends Controller
     private $stockService;
     private $userService;
     private $userRoleService;
+    /**
+     * @var FactoryinchargeWarehouse
+     */
+    private $factoryinchargeWarehouse;
 
 
-
-    public function __construct(UserService $userService, UserRoleService $userRoleService,StockService $stockService)
+    public function __construct(UserService $userService, UserRoleService $userRoleService,StockService $stockService,FactoryinchargeWarehouse $factoryinchargeWarehouse)
     {
         $this->middleware([ 'role:admin|salesmanager|accountmanagersales|generalmanager|director'] );
         $this->userService = $userService;
         $this->userRoleService = $userRoleService;
 
         $this->stockService = $stockService;
+        $this->factoryinchargeWarehouse = $factoryinchargeWarehouse;
     }
 
     public function index()
@@ -75,10 +79,10 @@ class UserController extends Controller
     public function show($id)
     {
         $user = $this->userService->selectUsers($id);
-
+        $assignwarehouse =$this->userService->getfactorywarehouse($id);
         $userRoles = $this->userRoleService->getUsersRole();
         $reportsTo = $this->userRoleService->getReportsto($id);
-        return view('user.show', compact('user', 'userRoles', 'reportsTo'));
+        return view('user.show', compact('user', 'userRoles', 'reportsTo','assignwarehouse'));
     }
 
     /**
@@ -102,6 +106,7 @@ class UserController extends Controller
     public function update(RegisterRequest $request, $id)
     {
             $data= $request->all();
+
         if ($this->userService->updateUser($request, $id))
         {
             $userRole = [
@@ -117,7 +122,14 @@ class UserController extends Controller
                     'warehouse_id' => $request->get('warehouse_id')
 
                 ];
-                $this->updateassignWarehouse($assignWarehouse);
+                $query = $this->factoryinchargeWarehouse->select('*')
+                    ->where('user_id',$id)
+                    ->first();
+
+               if ($query==null)
+                     $this->assignWarehouse($assignWarehouse);
+                else
+                    $this->updateassignWarehouse($assignWarehouse);
 
             }
 
@@ -132,6 +144,10 @@ class UserController extends Controller
     {
         return Roleuser::where('user_id', $userRole['user_id'])->update(['role_id' => $userRole['role_id']]);
 
+    }
+    protected function assignWarehouse(array $data)
+    {
+        return FactoryinchargeWarehouse::create($data);
     }
 
     private function updateassignWarehouse($assignWarehouse)
