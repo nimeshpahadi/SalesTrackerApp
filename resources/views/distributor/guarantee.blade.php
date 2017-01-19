@@ -14,11 +14,11 @@
             <div class="col-md-4">
                 <select id="select" name="type" class="form-control" required>
                     <option selected="selected" value="" disabled>Choose Guarantee Type</option>
-                    <option value="Bank" >Bank</option>
-                    <option value="Pdp" >Pdp</option>
+                    <option value="Bank" >Bank Guarantee</option>
                     <option value="Cash" >Cash</option>
                     <option value="Collateral" >Collateral</option>
                     <option value="Others" >Others</option>
+                    <option value="Pdp" >Pdc</option>
 
                 </select>
 

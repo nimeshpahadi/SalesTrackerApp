@@ -55,10 +55,10 @@
                                         !!}
 
                                         @if(isset($list["approval"]["sales_approval"])
-                                              && $list["approval"]["sales_approval"]=="approved")
+                                              && $list["approval"]["sales_approval"]=="Approved")
 
                                             @if(isset($list["approval"]["admin_approval"])
-                                              && $list["approval"]["admin_approval"]=="approved")
+                                              && $list["approval"]["admin_approval"]=="Approved")
 
                                                 {!! Html::linkRoute('customerAccountApprove', 'Approve',
                                                              array("distributor_id"=>$list['distributor_id'],

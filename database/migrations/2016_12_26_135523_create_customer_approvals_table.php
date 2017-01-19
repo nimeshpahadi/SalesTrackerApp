@@ -21,8 +21,8 @@ class CreateCustomerApprovalsTable extends Migration
             $table->integer('admin')->unsigned()->nullable();
             $table->string('sales_approval');
             $table->string('admin_approval');
-            $table->string('sale_remark');
-            $table->string('admin_remark');
+            $table->string('sale_remark')->nullable();
+            $table->string('admin_remark')->nullable();
             $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
             $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
 

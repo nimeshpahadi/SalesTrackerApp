@@ -15,6 +15,7 @@ class Order extends Model
         'priority',
         'payment_term',
         'proposed_delivery_date',
+        'remark'
 
     ];
 }

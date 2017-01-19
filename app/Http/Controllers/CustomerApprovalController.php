@@ -52,33 +52,7 @@ class CustomerApprovalController extends Controller
 
         Session::put('url.intended', URL::previous());
 
-        return Redirect::intended('/')->withSuccess('customer approved by sales manager ');
-    }
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function updateSaleApprove(Request $request)
-    {
-        $this->approvalService->saleManagerApproveUpdate($request);
-
-        Session::put('url.intended', URL::previous());
-
-        return Redirect::intended('/')->withSuccess(' customer approval status updated by sales manager ');
-    }
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function createSaleReject(Request $request)
-    {
-        $this->approvalService->saleManagerReject($request);
-
-        Session::put('url.intended', URL::previous());
-
-        return Redirect::intended('/')->withSuccess('customer rejected by sales manager');
+        return Redirect::intended('/')->withSuccess('customer updated by sales manager ');
     }
 
     /**
@@ -102,40 +76,16 @@ class CustomerApprovalController extends Controller
         Session::put('url.intended', URL::previous());
 
         if (Auth::user()->roles[0]['display_name']=="Admin") {
-            return Redirect::intended('/')->withSuccess('customer approved by Admin');
+            return Redirect::intended('/')->withSuccess('customer updated by Admin');
         }
 
         elseif (Auth::user()->roles[0]['display_name']=="General Manager") {
 
-            return Redirect::intended('/')->withSuccess('customer approved by General Manager');
+            return Redirect::intended('/')->withSuccess('customer updated by General Manager');
         }
 
         else {
-            return Redirect::intended('/')->withSuccess('customer approved by Director');
-        }
-    }
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function createAdminReject(Request $request)
-    {
-        $this->approvalService->adminReject($request);
-
-        Session::put('url.intended', URL::previous());
-
-        if (Auth::user()->roles[0]['display_name']=="Admin") {
-            return Redirect::intended('/')->withSuccess('customer rejected by Admin');
-        }
-
-        elseif (Auth::user()->roles[0]['display_name']=="General Manager") {
-
-            return Redirect::intended('/')->withSuccess('customer rejected by General Manager');
-        }
-
-        else {
-            return Redirect::intended('/')->withSuccess('customer rejected by Director');
+            return Redirect::intended('/')->withSuccess('customer updated by Director');
         }
     }
 

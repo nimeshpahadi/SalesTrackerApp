@@ -64,7 +64,6 @@ $(document).ready(function () {
             $(".amount").attr("type", "show");
         }
         else if (gType == "Others") {
-            console.log("as" + gType);
 
             $(".bank-name").attr("type", "hidden");
             $(".bank-name").val("");
@@ -78,7 +77,6 @@ $(document).ready(function () {
             $(".amount").attr("type", "show");
         }
         else {
-            console.log(gType);
             $("#bank_name").show();
             $("#cheque_no").show();
             $("#amount").show();
@@ -90,7 +88,6 @@ $(document).ready(function () {
     }
 
     function selectStage(Stage) {
-        console.log("hello as"+Stage);
         if (Stage=="Closed") {
             $("#lossreason").show();
             $(".lossreason").attr("type", "show");
@@ -171,6 +168,17 @@ $(document).ready(function () {
 });
 
 
+$(".customer_approval").change(function () {
+    var status = $(this).val();
+    var distId = $(this).attr("data-dist");
+
+    $('.customer-approval-modal').modal('show');
+
+    $('#sales_approval_input').val(status);
+    $('#distributor_id').val(distId);
+
+});
+
 
 $('[data-toggle="popover"]').popover();
 
@@ -201,6 +209,7 @@ $("select").select2({
     theme: "classic",
     placeholder:"Select Item"
 });
+
 
 today = yyyy + '-' + mm + '-' + dd;
 document.getElementById("datefield").setAttribute("max", today);

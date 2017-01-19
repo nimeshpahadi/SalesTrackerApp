@@ -98,13 +98,10 @@ Route::get('/distributor/status/list', 'DistributorController@distributorStatus'
 Route::get('/distributor/status/edit/{id}', 'DistributorController@editStatus')->name("status_edit");
 
 Route::get('/customer/list', 'CustomerApprovalController@index');
-Route::get('customer/sale/create', 'CustomerApprovalController@createSaleApprove')->name('customerApprove');
-Route::get('customer/sale/update', 'CustomerApprovalController@updateSaleApprove')->name('customerApproveUpdate');
-Route::post('customer/sale/reject', 'CustomerApprovalController@createSaleReject')->name('customerReject');
+Route::post('customer/sale/create', 'CustomerApprovalController@createSaleApprove')->name('customerApprove');
 
 Route::get('/customer/admin/list', 'CustomerApprovalController@adminCustomerList');
-Route::get('customer/admin/create', 'CustomerApprovalController@createAdminApprove')->name('customerAdminApprove');
-Route::post('customer/admin/reject', 'CustomerApprovalController@createAdminReject')->name('customerAdminReject');
+Route::post('customer/admin/create', 'CustomerApprovalController@createAdminApprove')->name('customerAdminApprove');
 
 Route::get('/customer/account/list', 'CustomerApprovalController@accountCustomerList');
 Route::get('customer/account/update', 'CustomerApprovalController@updateAccountApprove')->name('customerAccountApprove');

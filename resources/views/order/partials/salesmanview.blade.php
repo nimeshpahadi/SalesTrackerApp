@@ -43,7 +43,6 @@
                 <th>Order Date</th>
                 <th>Discount</th>
                 <th>Actions</th>
-
             </tr>
             </thead>
             <tbody>
@@ -61,7 +60,6 @@
 
 
                     </td>
-
                 </tr>
             @endforeach
 

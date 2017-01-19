@@ -49,8 +49,10 @@ class CustomerApprovalService
                 "approval" => $distDataList,
                 "adminApproval" => $distAdminList,
             ];
+
         }
         return $distData;
+
     }
 
     /**
@@ -64,50 +66,30 @@ class CustomerApprovalService
 
             "distributor_id" => $request->distributor_id,
             "salesmanager"   => $request->salesmanager,
-            "sales_approval" => $request->sales_approval
-
-        ];
-
-        $approveData = $this->approvalRepository->insertSaleApprove($data);
-
-        return $approveData;
-    }
-
-    /**
-     * @param $request
-     * @return mixed
-     */
-    public function saleManagerApproveUpdate($request)
-    {
-
-        $data = [
-
-            "distributor_id" => $request->distributor_id,
-            "sales_approval" => $request->sales_approval
-
-        ];
-
-        $approveData = $this->approvalRepository->insertSaleApproveUpdate($data);
-
-        return $approveData;
-    }
-
-    /**
-     * @param $request
-     * @return static
-     */
-    public function saleManagerReject($request)
-    {
-        $data = [
-
-            "distributor_id" => $request->distributor_id,
-            "salesmanager"   => $request->salesmanager,
             "sales_approval" => $request->sales_approval,
             "sale_remark"    => $request->sale_remark
 
         ];
 
-        $approveData = $this->approvalRepository->insertSaleReject($data);
+       $saleData = $this->approvalRepository->checkSaleData($request->distributor_id);
+
+        if ($saleData==null) {
+            $approveData = $this->approvalRepository->insertSaleApprove($data);
+        }
+
+        elseif ($saleData!=null) {
+            $approveData = $this->approvalRepository->insertSaleApproveUpdate($data);
+        }
+
+        $remarkData = [
+            "customer_approval_id" => $approveData->id,
+            "user_id" => $request->salesmanager,
+            "status" => $request->sales_approval,
+            "remarks" => $request->sale_remark
+
+        ];
+
+        $this->approvalRepository->insertSaleApproveRemark($remarkData);
 
         return $approveData;
     }
@@ -122,31 +104,23 @@ class CustomerApprovalService
 
             "distributor_id" => $request->distributor_id,
             "admin"          => $request->admin,
-            "admin_approval" => $request->admin_approval
+            "admin_approval" => $request->admin_approval,
+            "admin_remark"   => $request->admin_remark
+
 
         ];
 
         $approveData = $this->approvalRepository->updateAdminApprove($data);
 
-        return $approveData;
-    }
-
-    /**
-     * @param $request
-     * @return mixed
-     */
-    public function adminReject($request)
-    {
-        $data = [
-
-            "distributor_id" => $request->distributor_id,
-            "admin"          => $request->admin,
-            "admin_approval" => $request->admin_approval,
-            "admin_remark"   => $request->admin_remark
+        $remarkData = [
+            "customer_approval_id" => $approveData->id,
+            "user_id" => $request->admin,
+            "status" => $request->admin_approval,
+            "remarks" => $request->admin_remark
 
         ];
 
-        $approveData = $this->approvalRepository->updateAdminReject($data);
+        $this->approvalRepository->insertSaleApproveRemark($remarkData);
 
         return $approveData;
     }

@@ -49,8 +49,8 @@ class OrderValidation
             'quantity'               => 'required|integer',
             'price'                  => 'required|integer',
             'priority'               => 'required|max:255|alpha',
-            'payment_term'           => 'required|max:255|alpha',
             'proposed_delivery_date' => 'required|date',
+            'remark'                 => 'required'
 
         ]);
     }
@@ -86,8 +86,8 @@ class OrderValidation
             'quantity'               => 'required|integer',
             'price'                  => 'required|integer',
             'priority'               => 'required|max:255|alpha',
-            'payment_term'           => 'required|max:255|alpha',
             'proposed_delivery_date' => 'required|date',
+            'remark'                 => 'required'
 
         ]);
     }

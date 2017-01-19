@@ -10,7 +10,6 @@
                 <th>Created By</th>
                 <th>Quantity</th>
                 <th>Proirity</th>
-                <th>Payment Term</th>
                 <th>Order Date</th>
                 <th>Actions</th>
 
@@ -24,7 +23,6 @@
                     <td>{{$o->userName}}</td>
                     <td>{{$o->quantity}}</td>
                     <td>{{$o->priority}}</td>
-                    <td>{{$o->payment_term}}</td>
                     <td>{{$o->created_at}}</td>
                     <td>
                         <a href="{{route('order.show',$o->id)}}">

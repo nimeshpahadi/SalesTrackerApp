@@ -43,6 +43,11 @@
                         {{$orderId->proposed_delivery_date}}
                     </div>
 
+                    <div class="row">
+                        <label class="col-sm-6 "> Remark :</label>
+                        {{$orderId->remark}}
+                    </div>
+
                     <hr>
 
                     <div class="">

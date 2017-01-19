@@ -63,8 +63,8 @@ class OrderApiService extends BaseService
             "quantity"               => $serviceOrder['quantity'],
             "price"                  => $serviceOrder['price'],
             "priority"               => $serviceOrder['priority'],
-            "payment_term"           => $serviceOrder['payment_term'],
-            "proposed_delivery_date" => $serviceOrder['proposed_delivery_date']
+            "proposed_delivery_date" => $serviceOrder['proposed_delivery_date'],
+            "remark"                 => $serviceOrder['remark']
 
         ];
 
@@ -132,8 +132,9 @@ class OrderApiService extends BaseService
             "distributor_id"         => $orderDetails['distributor_id'],
             "quantity"               => $orderDetails['quantity'],
             "priority"               => $orderDetails['priority'],
-            "payment_term"           => $orderDetails['payment_term'],
-            "proposed_delivery_date" => $orderDetails['proposed_delivery_date']
+            "proposed_delivery_date" => $orderDetails['proposed_delivery_date'],
+            "remark"                 => $orderDetails['remark']
+
 
         ];
 
@@ -158,8 +159,9 @@ class OrderApiService extends BaseService
             "quantity"               => $request['quantity'],
             "price"                  => $request['price'],
             "priority"               => $request['priority'],
-            "payment_term"           => $request['payment_term'],
-            "proposed_delivery_date" => $request['proposed_delivery_date']
+            "proposed_delivery_date" => $request['proposed_delivery_date'],
+            "remark"                 => $request['remark']
+
 
         ];
 
@@ -233,8 +235,9 @@ class OrderApiService extends BaseService
                 "quantity"               => $list->quantity,
                 "price"                  => $list->price,
                 "priority"               => $list->priority,
-                "payment_term"           => $list->payment_term,
-                "proposed_delivery_date" => $list->proposed_delivery_date
+                "proposed_delivery_date" => $list->proposed_delivery_date,
+                "remark"                 => $list->remark
+
 
             ];
         }

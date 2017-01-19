@@ -37,8 +37,8 @@
                                                                 ?ucfirst($list["approval"]["sales_approval"])
                                                                 :"Waiting For Approval"}}
 
-                                        @if(isset($list['approval']['sales_approval'])
-                                                 && $list["approval"]["sales_approval"]=="rejected")
+
+                                        @if(isset($list['approval']['sales_approval']))
 
                                             <button class="btn btn-danger glyphicon glyphicon-info-sign"
                                                     data-toggle="popover" data-trigger="hover"
@@ -56,8 +56,7 @@
                                                         ?ucfirst($list["adminApproval"]["admin_approval"]):"Waiting For Approval"}}
 
 
-                                        @if(isset($list['approval']['admin_approval'])
-                                                 && $list["approval"]["admin_approval"]=="rejected")
+                                        @if(isset($list['approval']['admin_approval']) && $list['approval']['admin_approval']!=null)
 
                                             <button id="pop" class="btn btn-danger glyphicon glyphicon-info-sign "
                                                     data-toggle="popover" data-trigger="hover"
@@ -67,65 +66,44 @@
                                     </td>
 
                                     <td>
+
                                         {!! Html::linkRoute('distributor.show','View',
                                                             array($list['distributor_id']),
-                                                            array('class'=>'btn btn-primary btn-block'))
+                                                            array('class'=>'btn btn-primary'))
                                         !!}
 
-                                        @if(isset($list["approval"]["sales_approval"]))
-                                          @if($list["approval"]["sales_approval"]!="approved")
+                                    @if(isset($list["approval"]["sales_approval"]))
+                                                @if($list["approval"]["sales_approval"]!="Approved")
 
-                                            {!! Html::linkRoute('customerApproveUpdate', 'Approve',
-                                                                array("distributor_id"=>$list['distributor_id'],
-                                                                "sales_approval"=> "approved"),
-                                                                array('class'=>'btn btn-success btn-block'))
-                                            !!}
-                                           @endif
-
-
-                                        @else
-                                            {!! Html::linkRoute('customerApprove', 'Approve',
-                                                                array("distributor_id"=>$list['distributor_id'],
-                                                                "salesmanager"=> Auth::user()->id,
-                                                                "sales_approval"=> "approved"),
-                                                                array('class'=>'btn btn-success btn-block'))
-                                            !!}
-
-                                            <button class="btn btn-danger btn-block" data-toggle="modal"
-                                                    data-target="#reject{{$list['distributor_id']}}">Reject
-                                            </button>
-                                        @endif
-
-                                        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
-                                             id="reject{{$list['distributor_id']}}" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-sm ">
-                                                <div class="modal-content " style="padding: 10px">
-
-                                                    {!! Form::open(array('route' => 'customerReject'))!!}
-
-                                                    {{ Form::hidden('distributor_id', $list['distributor_id']) }}
-                                                    {{ Form::hidden('salesmanager', Auth::user()->id) }}
-                                                    {{ Form::hidden('sales_approval', "rejected") }}
-
-                                                    <h3>Add Remark</h3>
-                                                    <div class="form-group col-md-12">
-                                                        {{ Form::textarea('sale_remark', null, ['class' => 'form-control',
-                                                                                           'size' => '30x5',
-                                                                                           'required' => 'required']) }}
+                                                    <div class="form-group clearfix">
+                                                        <div class="col-md-8">
+                                                            <select class="customer_approval form-control" data-dist="{{$list["distributor_id"]}}">
+                                                                <option value="Approved">Approved</option>
+                                                                <option value="On Hold" >On Hold</option>
+                                                                <option value="Rejected" >Rejected</option>
+                                                            </select>
+                                                        </div>
                                                     </div>
 
-                                                    <div align="right" style="padding: 10px">
-                                                        {{Form::submit('Save ', array('class'=>'btn btn-primary'))}}
-                                                        <a type="button" class="btn btn-warning"
-                                                           href="/customer/list">Cancel</a>
-                                                        {!! Form::close() !!}
+                                                @endif
 
-                                                    </div>
+                                        @elseif(!isset($list["approval"]["sales_approval"]))
+
+                                            <div class="form-group clearfix">
+                                                <div class="col-md-8">
+                                                    <select  class="customer_approval form-control" data-dist="{{$list["distributor_id"]}}">
+                                                        <option value="Approved">Approved</option>
+                                                        <option value="On Hold">On Hold</option>
+                                                        <option value="Rejected">Rejected</option>
+                                                    </select>
                                                 </div>
                                             </div>
-                                        </div>
+
+                                        @endif
 
                                     </td>
+
+
                                 </tr>
                             @endforeach
 
@@ -142,6 +120,42 @@
         <!-- /.col -->
         </div>
         <!-- /.row -->
+
+
+
+
+        <div class="customer-approval-modal modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
+             id="reject" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm ">
+                <div class="modal-content " style="padding: 10px">
+
+                    {!! Form::open(array('route' => 'customerApprove'))!!}
+
+                    {{ Form::hidden('distributor_id', "",["id"=>"distributor_id"]) }}
+                    {{ Form::hidden('salesmanager', Auth::user()->id) }}
+                    {{ Form::hidden('sales_approval', '',array("id"=>"sales_approval_input")) }}
+
+                    <h3>Add Remark</h3>
+                    <div class="form-group col-md-12">
+                        {{ Form::textarea('sale_remark', null, ['class' => 'form-control',
+                                                           'size' => '30x5',
+                                                           'required' => 'required']) }}
+                    </div>
+
+                    <div align="right" style="padding: 10px">
+
+                        {{Form::submit('Save ', array('class'=>'btn btn-primary'))}}
+                        <a type="button" class="btn btn-warning"
+                           href="/customer/list">Cancel</a>
+                        {!! Form::close() !!}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
     </section>
 
 @endsection

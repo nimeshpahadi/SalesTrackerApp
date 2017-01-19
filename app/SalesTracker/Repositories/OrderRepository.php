@@ -117,7 +117,7 @@ class OrderRepository
             ->distinct()->get();
 //dd($query);
         $query1 = $this->order->select('orders.id','orders.distributor_id','orders.product_id','orders.user_id'
-            ,'orders.quantity','orders.price','orders.priority','orders.payment_term',
+            ,'orders.quantity','orders.price','orders.priority',
             'orders.proposed_delivery_date','orders.created_at','products.sub_category as subCategory',
           'users.fullname as userName',
           'distributor_details.company_name as distributor_name')
@@ -141,7 +141,7 @@ class OrderRepository
 
             ->get();
         $query1 = $this->order->select('orders.id','orders.distributor_id','orders.product_id','orders.user_id'
-            ,'orders.quantity','orders.price','orders.priority','orders.payment_term',
+            ,'orders.quantity','orders.price','orders.priority',
             'orders.proposed_delivery_date','orders.created_at','products.sub_category as subCategory',
             'users.fullname as userName',
             'distributor_details.company_name as distributor_name')
@@ -160,11 +160,11 @@ class OrderRepository
      */
     public function getorderlistdetail()
     {
-        $query = $this->order->select(DB::raw('orders.distributor_id,orders.quantity,orders.id, orders.price, orders.priority, orders.payment_term,
-          orders.proposed_delivery_date,
-          products.sub_category as subCategory,
-          users.fullname as userName, 
-          distributor_details.company_name as distributor_name'))
+        $query = $this->order->select(DB::raw('orders.distributor_id,orders.quantity,orders.id, orders.price, orders.priority,
+                                                orders.proposed_delivery_date, orders.remark,
+                                                products.sub_category as subCategory,
+                                                users.fullname as userName, 
+                                                distributor_details.company_name as distributor_name'))
             ->join('users', 'orders.user_id', 'users.id')
             ->join('products', 'orders.product_id', 'products.id')
             ->join('distributor_details', 'orders.distributor_id', 'distributor_details.id')
@@ -222,8 +222,8 @@ class OrderRepository
 
     public function getOrderId($id)
     {
-        $query = $this->order->select(DB::raw('orders.id,orders.quantity, orders.price, orders.priority, orders.payment_term,
-          orders.proposed_delivery_date, orders.user_id as userId,orders.created_at,
+        $query = $this->order->select(DB::raw('orders.id,orders.quantity, orders.price, orders.priority,
+          orders.proposed_delivery_date, orders.user_id as userId,orders.created_at, orders.remark,
           products.sub_category as subCategory,
           users.fullname as userName,distributor_details.id as distributor_id,
           distributor_details.company_name as distributor_name'))
@@ -384,20 +384,12 @@ class OrderRepository
 
     public function filterOrders($filters)
     {
-//        $query1=$this->stock_out->select('order_outs.order_id')
-//                                ->join('order_outs','order_outs.id','stock_outs.order_out_id')->get();
-
         $query = $this->order->select(
-                DB::raw('orders.quantity,orders.id,orders.distributor_id, orders.price, orders.priority, orders.payment_term,
-                    orders.proposed_delivery_date,orders.created_at,
-                    products.sub_category as subCategory,
-                    users.fullname as userName,
-                    distributor_details.company_name as distributor_name'))
+                DB::raw('orders.*, products.sub_category as subCategory, users.fullname as userName,
+                        distributor_details.company_name as distributor_name'))
                         ->join('users', 'orders.user_id', 'users.id')
                         ->join('products', 'orders.product_id', 'products.id')
                         ->join('distributor_details', 'orders.distributor_id', 'distributor_details.id');
-//                       ->whereNotIn('orders.id',$query1) ;
-
 
             if($filters['from']!=null)
             {
@@ -421,7 +413,7 @@ class OrderRepository
                                 ->join('order_outs','order_outs.id','stock_outs.order_out_id')->get();
 
         $query = $this->order->select(
-            DB::raw('orders.quantity,orders.id,orders.distributor_id, orders.price, orders.priority, orders.payment_term,
+            DB::raw('orders.quantity,orders.id,orders.distributor_id, orders.price, orders.priority,
                     orders.proposed_delivery_date,orders.created_at,
                     products.sub_category as subCategory,
                     users.fullname as userName,
@@ -524,7 +516,7 @@ class OrderRepository
             ->where('order_approvals.admin_approval','<>','Approved')
             ->get();
         $query1 = $this->order->select('orders.id','orders.distributor_id','orders.product_id','orders.user_id'
-            ,'orders.quantity','orders.price','orders.priority','orders.payment_term',
+            ,'orders.quantity','orders.price','orders.priority',
             'orders.proposed_delivery_date','orders.created_at','products.sub_category as subCategory',
             'users.fullname as userName',
             'distributor_details.company_name as distributor_name')

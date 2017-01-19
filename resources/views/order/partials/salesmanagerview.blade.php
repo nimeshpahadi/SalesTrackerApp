@@ -88,7 +88,6 @@
 
                         @endforeach
 
-
                     </td>
 
                 </tr>

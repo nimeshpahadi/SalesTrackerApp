@@ -10,8 +10,10 @@ namespace App\SalesTracker\Repositories;
 
 
 use App\SalesTracker\Entities\CustomerApproval;
+use App\SalesTracker\Entities\CustomerApprovalRemarks;
 use App\SalesTracker\Entities\Distributor\DistributorDetails;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Input;
 
 class CustomerApprovalRepository
 {
@@ -23,16 +25,24 @@ class CustomerApprovalRepository
      * @var CustomerApproval
      */
     private $customerApproval;
+    /**
+     * @var CustomerApprovalRemarks
+     */
+    private $customerApprovalRemarks;
 
     /**
      * CustomerApprovalRepository constructor.
      * @param DistributorDetails $distributorDetails
      * @param CustomerApproval $customerApproval
+     * @param CustomerApprovalRemarks $customerApprovalRemarks
      */
-    public function __construct(DistributorDetails $distributorDetails, CustomerApproval $customerApproval)
+    public function __construct(DistributorDetails $distributorDetails,
+                                CustomerApproval $customerApproval,
+                                CustomerApprovalRemarks $customerApprovalRemarks)
     {
         $this->distributorDetails = $distributorDetails;
         $this->customerApproval = $customerApproval;
+        $this->customerApprovalRemarks = $customerApprovalRemarks;
     }
 
     /**
@@ -78,6 +88,15 @@ class CustomerApprovalRepository
         return (array)$query;
     }
 
+    public function checkSaleData($id)
+    {
+        $query = $this->customerApproval->select('*')
+                                ->where('distributor_id', $id)
+                                ->first();
+
+        return $query;
+    }
+
     /**
      * @param $request
      * @return static
@@ -85,6 +104,16 @@ class CustomerApprovalRepository
     public function insertSaleApprove($request)
     {
         return $this->customerApproval->create($request);
+    }
+
+    /**
+     * @param $request
+     * @return static
+     */
+    public function insertSaleApproveRemark($request)
+    {
+        return $this->customerApprovalRemarks->create($request);
+
     }
 
     /**
@@ -100,6 +129,7 @@ class CustomerApprovalRepository
                                         ->first();
 
         $query->sales_approval = $request['sales_approval'];
+        $query->sale_remark = $request['sale_remark'];
 
         $query->save();
 
@@ -110,7 +140,7 @@ class CustomerApprovalRepository
      * @param $request
      * @return static
      */
-    public function insertSaleReject($request)
+    public function insertAdminApprove($request)
     {
         return $this->customerApproval->create($request);
     }
@@ -127,29 +157,9 @@ class CustomerApprovalRepository
             ->where('distributor_id', $id)
             ->first();
 
+        $query->admin_approval = $request['admin_approval'];
+        $query->admin_remark = $request['admin_remark'];
         $query->admin = $request['admin'];
-        $query->admin_approval = $request['admin_approval'];
-
-        $query->save();
-
-        return $query;
-    }
-
-    /**
-     * @param $request
-     * @return mixed
-     */
-    public function updateAdminReject($request)
-    {
-        $id = $request['distributor_id'];
-
-        $query = $this->customerApproval->select('*')
-            ->where('distributor_id', $id)
-            ->first();
-
-        $query->admin          = $request['admin'];
-        $query->admin_approval = $request['admin_approval'];
-        $query->admin_remark   = $request['admin_remark'];
 
         $query->save();
 
