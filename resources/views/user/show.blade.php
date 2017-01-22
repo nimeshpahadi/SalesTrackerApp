@@ -9,7 +9,7 @@
 
                 <!-- /.box -->
 
-                <div class="box box-success" style="background-color:rgba(226, 197, 211, 0.37)" >
+                <div class="box box-success"  >
                     <h1 align="center"> {{$user->username}}</h1>
                     <!-- /.box-header -->
 
@@ -20,7 +20,7 @@
                             <div class="row">
 
                                 <div align="right">
-                                    <div class="col-md-11 col-sm-10">
+                                    <div class="">
                                         {!! Html::linkRoute('user.edit','edit',array($user->id),
                                                   array('class'=>'btn btn-success glyphicon glyphicon-edit '))!!}
                                     </div>

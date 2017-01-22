@@ -40,7 +40,13 @@
 
                                         @if(isset($list['approval']['sales_approval']))
 
-                                            <button class="btn btn-danger glyphicon glyphicon-info-sign"
+                                            <button @if($list['approval']['sales_approval']=='Approved')
+                                                    class="btn btn-success glyphicon glyphicon-info-sign"
+                                                    @elseif($list['approval']['sales_approval']=='Rejected')
+                                                    class="btn btn-danger glyphicon glyphicon-info-sign"
+                                                    @else
+                                                    class="btn btn-warning glyphicon glyphicon-info-sign"
+                                                    @endif
                                                     data-toggle="popover" data-trigger="hover"
                                                     data-content="{{$list['approval']['sale_remark']}}">
                                             </button>
@@ -58,7 +64,14 @@
 
                                         @if(isset($list['approval']['admin_approval']) && $list['approval']['admin_approval']!=null)
 
-                                            <button id="pop" class="btn btn-danger glyphicon glyphicon-info-sign "
+                                            <button id="pop"
+                                                    @if($list['approval']['admin_approval']=='Approved')
+                                                    class="btn btn-success glyphicon glyphicon-info-sign"
+                                                    @elseif($list['approval']['admin_approval']=='Rejected')
+                                                    class="btn btn-danger glyphicon glyphicon-info-sign"
+                                                    @else
+                                                    class="btn btn-warning glyphicon glyphicon-info-sign"
+                                                    @endif
                                                     data-toggle="popover" data-trigger="hover"
                                                     data-content="{{$list['approval']['admin_remark']}}">
                                             </button>
