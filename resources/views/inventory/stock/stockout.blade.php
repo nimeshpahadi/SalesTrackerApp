@@ -3,7 +3,7 @@
 @section('main-content')
 
 
-    <div class="box">
+    <div class="box pad">
         <div class="box-header">
             <h3 class="box-title">Stocks Out History</h3>
         </div>

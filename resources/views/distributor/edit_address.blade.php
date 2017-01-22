@@ -3,7 +3,7 @@
 @section('main-content')
     <?php
 
-    $zonesDistrict = config('distributor.district');
+//    $zonesDistrict = config('distributor.district');
 
     ?>
     <div class="col-md-6 ">
@@ -11,7 +11,7 @@
 
         <h3>Edit Billing/Shipping Address</h3>
         <div class="box box-info clearfix ">
-
+{{--{{dd($dist)}}--}}
             {!! Form::model($dist,array('route'=>['update_distributor_address',$dist->id],'method'=>'PUT' ))!!}
 
 
@@ -24,11 +24,11 @@
                 <div class="col-md-8">
                     <?php $x = Config::get('distributor.address_type');?>
                     <select name="type" class="form-control">
-                        @foreach($address as $a)
-                            <option selected="selected">{{$a->type}}</option>
-                        @endforeach
-                        @foreach($x as $dep)
-                            <option value=" {{ $dep}}">
+
+                            {{--<option selected="selected">{{$address->type}}</option>--}}
+
+                                                @foreach($x as $dep)
+                            <option value="{{$dep}}">
                                 {{ $dep  }}
                             </option>
 
@@ -44,7 +44,7 @@
                     <select class="form-control zones-dropdown" required id="dropdown_selector " name="zone">
                         <option selected="selected" value="" disabled>{{$dist->zone}}</option>
                         @foreach($x as $dep)
-                            <option id="{{$dep}}" value=" {{ $dep}}">
+                            <option id="{{$dep}}" value="{{$dep}}">
                                 {{ $dep  }}
                             </option>
                         @endforeach
@@ -123,11 +123,11 @@
 
 @endsection
 
-<script>
+{{--<script>--}}
 
-    var zonesDistrict = {!! json_encode($zonesDistrict) !!};
+    {{--var zonesDistrict = {!! json_encode($zonesDistrict) !!};--}}
 
-</script>
+{{--</script>--}}
 
 
 

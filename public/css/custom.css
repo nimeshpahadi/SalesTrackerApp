@@ -1,3 +1,23 @@
 .warehouse .select2-search__field{
     width: 75px!important;
 }
+
+.pad{
+    padding:10px;
+}
+.pad-top{
+    padding-top:10px;
+}
+.pad-right{
+    padding-right:10px;
+}
+.pad-bottom{
+    padding-bottom:10px;
+}
+.map{
+    height:400px
+}
+.productimage{
+    width: 180px;
+    height:100px
+}

@@ -7,18 +7,14 @@
             <div class="box-header">
                 <h3 class="box-title"></h3>
             </div>
-            <div align="right">
+            <div align="right" class="pad-right">
                 <a href="{{route('stockin')}}">
-                    <span class=" btn btn-primary">View StocksIn</span>
+                    <span class=" btn btn-sm btn-primary" title="View all the stock in of this warehouse">View StocksIn</span>
                 </a>
                 <a href="{{route('stockout')}}">
-                    <span class=" btn btn-primary">View StockOut</span>
+                    <span class=" btn  btn-sm btn-primary" title="View all the stock out of this warehouse">View StockOut</span>
                 </a>
-               {{--         @role(('factoryincharge'))
-                        <a href="{{route('stock.create')}}">
-                            <span class=" btn btn-success glyphicon glyphicon-plus"> Stocks_In</span>
-                        </a>
-                        @endrole--}}
+
 
             </div>
 
@@ -31,12 +27,17 @@
 
                         <div class="box box-primary">
 
-                            <h3>{{$ware}}</h3>
-
                             @role((['admin','factoryincharge','generalmanager','director', 'accountmanagersales', 'salesmanager']))
+
+                                <div class="col-md-11 ">
+                                <h3 align="left">{{$ware}}</h3>
+                                </div>
+                                <div class="col-md-offset-1 pad-top" >
                             <a href="{{route('orderwarehouse',['warehouse_id'=>$value['ware_id']])}}">
-                                <span class=" btn btn-success">Order</span>
+                                <span class=" btn btn-warning "  title="View order this warehouse">Order</span>
                             </a>
+                                </div>
+
                             @endrole
                             <table class="table table-bordered table-responsive">
 
@@ -54,10 +55,17 @@
                                         <td align="center">{{$prodCat}}</td>
                                         <td align="center">{{$stock['in']}}</td>
                                         <td align="center">{{$stock['out']}}</td>
-                                        <td align="center">{{$stock['in']-$stock['out']}}</td>
+
+                                        <td align="center">{{--{{$stock['in']-$stock['out']}}--}}
+                                            @if($stock['in']>$stock['out'] )
+                                            {{$stock['in']-$stock['out']}}
+                                        @else
+                                       Production inprocess
+                                        @endif
+                                        </td>
                                         <td>
                                             @role(('factoryincharge'))
-                                            <button class=" btn btn-primary glyphicon glyphicon-plus"
+                                            <button class=" btn  btn-sm btn-primary glyphicon glyphicon-plus" title="Add the Stock from this warehouse"
                                                     data-toggle="modal"
                                                     data-target="#price{{$value['ware_id']}}{{$stock['pid']}}">Stock
                                             </button>
@@ -65,7 +73,7 @@
                                                  id="price{{$value['ware_id']}}{{$stock['pid']}}"
                                                  aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog modal-sm">
-                                                    <div class="modal-content">
+                                                    <div class="modal-content pad">
 
                                                         {!! Form::open(array('route' => 'stock.store'))!!}
                                                         <h3>{{$ware}}--{{$prodCat}}</h3>
@@ -77,30 +85,30 @@
                                                                    value="{{$value['ware_id']}}">
                                                             <input name="created_by" hidden
                                                                    value='{{ Auth::user()->username }}'>
-                                                            <div class=" col-md-10   col-md-offset-1 clearfix"
-                                                                 style="padding: 10px">
+                                                            <div class="pad clearfix"
+                                                                >
                                                                 <input type="number" class="form-control "
                                                                        name="quantity" required
                                                                        placeholder="Enter the Stock Quantity">
                                                             </div>
 
                                                         </div>
-
-                                                        {{Form::submit('Save Stock', array('class'=>'btn btn-primary btn-lg btn-block', 'style'=>'margin-top:20px;'))}}
-                                                        <a type="button" class="btn btn-warning btn-block"
+                                                        <div align="right">
+                                                        {{Form::submit('Save Stock', array('class'=>'btn btn-primary '))}}
+                                                        <a type="button" class="btn btn-warning "
                                                            href="/stock">Cancel</a>
                                                         {!! Form::close() !!}
-
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
                                             @endrole
 
                                             <a href="{{route('stockinHistory',['product_id'=>$stock['pid'],'warehouse_id'=>$value['ware_id']])}}">
-                                                <span class=" btn btn-success">Stockin History</span>
+                                                <span class=" btn btn-sm btn-success" title="View Stockin history for this product in this warehouse">Stockin History</span>
                                             </a>
                                             <a href="{{route('stockoutHistory',['product_id'=>$stock['pid'],'warehouse_id'=>$value['ware_id']])}}">
-                                                <span class=" btn btn-success">Stockout History</span>
+                                                <span class=" btn btn-sm btn-success" title="View Stockout history for this product in this warehouse">Stockout History</span>
                                             </a>
                                         </td>
                                     </tr>

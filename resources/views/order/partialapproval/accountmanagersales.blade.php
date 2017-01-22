@@ -3,7 +3,7 @@
     @if(!isset($marketingapproval->marketingmanager))
         <div id="AccountManagersales approval">
             @role((['accountmanagersales']))
-            <div style="padding: 5px">
+            <div class="pad" >
                 <h4>Account Manager-sales:</h4>
                 {!! Form::open(array('id'=>'form','route'=>'add_order_approval'))!!}
                 {{ Form::hidden('marketingmanager', Auth::user()->id) }}
@@ -29,8 +29,10 @@
                             <textarea  class="form-control" type="text" name="remark"  ></textarea>
                         </div>
                     </div>
+                    <div align="right">
                     {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
                     {!! Form::close() !!}
+                </div>
                 </div>
             </div>
             @endrole
@@ -38,7 +40,7 @@
     @endif
     @if(isset($marketingapproval->marketingmanager ) && $marketingapproval->order_id==$orderId->id)
         @role((['accountmanagersales']))
-        <div style="padding: 5px">
+        <div class="pad">
             @if($marketingapproval->marketing_approval=='On hold')
                 <h4>Account Manager:</h4>
                 {!! Form::model($marketingapproval,array('route'=>['update_order_approval',$marketingapproval->id],'method'=>'PUT' ))!!}
@@ -65,8 +67,10 @@
                         </div>
                     </div>
                     @if($marketingapproval->marketing_approval=='On hold')
+                        <div align="right">
                         {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
                         {!! Form::close() !!}
+                            </div>
                     @endif
                 </div>
             @endif
@@ -76,7 +80,7 @@
 
     @if(isset($marketingapproval->marketingmanager ) && $marketingapproval->order_id==$orderId->id)
         @role((['accountmanagersales']))
-        <div style="padding: 5px">
+        <div class="pad">
             @if($marketingapproval->marketing_approval=='Rejected')
                 <h4>Account Manager:</h4>
                 {!! Form::model($marketingapproval,array('route'=>['update_order_approval',$marketingapproval->id],'method'=>'PUT' ))!!}
@@ -103,8 +107,10 @@
                         </div>
                     </div>
                     @if($marketingapproval->marketing_approval=='Rejected')
+                        <div align="right">
                         {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
                         {!! Form::close() !!}
+                            </div>
                     @endif
                 </div>
             @endif

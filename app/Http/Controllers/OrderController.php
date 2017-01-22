@@ -190,7 +190,7 @@ class OrderController extends Controller
             $orderApprovalRemark = [
                 'user_id' => Auth::user()->id,
                 'order_approval_id' => $orderRemark->id,
-                'remark'=>$request->get('remark'),
+                'remark'=>$request->get('approval_remark'),
                 'status'=>$status
 
 
@@ -224,7 +224,7 @@ class OrderController extends Controller
             $orderApprovalRemark = [
                 'user_id' => Auth::user()->id,
                 'order_approval_id' => $orderRemark->id,
-                'remark'=>$request->get('remark'),
+                'remark'=>$request->get('approval_remark'),
                 'status'=>$status
 
 
@@ -275,7 +275,7 @@ class OrderController extends Controller
             $orderApprovalRemark = [
                 'user_id' => Auth::user()->id,
                 'order_approval_id' => $orderAppId->id,
-                'remark'=>$request->get('remark'),
+                'remark'=>$request->get('approval_remark'),
                 'status'=>$status
 
 

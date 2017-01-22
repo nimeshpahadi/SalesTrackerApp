@@ -3,7 +3,7 @@
     && $marketingapproval->marketing_approval!="Rejected"
     && $marketingapproval->marketing_approval!="On hold")
         @role((['salesmanager']))
-        <div style="padding: 5px">
+        <div class="pad">
             <h4>Salesmanager:</h4>
             {!! Form::open(array('id'=>'form','route'=>'sales_admin_approval'))!!}
             {{ Form::hidden('user_id', Auth::user()->id) }}
@@ -28,8 +28,10 @@
                         <textarea  class="form-control" type="text" name="remark"  ></textarea>
                     </div>
                 </div>
+                <div align="right">
                 {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
                 {!! Form::close() !!}
+            </div>
             </div>
         </div>
         @endrole
@@ -45,7 +47,7 @@
 
     @if(isset($salesapproval->salesmanager) && $salesapproval->sales_approval=='On hold')
         @role((['salesmanager']))
-        <div style="padding: 5px">
+        <div class="pad">
             <h4>Salesmanager:</h4>
             {!! Form::open(array('id'=>'form','route'=>'sales_admin_approval'))!!}
             {{ Form::hidden('user_id', Auth::user()->id) }}
@@ -70,8 +72,10 @@
                         <textarea  class="form-control" type="text" name="remark"  ></textarea>
                     </div>
                 </div>
+                <div align="right">
                 {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
                 {!! Form::close() !!}
+            </div>
             </div>
         </div>
         @endrole
@@ -79,7 +83,7 @@
 
         @if(isset($salesapproval->salesmanager) && $salesapproval->sales_approval=='Rejected')
             @role((['salesmanager']))
-            <div style="padding: 5px">
+            <div class="pad">
                 <h4>Salesmanager:</h4>
                 {!! Form::open(array('id'=>'form','route'=>'sales_admin_approval'))!!}
                 {{ Form::hidden('user_id', Auth::user()->id) }}
@@ -104,8 +108,10 @@
                             <textarea  class="form-control" type="text" name="remark"  ></textarea>
                         </div>
                     </div>
+                    <div align="right">
                     {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
                     {!! Form::close() !!}
+                </div>
                 </div>
             </div>
             @endrole

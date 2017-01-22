@@ -2,11 +2,11 @@
 
 @section('main-content')
 
-    <div class="col-md-6 ">
+    <div class="col-md-6 col-md-offset-3">
 
 
         <h3>Add Distributor Visit</h3>
-        <div class="box box-info clearfix ">
+        <div class="box box-info clearfix pad ">
 
 
             {!! Form::open(array('route' => 'tracking_store'))!!}
@@ -70,16 +70,16 @@
             <div class="form-group clearfix remark" id="remark">
                 <label for="type" class="col-sm-4 control-label remark">Remark</label>
                 <div class="col-md-8 ">
-                    <textarea id="remark"type="text" name="remark" class="form-control"></textarea>
+                    <textarea id="remark" type="text" name="remark" class="form-control"></textarea>
                 </div>
             </div>
 
 
-            <div class="clearfix"></div>
-            {{Form::submit('Save Visit', array('class'=>'btn btn-primary btn-lg btn-block', 'style'=>'margin-top:20px;'))}}
-            <a type="button" class="btn btn-warning btn-block" href="/distributor/{{$disid->id}}">Cancel</a>
+            <div class="clearfix pad" align="right">
+            {{Form::submit('Save Visit', array('class'=>'btn btn-primary '))}}
+            <a type="button" class="btn btn-warning " href="/distributor/{{$disid->id}}">Cancel</a>
             {!! Form::close() !!}
-
+            </div>
 
         </div>
 

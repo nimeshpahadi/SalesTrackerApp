@@ -3,14 +3,14 @@
 @section('main-content')
 
 
-    <div class="box">
+    <div class="box pad">
         <div class="box-header">
             <h3 class="box-title">List of Stocks In</h3>
         </div>
-        <div align="right">
+        <div align="right" class="pad-bottom    ">
 
             <a href="{{route('stock.create')}}">
-                <span class=" btn btn-success glyphicon glyphicon-plus">Stocks_In</span>
+                <span class=" btn btn-sm btn-success ">Stocks_In</span>
             </a>
         </div>
         <!-- /.box-header -->

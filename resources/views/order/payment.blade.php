@@ -2,9 +2,12 @@
 
 @section('main-content')
 
-    {!! Form::open(array('route' => 'add_order_payment'))!!}
+    <div class="col-md-6 col-md-offset-3 ">
+
     <h3>Add Payment</h3>
-    <div class="form-group col-md-12">
+        <div class="box box-info clearfix pad">
+            {!! Form::open(array('route' => 'add_order_payment'))!!}
+
 
         <div class="form-group clearfix" id="type">
             <label for="type" class="col-sm-4 control-label">Type</label>
@@ -62,12 +65,13 @@
 
 
     </div>
-    <div align="right" style="padding: 10px">
+    <div align="right" class="pad">
         {{Form::submit('Save ', array('class'=>'btn btn-primary'))}}
         <a type="button" class="btn btn-warning"
            href="{{ URL::previous() }}">Cancel</a>
         {!! Form::close() !!}
 
+    </div>
     </div>
 
 @endsection

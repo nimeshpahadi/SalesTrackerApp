@@ -23,9 +23,11 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
+
+        $rulesData = [];
         switch ($this->method()){
             case 'POST':{
-                return [
+                $rulesData= [
                     'fullname' => 'required|max:255',
                     'username' => 'required|max:255|unique:users',
                     'department' => 'required',
@@ -35,16 +37,20 @@ class RegisterRequest extends FormRequest
                     'password' => 'required|min:6|confirmed',
                     'contact' => 'required|min:10|unique:users',
                 ];
+                return $rulesData;
             }
 
             case 'PATCH': {
-               return[
+               $rulesData=[
                    'password' => 'required|min:6|confirmed',
                    ];
+                return $rulesData;
             }
             case 'PUT':
                 {
-                    return [
+
+                    $data = $this->all();
+                    $rulesData= [
                         'fullname' => 'required|max:255',
                         'username' => 'required|max:255',
                         'department' => 'required',
@@ -53,8 +59,17 @@ class RegisterRequest extends FormRequest
                         'email' => 'required|email|max:255',
                         'contact' => 'required|min:10',
                     ];
+                    if (isset($data['role']) && $data['role']==4)
+                    {
+                        $rulesData['warehouse_id']='required';
+                    }
+                    return $rulesData;
                 }
+
+
             default:break;
     }
-}
+
+
+    }
 }

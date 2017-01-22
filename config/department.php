@@ -8,9 +8,10 @@
 return
     [
         'name' => [
-            'X',
-            'Y',
-            'Z'
+            'Sales',
+            'Account',
+            'Marketing',
+            'Production'
         ]
     ]
 ?>

@@ -6,27 +6,23 @@
 
     <section class="content">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-md-12">
 
-                <!-- /.box -->
-
-                <div class="box">
+                <div class="box box-success">
                     <h1 align="center"> {{$dist->company_name}}</h1>
-
-                    <!-- /.box-header -->
 
                     <div class="container-fluid ">
 
                         <div class="col-md-12 ">
 
                             <div class="row">
-                                <h3> Details</h3>
+
                                 @role((['admin','salesmanager','accountmanagersales','director','generalmanager','salesman']))
                                 <div align="right">
-                                    <div class="col-md-11 col-sm-10" style="padding: 10px">
+                                    <div>
                                         <a href="{!! route('distributor.edit',$dist->id)!!}">
-                                            <span class="  btn btn-primary glyphicon glyphicon-pencil"  data-toggle="popover" data-trigger="hover"
-                                                  data-placement="top"   data-content="Edit"></span>
+                                            <span class="  btn btn-primary glyphicon glyphicon-pencil"   data-toggle="popover" data-trigger="hover"
+                                                  data-placement="top"   data-content="Edit the customer details of {{$dist->company_name}}"></span>
                                         </a>
                                     </div>
                                 </div>
@@ -100,10 +96,10 @@
                                     @if(!isset($guarantee))
 
                                         @role((['admin','salesmanager','accountmanagersales','director','generalmanager']))
-                                        <div align="right">
+                                        <div align="right" class="pad">
 
                                             <a href="{{route('distributor_guarantee',$dist->id)}}">
-                                                <span class=" btn btn-success glyphicon glyphicon-plus">Guarantee</span>
+                                                <span class=" btn btn-success glyphicon glyphicon-plus" title="Add Guarantee for customer {{$dist->company_name}}">Guarantee</span>
                                             </a>
                                         </div>
                                         @endrole
@@ -113,7 +109,7 @@
                                         <h3> Guarantee</h3>
                                         <hr>
                                         <a href="{!! route('guarantee_edit',$dist->id)!!}">
-                                            <span class="  btn btn-primary ">Edit</span>
+                                            <span class="  btn btn-primary " title="Edit Guarantee for customer {{$dist->company_name}}">Edit</span>
                                         </a>
                                         <div class="row">
                                             <label class="col-sm-6 ">Type :</label>
@@ -139,7 +135,7 @@
                                             </div>
                                         @endif
 
-                                        @if(($guarantee->remark)!=null)
+                                        @if(isset($guarantee->remark))
                                             <div class="row">
                                                 <label class="col-sm-6 ">Remarks :</label>
                                                 {{($guarantee->remark)}}
@@ -151,10 +147,10 @@
                                 </div>
 
 
-                                <div class="col-md-6">
+                                {{--<div class="col-md-6">--}}
 
 
-                                    <div id="map" style="width:450px;height:320px;"></div>
+                                    <div id="map" class="col-md-6 map"></div>
                                     <script>
                                         function initMap() {
                                             var myLatLng = {
@@ -180,7 +176,7 @@
 
                                 </div>
                             </div>
-                        </div>
+                        {{--</div>--}}
 
 
                     </div>
@@ -201,17 +197,17 @@
 
                             @role((['admin','salesmanager','accountmanagersales','director','generalmanager','salesman']))
                             @if(empty($address["Billing"]))
-                                <a class=" btn btn-success"
+                                <a class=" btn btn-success" title="Add Billing Address for customer {{$dist->company_name}}"
                                    href="{{route('distributor_address',["id"=>$dist->id,"type"=>1])}}">Add
                                     Billing Address</a>
                             @endif
                             @if(empty($address["Shipping"]))
-                                <a class=" btn btn-success"
+                                <a class=" btn btn-success" title="Add Shipping Address for customer {{$dist->company_name}}"
                                    href="{{route('distributor_address',["id"=>$dist->id,"type"=>2])}}">Add
                                     Shipping Address</a>
                             @endif
                             @if(empty($address["Billing"]) && empty($address["Shipping"]))
-                                <a class=" btn btn-success"
+                                <a class=" btn btn-success" title="Add Billing & Shipping Address for customer {{$dist->company_name}}"
                                    href="{{route('distributor_address',["id"=>$dist->id,"type"=>3])}}">Add
                                     Both Address</a>
                             @endif
@@ -241,23 +237,23 @@
 
                             @if($dist->status==1 )
                                 <li class="active">
-                                    <a class="btn btn-primary" href="#order" data-toggle="tab">Order</a>
+                                    <a class="btn btn-primary"  title="Click here to view {{$dist->company_name}}'s Order Summary" href="#order" data-toggle="tab">Order</a>
 
                                 </li>
                                 <li>
-                                    <a class="btn btn-primary" href="#payment" data-toggle="tab">Payment</a>
+                                    <a class="btn btn-primary" title="Click here to view {{$dist->company_name}}'s Payment Summary" href="#payment" data-toggle="tab">Payment</a>
                                 </li>
                             @endif
 
                             @if($dist->status==0 )
                                 <li>
-                                    <a class="btn btn-google" href="#visit" data-toggle="tab">Visit</a>
+                                    <a class="btn btn-google" title="Click here to view {{$dist->company_name}}'s Visit Summary" href="#visit" data-toggle="tab">Visit</a>
                                 </li>
                             @endif
 
                             @if($dist->status==0 || $dist->status==1)
                                 <li>
-                                    <a class="btn btn-success" href="#min" data-toggle="tab">Minute</a>
+                                    <a class="btn btn-success" title="Click here to view {{$dist->company_name}}'s Minute Summary" href="#min" data-toggle="tab">Minute</a>
                                 </li>
                             @endif
 
@@ -294,10 +290,10 @@
                                 </table>
                             </div>
 
-                            <div class="tab-pane " id="min">
+                            <div class="tab-pane pad " id="min">
                                 @role((['admin','salesmanager','accountmanagersales','director','generalmanager','salesman']))
                                 <div align="right">
-                                    <button class="btn btn-primary" data-toggle="modal"
+                                    <button class="btn btn-sm btn-primary  " data-toggle="modal" title="Add minute for customer {{$dist->company_name}}"
                                             data-target="#price{{$dist->id}}">Add Minute
                                     </button>
                                 </div>
@@ -305,7 +301,7 @@
                                 <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
                                      id="price{{$dist->id}}" aria-labelledby="mySmallModalLabel" aria-hidden="true">
                                     <div class="modal-dialog modal-md ">
-                                        <div class="modal-content " style="padding: 10px">
+                                        <div class="modal-content pad" >
 
                                             {!! Form::open(array('route' => 'minute_store'))!!}
                                             <h3>Add Minute</h3>
@@ -319,8 +315,8 @@
 
 
                                             </div>
-                                            <div align="right" style="padding: 10px">
-                                                {{Form::submit('Save ', array('class'=>'btn btn-primary'))}}
+                                            <div align="right" class="pad">
+                                                {{Form::submit('Save ', array('class'=>'btn btn-primary','title'=>"Save minute for customer {$dist->company_name}"))}}
                                                 <a type="button" class="btn btn-warning"
                                                    href="/distributor/{{$dist->id}}">Cancel</a>
                                                 {!! Form::close() !!}
@@ -348,7 +344,7 @@
                                             <td>{{$min->user_fullname}}</td>
                                             <td>{{$min->minute_report}}</td>
                                             <td>
-                                                <a class="btn btn-primary"
+                                                <a class="btn btn-primary"  title="Click here to view {{$min->user_fullname}}'s location"
                                                    href="{{route("minute_location",["id"=>$min->distributor_id,
                                                                  "lat"=>$min->latitude,
                                                                  "long"=>$min->longitude,
@@ -361,12 +357,12 @@
 
                                 </table>
                             </div>
-                            <div class="tab-pane " id="payment">
+                            <div class="tab-pane pad " id="payment">
 
                                 @role((['admin','salesmanager','accountmanagersales','director','generalmanager']))
                                 <div align="right">
-                                    <a href="{{route('create_payment',$dist->id)}}">
-                                        <span class=" btn btn-success glyphicon glyphicon-plus">payment</span>
+                                    <a href="{{route('create_payment',$dist->id)}}" >
+                                        <span class=" btn btn-sm btn-success pad ">payment</span>
                                     </a>
                                 </div>
                                 @endrole
@@ -408,7 +404,7 @@
                                 <div class="panel-body">
                                     @role((['admin','salesmanager','accountmanagersales','director','generalmanager','salesman']))
                                     <div align="right">
-                                        <a class=" btn btn-success"
+                                        <a class=" btn btn-primary btn-sm" title="Add visit for customer {{$dist->company_name}}"
                                            href="{{route('distributor_tracking',$dist->id)}}">Add
                                             Visit</a>
                                     </div>
@@ -443,7 +439,7 @@
                                                        @endif
                                                 </td>
                                                 <td>
-                                                    <a class="btn btn-primary"
+                                                    <a class="btn btn-primary" title="Click here to view {{$t->user_fullname}}'s location"
                                                        href="{{route("visit_location",["id"=>$t->distributor_id,
                                                                  "lat"=>$t->latitude,
                                                                  "long"=>$t->longitude,

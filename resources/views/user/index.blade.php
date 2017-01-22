@@ -6,7 +6,7 @@
 
     <div class="col-md-12">
         <div align="right">
-            <a href="{{ url('/user/create') }}" class="btn btn-success  fa fa-edit"> Create User</a>
+            <a href="{{ url('/user/create') }}" class="btn btn-success  fa fa-user-plus"> Create User</a>
 
         </div>
     </div>
@@ -18,16 +18,19 @@
 
     <div class="row">
         <div class="col-md-12">
-            <div class="box">
+            <div class="box" style="padding: 10px">
                 <div class="box-header">
                     <h3 class="box-title">User Details</h3>
 
 
                 </div>
 
-                <!-- /.box-header -->
                 <div class="box-body table-responsive no-padding">
-                    <table class="table table-hover">
+
+                    <table id="example1"
+                           class="table table-striped table-bordered dt-responsive  table-responsive "
+                           cellspacing="0" width="100%">
+                        <thead>
                         <tr style="background-color: #8aa4af ">
                             <th>Full Name</th>
                             <th>Email</th>
@@ -36,6 +39,8 @@
                             <th>Role</th>
                             <th>Action</th>
                         </tr>
+                        </thead>
+                        <tbody>
 
                         @foreach($user as $users)
                             <tr>
@@ -53,12 +58,16 @@
                                 <td>
                                     {!! Html::linkRoute('user.show','View',array($users->id),array('class'=>'btn btn-success '))!!}
 
-                                  @role(('admin'))
-                                    {!! Html::linkRoute('passwordreset','Reset password',array( $users->id),array('class'=>''))!!}
-                                @endrole
+                                    @role(('admin'))
+                                    <a href="{{route('passwordreset',$users->id)}}">
+                                        <button class="btn btn-warning" data-toggle="popover" data-trigger="hover"
+                                                data-placement="top" data-content="Reset Password for  {{$users->fullname}}"><i class="fa fa-repeat"  ></i></button>
+                                    </a>
+                                    @endrole
                                 </td>
                             </tr>
                         @endforeach
+                        </tbody>
                     </table>
                 </div>
                 <!-- /.box-body -->

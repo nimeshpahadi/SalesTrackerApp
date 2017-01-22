@@ -17,7 +17,7 @@ class userSeeder extends Seeder
             "fullname" => "Admin",
             "username" => "admin",
             "email" => "admin@admin.com",
-            "department" => "X",
+            "department" => "Marketing",
             "password" => bcrypt("admin123"),
             "contact" => "1234567890",
             "reportsto" => 1,

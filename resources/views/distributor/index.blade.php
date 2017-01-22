@@ -14,7 +14,7 @@
                     <div align="right " style="padding: 10px">
                         @role((['admin','salesmanager','accountmanagersales','salesman','director','generalmanager']))
                         <a href="{{route('distributor.create')}}">
-                            <span class=" btn btn-success glyphicon glyphicon-plus">Create Customer</span>
+                            <span class=" btn btn-success " title="Create new customer">Create Customer</span>
                         </a>
                         @endrole
                     </div>
@@ -46,7 +46,7 @@
                                     <td>
                                         {!! Html::linkRoute('distributor.show',
                                                             'View',array($dis->id),
-                                                                   array('class'=>'btn btn-primary btn-block'))!!}
+                                                                   array('class'=>'btn btn-primary ','title'=>"View details of customer {$dis->company_name}"))!!}
                                     </td>
                                 </tr>
                             @endforeach

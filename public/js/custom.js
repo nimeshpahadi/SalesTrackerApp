@@ -134,7 +134,23 @@ $(document).ready(function () {
         }
 
     }
+    //aaaaa ,"disabled"
+    function userform(rid) {
 
+        if (rid != 4) {
+            $("#ware").hide();
+            $("#warehouse_id").hide();
+        }
+        else {
+            $("#ware").show();
+            $("#warehouse_id").show();
+        }
+    }
+
+    //aaaaa
+    $("#roles").change(function () {
+           userform($(this).val());
+    }).change();
 
     $("#stage").on('change',function () {
         var stage = $('#stage :selected').text();
@@ -160,10 +176,19 @@ $(document).ready(function () {
 
         });
     }).change();
+
+
     if (editGuarantee) {
         guaranteeForm(guaranteeType);
     }
 
+
+
+
+//aaaaa
+       if (edituser) {
+        userform(roletype);
+    }
 
 });
 
@@ -184,9 +209,13 @@ $('[data-toggle="popover"]').popover();
 
 
 //warehouse disabled for other role
-$('.role').change(function () {
+/*$('.role').change(function () {
     $(".warehouse").prop("disabled", this.value != 4);
-});
+});*/
+//
+
+
+
 
 //datepicker
 

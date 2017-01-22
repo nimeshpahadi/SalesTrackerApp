@@ -161,7 +161,7 @@ class OrderRepository
     public function getorderlistdetail()
     {
         $query = $this->order->select(DB::raw('orders.distributor_id,orders.quantity,orders.id, orders.price, orders.priority,
-                                                orders.proposed_delivery_date, orders.remark,
+                                                orders.proposed_delivery_date, orders.order_remark,
                                                 products.sub_category as subCategory,
                                                 users.fullname as userName, 
                                                 distributor_details.company_name as distributor_name'))
@@ -223,7 +223,7 @@ class OrderRepository
     public function getOrderId($id)
     {
         $query = $this->order->select(DB::raw('orders.id,orders.quantity, orders.price, orders.priority,
-          orders.proposed_delivery_date, orders.user_id as userId,orders.created_at, orders.remark,
+          orders.proposed_delivery_date, orders.user_id as userId,orders.created_at, orders.order_remark,
           products.sub_category as subCategory,
           users.fullname as userName,distributor_details.id as distributor_id,
           distributor_details.company_name as distributor_name'))

@@ -16,7 +16,7 @@
                         @role((['admin','generalmanager','director']))
                         <div align="right" style="padding: 10px">
                             <a href="{{route('product.create')}}">
-                                <span class=" btn btn-success glyphicon glyphicon-plus">Create Product</span>
+                                <span class=" btn btn-sm btn-success" title="Create new product">Create Product</span>
                             </a>
                         </div>
                         @endrole
@@ -47,7 +47,7 @@
                                 @if(isset($data))
                                 @foreach($data as $row)
                                     <tr>
-                                        <td><img width="200px" height="80px" src="/images/{{ $row->image }}"></td>
+                                        <td><img class="productimage" src="/images/{{ $row->image }}"></td>
 
                                         <td>{{$row->name }}</td>
                                         <td>{{$row->category }}</td>
@@ -56,33 +56,33 @@
                                         <td>{{$row->description }}</td>
                                         <td>{{$row->price }}/pack
                                             @role((['admin','salesmanager','accountmanagersales','generalmanager','director']))
-                                            <button class="btn btn-primary" data-toggle="modal"
+                                            <button class="btn btn-sm btn-primary" data-toggle="modal" title="Change the current product price"
                                                     data-target="#price{{$row->id}}">Change price
                                             </button>
 
 
 
 
-                                        <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
+                                        <div class="modal fade bd-example-modal-md" tabindex="-1" role="dialog"
                                              id="price{{$row->id}}" aria-labelledby="myLargeModalLabel"
                                              aria-hidden="true">
                                             <div class="modal-dialog modal-sm">
-                                                <div class="modal-content">
+                                                <div class="modal-content pad">
 
                                                     {!! Form::model($row,array('route'=>['change_price',$row->id],'method'=>'PUT' ))!!}
                                                     <h3> Edit price</h3>
                                                     <div class="form-group ">
-                                                        <label for="price" class="col-sm-4 control-label">Edit Product
+                                                        <label for="price" class="col-sm-4 control-label">Change Product
                                                             Price</label>
-                                                        <div class="col-sm-8">
+                                                        <div class="col-sm-8 pad">
                                                             {{ Form::text('price',null,array('class'=>'form-control'))}}
                                                         </div>
                                                     </div>
-
-                                                    {{Form::submit('Save Changes', array('class'=>'btn btn-primary btn-lg btn-block', 'style'=>'margin-top:20px;'))}}
-                                                    <a type="button" class="btn btn-warning btn-block" href="/product">Cancel</a>
+                                                    <div align="right">
+                                                    {{Form::submit('Save Changes', array('class'=>'btn btn-sm btn-primary '))}}
+                                                    <a type="button" class="btn btn-sm btn-warning" href="/product">Cancel</a>
                                                     {!! Form::close() !!}
-
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -90,12 +90,12 @@
                                         </td>
                                         <td>
                                             <a href="{{route('product.edit',$row->id)}}">
-                                                <button class="btn btn-warning" data-toggle="popover" data-trigger="hover"
-                                                        data-placement="top" data-content="Edit"><i class="fa fa-edit"  ></i></button>
+                                                <button class="btn btn-warning pad" data-toggle="popover" data-trigger="hover"
+                                                        data-placement="top" data-content="Edit the current product"><i class="fa fa-edit"  ></i></button>
                                             </a>
                                             {!! Form::open(['method' => 'DELETE','route' => ['product.destroy', $row->id]]) !!}
-                                            <button type="submit" class="btn btn-danger glyphicon glyphicon-trash"  data-toggle="popover" data-trigger="hover"
-                                                    data-placement="top" data-content="Delete"
+                                            <button type="submit" class="btn btn-danger glyphicon glyphicon-trash pad"  data-toggle="popover" data-trigger="hover"
+                                                    data-placement="top" data-content="Delete the current product"
                                                     onclick="return confirm('Are you sure you want to delete this item?');">
 
                                             </button>

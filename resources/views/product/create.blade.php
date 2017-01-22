@@ -6,8 +6,11 @@
 
 
 
-    <h3>Create Product</h3>
-    <div class="box box-info clearfix ">
+    <div class="col-md-8 col-md-offset-2 ">
+
+        <h3>Create Product</h3>
+    <div class="box box-info clearfix pad ">
+
 
 
         {!! Form::open(array('route'=>'product.store' ,'enctype'=>'multipart/form-data'))!!}
@@ -20,7 +23,7 @@
                 <select name="category" class="form-control">
                     <option selected="selected" disabled>Choose Category</option>
                     @foreach($x as $dep)
-                        <option value=" {{ $dep}}">
+                        <option value="{{$dep}}">
                             {{ $dep  }}
                         </option>
                     @endforeach
@@ -30,15 +33,14 @@
         <div class="form-group clearfix">
             <label for="sub_category" class="col-sm-4 control-label">Sub-Category</label>
             <div class="col-md-8">
-                <?php $x = Config::get('product.sub_category');?>
                 <select name="sub_category" class="form-control">
                     <option selected="selected" disabled>Choose Sub-Category</option>
                     @foreach($x as $dep)
-                        <option value=" {{ $dep}}">
+                        <option value="{{$dep}}">
                             {{ $dep  }}
                         </option>
                     @endforeach
-                </select>
+                 </select>
             </div>
         </div>
 
@@ -103,7 +105,7 @@
 
 
         <div class="form-group{{ $errors->has('warehouse_id') ? ' has-error' : '' }} clearfix">
-            <label for="warehouse_id" class="col-sm-4 control-label">Warehouse :</label>
+            <label for="warehouse_id" class="col-sm-4 control-label">Warehouse </label>
 
             <div class="col-md-8 warehouse">
                 <select id="warehouse_id" name="warehouse_id[]"
@@ -124,19 +126,20 @@
             <div class=" col-sm-8 ">
 
                     <span class="input-group-addon "><i class="fa fa-file"></i></span>
-                <input type="file" class="form-control" name="image" id="image" required autofocus>
+                <input type="file" class="form-control" name="image" id="image" required autofocus >
                         </div>
         </div>
 
 
-        <div class="clearfix"></div>
-        <div align="right" class="col-md-10 col-md-offset-1 ">
-        {{Form::submit('Create Product', array('class'=>'btn btn-primary '))}}
-        <a type="button" class="btn btn-warning" href="/product">Cancel</a>
+        <div class="clearfix pad"></div>
+        <div align="right" >
+        {{Form::submit('Create Product', array('class'=>'btn btn-sm btn-primary ','title'=>'Save the product'))}}
+        <a type="button" class="btn btn-sm btn-warning" href="/product">Cancel</a>
         {!! Form::close() !!}
             </div>
 
 
+    </div>
     </div>
 
 
