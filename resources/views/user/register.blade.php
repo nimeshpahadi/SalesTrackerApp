@@ -52,18 +52,6 @@
                     <span class="glyphicon glyphicon-phone form-control-feedback"></span>
                 </div>
 
-                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} has-feedback">
-                    <input id="password" type="password" class="form-control" name="password" placeholder="Password"
-                           required>
-                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-                </div>
-
-                <div class="form-group has-feedback">
-                    <input id="confirm_password" name="password_confirmation" type="password" class="form-control"
-                           placeholder="Retype password" required>
-                    <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
-                </div>
-
                 <div class="form-group{{ $errors->has('department') ? ' has-error' : '' }}">
                     <?php $x = Config::get('department.name');?>
 
@@ -119,6 +107,18 @@
                             @endforeach
                         </select>
 
+                </div>
+
+                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} has-feedback">
+                    <input id="password" type="password" class="form-control" name="password" placeholder="Password"
+                           required>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
+
+                <div class="form-group has-feedback">
+                    <input id="confirm_password" name="password_confirmation" type="password" class="form-control"
+                           placeholder="Retype password" required>
+                    <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
                 </div>
 
                 <div class="row">
