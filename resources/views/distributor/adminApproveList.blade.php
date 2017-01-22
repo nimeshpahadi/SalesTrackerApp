@@ -37,7 +37,7 @@
                                                                 :"Waiting For Approval"}}
 
                                         @if(isset($list['approval']['sales_approval']))
-
+                                            
                                             <button class="btn btn-danger glyphicon glyphicon-info-sign"
                                                         data-toggle="popover" data-trigger="hover"
                                                         data-content="{{$list['approval']['sale_remark']}}">
@@ -76,6 +76,7 @@
                                                 <div class="form-group clearfix">
                                                     <div class="col-md-8">
                                                         <select class="customer_approval form-control" data-dist="{{$list["distributor_id"]}}">
+                                                            <option value=""></option>
                                                             <option value="Approved">Approved</option>
                                                             <option value="On Hold" >On Hold</option>
                                                             <option value="Rejected" >Rejected</option>
@@ -90,6 +91,7 @@
                                             <div class="form-group clearfix">
                                                 <div class="col-md-8">
                                                     <select  class="customer_approval form-control" data-dist="{{$list["distributor_id"]}}">
+                                                        <option value=""></option>
                                                         <option value="Approved">Approved</option>
                                                         <option value="On Hold">On Hold</option>
                                                         <option value="Rejected">Rejected</option>
@@ -131,7 +133,7 @@
                     {{ Form::hidden('admin_approval', '',array("id"=>"sales_approval_input")) }}
 
 
-                    <h3>Add Remark</h3>
+                    <h3 class="col-md-offset-3">Add Remark</h3>
                     <div class="form-group col-md-12">
                         {{ Form::textarea('admin_remark', null, ['class' => 'form-control',
                                                            'size' => '30x5',

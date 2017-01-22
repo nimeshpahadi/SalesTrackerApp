@@ -13,7 +13,6 @@
                     <h1 align="center"> {{$user->username}}</h1>
                     <!-- /.box-header -->
 
-
                     <div class="container-fluid ">
 
                         <div class="col-md-12 ">
@@ -32,11 +31,11 @@
                             <hr>
                             <div align="" class="col-md-10 col-md-offset-2">
 
-
                                 <div class="row">
                                     <label class="col-sm-6 ">Full Name :</label>
                                     {{$user->fullname}}
                                 </div>
+
                                 <div class="row">
                                     <label class="col-sm-6 ">Email :</label>
                                     {{$user->email}}
@@ -46,10 +45,12 @@
                                     <label class="col-sm-6 ">Mobile :</label>
                                     {{$user->contact}}
                                 </div>
+
                                 <div class="row">
                                     <label class="col-sm-6 ">Department :</label>
                                     {{$user->department}}
                                 </div>
+
                                 <div class="row">
                                     <label class="col-sm-6 ">Role :</label>
                                     @foreach($userRoles as $role)
@@ -71,10 +72,9 @@
 
                                 <div class="row">
                                     <label class="col-sm-6 ">Reports To :</label>
-                                        <td>{{$reportsTo->display_name}}</td>
+                                    <td>{{$reportsTo->display_name}}</td>
 
                                 </div>
-
 
                             </div>
 

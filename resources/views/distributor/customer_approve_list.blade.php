@@ -78,6 +78,7 @@
                                                     <div class="form-group clearfix">
                                                         <div class="col-md-8">
                                                             <select class="customer_approval form-control" data-dist="{{$list["distributor_id"]}}">
+                                                                <option value=""></option>
                                                                 <option value="Approved">Approved</option>
                                                                 <option value="On Hold" >On Hold</option>
                                                                 <option value="Rejected" >Rejected</option>
@@ -91,7 +92,8 @@
 
                                             <div class="form-group clearfix">
                                                 <div class="col-md-8">
-                                                    <select  class="customer_approval form-control" data-dist="{{$list["distributor_id"]}}">
+                                                    <select class="customer_approval form-control" data-dist="{{$list["distributor_id"]}}">
+                                                        <option value=""></option>
                                                         <option value="Approved">Approved</option>
                                                         <option value="On Hold">On Hold</option>
                                                         <option value="Rejected">Rejected</option>
@@ -122,8 +124,6 @@
         <!-- /.row -->
 
 
-
-
         <div class="customer-approval-modal modal fade bd-example-modal-sm" tabindex="-1" role="dialog"
              id="reject" aria-labelledby="mySmallModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-sm ">
@@ -135,7 +135,7 @@
                     {{ Form::hidden('salesmanager', Auth::user()->id) }}
                     {{ Form::hidden('sales_approval', '',array("id"=>"sales_approval_input")) }}
 
-                    <h3>Add Remark</h3>
+                    <h3 class="col-md-offset-3">Add Remark</h3>
                     <div class="form-group col-md-12">
                         {{ Form::textarea('sale_remark', null, ['class' => 'form-control',
                                                            'size' => '30x5',
@@ -153,8 +153,6 @@
                 </div>
             </div>
         </div>
-
-
 
     </section>
 

@@ -1,181 +1,144 @@
 @extends('Layout.app')
 
 @section('main-content')
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 ">
-                <div class="panel panel-default">
-                    <div class="panel-heading">Register</div>
-                    <div class="panel-body ">
-                        <form class="form-horizontal" id="reg" role="form" method="POST"
-                              action="{{ url('/register') }}">
-                            {{ csrf_field() }}
+    <body class="hold-transition register-page">
+    <div class="register-box" style="margin-left: 185px; margin-top: 5px">
 
-                            <div class="form-group{{ $errors->has('fullname') ? ' has-error' : '' }}">
+        <div class="register-box-body" style="width: 185%">
+            <div class="col-md-offset-4">
+                <h4><b>Register a new membership</b></h4>
+            </div>
 
+            <form class="form-horizontal" id="reg" role="form" method="POST" style="margin-left: 30px;
+                   margin-right: 30px;margin-bottom:0px"
+                  action="{{ url('/register') }}">
+                {{ csrf_field() }}
 
-                                <label for="fullname" class="col-md-2 control-label">FullName :</label>
-
-                                <div class=" col-md-9">
-                                    <input id="fullname" type="text" class="form-control" name="fullname"
-                                           value="{{ old('fullname') }}" required autofocus>
-
-                                    @if ($errors->has('fullname'))
-                                        <span class="help-block">
+                <div class="form-group{{ $errors->has('fullname') ? ' has-error' : '' }} has-feedback">
+                    <input id="fullname" type="text" class="form-control" name="fullname" placeholder="Full name"
+                           value="{{ old('fullname') }}" required>
+                    @if ($errors->has('fullname'))
+                        <span class="help-block">
                                         <strong>{{ $errors->first('fullname') }}</strong>
                                     </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }}">
-                                <label for="username" class="col-md-2 control-label">UserName :</label>
+                    @endif
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
 
-                                <div class="col-md-9">
-                                    <input id="username" type="text" class="form-control" name="username"
-                                           value="{{ old('username') }}" required autofocus>
-
-                                    @if ($errors->has('username'))
-                                        <span class="help-block">
+                <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }} has-feedback">
+                    <input id="username" type="text" class="form-control" name="username" placeholder="User name"
+                           value="{{ old('username') }}" required>
+                    @if ($errors->has('username'))
+                        <span class="help-block">
                                         <strong>{{ $errors->first('username') }}</strong>
                                     </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }}">
-                                <label for="contact" class="col-md-2 control-label">Mobile :</label>
+                    @endif
+                    <span class="glyphicon glyphicon-user form-control-feedback"></span>
+                </div>
 
-                                <div class="col-md-9">
-                                    <input id="contact" type="number" class="form-control" name="contact" required>
-                                </div>
-                            </div>
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                <label for="email" class="col-md-2 control-label">E-Mail :</label>
-
-                                <div class="col-md-9">
-                                    <input id="email" type="email" class="form-control" name="email"
-                                           value="{{ old('email') }}" required>
-
-                                    @if ($errors->has('email'))
-                                        <span class="help-block">
+                <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} has-feedback">
+                    <input id="email" type="email" class="form-control" name="email" placeholder="Email"
+                           value="{{ old('email') }}" required>
+                    @if ($errors->has('email'))
+                        <span class="help-block">
                                         <strong>{{ $errors->first('email') }}</strong>
                                     </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="form-group{{ $errors->has('department') ? ' has-error' : '' }}">
-                                <label for="department" class="col-md-2 control-label">Department :</label>
+                    @endif
+                    <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+                </div>
 
+                <div class="form-group{{ $errors->has('contact') ? ' has-error' : '' }} has-feedback">
+                    <input id="contact" type="number" class="form-control" name="contact" placeholder="Mobile" required>
+                    <span class="glyphicon glyphicon-phone form-control-feedback"></span>
+                </div>
 
-                                <div class="col-md-9">
-                                    <?php $x = Config::get('department.name');?>
+                <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }} has-feedback">
+                    <input id="password" type="password" class="form-control" name="password" placeholder="Password"
+                           required>
+                    <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+                </div>
 
-                                    <select name="department" class="form-control">
-                                        <option selected="selected" disabled>Choose Department</option>
-                                        @foreach($x as $dep)
-                                            <option value="{{ $dep}}">
-                                                {{ $dep  }}
-                                            </option>
-                                        @endforeach
+                <div class="form-group has-feedback">
+                    <input id="confirm_password" name="password_confirmation" type="password" class="form-control"
+                           placeholder="Retype password" required>
+                    <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+                </div>
 
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
-                                <label for="roles" class="col-md-2 control-label">Role :</label>
+                <div class="form-group{{ $errors->has('department') ? ' has-error' : '' }}">
+                    <?php $x = Config::get('department.name');?>
 
-                                <div class="col-md-9">
-                                    <select id="roles" name="role" class=" form-control roles">
+                    <select name="department" class="form-control">
+                        <option selected="selected" disabled>Choose Department</option>
+                        @foreach($x as $dep)
+                            <option value="{{ $dep}}">
+                                {{ $dep  }}
+                            </option>
+                        @endforeach
 
-                                        <option selected="selected" disabled>Choose Role</option>
-                                        @foreach ($role as $allrole)
-                                            <option value="{{$allrole->id}}">
-                                                {{$allrole->display_name}}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                    </select>
+                </div>
 
-                            </div>
-                            <div class="form-group{{ $errors->has('reportsto') ? ' has-error' : '' }}">
-                                <label for="reportsto" class="col-md-2 control-label">ReportsTo:</label>
+                <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
+                        <select id="roles" name="role" class=" form-control roles">
 
+                            <option selected="selected" disabled>Choose Role</option>
+                            @foreach ($role as $allrole)
+                                <option value="{{$allrole->id}}">
+                                    {{$allrole->display_name}}
+                                </option>
+                            @endforeach
+                        </select>
 
-                                <div class="col-md-9">
-                                    <select name="reportsto" class="form-control">
+                </div>
 
-                                        <option selected="selected" disabled>Choose Reports to</option>
-                                        @foreach ($role as $allrole)
-                                            @if($allrole->name!='salesman')
-                                                <option value="{{$allrole->id}}">
+                <div class="form-group{{ $errors->has('reportsto') ? ' has-error' : '' }}">
+                    <select name="reportsto" class="form-control">
 
-                                                    {{$allrole->display_name}}
+                        <option selected="selected" disabled>Choose Reports to</option>
+                        @foreach ($role as $allrole)
+                            @if($allrole->name!='salesman')
+                                <option value="{{$allrole->id}}">
 
-                                                </option>
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                </div>
+                                    {{$allrole->display_name}}
 
+                                </option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
 
-                            </div>
-                            <div id="ware" class="form-group{{ $errors->has('warehouse_id') ? ' has-error' : '' }}">
-                                <label for="warehouse_id" class="col-md-2 control-label">Warehouse :</label>
+                <div id="ware" class="form-group{{ $errors->has('warehouse_id') ? ' has-error' : '' }}">
+                        <select id="warehouse_id" name="warehouse_id"
+                                class=" form-control warehouses" >
 
-                                <div class="col-md-9">
-                                    <select id="warehouse_id" name="warehouse_id"
-                                            class=" form-control warehouses" >
+                            <option selected="selected" disabled>For Factoryincharge</option>
+                            @foreach ($ware as $warehouse)
+                                <option value="{{$warehouse->id}}">
+                                    {{$warehouse->name}}
+                                </option>
+                            @endforeach
+                        </select>
 
-                                        <option selected="selected" disabled>For Factoryincharge</option>
-                                        @foreach ($ware as $warehouse)
-                                            <option value="{{$warehouse->id}}">
-                                                {{$warehouse->name}}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
+                </div>
 
-                            </div>
-                            <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-
-
-                                <label for="password" class="col-md-2 control-label">Password :</label>
-
-                                <div class="col-md-9">
-                                    <input id="password" type="password" class="form-control" name="password"
-                                           required>
-
-                                    @if ($errors->has('password'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="password-confirm"
-                                       class="col-md-2 control-label">RePassword :</label>
-
-                                <div class="col-md-9">
-                                    <input id="password-confirm" type="password" class="form-control"
-                                           name="password_confirmation" required>
-                                </div>
-                            </div>
-
-
-                            <div class="form-group">
-                                <div class="col-md-9 col-md-offset-4">
-                                    <button type="submit" class="btn btn-primary">
-                                        Register
-                                    </button>
-                                    <a type="button" class="btn btn-default" href="/user">
-                                        Cancel
-                                    </a>
-                                </div>
-                            </div>
-                        </form>
+                <div class="row">
+                    <div class="form-group" style="padding-top: 30px">
+                        <div class="col-md-9 col-md-offset-4">
+                            <button type="submit" class="btn btn-primary">
+                                Register
+                            </button>
+                            <a type="button" class="btn btn-warning" href="/user" style="margin-left: 30px">
+                                Cancel
+                            </a>
+                        </div>
                     </div>
                 </div>
-            </div>
+            </form>
+
         </div>
+        <!-- /.form-box -->
     </div>
+    <!-- /.register-box -->
+
+    </body>
 @endsection

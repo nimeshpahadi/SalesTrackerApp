@@ -30,9 +30,7 @@ class UserService
     public function getUsers()
     {
         $users = $this->userRepository->getUser();
-
         return $users;
-
     }
 
     /**

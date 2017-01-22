@@ -4,6 +4,12 @@ $(document).ready(function () {
     $("#example1").DataTable();
     $("#example2").DataTable();
 
+    //select2
+    $("select").select2({
+        theme: "classic",
+        placeholder:"Select Item"
+    });
+
 
 //district choose as per zones
 
@@ -197,10 +203,12 @@ $(".customer_approval").change(function () {
     var status = $(this).val();
     var distId = $(this).attr("data-dist");
 
-    $('.customer-approval-modal').modal('show');
+    if (status != "") {
+        $('.customer-approval-modal').modal('show');
 
-    $('#sales_approval_input').val(status);
-    $('#distributor_id').val(distId);
+        $('#sales_approval_input').val(status);
+        $('#distributor_id').val(distId);
+    }
 
 });
 
@@ -230,13 +238,6 @@ $('#date1').datepicker({
 $('#date2').datepicker({
     autoclose: true,
     todayHighlight: true
-});
-
-
-//select2
-$("select").select2({
-    theme: "classic",
-    placeholder:"Select Item"
 });
 
 

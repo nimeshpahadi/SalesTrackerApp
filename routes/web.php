@@ -15,7 +15,7 @@
 Auth::routes();
 
 Route::get('/', function () {
-    return view('home');
+    return view('auth/login');
 });
 
 Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');

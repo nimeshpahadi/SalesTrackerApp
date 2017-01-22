@@ -17,7 +17,55 @@
 .map{
     height:400px
 }
-.productimage{
+.productimage {
     width: 180px;
-    height:100px
+    height: 100px;
+}
+
+.useredit{
+    width:90%;
+}
+
+.margin-bottom-10{
+    margin-bottom: 10px;
+}
+
+.margin-bottom-20{
+    margin-bottom: 20px;
+}
+
+.margin-bottom-40{
+    margin-bottom: 40px;
+}
+
+.margin-top-5{
+    margin-top: 5px;
+}
+
+.margin-top-10{
+    margin-top: 10px;
+}
+
+.margin-left-20{
+    margin-left: 20px;
+}
+
+.margin-left-30{
+    margin-left: 30px;
+}
+
+.margin-left-50{
+    margin-left: 50px;
+}
+
+.margin-right-10{
+    margin-right: 10px;
+}
+
+.margin-right-40{
+    margin-right: 40px;
+}
+
+.margin-top-20{
+    margin-top: 20px;
 }

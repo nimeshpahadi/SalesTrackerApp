@@ -4,25 +4,22 @@
 
     @role((['admin','generalmanager','director']))
 
-    <div class="col-md-12">
+    <div class="row-md-12">
         <div align="right">
             <a href="{{ url('/user/create') }}" class="btn btn-success  fa fa-user-plus"> Create User</a>
-
         </div>
     </div>
+
     @endrole
     <div class="clearfix">
 
     </div>
-
 
     <div class="row">
         <div class="col-md-12">
             <div class="box" style="padding: 10px">
                 <div class="box-header">
                     <h3 class="box-title">User Details</h3>
-
-
                 </div>
 
                 <div class="box-body table-responsive no-padding">
@@ -76,6 +73,5 @@
         </div>
 
     </div>
-
 
 @endsection
