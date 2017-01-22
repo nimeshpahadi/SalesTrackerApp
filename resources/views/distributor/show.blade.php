@@ -252,13 +252,14 @@
                             @endif
 
                             @if($dist->status==0 || $dist->status==1)
-                                <li>
+                                <li >
                                     <a class="btn btn-success" title="Click here to view {{$dist->company_name}}'s Minute Summary" href="#min" data-toggle="tab">Minute</a>
                                 </li>
                             @endif
 
                         </ul>
                         <div class="tab-content">
+                            @if($dist->status==1 )
                             <div class="tab-pane active" id="order">
                                 <table class="table table-bordered table-striped">
                                     <thead>
@@ -270,7 +271,7 @@
                                         <th>Priority</th>
                                         <th>Payment Term</th>
                                         <th>Delivery Date</th>
-                                        <th>Username</th>
+                                        <th>Created By</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -289,7 +290,8 @@
                                     </tbody>
                                 </table>
                             </div>
-
+                            @endif
+                                @if($dist->status==0 || $dist->status==1)
                             <div class="tab-pane pad " id="min">
                                 @role((['admin','salesmanager','accountmanagersales','director','generalmanager','salesman']))
                                 <div align="right">
@@ -331,7 +333,7 @@
                                     <thead>
                                     <tr>
                                         <th>Created At</th>
-                                        <th>User Name</th>
+                                        <th>Created By</th>
                                         <th>Minute</th>
 
                                     </tr>
@@ -357,6 +359,8 @@
 
                                 </table>
                             </div>
+                                @endif
+                                @if($dist->status==1 )
                             <div class="tab-pane pad " id="payment">
 
                                 @role((['admin','salesmanager','accountmanagersales','director','generalmanager']))
@@ -399,7 +403,8 @@
                                     </tbody>
                                 </table>
                             </div>
-
+                                @endif
+                                @if($dist->status==0 )
                             <div class="tab-pane" id="visit">
                                 <div class="panel-body">
                                     @role((['admin','salesmanager','accountmanagersales','director','generalmanager','salesman']))
@@ -451,6 +456,7 @@
                                     </table>
                                 </div>
                             </div>
+                                @endif
                         </div>
                     </div>
                 </div>

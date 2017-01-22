@@ -6,7 +6,7 @@
 
         <div class="register-box-body" style="width: 185%">
             <div class="col-md-offset-4">
-                <h4><b>Register a new membership</b></h4>
+                <h4><b>Register a new User</b></h4>
             </div>
 
             <form class="form-horizontal" id="reg" role="form" method="POST" style="margin-left: 30px;
