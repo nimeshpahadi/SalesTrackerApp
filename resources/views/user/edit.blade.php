@@ -20,9 +20,13 @@
                         {{ Form::text('email',null,array('class'=>'form-control'))}}
                         {{ Form::label('department','Department:')}}
 
+
                         <?php $x = Config::get('department.name');?>
-                        <select name="department" class="form-control">
-                            @foreach($x as $dep)
+                        <select name="department" class="form-control select">
+
+                            <option selected="selected"
+                                    value="{{$user->department}}"> {{$user->department}}</option>
+                        @foreach($x as $dep)
                                 <option value="{{$dep}}">
                                     {{ $dep  }}
                                 </option>
@@ -30,7 +34,7 @@
                         </select>
 
                         {{ Form::label('role','Role:')}}
-                        <select id="role" name="role" class="form-control role">
+                        <select id="roles"  name="role" class="form-control select">
                             <option selected="selected"
                                     value="{{$userRoleid->roles_id}}"> {{$userRoleid->role_name}}</option>
 
@@ -43,7 +47,7 @@
 
                         {{ Form::label('reportsto','Reports To:')}}
 
-                        <select name="reportsto" class="form-control">
+                        <select name="reportsto" class="form-control select">
                             <option selected="selected"
                                     value="{{$reportsTo->role_id}}" >{{$reportsTo->display_name}}</option>
                             @foreach ($role as $allrole)
@@ -61,27 +65,28 @@
 
 
                         @if( $userRoleid->role_name=='factoryincharge')
-                            {{ Form::label('warehouse_id','Warehouse:')}}
+                            {{ Form::label('Warehouse :', null, array('id'=>'warehouse_id'))}}
 
+                           <div  id="ware" >
 
-                            <select id="warehouse_id" name="warehouse_id"
-                                    class=" form-control warehouse">
-                                {{--<option selected="selected"--}}
-                                        {{--value="{{$factoryWarehouse->warehouse_id}}"> {{$factoryWarehouse->warehousename}}</option>--}}
-
+                            <select id="warehouses" name="warehouse_id"
+                                    class=" form-control warehouses select"  required>
+                                    @if(isset($factoryWarehouse))
+                                    <option selected="selected"
+                                            value="{{$factoryWarehouse->warehouse_id}}"> {{$factoryWarehouse->warehousename}}</option>
+                                    @endif
                                 @foreach ($ware as $warehouse)
                                     <option value="{{$warehouse->id}}">
                                         {{$warehouse->name}}
                                     </option>
                                 @endforeach
                             </select>
+                                </div>
                         @else
-
-                            {{ Form::label('warehouse_id','Warehouse:')}}
-
-
-                            <select id="warehouse_id" name="warehouse_id"
-                                    class=" form-control warehouse">
+                            {{ Form::label('Warehouse :', null, array('id'=>'warehouse_id'))}}
+                            <div  id="ware">
+                            <select id="warehouses" name="warehouse_id"
+                                    class=" form-control select " required>
                                 <option selected="selected" disabled>For Factoryincharge</option>
                             @foreach ($ware as $warehouse)
                                     <option value="{{$warehouse->id}}">
@@ -89,6 +94,7 @@
                                     </option>
                                 @endforeach
                             </select>
+                            </div>
                         @endif
 
 
@@ -103,4 +109,12 @@
             </div>
         </div>
     </div>
+
+    <script>
+        var edituser=true;
+        var roletype ='{{$userRoleid->roles_id}}';
+    </script>
 @endsection
+
+
+

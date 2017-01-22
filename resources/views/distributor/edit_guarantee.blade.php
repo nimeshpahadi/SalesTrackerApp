@@ -3,9 +3,10 @@
 @section('main-content')
 
 
-    <h3>Edit Guarantee</h3>
-    <div class="col-md-7">
-        <div class="box box-info clearfix ">
+    <div class="col-md-6 col-md-offset-3">
+        <h3>Edit Guarantee</h3>
+
+        <div class="box box-info clearfix pad ">
 
             {!! Form::model($dist,array('route'=>['guarantee_update',$dist->id],'method'=>'PUT'))!!}
 

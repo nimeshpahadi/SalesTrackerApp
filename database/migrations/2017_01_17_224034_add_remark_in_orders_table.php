@@ -14,7 +14,7 @@ class AddRemarkInOrdersTable extends Migration
     public function up()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->string('remark')->nullable();
+            $table->string('order_remark')->nullable();
             $table->dropColumn('payment_term');
         });
     }
@@ -27,7 +27,7 @@ class AddRemarkInOrdersTable extends Migration
     public function down()
     {
         Schema::table('orders', function (Blueprint $table) {
-            $table->dropColumn('remark');
+            $table->dropColumn('order_remark');
             $table->string('payment_term');
         });
     }

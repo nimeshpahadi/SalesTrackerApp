@@ -3,29 +3,45 @@
     <div class="box-header">
         <h3 class="box-title">Order History</h3>
         @role(('admin'))
-        as persalesman
+        as per salesman
         @endrole
     </div>
 
-    <div class="row " style="padding-bottom: 5px">
-        <label for="from" class="col-sm-1 control-label">From :</label>
-        <div class="col-md-2">
-            <input id="datefield" type="date" class="form-control" name="from">
+    <form method="get" action="{{route('filter_order')}}">
+        <div class="row  pad" >
+            <label for="from" class="col-sm-1 control-label">From :</label>
+            <div class="col-sm-2">
+                <input id="date" type="text" value="{{$filters['from']}}" class="form-control" name="from">
+
+            </div>
+            <label for="from" class="col-sm-1 control-label">To :</label>
+            <div class="col-sm-2">
+                <input id="date1" type="text" value="{{$filters['to']}}" class="form-control" name="to">
+
+            </div>
+
+
+
+
+            <div class="form-group clearfix">
+                <label for="" class="col-sm-1 distributor ">Customer</label>
+                <div class="col-sm-2">
+
+                    <select name="distributor" class="form-control select2">
+                        <option selected="selected" value="" >Choose Customer</option>
+                        @foreach($dis as $d)
+                            <option value="{{ $d->id}}" @if($d->id==$filters['distributor']) selected @endif>
+                                {{ $d->company_name  }}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+                <input type="submit" class="btn btn-sm btn-primary" title="Submit the filters to be appiled">
+            </div>
 
         </div>
-        <label for="from" class="col-md-1 control-label">To :</label>
-        <div class="col-md-2">
-            <input id="datefield1" type="date" class="form-control" name="to">
 
-        </div>
-        <label for="from" class="col-md-1 control-label">Customer</label>
-        <div class="col-md-2">
-            <input id="distributor" type="text" class="form-control" name="distributor">
-
-        </div>
-        <button class="btn-primary btn "> Search</button>
-
-    </div>
+    </form>
 </div>
 <div class="box">
 

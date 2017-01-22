@@ -105,6 +105,7 @@ class UserController extends Controller
 
     public function update(RegisterRequest $request, $id)
     {
+
             $data= $request->all();
 
         if ($this->userService->updateUser($request, $id))
@@ -130,6 +131,15 @@ class UserController extends Controller
                      $this->assignWarehouse($assignWarehouse);
                 else
                     $this->updateassignWarehouse($assignWarehouse);
+
+            }
+            else
+            {
+                $query = $this->factoryinchargeWarehouse->select('*')
+                    ->where('user_id',$id)
+                    ->first();
+                if ($query != null)
+                    $query->delete();
 
             }
 

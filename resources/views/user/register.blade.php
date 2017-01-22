@@ -81,10 +81,10 @@
                                 </div>
                             </div>
                             <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
-                                <label for="role" class="col-md-2 control-label">Role :</label>
+                                <label for="roles" class="col-md-2 control-label">Role :</label>
 
                                 <div class="col-md-9">
-                                    <select id="role" name="role" class=" form-control role">
+                                    <select id="roles" name="role" class=" form-control roles">
 
                                         <option selected="selected" disabled>Choose Role</option>
                                         @foreach ($role as $allrole)
@@ -118,12 +118,12 @@
 
 
                             </div>
-                            <div class="form-group{{ $errors->has('warehouse_id') ? ' has-error' : '' }}">
+                            <div id="ware" class="form-group{{ $errors->has('warehouse_id') ? ' has-error' : '' }}">
                                 <label for="warehouse_id" class="col-md-2 control-label">Warehouse :</label>
 
                                 <div class="col-md-9">
                                     <select id="warehouse_id" name="warehouse_id"
-                                            class=" form-control warehouse" disabled>
+                                            class=" form-control warehouses" >
 
                                         <option selected="selected" disabled>For Factoryincharge</option>
                                         @foreach ($ware as $warehouse)

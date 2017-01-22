@@ -26,8 +26,9 @@
                     <td>{{$o->created_at}}</td>
                     <td>
                         <a href="{{route('order.show',$o->id)}}">
-                            <button class="btn btn-success"><i class="fa fa-money"></i>View</button>
+                            <button class="btn btn-sm btn-success" title="View the order for approval">View</button>
                         </a>
+
 
                     </td>
 

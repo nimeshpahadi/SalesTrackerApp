@@ -14,7 +14,7 @@
 
             {!! Form::model($dist,array('route'=>['distributor.update',$dist->id],'method'=>'PUT' ))!!}
 
-            <div class="form-group clearfix">
+            <div class="form-group clearfix pad-top">
                 <label for="company_name" class="col-sm-4 control-label">Company Name</label>
                 <div class="col-sm-8">
                     {{ Form::text('company_name',null,array('class'=>'form-control'))}}
@@ -140,7 +140,7 @@
             </div>
 
 
-            <div align="right" class=" row">
+            <div align="right" class=" pad">
             {{Form::submit('Save Changes', array('class'=>'btn btn-primary '))}}
             <a type="button" class="btn btn-warning " href="/distributor/{{ $dist->id }}">Cancel</a>
             {!! Form::close() !!}

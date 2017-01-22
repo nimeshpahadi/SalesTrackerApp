@@ -5,14 +5,14 @@
         <h3 class="box-title">Order History</h3>
     </div>
     <form method="get" action="{{route('filter_order')}}">
-        <div class="row " style="padding-bottom: 5px">
+        <div class="row  pad" >
             <label for="from" class="col-sm-1 control-label">From :</label>
-            <div class="col-md-2">
+            <div class="col-sm-2">
                 <input id="date" type="text" value="{{$filters['from']}}" class="form-control" name="from">
 
             </div>
-            <label for="from" class="col-md-1 control-label">To :</label>
-            <div class="col-md-2">
+            <label for="from" class="col-sm-1 control-label">To :</label>
+            <div class="col-sm-2">
                 <input id="date1" type="text" value="{{$filters['to']}}" class="form-control" name="to">
 
             </div>
@@ -21,8 +21,8 @@
 
 
             <div class="form-group clearfix">
-                <label for="" class="col-md-1 distributor ">Customer</label>
-                <div class="col-md-2">
+                <label for="" class="col-sm-1 distributor ">Customer</label>
+                <div class="col-sm-2">
 
                     <select name="distributor" class="form-control select2">
                         <option selected="selected" value="" >Choose Customer</option>
@@ -33,7 +33,7 @@
                         @endforeach
                     </select>
                 </div>
-                <input type="submit" class="btn btn-primary">
+                <input type="submit" class="btn btn-sm btn-primary" title="Submit the filters to be appiled">
             </div>
 
         </div>
@@ -77,7 +77,7 @@
                     <td>{{$o->created_at}}</td>
                     <td>
                         <a href="{{route('order.show',$o->id)}}">
-                            <button class="btn btn-success"><i class=""></i>View</button>
+                            <button class="btn btn-sm btn-success" title="View the order details">View</button>
                         </a>
                         @foreach($undispatched as $undis)
                             @if($o->id == $undis->id)

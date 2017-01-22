@@ -13,7 +13,7 @@
 <div class="col-md-10 col-md-offset-1">
 
     <h3>Create Customer</h3>
-    <div class="box box-info clearfix ">
+    <div class="box box-info clearfix pad ">
 
 
         {!! Form::open(array('id'=>'form','route'=>'distributor.store'))!!}

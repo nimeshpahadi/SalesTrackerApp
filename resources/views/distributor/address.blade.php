@@ -8,11 +8,14 @@
     ?>
 
 
-    <div class="col-md-6 ">
-
-
-        <h3>Add Billing/Shipping Address</h3>
-        <div class="box box-info clearfix ">
+    <div class="col-md-6 col-md-offset-3 ">
+        <?php $addressType = Config::get('distributor.address_type');?>
+        @foreach($addressType as $index=>$value)
+                @if($type==$index)
+                    <h3>Add {{$value}} Address</h3>
+                @endif
+        @endforeach
+        <div class="box box-info clearfix pad ">
 
             {!! Form::open(array('route' => 'add_distributor_address'))!!}
 
@@ -155,11 +158,11 @@
                 </div>
             </div>
 
-            <div class="clearfix"></div>
-            {{Form::submit('Save Address', array('class'=>'btn btn-primary btn-lg btn-block', 'style'=>'margin-top:20px;'))}}
-            <a type="button" class="btn btn-warning btn-block" href="/distributor/{{$disid->id}}">Cancel</a>
+            <div class="clearfix pad" align="right">
+            {{Form::submit('Save Address', array('class'=>'btn btn-primary'))}}
+            <a type="button" class="btn btn-warning " href="/distributor/{{$disid->id}}">Cancel</a>
             {!! Form::close() !!}
-
+            </div>
 
         </div>
 

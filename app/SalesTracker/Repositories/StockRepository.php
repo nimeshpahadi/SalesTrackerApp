@@ -262,7 +262,7 @@ class StockRepository
 
     public function getStockoutbyOrder($id)
     {
-        $query = $this->stock_out->select('stock_outs.id', 'stock_outs.dispatched_by', 'stock_outs.created_at', 'stock_outs.order_out_id',
+        $query = $this->stock_out->select('stock_outs.id', 'stock_outs.dispatched_by','stock_outs.driver_name','stock_outs.driver_contact','stock_outs.vehicle_no', 'stock_outs.created_at', 'stock_outs.order_out_id',
             'order_outs.id as orderoutid', 'order_outs.order_id as orderid', 'users.fullname as username')
             ->join('order_outs', 'stock_outs.order_out_id', 'order_outs.id')
             ->join('users', 'stock_outs.dispatched_by', 'users.id')

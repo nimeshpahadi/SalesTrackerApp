@@ -8,7 +8,7 @@
 
 
                 <div class="panel panel-info col-md-8">
-                    <div class="panel-heading"><h3>Order Details</h3></div>
+                    <div class="panel-heading"><h4>Order Details</h4></div>
 
                     <div class="panel-body"><h1 align="center">{{$orderId->distributor_name}}</h1>
                     </div>
@@ -45,23 +45,30 @@
 
                     <div class="row">
                         <label class="col-sm-6 "> Remark :</label>
-                        {{$orderId->remark}}
+                        {{$orderId->order_remark}}
                     </div>
+
 
                     <hr>
 
-                    <div class="">
 
-                        <h4> Order Billing</h4>
+
+
                         @role((['admin', 'gm', 'salesmanager', 'accountmanagersales', 'director']))
-                        <div align="right">
+                    <div align="right " class="pad">
                             <a href="{{route('create_payment',$orderId->distributor_id)}}">
-                                <span class=" btn btn-success glyphicon glyphicon-plus"> payment</span>
+                                <span class=" btn btn-sm btn-success " title="Add the payment received from the customer {{$orderId->distributor_name}}"> Add Payment</span>
                             </a>
                         </div>
-                        @endrole
-                    </div>
+                    @endrole
+
+
                     @foreach($order_billings as $ob)
+
+                        <div class="panel panel-warning pad">
+                            <div class="panel-heading">
+                                <h5>Order Billing</h5>
+                            </div>
 
                         <div class="row">
                             <label class="col-sm-6 "> Discount :</label>
@@ -84,53 +91,14 @@
                             <label class="col-sm-6 "> Created At :</label>
                             {{$ob->created_at}}
                         </div>
+                            </div>
 
-                        <hr>
+
 
                     @endforeach
 
                     <div class="col-md-12">
-                        @if(isset($orderout->orderoutid)&& !isset($dispatched->orderoutid))
-                            @role((['factoryincharge']))
 
-                            <div class="panel panel-success col-md-11">
-                                <div class="panel-heading">
-                                    <h>Dispatch the Order</h>
-                                </div>
-
-                                <div align="right">
-                                    {!! Form::open(array('route' => 'dispatch','method'=>'post'))!!}
-                                    {{ Form::hidden('dispatched_by',  Auth::user()->id) }}
-                                    {{ Form::hidden('order_out_id', $orderout->orderoutid) }}
-                                    {{ Form::hidden('quantity', $orderout->qty) }}
-
-
-                                    <div class="form-group clearfix" style="padding: 10px">
-                                        <label class="col-sm-4 control-label">Driver Name</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" name="driver_name" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group clearfix">
-                                        <label class="col-sm-4 control-label">Driver's Contact</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" name="driver_contact" class="form-control" required>
-                                        </div>
-                                    </div>
-                                    <div class="form-group clearfix">
-                                        <label class="col-sm-4 control-label"> Vehicle No.</label>
-                                        <div class="col-sm-8">
-                                            <input type="text" name="vehicle_no" class="form-control" required>
-                                        </div>
-                                    </div>
-
-                                    {{Form::submit('Dispatch', array('class'=>'btn btn-primary'))}}
-                                    {!! Form::close() !!}
-
-                                </div>
-                            </div>
-                            @endrole
-                        @endif
 
                         @if(isset($adminapproval->admin) && trim($adminapproval->admin_approval)=='Approved' && !isset($orderout->order_id))
                             @role((['admin','salesmanager','marketingmanager', 'factoryincharge', 'generalmanager', 'director', 'accountmanagersales']))
@@ -160,14 +128,14 @@
                                 </div>
                             </div>
                             <div align="right">
-                                {{Form::submit('Send', array('class'=>'btn btn-primary'))}}
+                                {{Form::submit('Send', array('class'=>'btn btn-primary','title'=>"Send the Order to the Specific warehouse"))}}
                             </div>
                             {!! Form::close() !!}
                             @endrole
 
                         @elseif(isset($orderout->order_id))
 
-                            <div class="panel panel-info  ">
+                            <div class="panel panel-info pad ">
                                 <div class="panel-heading"><h5>Details of Order Out</h5></div>
                                 <div class="row">
                                     <label class="col-sm-6 "> Order Send :</label>
@@ -194,12 +162,55 @@
 
                         @endif
 
+                    @if(isset($orderout->orderoutid)&& !isset($dispatched->orderoutid))
+                            @role((['factoryincharge']))
+
+                            <div class="panel panel-success col-md-11">
+                                <div class="panel-heading">
+                                    <h>Dispatch the Order</h>
+                                </div>
+
+                                <div align="right" class="pad">
+                                    {!! Form::open(array('route' => 'dispatch','method'=>'post'))!!}
+                                    {{ Form::hidden('dispatched_by',  Auth::user()->id) }}
+                                    {{ Form::hidden('order_out_id', $orderout->orderoutid) }}
+                                    {{ Form::hidden('quantity', $orderout->qty) }}
+
+
+                                    <div class="form-group clearfix " >
+                                        <label class="col-sm-4 control-label">Driver Name</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="driver_name" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-sm-4 control-label">Driver's Mobile</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="driver_contact" class="form-control" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group clearfix">
+                                        <label class="col-sm-4 control-label"> Vehicle No.</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" name="vehicle_no" class="form-control" required>
+                                        </div>
+                                    </div>
+
+                                    {{Form::submit('Dispatch', array('class'=>'btn btn-sm btn-primary ', 'title'=>"Dispatch the order to the customer "))}}
+                                    {!! Form::close() !!}
+
+                                </div>
+                            </div>
+                            @endrole
+                        @endif
+
+
 
 
 
 
                         @if(isset($dispatched->orderoutid) && $dispatched->orderid==$orderId->id)
-                            <div class="panel panel-success ">
+                            <div class="panel panel-success pad ">
                                 <div class="panel-heading"><h5>Order Already Dispatched</h5></div>
 
                                 <div class="row">
@@ -212,6 +223,18 @@
                                     {{$dispatched->created_at}}
                                 </div>
 
+                                <div class="row">
+                                    <label class="col-sm-6 "> Driver's Name  :</label>
+                                    {{$dispatched->driver_name}}
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-6 "> Driver's Mobile :</label>
+                                    {{$dispatched->driver_contact}}
+                                </div>
+                                <div class="row">
+                                    <label class="col-sm-6 "> Vehicle No. :</label>
+                                    {{$dispatched->vehicle_no}}
+                                </div>
                             </div>
                         @endif
 
@@ -223,7 +246,7 @@
 
                     @if(count($order_billings)<1)
 
-                        <div class="box box-info clearfix ">
+                        <div class="box box-info clearfix pad">
 
                             <h3> Order Billing</h3>
                             {!! Form::open(array('id'=>'orderbilling','route'=>'add_order_billing'))!!}
@@ -310,14 +333,11 @@
                         });
                     </script>
 
-                    <div class=" box box-primary " style="padding-left: 10px">
+                    <div class=" box box-primary pad" >
 
                         @include('order.partialapproval.accountmanagersales')
                         @include('order.partialapproval.salesmanager')
                         @include('order.partialapproval.admin')
-
-                        {{--                        {{$approvalremark}}--}}
-
 
                         <div class="panel panel-info  ">
                             <div class="box-body table-responsive no-padding">
@@ -355,8 +375,6 @@
                                             </button>
                                            </td>
                                             @endif
-
-                                            {{--<td>{{$ar->remark}}</td>--}}
 
                                         </tr>
                                     @endforeach

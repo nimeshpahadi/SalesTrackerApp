@@ -9,7 +9,7 @@
 
                 <!-- /.box -->
 
-                <div class="box">
+                <div class="box box-success" style="background-color:rgba(226, 197, 211, 0.37)" >
                     <h1 align="center"> {{$user->username}}</h1>
                     <!-- /.box-header -->
 
@@ -19,7 +19,7 @@
                         <div class="col-md-12 ">
 
                             <div class="row">
-                                <h3> Details</h3>
+
                                 <div align="right">
                                     <div class="col-md-11 col-sm-10">
                                         {!! Html::linkRoute('user.edit','edit',array($user->id),
@@ -34,7 +34,7 @@
 
 
                                 <div class="row">
-                                    <label class="col-sm-6 ">Contact Name :</label>
+                                    <label class="col-sm-6 ">Full Name :</label>
                                     {{$user->fullname}}
                                 </div>
                                 <div class="row">
@@ -59,15 +59,15 @@
                                     @endforeach
 
                                 </div>
-{{--                                @if($assignwarehouse->userid!=null)--}}
-{{--@if($assignwarehouse->userid==$user->id)--}}
+                                @if($assignwarehouse!=null)
+                                    @if($assignwarehouse->userid==$user->id)
 
-                                <div class="row">
-                                    <label class="col-sm-6 ">Assigned Warehouse :</label>
-{{--                                            <td>{{$assignwarehouse->wname}}</td>--}}
-                                </div>
-{{--@endif--}}
-{{--@endif--}}
+                                        <div class="row">
+                                            <label class="col-sm-6 ">Assigned Warehouse :</label>
+                                            <td>{{$assignwarehouse->wname}}</td>
+                                        </div>
+                                    @endif
+                                @endif
 
                                 <div class="row">
                                     <label class="col-sm-6 ">Reports To :</label>
@@ -81,8 +81,6 @@
 
                             <div class="col-md-6">
 
-
-                                {{--</div>--}}
                             </div>
                         </div>
 

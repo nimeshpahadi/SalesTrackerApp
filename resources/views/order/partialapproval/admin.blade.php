@@ -3,7 +3,7 @@
     && $salesapproval->sales_approval!="Rejected"
     && $salesapproval->sales_approval!="On hold")
         @role((['admin', 'generalmanager', 'director']))
-        <div style="padding: 5px">
+        <div class="pad">
             @role(('admin'))
             <label> Admin : </label>
             @endrole
@@ -34,12 +34,15 @@
                 <div class="form-group clearfix">
                     <label class="col-md-8">Remark</label>
 
-                    <div class="col-md-12">
-                        <textarea  class="form-control" type="text" name="remark"  ></textarea>
+                    <div class="col-md-12 ">
+                        <textarea  class="form-control" type="text" name="approval_remark"  ></textarea>
                     </div>
                 </div>
+                <div align="right">
                 {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
+
                 {!! Form::close() !!}
+            </div>
             </div>
         </div>
         @endrole
@@ -99,11 +102,13 @@
                     <label class="col-md-8">Remark</label>
 
                     <div class="col-md-12">
-                        <textarea  class="form-control" type="text" name="remark"></textarea>
+                        <textarea  class="form-control" type="text" name="approval_remark"></textarea>
                     </div>
                 </div>
+                <div align="right">
                 {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
                 {!! Form::close() !!}
+            </div>
             </div>
         </div>
         @endrole
@@ -144,11 +149,13 @@
                         <label class="col-md-8">Remark</label>
 
                         <div class="col-md-12">
-                            <textarea  class="form-control" type="text" name="remark"></textarea>
+                            <textarea  class="form-control" type="text" name="approval_remark"></textarea>
                         </div>
                     </div>
+                    <div align="right">
                     {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
                     {!! Form::close() !!}
+                </div>
                 </div>
             </div>
             @endrole
