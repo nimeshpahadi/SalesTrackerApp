@@ -66,7 +66,7 @@
 
     </div>
     <div align="right" class="pad">
-        {{Form::submit('Save ', array('class'=>'btn btn-primary'))}}
+        {{Form::submit('Save ', array('class'=>'btn btn-primary','title'=>'Add payment received from the customer'))}}
         <a type="button" class="btn btn-warning"
            href="{{ URL::previous() }}">Cancel</a>
         {!! Form::close() !!}

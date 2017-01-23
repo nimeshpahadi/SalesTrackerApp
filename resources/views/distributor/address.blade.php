@@ -159,7 +159,7 @@
             </div>
 
             <div class="clearfix pad" align="right">
-            {{Form::submit('Save Address', array('class'=>'btn btn-primary'))}}
+            {{Form::submit('Save Address', array('class'=>'btn btn-sm btn-primary','title'=>"Save the {$value} Address"))}}
             <a type="button" class="btn btn-warning " href="/distributor/{{$disid->id}}">Cancel</a>
             {!! Form::close() !!}
             </div>

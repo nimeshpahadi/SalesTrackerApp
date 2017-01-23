@@ -82,7 +82,7 @@
 
                                         {!! Html::linkRoute('distributor.show','View',
                                                             array($list['distributor_id']),
-                                                            array('class'=>'btn btn-primary'))
+                                                            array('class'=>'btn btn-primary','title'=>"View the detail of {$list['company_name']} "))
                                         !!}
 
                                     @if(isset($list["approval"]["sales_approval"]))

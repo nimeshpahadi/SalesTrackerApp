@@ -9,10 +9,10 @@
             </div>
             <div align="right" class="pad-right">
                 <a href="{{route('stockin')}}">
-                    <span class=" btn btn-sm btn-primary" title="View all the stock in of this warehouse">View StocksIn</span>
+                    <span class=" btn btn-sm btn-primary" title="View all the stock in all warehouse">View StocksIn</span>
                 </a>
                 <a href="{{route('stockout')}}">
-                    <span class=" btn  btn-sm btn-primary" title="View all the stock out of this warehouse">View StockOut</span>
+                    <span class=" btn  btn-sm btn-primary" title="View all the stock out from all warehouse">View StockOut</span>
                 </a>
 
 
@@ -34,7 +34,7 @@
                                 </div>
                                 <div class="col-md-offset-1 pad-top" >
                             <a href="{{route('orderwarehouse',['warehouse_id'=>$value['ware_id']])}}">
-                                <span class=" btn btn-warning "  title="View order this warehouse">Order</span>
+                                <span class=" btn btn-warning "  title="View order in {{$ware}}">Order</span>
                             </a>
                                 </div>
 
@@ -65,7 +65,7 @@
                                         </td>
                                         <td>
                                             @role(('factoryincharge'))
-                                            <button class=" btn  btn-sm btn-primary glyphicon glyphicon-plus" title="Add the Stock from this warehouse"
+                                            <button class=" btn  btn-sm btn-primary glyphicon glyphicon-plus" title="Add the Stock for {{$ware}}"
                                                     data-toggle="modal"
                                                     data-target="#price{{$value['ware_id']}}{{$stock['pid']}}">Stock
                                             </button>
@@ -94,7 +94,7 @@
 
                                                         </div>
                                                         <div align="right">
-                                                        {{Form::submit('Save Stock', array('class'=>'btn btn-primary '))}}
+                                                        {{Form::submit('Save Stock', array('class'=>'btn btn-primary ','title'=>"Add stock in {$ware}"))}}
                                                         <a type="button" class="btn btn-warning "
                                                            href="/stock">Cancel</a>
                                                         {!! Form::close() !!}
@@ -105,10 +105,10 @@
                                             @endrole
 
                                             <a href="{{route('stockinHistory',['product_id'=>$stock['pid'],'warehouse_id'=>$value['ware_id']])}}">
-                                                <span class=" btn btn-sm btn-success" title="View Stockin history for this product in this warehouse">Stockin History</span>
+                                                <span class=" btn btn-sm btn-success" title="View Stockin history for {{$prodCat}} product {{$ware}}">Stockin History</span>
                                             </a>
                                             <a href="{{route('stockoutHistory',['product_id'=>$stock['pid'],'warehouse_id'=>$value['ware_id']])}}">
-                                                <span class=" btn btn-sm btn-success" title="View Stockout history for this product in this warehouse">Stockout History</span>
+                                                <span class=" btn btn-sm btn-success" title="View Stockout history for {{$prodCat}} product {{$ware}}">Stockout History</span>
                                             </a>
                                         </td>
                                     </tr>

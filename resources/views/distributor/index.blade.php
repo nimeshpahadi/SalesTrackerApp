@@ -11,13 +11,15 @@
                 <!-- /.box -->
 
                 <div class="box">
-                    <div align="right " style="padding: 10px">
+
                         @role((['admin','salesmanager','accountmanagersales','salesman','director','generalmanager']))
+                    <div align="right" class="pad">
                         <a href="{{route('distributor.create')}}">
                             <span class=" btn btn-success " title="Create new customer">Create Customer</span>
                         </a>
-                        @endrole
                     </div>
+                        @endrole
+
 
                     <div class="box-header">
                         <h3 class="box-title">List of All Customer</h3>

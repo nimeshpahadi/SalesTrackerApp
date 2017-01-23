@@ -25,11 +25,11 @@
                     <label class="col-md-8">Remark</label>
 
                     <div class="col-md-12">
-                        <textarea  class="form-control" type="text" name="remark"  ></textarea>
+                        <textarea  class="form-control" type="text" name="approval_remark"  ></textarea>
                     </div>
                 </div>
                 <div align="right">
-                {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
+                {{Form::submit('Submit', array('class'=>'btn btn-primary','title'=>'Add remark and Order status for salesmanager'))}}
                 {!! Form::close() !!}
             </div>
             </div>
@@ -69,11 +69,11 @@
                     <label class="col-md-8">Remark</label>
 
                     <div class="col-md-12">
-                        <textarea  class="form-control" type="text" name="remark"  ></textarea>
+                        <textarea  class="form-control" type="text" name="approval_remark"  ></textarea>
                     </div>
                 </div>
                 <div align="right">
-                {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
+                {{Form::submit('Submit', array('class'=>'btn btn-primary','title'=>'Add remark and Order status for salesmanager'))}}
                 {!! Form::close() !!}
             </div>
             </div>
@@ -105,11 +105,11 @@
                         <label class="col-md-8">Remark</label>
 
                         <div class="col-md-12">
-                            <textarea  class="form-control" type="text" name="remark"  ></textarea>
+                            <textarea  class="form-control" type="text" name="approval_remark"  ></textarea>
                         </div>
                     </div>
                     <div align="right">
-                    {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
+                    {{Form::submit('Submit', array('class'=>'btn btn-primary','title'=>'Add remark and Order status for salesmanager'))}}
                     {!! Form::close() !!}
                 </div>
                 </div>

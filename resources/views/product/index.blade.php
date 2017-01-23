@@ -79,7 +79,7 @@
                                                         </div>
                                                     </div>
                                                     <div align="right">
-                                                    {{Form::submit('Save Changes', array('class'=>'btn btn-sm btn-primary '))}}
+                                                    {{Form::submit('Save Changes', array('class'=>'btn btn-sm btn-primary ','title'=>'Save change of price for the product'))}}
                                                     <a type="button" class="btn btn-sm btn-warning" href="/product">Cancel</a>
                                                     {!! Form::close() !!}
                                                     </div>

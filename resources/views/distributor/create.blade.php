@@ -232,8 +232,8 @@
 
         <div align="center" class="col-md-4 col-md-offset-4 ">
             <div class="row">
-                {{Form::submit('Create Distributor', array('class'=>'btn btn-primary btn-lg btn-block', 'style'=>'margin-top:20px;'))}}
-                <a type="button" class="btn btn-warning btn-block" href="/distributor">Cancel</a>
+                {{Form::submit('Create Customer', array('class'=>'btn btn-primary','title'=>'Create the new customer'))}}
+                <a type="button" class="btn btn-warning" href="/distributor">Cancel</a>
                 {!! Form::close() !!}
             </div>
         </div>

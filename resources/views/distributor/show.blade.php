@@ -366,7 +366,7 @@
                                 @role((['admin','salesmanager','accountmanagersales','director','generalmanager']))
                                 <div align="right">
                                     <a href="{{route('create_payment',$dist->id)}}" >
-                                        <span class=" btn btn-sm btn-success pad ">payment</span>
+                                        <span class=" btn btn-sm btn-success pad " title="Create the payment for customer {{$dist->company_name}}" >payment</span>
                                     </a>
                                 </div>
                                 @endrole

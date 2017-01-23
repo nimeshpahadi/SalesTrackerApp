@@ -242,7 +242,7 @@
                 </div>
 
                 <div class="col-md-4 ">
-                    @role((['admin','salesmanager', 'generalmanager', 'director']))
+                    @role((['admin','salesmanager', 'generalmanager', 'director','factoryincharge']))
 
                     @if(count($order_billings)<1)
 
@@ -338,12 +338,14 @@
                         @include('order.partialapproval.accountmanagersales')
                         @include('order.partialapproval.salesmanager')
                         @include('order.partialapproval.admin')
-
+                        @if(count($approvalremark)>0)
                         <div class="panel panel-info  ">
+
                             <div class="box-body table-responsive no-padding">
 
                                 <table class="table  table-bordered   table-responsive ">
-                                    <thead>
+
+                                        <thead>
                                     <tr>
 
                                         <th>Status</th>
@@ -353,6 +355,7 @@
 
                                     </tr>
                                     </thead>
+
                                     <tbody>
 
 
@@ -382,12 +385,13 @@
                                 </table>
 
 
+
                             </div>
 
 
                         </div>
 
-
+                        @endif
                     </div>
 
                 </div>

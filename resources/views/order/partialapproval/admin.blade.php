@@ -39,7 +39,7 @@
                     </div>
                 </div>
                 <div align="right">
-                {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
+                {{Form::submit('Submit', array('class'=>'btn btn-primary','title'=>'Add remark and Order status for Admin'))}}
 
                 {!! Form::close() !!}
             </div>
@@ -106,7 +106,7 @@
                     </div>
                 </div>
                 <div align="right">
-                {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
+                {{Form::submit('Submit', array('class'=>'btn btn-primary','title'=>'Add remark and Order status for Admin'))}}
                 {!! Form::close() !!}
             </div>
             </div>
@@ -153,7 +153,7 @@
                         </div>
                     </div>
                     <div align="right">
-                    {{Form::submit('Submit', array('class'=>'btn btn-primary'))}}
+                    {{Form::submit('Submit', array('class'=>'btn btn-primary','title'=>'Add remark and Order status for Admin'))}}
                     {!! Form::close() !!}
                 </div>
                 </div>
