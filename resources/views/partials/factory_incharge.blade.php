@@ -47,7 +47,7 @@
         </div>
     </div>
 
-    <div class="nav-tabs-custom col-md-12 map">
+    <div class="nav-tabs-custom col-md-12 ">
         <ul class="nav nav-tabs pull-right">
 
             <li class="pull-left header"><i class="fa fa-user multiple active"></i> Active SalesMan</li>
