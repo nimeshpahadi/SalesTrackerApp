@@ -15,8 +15,8 @@
                 <div class="col-md-8">
                     <select id="select" name="type" class="form-control" required>
                         <option>{{$guarantee->type}}</option>
-                        <option value="Bank">Bank</option>
-                        <option value="Pdp">Pdp</option>
+                        <option value="Bank Guarantee">Bank Guarantee</option>
+                        <option value="Pdc">Pdc</option>
                         <option value="Cash">Cash</option>
                         <option value="Collateral">Collateral</option>
                         <option value="Others">Others</option>

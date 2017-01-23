@@ -92,10 +92,10 @@ class DistributorRepository
     {
         try {
             $this->distributorDetails->insert($request);
-            $this->log->info("Distributor Created");
+            $this->log->info("Customer Created");
             return true;
         } catch (QueryException $e) {
-            $this->log->error("Distributor Creation Failed");
+            $this->log->error("Customer Creation Failed");
             return false;
         }
 
@@ -119,11 +119,11 @@ class DistributorRepository
             $query->open_date = $request->open_date;
             $query->vat_no = $request->vat_no;
             $query->save();
-            $this->log->info("Distributor Updated", ['id' => $id]);
+            $this->log->info("Customer Updated", ['id' => $id]);
 
             return true;
         } catch (QueryException $e) {
-            $this->log->error("Distributor Update Failed", ['id' => $id]);
+            $this->log->error("Customer Update Failed", ['id' => $id]);
             return false;
         }
     }
@@ -140,10 +140,10 @@ class DistributorRepository
         try {
 
             $this->distributorGuarantee->insert($request);
-            $this->log->info("Distributor Guarantee Created");
+            $this->log->info("Customer Guarantee Created");
             return true;
         } catch (QueryException $e) {
-            $this->log->error("Distributor Guarantee Creation Failed");
+            $this->log->error("Customer Guarantee Creation Failed");
             return false;
         }
     }
@@ -154,10 +154,10 @@ class DistributorRepository
             $query = $this->distributorDetails->find($id);
             $query->delete();
             $query;
-            $this->log->info("Distributor Deleted");
+            $this->log->info("Customer Deleted");
             return true;
         } catch (Exception $e) {
-            $this->log->error("Distributor Deletion Failed");
+            $this->log->error("Customer Deletion Failed");
             return false;
         }
     }
@@ -173,10 +173,10 @@ class DistributorRepository
 
         try {
             $this->distributorTracking->create($dataSet);
-            $this->log->info("Distributor Tracking Created");
+            $this->log->info("Customer Tracking Created");
             return true;
         } catch (Exception $e) {
-            $this->log->error("Distributor Tracking Creation Failed");
+            $this->log->error("Customer Tracking Creation Failed");
             return false;
         }
 
@@ -198,11 +198,11 @@ class DistributorRepository
             $query->phone = $request->phone;
             $query->fax = $request->fax;
             $query->save();
-            $this->log->info("Distributor Address Updated ");
+            $this->log->info("Customer Address Updated ");
             return true;
 
         } catch (Exception $e) {
-            $this->log->error("Distributor Address Update Failed");
+            $this->log->error("Customer Address Update Failed");
             return false;
         }
 
@@ -219,10 +219,10 @@ class DistributorRepository
             $query->amount = $request->amount;
             $query->remark = $request->remark;
             $query->save();
-            $this->log->info("Distributor Guarantee Updated ");
+            $this->log->info("Customer Guarantee Updated ");
             return true;
         } catch (Exception $e) {
-            $this->log->error("Distributor Guarantee Update Failed");
+            $this->log->error("Customer Guarantee Update Failed");
             return false;
         }
     }
@@ -233,10 +233,10 @@ class DistributorRepository
             $query = $this->distributorAddress->find($id);
             $query->delete();
             $query;
-            $this->log->info("Distributor Address Deleted");
+            $this->log->info("Customer Address Deleted");
             return true;
         } catch (Exception $e) {
-            $this->log->error("Distributor Address Deletion Failed");
+            $this->log->error("Customer Address Deletion Failed");
             return false;
         }
     }
@@ -277,10 +277,10 @@ class DistributorRepository
     {
         try {
             $this->distributorMinute->insert($request);
-            $this->log->info("Distributor Minute Created");
+            $this->log->info("Customer Minute Created");
             return true;
         } catch (QueryException $e) {
-            $this->log->error("Distributor Minute Creation Failed");
+            $this->log->error("Customer Minute Creation Failed");
             return false;
         }
     }

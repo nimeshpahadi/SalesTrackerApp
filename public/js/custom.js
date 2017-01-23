@@ -57,7 +57,7 @@ $(document).ready(function () {
             $("#amount").show();
 
         }
-        else if (gType == "Collateral") {
+        else if (gType == "Collateral" || gType == "Others") {
             $(".bank-name").attr("type", "hidden");
             $(".bank-name").val("");
             $(".cheque-no").attr("type", "hidden");
@@ -67,21 +67,8 @@ $(document).ready(function () {
             $("#bank_name").hide();
             $("#cheque_no").hide();
             $("#amount").hide();
-            $(".amount").attr("type", "show");
         }
-        else if (gType == "Others") {
 
-            $(".bank-name").attr("type", "hidden");
-            $(".bank-name").val("");
-            $(".cheque-no").attr("type", "hidden");
-            $(".cheque-no").val("");
-            $(".amount").attr("type", "hidden");
-            $(".amount").val("");
-            $("#bank_name").hide();
-            $("#cheque_no").hide();
-            $("#amount").hide();
-            $(".amount").attr("type", "show");
-        }
         else {
             $("#bank_name").show();
             $("#cheque_no").show();
@@ -130,13 +117,14 @@ $(document).ready(function () {
             $(".chequedate").attr("type", "show");
         }
         else {
+
             $("#bankname").hide();
             $(".bankname").attr("type", "hide");
             $("#chequeno").hide();
             $(".chequeno").attr("type", "hide");
             $("#chequedate").hide();
-            $(".chequedate").attr("type", "hide");
-
+            $(".date").attr("type", "hide");
+            $(".date").val("");
         }
 
     }
@@ -152,6 +140,8 @@ $(document).ready(function () {
             $("#warehouse_id").show();
         }
     }
+
+
 
     //aaaaa
     $("#roles").change(function () {
@@ -188,13 +178,10 @@ $(document).ready(function () {
         guaranteeForm(guaranteeType);
     }
 
-
-
-
-//aaaaa
        if (edituser) {
         userform(roletype);
     }
+
 
 });
 
@@ -244,3 +231,14 @@ $('#date2').datepicker({
 today = yyyy + '-' + mm + '-' + dd;
 document.getElementById("datefield").setAttribute("max", today);
 document.getElementById("datefield1").setAttribute("max", today);
+
+
+
+// var number = document.getElementById('amount');
+// number.onkeydown = function(e) {
+//     if(!((e.keyCode > 95 && e.keyCode < 106)
+//         || (e.keyCode > 47 && e.keyCode < 58)
+//         || e.keyCode == 8)) {
+//         return false;
+//     }
+// }

@@ -25,9 +25,9 @@
             </div>
 
             <div class="form-group">
-                {{ Form::label('contact','MobileNo. :',array('class'=>'col-sm-2 control-label margin-top-5'))}}
+                {{ Form::label('contact','Mobile No. :',array('class'=>'col-sm-2 control-label margin-top-5'))}}
                 <div class="col-sm-10">
-                    {{ Form::text('contact',null,array('class'=>'form-control required margin-top-5'))}}
+                    {{ Form::number('contact',null,array('class'=>'form-control required margin-top-5'))}}
                 </div>
             </div>
 

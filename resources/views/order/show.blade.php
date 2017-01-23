@@ -7,7 +7,7 @@
             <div class="col-md-12">
 
 
-                <div class="panel panel-info col-md-8">
+                <div class="panel panel-info col-md-7">
                     <div class="panel-heading"><h4>Order Details</h4></div>
 
                     <div class="panel-body"><h1 align="center">{{$orderId->distributor_name}}</h1>
@@ -241,8 +241,8 @@
                     </div>
                 </div>
 
-                <div class="col-md-4 ">
-                    @role((['admin','salesmanager', 'generalmanager', 'director','factoryincharge']))
+                <div class="col-md-5 ">
+                    @role((['admin','salesmanager', 'generalmanager', 'director','factoryincharge','accountmanagersales']))
 
                     @if(count($order_billings)<1)
 
