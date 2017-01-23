@@ -1,9 +1,9 @@
 @extends('Layout.app')
 
 @section('main-content')
-
+<div class="col-md-6 col-md-offset-3">
     <h3>Edit Stocks</h3>
-    <div class="box box-info clearfix ">
+    <div class="box box-info clearfix pad ">
 
         @foreach($ware_name as $w)
         @endforeach
@@ -48,12 +48,12 @@
             </div>
         </div>
 
-        <div class="clearfix"></div>
-        {{Form::submit('Save Changes', array('class'=>'btn btn-primary btn-lg btn-block', 'style'=>'margin-top:20px;'))}}
-        <a type="button" class="btn btn-warning btn-block" href="/stock">Cancel</a>
+        <div class="clearfix" align="center">
+        {{Form::submit('Save Changes', array('class'=>'btn btn-primary','title'=>'Save changes to the Stockin'))}}
+        <a type="button" class="btn btn-warning " href="/stock">Cancel</a>
         {!! Form::close() !!}
 
-
+        </div>
     </div>
-
+</div>
 @endsection

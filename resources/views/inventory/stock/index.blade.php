@@ -10,7 +10,7 @@
         <div align="right" class="pad-bottom    ">
 
             <a href="{{route('stock.create')}}">
-                <span class=" btn btn-sm btn-success ">Stocks_In</span>
+                <span class=" btn btn-sm btn-success " title="Click here to add stocks">Stocks_In</span>
             </a>
         </div>
         <!-- /.box-header -->
@@ -40,7 +40,7 @@
                         <td>{{$as->created_at}}</td>
                         <td>{{$as->updated_at}}</td>
                         <td><a href="{!! route('stock.edit',$as->id)!!}">
-                                <span class="  btn btn-primary glyphicon glyphicon-pencil"></span>
+                                <span class="  btn btn-primary glyphicon glyphicon-pencil" title="Edit stockin details "></span>
                             </a>
                         </td>
 
