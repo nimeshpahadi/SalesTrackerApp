@@ -83,13 +83,18 @@
                                     </div>
 
                                     <div class="row">
-                                        <label class="col-sm-6 ">Total Due :</label>
                                         <?php  $due = $paying_transaction->paid_amount -
                                                 $billing_transaction->billing_amount ?>
+                                        <label class="col-sm-6 ">Total  @if($due<0)
+                                                Due :
+                                            @else
+                                        Advance :
+                                            @endif</label>
+
                                         @if($due<0)
                                             Rs. {{number_format(-$due)}}
                                         @else
-                                            Rs. {{number_format($due)}} (Advance)
+                                            Rs. {{number_format($due)}}
                                         @endif
                                     </div>
 
@@ -392,7 +397,10 @@
                                             <td>{{$pay->type}}</td>
                                             <td>{{$pay->bank_name}}</td>
                                             <td>{{$pay->cheque_no}}</td>
-                                            <td>{{$pay->cheque_date}}</td>
+                                            <td> @if($pay->cheque_date!="0000-00-00")
+                                            {{$pay->cheque_date}}
+                                            @endif
+                                            </td>
                                             <td>{{$pay->userName}}</td>
                                             <td>{{$pay->remark}}</td>
 

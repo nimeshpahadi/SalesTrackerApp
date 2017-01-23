@@ -72,7 +72,7 @@
                 <div class="form-group clearfix">
                     <label for="image" class="col-sm-4 control-label">Product Image</label>
                     <div class="col-sm-8">
-                            {{--{{ Form::text('image',null,array('class'=>'col-sm-4'))}}--}}
+
 
                         {{ Form::file('image',null,array('class'=>'form-control col-sm-8', 'name'=>"image", 'id'=>"image" ))}}
 

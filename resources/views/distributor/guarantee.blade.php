@@ -44,11 +44,13 @@
 
         {{ Form::hidden('distributor_id', $disid->id) }}
 
-        <div id="amount" class="form-group{{ $errors->has('amount') ? ' has-error' : '' }} clearfix">
-            <label for="amount" class="col-sm-4 control-label">Amount</label>
+
+
+        <div  class="form-group  {{ $errors->has('amount') ? ' has-error' : '' }} clearfix" id="amount">
+            <label   for="amount" class="col-sm-4 control-label amount">Amount</label>
 
             <div class="col-md-8">
-                <input id="amount" type="text"  class="form-control amount" name="amount" min=0  value="{{ old('amount') }}">
+                <input  type="number"   class="form-control " min="1" name="amount"   value="{{ old('amount') }}" >
                 @if ($errors->has('amount'))
                     <span class="help-block">
                         <strong>{{ $errors->first('amount') }}</strong>
@@ -56,6 +58,8 @@
                 @endif
             </div>
         </div>
+
+
 
         <div class="form-group clearfix">
             <label for="type" class="col-sm-4 control-label">Remark</label>
@@ -74,6 +78,7 @@
 
     </div>
     </div>
+
 
 @endsection
 @endrole

@@ -58,9 +58,8 @@ class DistributorController extends Controller
      */
     public function store(DistributorDetailRequest $request)
     {
-//dd($request->all());
         if ($this->distributorService->storedistributor($request)) {
-            return redirect('/distributor')->withSuccess("Distributor created!");
+            return redirect('/distributor')->withSuccess("Customer created!");
         }
         return back()->withErrors("Something went wrong");
     }
@@ -104,7 +103,7 @@ class DistributorController extends Controller
     public function update(Request $request, $id)
     {
         if ($this->distributorService->update_distributor($request, $id)) {
-            return redirect()->route('distributor.show', compact('id'))->withSuccess('Distributor updated');
+            return redirect()->route('distributor.show', compact('id'))->withSuccess('Customer updated');
         }
         return back()->withErrors('something went wrong');
 
@@ -113,7 +112,7 @@ class DistributorController extends Controller
     public function destroy($id)
     {
         if ($this->distributorService->deleteDistributor($id)) {
-            return redirect()->route('distributor.index')->withSuccess('Distributor deleted');
+            return redirect()->route('distributor.index')->withSuccess('Customer deleted');
         }
         return back()->withErrors('something went wrong');
 
@@ -219,7 +218,7 @@ class DistributorController extends Controller
     {
         $id = $request['distributor_id'];
         $this->distributorService->update_dis_address($request, $id);
-        $request->session()->flash('alert-success', 'Distributor Address was edited successfully!');
+        $request->session()->flash('alert-success', 'Customer Address was edited successfully!');
         return redirect()->route('distributor.show', compact('id'));
     }
 
@@ -227,7 +226,7 @@ class DistributorController extends Controller
     public function destroy_address($id)
     {
         $this->distributorService->deleteDistributorAddress($id);
-        session()->flash('alert-danger', 'Distributor was deleted successfully!');
+        session()->flash('alert-danger', 'Customer was deleted successfully!');
         return redirect()->route('distributor.index');
     }
 
@@ -243,6 +242,7 @@ class DistributorController extends Controller
 
     public function updateguarantee(Request $request, $id)
     {
+
         if ($this->distributorService->update_dis_guarantee($request, $id)) {
             return redirect()->route('distributor.show', compact('id'))->withSuccess('guarentee update success');
         }

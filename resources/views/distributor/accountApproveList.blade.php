@@ -30,31 +30,47 @@
                                     <td>{{$list['company_name']}}</td>
                                     <td>{{$list['contact_name']}}</td>
                                     <td>
-                                        {{isset($list['approval']['username'])?$list['approval']['username']:"SalesManager"}}
-                                        {{isset($list['approval']['display_name'])?"(".$list['approval']['display_name'].")":""}}
-                                                                :  {{(isset($list["approval"]["sales_approval"])
-                                                                && $list["approval"]["sales_approval"]!=null)
-                                                                ?ucfirst($list["approval"]["sales_approval"])
-                                                                :"Waiting For Approval"}}
+                                        @if($list["approval"]["sales_approval"]=='Approved')
+                                            {{isset($list['approval']['username'])?$list['approval']['username']:"SalesManager"}}
 
-                                        <button class="btn btn-success glyphicon glyphicon-info-sign"
-                                                data-toggle="popover" data-trigger="hover"
-                                                data-content="{{$list['approval']['sale_remark']}}">
-                                        </button>
-
+                                            {{isset($list['approval']['display_name'])?"(".$list['approval']['display_name'].")":""}}
+                                        @else
+                                            SalesManager
+                                        @endif
+                                        : {{(isset($list["approval"]["sales_approval"])
+                                            && $list["approval"]["sales_approval"]=='Approved')
+                                            ?ucfirst($list["approval"]["sales_approval"])
+                                            :"Waiting For Approval"}}
+                                        @if(isset($list['approval']['sale_remark'] )  && $list["approval"]["sales_approval"]=='Approved' )
+                                            <button class="btn btn-success glyphicon glyphicon-info-sign"
+                                                    data-toggle="popover" data-trigger="hover" ,
+                                                    data-content="{{$list['approval']['sale_remark']}}">
+                                            </button>
+                                        @endif
                                         <br>
 
                                         {{--Admin--}}
-                                        {{isset($list['adminApproval']['username'])?$list['adminApproval']['username']:"Admin"}}
-                                        {{isset($list['adminApproval']['display_name'])?"(".$list['adminApproval']['display_name'].")":""}}
-                                                        : {{(isset($list["adminApproval"]["admin_approval"])
-                                                        && $list["adminApproval"]["admin_approval"]!=null)
-                                                        ?ucfirst($list["adminApproval"]["admin_approval"]):"Waiting For Approval"}}
 
-                                        <button class="btn btn-success glyphicon glyphicon-info-sign"
-                                                data-toggle="popover" data-trigger="hover"
-                                                data-content="{{$list['approval']['admin_remark']}}">
-                                        </button>
+                                        @if($list["adminApproval"]["admin_approval"]=='Approved')
+                                            {{isset($list['adminApproval']['username'])?$list['adminApproval']['username']:"Admin"}}
+
+                                            {{isset($list['adminApproval']['display_name'])?"(".$list['adminApproval']['display_name'].")":""}}
+                                        @else
+                                            Admin
+                                        @endif
+                                        : {{(isset($list["adminApproval"]["admin_approval"])
+                                            && $list["adminApproval"]["admin_approval"]=='Approved')
+                                            ?ucfirst($list["adminApproval"]["admin_approval"])
+                                            :"Waiting For Approval"}}
+                                        @if(isset($list['adminApproval']['admin_remark'] )  && $list["adminApproval"]["admin_approval"]=='Approved' )
+                                            <button class="btn btn-success glyphicon glyphicon-info-sign"
+                                                    data-toggle="popover" data-trigger="hover" ,
+                                                    data-content="{{$list['adminApproval']['admin_remark']}}">
+                                            </button>
+
+                                        @endif
+
+
 
                                     </td>
 

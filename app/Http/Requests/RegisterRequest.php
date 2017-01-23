@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\User;
 use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
@@ -23,7 +24,7 @@ class RegisterRequest extends FormRequest
      */
     public function rules()
     {
-
+        $user = User::find($this->user);
         $rulesData = [];
         switch ($this->method()){
             case 'POST':{
@@ -56,7 +57,8 @@ class RegisterRequest extends FormRequest
                         'department' => 'required',
                         'role' => 'required',
                         'reportsto' => 'required',
-                        'email' => 'required|email|max:255',
+//                        'email' => 'required|email|max:255',
+                        'email' => 'required|email|unique:users,email,'.$user->id,
                         'contact' => 'required|min:10',
                     ];
                     if (isset($data['role']) && $data['role']==4)
