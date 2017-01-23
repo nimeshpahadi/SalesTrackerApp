@@ -81,7 +81,7 @@
                         </a>
                         @foreach($undispatched as $undis)
                             @if($o->id == $undis->id)
-                                On Hold
+                           <a style="color:#bf800c">     On Hold </a>
                             @else
 
                             @endif

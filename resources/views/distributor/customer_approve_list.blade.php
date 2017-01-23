@@ -64,8 +64,7 @@
 
                                         @if(isset($list['approval']['admin_approval']) && $list['approval']['admin_approval']!=null)
 
-                                            <button id="pop"
-                                                    @if($list['approval']['admin_approval']=='Approved')
+                                            <button @if($list['approval']['admin_approval']=='Approved')
                                                     class="btn btn-success glyphicon glyphicon-info-sign"
                                                     @elseif($list['approval']['admin_approval']=='Rejected')
                                                     class="btn btn-danger glyphicon glyphicon-info-sign"

@@ -22,7 +22,7 @@
                                 <div align="right">
                                     <div class="">
                                         {!! Html::linkRoute('user.edit','edit',array($user->id),
-                                                  array('class'=>'btn btn-success glyphicon glyphicon-edit '))!!}
+                                                  array('class'=>'btn btn-success glyphicon glyphicon-edit','title'=>"Edit {$user->username}"))!!}
                                     </div>
 
                                 </div>

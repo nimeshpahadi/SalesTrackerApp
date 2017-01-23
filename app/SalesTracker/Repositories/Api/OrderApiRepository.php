@@ -73,6 +73,7 @@ class OrderApiRepository
         $query->priority               = $request['priority'];
         $query->payment_term           = $request['payment_term'];
         $query->proposed_delivery_date = $request['proposed_delivery_date'];
+        $query->order_remark           = $request['order_remark'];
 
         $data = $query->save();
 

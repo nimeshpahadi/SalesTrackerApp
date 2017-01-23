@@ -2,12 +2,13 @@
 
 @section('main-content')
     <body class="hold-transition register-page">
+    <div class="col-md-offset-5">
+        <h3><b>Edit User</b></h3>
+    </div>
     <div class="box box-info margin-top-5 margin-left-50 margin-right-20 useredit">
         {!! Form::model($user,array('route'=>['user.update',$user->id],'method'=>'PUT', 'class'=>'form-horizontal'))!!}
         <div class="box-body margin-left-10  margin-right-40">
-            <div class="col-md-offset-5 margin-top-10 margin-bottom-40">
-                <h3><b>Edit User</b></h3>
-            </div>
+
 
             <div class="form-group">
                 {{ Form::label('fullname','Fullname :',array('class'=>'col-sm-2 control-label'))}}
@@ -122,10 +123,11 @@
             <div class="row">
                 <div class="form-group" style="padding-top: 30px">
                     <div class="col-md-9 col-md-offset-5">
-                        <button type="submit" class="btn btn-success margin-top-10 margin-bottom-20">
+                        <button type="submit" class="btn btn-success margin-top-10 margin-bottom-20" title="Save Changes">
                             Save Change
                         </button>
-                        <a type="button" class="btn btn-warning margin-top-10 margin-bottom-20 margin-left-10" href="/user">
+                        <a type="button" class="btn btn-warning margin-top-10 margin-bottom-20 margin-left-10" href="/user"
+                        >
                             Cancel
                         </a>
                     </div>

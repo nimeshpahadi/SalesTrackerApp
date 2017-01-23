@@ -124,10 +124,10 @@
                 <div class="row">
                     <div class="form-group" style="padding-top: 30px">
                         <div class="col-md-9 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-primary" title="Register User">
                                 Register
                             </button>
-                            <a type="button" class="btn btn-warning" href="/user" style="margin-left: 30px">
+                            <a type="button" class="btn btn-warning" href="/user">
                                 Cancel
                             </a>
                         </div>

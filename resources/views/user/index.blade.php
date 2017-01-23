@@ -6,7 +6,7 @@
 
     <div class="row-md-12">
         <div align="right">
-            <a href="{{ url('/user/create') }}" class="btn btn-success  fa fa-user-plus"> Create User</a>
+            <a href="{{ url('/user/create') }}" class="btn btn-success  fa fa-user-plus" title="Create New User"> Create User</a>
         </div>
     </div>
 
@@ -53,7 +53,7 @@
                                 @endforeach
 
                                 <td>
-                                    {!! Html::linkRoute('user.show','View',array($users->id),array('class'=>'btn btn-success '))!!}
+                                    {!! Html::linkRoute('user.show','View',array($users->id),array('class'=>'btn btn-success ', 'title'=>"View user details of {$users->fullname}"))!!}
 
                                     @role(('admin'))
                                     <a href="{{route('passwordreset',$users->id)}}">

@@ -18,7 +18,7 @@
 
                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 
-                                        <div class="col-md-10 margin-top-20 margin-left-30">
+                                        <div class="col-md-10 margin-top-10 margin-left-30">
                                             <input id="password" type="password" class="form-control"
                                                    name="password"
                                                    placeholder="New Password"
@@ -34,7 +34,7 @@
 
                                         <div class="form-group">
 
-                                            <div class="col-md-10 margin-top-20 margin-left-30">
+                                            <div class="col-md-10 margin-top-10 margin-left-30">
                                                 <input id="password-confirm" type="password" class="form-control"
                                                        name="password_confirmation" placeholder="Confirm Password"
                                                        required>
@@ -44,7 +44,7 @@
                                 </div>
 
                                 <div class="col-md-offset-4">
-                                    {{Form::submit('Save', array('class'=>'btn btn-success margin-top-20'))}}
+                                    {{Form::submit('Save', array('class'=>'btn btn-success margin-top-20', 'title'=>'Save New Password'))}}
                                     <a type="button" class="btn btn-warning margin-top-20 margin-left-10"
                                        href="/user">Cancel</a>
                                     {!! Form::close() !!}

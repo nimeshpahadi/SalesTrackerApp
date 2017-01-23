@@ -64,7 +64,7 @@ class OrderApiService extends BaseService
             "price"                  => $serviceOrder['price'],
             "priority"               => $serviceOrder['priority'],
             "proposed_delivery_date" => $serviceOrder['proposed_delivery_date'],
-            "remark"                 => $serviceOrder['remark']
+            "order_remark"           => $serviceOrder['order_remark']
 
         ];
 
@@ -133,7 +133,7 @@ class OrderApiService extends BaseService
             "quantity"               => $orderDetails['quantity'],
             "priority"               => $orderDetails['priority'],
             "proposed_delivery_date" => $orderDetails['proposed_delivery_date'],
-            "remark"                 => $orderDetails['remark']
+            "order_remark"           => $orderDetails['order_remark']
 
 
         ];
@@ -160,7 +160,7 @@ class OrderApiService extends BaseService
             "price"                  => $request['price'],
             "priority"               => $request['priority'],
             "proposed_delivery_date" => $request['proposed_delivery_date'],
-            "remark"                 => $request['remark']
+            "order_remark"           => $request['order_remark']
 
 
         ];
@@ -236,7 +236,7 @@ class OrderApiService extends BaseService
                 "price"                  => $list->price,
                 "priority"               => $list->priority,
                 "proposed_delivery_date" => $list->proposed_delivery_date,
-                "remark"                 => $list->remark
+                "order_remark"           => $list->order_remark
 
 
             ];

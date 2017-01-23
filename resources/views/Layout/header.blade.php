@@ -140,7 +140,7 @@
                 @endrole
 
 
-                @role((['salesmanager','salesman']))
+                @role(('salesmanager'))
                 <li class="active treeview">
                     <a href="{{ url('customer/list') }}">
                         <i class="fa fa-user-plus"></i> <span>Customer Approval</span>

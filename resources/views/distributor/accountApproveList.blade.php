@@ -37,6 +37,11 @@
                                                                 ?ucfirst($list["approval"]["sales_approval"])
                                                                 :"Waiting For Approval"}}
 
+                                        <button class="btn btn-success glyphicon glyphicon-info-sign"
+                                                data-toggle="popover" data-trigger="hover"
+                                                data-content="{{$list['approval']['sale_remark']}}">
+                                        </button>
+
                                         <br>
 
                                         {{--Admin--}}
@@ -45,6 +50,11 @@
                                                         : {{(isset($list["adminApproval"]["admin_approval"])
                                                         && $list["adminApproval"]["admin_approval"]!=null)
                                                         ?ucfirst($list["adminApproval"]["admin_approval"]):"Waiting For Approval"}}
+
+                                        <button class="btn btn-success glyphicon glyphicon-info-sign"
+                                                data-toggle="popover" data-trigger="hover"
+                                                data-content="{{$list['approval']['admin_remark']}}">
+                                        </button>
 
                                     </td>
 
