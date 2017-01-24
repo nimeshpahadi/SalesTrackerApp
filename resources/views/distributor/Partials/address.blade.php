@@ -2,11 +2,18 @@
     <div class="panel panel-info">
         <div class="panel-heading" align="center"> <h4>{{strtoupper($add['type'])}}</h4>
             <div class="col-md-offset-11">
-                <a class="btn btn-primary" href="{{route('edit_distributor_address', ["id"=>$dist->id])}}">Edit</a>
+                @if($add['type']=='Billing')
+                <a class="btn btn-primary" href="{{route('edit_distributor_address', ["id"=>$add['id'],'type'=>1])}}">Edit</a>
+                    @else
+                    <a class="btn btn-primary" href="{{route('edit_distributor_address', ["id"=>$add['id'],'type'=>2])}}">Edit</a>
+                @endif
             </div>
         </div>
 
+
+
         <div class="container">
+
         <div class="row">
             <label class="col-sm-2 ">Zone:</label>
             {{$add['zone']}}

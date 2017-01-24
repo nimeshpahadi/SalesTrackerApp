@@ -95,6 +95,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
+        $shipaddress=$this->distributorService->shippingAddress($id);
         $dispatched=$this->stockService->getstockoutbyorder($id);
         $orderout=$this->orderService->getorderoutdetail_id($id);
         $ware = $this->stockService->get_allwarehouse();
@@ -106,7 +107,7 @@ class OrderController extends Controller
         $order_billings=$this->orderService->getcountorderBilling($id);
         $order_payment=$this->orderService->getpayment($id);
         $order=$this->orderService->getOrderListDetails();
-        return view('order.show',compact('order','orderId','order_payment','approvalremark','dispatched','order_billings','orderout','ware','order_approval','salesapproval','adminapproval','marketingapproval'));
+        return view('order.show',compact('order','orderId','order_payment','shipaddress','approvalremark','dispatched','order_billings','orderout','ware','order_approval','salesapproval','adminapproval','marketingapproval'));
     }
 
     /**
@@ -214,7 +215,7 @@ class OrderController extends Controller
         $role = $user->roles[0]->name;
         if ($orderRemark=$this->orderService->OrderApprovalUpdate($request,$id))
         {
-            if ($role=='admin')
+            if ($role=='admin' || $role=='generalmanager'|| $role=='director')
                 $status=$request->get('admin_approval');
             elseif($role=='salesmanager')
                 $status=$request->get('salesmanager_approval');
@@ -266,7 +267,7 @@ class OrderController extends Controller
         if ($orderApproval=$this->orderService->updateAdminOrder($formData,$role))
         {
             $orderAppId = $this->orderService->getOrderApproval($formData['order_id']);
-            if ($role=='admin')
+            if ($role=='admin' || $role=='generalmanager'|| $role=='director' )
                 $status=$request->get('admin_approval');
             elseif($role=='salesmanager')
                     $status=$request->get('sales_approval');
