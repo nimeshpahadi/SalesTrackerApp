@@ -30,56 +30,56 @@
                                     <td>{{$list['company_name']}}</td>
                                     <td>{{$list['contact_name']}}</td>
                                     <td>
-                                        @if($list["approval"]["sales_approval"]=='Approved')
-                                            {{isset($list['approval']['username'])?$list['approval']['username']:"SalesManager"}}
+                                        {{isset($list['approval']['username'])?$list['approval']['username']:"SalesManager"}}
+                                        {{isset($list['approval']['display_name'])?"(".$list['approval']['display_name'].")":""}}
+                                                                :  {{(isset($list["approval"]["sales_approval"])
+                                                                && $list["approval"]["sales_approval"]!=null)
+                                                                ?ucfirst($list["approval"]["sales_approval"])
+                                                                :"Waiting For Approval"}}
 
-                                            {{isset($list['approval']['display_name'])?"(".$list['approval']['display_name'].")":""}}
-                                        @else
-                                            SalesManager
-                                        @endif
-                                        : {{(isset($list["approval"]["sales_approval"])
-                                            && $list["approval"]["sales_approval"]=='Approved')
-                                            ?ucfirst($list["approval"]["sales_approval"])
-                                            :"Waiting For Approval"}}
-                                        @if(isset($list['approval']['sale_remark'] )  && $list["approval"]["sales_approval"]=='Approved' )
-                                            <button class="btn btn-success glyphicon glyphicon-info-sign"
-                                                    data-toggle="popover" data-trigger="hover" ,
+                                        @if(isset($list['approval']['sales_approval']))
+
+                                            <button @if($list['approval']['sales_approval']=='Approved')
+                                                    class="btn btn-success glyphicon glyphicon-info-sign"
+                                                    @elseif($list['approval']['sales_approval']=='Rejected')
+                                                    class="btn btn-danger glyphicon glyphicon-info-sign"
+                                                    @else
+                                                    class="btn btn-warning glyphicon glyphicon-info-sign"
+                                                    @endif
+                                                    data-toggle="popover" data-trigger="hover"
                                                     data-content="{{$list['approval']['sale_remark']}}">
                                             </button>
                                         @endif
+
                                         <br>
 
                                         {{--Admin--}}
+                                        {{isset($list['adminApproval']['username'])?$list['adminApproval']['username']:"Admin"}}
+                                        {{isset($list['adminApproval']['display_name'])?"(".$list['adminApproval']['display_name'].")":""}}
+                                                                    : {{(isset($list["adminApproval"]["admin_approval"])
+                                                                    && $list["adminApproval"]["admin_approval"]!=null)
+                                                                    ?ucfirst($list["adminApproval"]["admin_approval"])
+                                                                    :"Waiting For Approval"}}
 
-                                        @if($list["adminApproval"]["admin_approval"]=='Approved')
-                                            {{isset($list['adminApproval']['username'])?$list['adminApproval']['username']:"Admin"}}
-
-                                            {{isset($list['adminApproval']['display_name'])?"(".$list['adminApproval']['display_name'].")":""}}
-                                        @else
-                                            Admin
-                                        @endif
-                                        : {{(isset($list["adminApproval"]["admin_approval"])
-                                            && $list["adminApproval"]["admin_approval"]=='Approved')
-                                            ?ucfirst($list["adminApproval"]["admin_approval"])
-                                            :"Waiting For Approval"}}
-                                        @if(isset($list['adminApproval']['admin_remark'] )  && $list["adminApproval"]["admin_approval"]=='Approved' )
-                                            <button class="btn btn-success glyphicon glyphicon-info-sign"
-                                                    data-toggle="popover" data-trigger="hover" ,
-                                                    data-content="{{$list['adminApproval']['admin_remark']}}">
+                                        @if(isset($list['approval']['admin_approval']) && $list['approval']['admin_approval']!=null)
+                                            <button @if($list['approval']['admin_approval']=='Approved')
+                                                    class="btn btn-success glyphicon glyphicon-info-sign"
+                                                    @elseif($list['approval']['admin_approval']=='Rejected')
+                                                    class="btn btn-danger glyphicon glyphicon-info-sign"
+                                                    @else
+                                                    class="btn btn-warning glyphicon glyphicon-info-sign"
+                                                    @endif
+                                                    data-toggle="popover" data-trigger="hover"
+                                                    data-content="{{$list['approval']['admin_remark']}}">
                                             </button>
-
                                         @endif
-
-
 
                                     </td>
-
                                     <td>
                                         {!! Html::linkRoute('distributor.show','View',
                                                             array($list['distributor_id']),
-                                                            array('class'=>'btn btn-primary btn-block','title'=>"View the detail of {$list['company_name']} "))
+                                                            array('class'=>'btn btn-primary btn-block'))
                                         !!}
-
                                         @if(isset($list["approval"]["sales_approval"])
                                               && $list["approval"]["sales_approval"]=="Approved")
 
@@ -92,7 +92,6 @@
                                                              array('class'=>'btn btn-success btn-block'))
                                                 !!}
                                             @endif
-
                                         @endif
                                     </td>
                                 </tr>
