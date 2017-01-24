@@ -206,21 +206,27 @@ class DistributorController extends Controller
         return back(compact('id'))->withErrors('Address was not added');
     }
 
-    public function editaddress($id)
+    public function editaddress($id, Request $request)
     {
+
+        $type = $request['type'];
+
         $dist = $this->distributorService->select_distributor($id);
         $address = $this->distributorService->getaddress($id);
-        return view('distributor/edit_address', compact('dist', 'address'));
+        return view('distributor/edit_address', compact('dist', 'address','type'));
 
     }
 
     public function updateaddress(Request $request)
     {
         $id = $request['distributor_id'];
-        $this->distributorService->update_dis_address($request, $id);
-        $request->session()->flash('alert-success', 'Customer Address was edited successfully!');
-        return redirect()->route('distributor.show', compact('id'));
-    }
+
+       if( $this->distributorService->update_dis_address($request, $id)){
+
+        return redirect()->route('distributor.show', compact('id'))->withSuccess('Address was edited');
+        }
+    return back(compact('id'))->withErrors('Address was not edited');
+        }
 
 
     public function destroy_address($id)

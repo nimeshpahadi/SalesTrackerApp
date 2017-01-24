@@ -222,7 +222,6 @@
                         <div class="row clearfix">
 
                             <div class="col-md-12 clearfix">
-
                                 @if(!empty($address["Billing"]))
                                     @include('distributor.Partials.address',["add"=>$address["Billing"]])
                                 @endif

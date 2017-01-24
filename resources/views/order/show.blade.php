@@ -163,6 +163,7 @@
                         @endif
 
                     @if(isset($orderout->orderoutid)&& !isset($dispatched->orderoutid))
+                        @if(isset($shipaddress))
                             @role((['factoryincharge']))
 
                             <div class="panel panel-success col-md-11">
@@ -202,6 +203,11 @@
                                 </div>
                             </div>
                             @endrole
+@else
+                            <h4>
+                                The Shipping address is not available. So please enter first.
+                            </h4>
+                        @endif
                         @endif
 
 

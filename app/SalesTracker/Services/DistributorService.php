@@ -101,6 +101,7 @@ class DistributorService
     public function create_address($request)
     {
         $formData = $request->all();
+
         $type = (int)trim($formData['type']);
         $data = [];
         $billing = $this->formatShippingAndBilling($formData, "Billing");
@@ -111,7 +112,6 @@ class DistributorService
                 $shipping,
                 $billing
             ];
-
         }
 
         if ($type == 1) {
@@ -122,6 +122,7 @@ class DistributorService
         }
 
         $createAddress = $this->distributorRepository->createAddress($data);
+//        dd($createAddress);
         return $createAddress;
     }
 
@@ -169,8 +170,23 @@ class DistributorService
 
     public function update_dis_address($request, $id)
     {
-        $data = $this->distributorRepository->updatedisaddress($request, $id);
-        return $data;
+
+        $formData = $request->all();
+        $type = (int)trim($formData['type']);
+        $data = [];
+        $billing = $this->formatShippingAndBilling($formData, "Billing");
+        $shipping = $this->formatShippingAndBilling($formData, "Shipping");
+
+        if ($type == 1) {
+            $data = $billing;
+        }
+        if ($type == 2) {
+            $data = $shipping;
+        }
+
+        $updateAddress = $this->distributorRepository->updatedisaddress($data,$id);
+        return $updateAddress;
+
     }
 
     public function update_dis_guarantee($request, $id)
@@ -182,7 +198,6 @@ class DistributorService
     public function deleteDistributorAddress($id)
     {
         $addressdelete = $this->distributorRepository->deleteDistributor_Address($id);
-//        dd($addressdelete);
         return $addressdelete;
 
     }
@@ -219,6 +234,13 @@ class DistributorService
         $data = $this->distributorRepository->select_distributorguarantee($id);
         return $data;
     }
+
+    public function shippingAddress($id)
+    {
+        $data = $this->distributorRepository->shipping_address($id);
+        return $data;
+    }
+
 
 
     public function gettracking($id)
@@ -263,4 +285,6 @@ class DistributorService
 
         return $data;
     }
+
+
 }

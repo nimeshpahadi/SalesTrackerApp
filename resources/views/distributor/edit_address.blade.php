@@ -7,36 +7,42 @@
 
     ?>
 
-    {{--<?php $addressType = Config::get('distributor.address_type');?>--}}
+    <?php $addressType = Config::get('distributor.address_type');?>
+
     {{--@foreach($addressType as $index=>$value)--}}
         {{--@if($type==$index)--}}
-            {{--<h3>Add {{$value}} Address</h3>--}}
+            {{--<h3>edit {{$value}} Address</h3>--}}
         {{--@endif--}}
+
     {{--@endforeach--}}
 
-
     <div class="col-md-6 ">
-        <h3>Edit Billing/Shipping Address</h3>
-        <div class="box box-info clearfix ">
-            @if($address['type']=="Billing")
-            {!! Form::model($address['Billing'], array('route'=>['update_distributor_address',$dist->id],'method'=>'PUT' ))!!}
-            @else
-                {!! Form::model($address['Shipping'], array('route'=>['update_distributor_address',$dist->id],'method'=>'PUT' ))!!}
+        <div class="box box-info clearfix pad ">
+            {{--@foreach($addressType as $index=>$value)--}}
+                {{--@if($type==$index)--}}
+                    {{--{!! Form::model($address[$value], array('route'=>['update_distributor_address',$dist->id],'method'=>'PUT' ))!!}--}}
+                {{--@endif--}}
 
+            {{--@endforeach--}}
                 {{ Form::hidden('distributor_id', $dist->id) }}
-            <div class="form-group clearfix margin-top-10">
-                <label for="type" class="col-sm-4 control-label">Type</label>
-                <div class="col-md-8">
-                    <?php $addressType = Config::get('distributor.address_type');?>
-                    <select name="type" class="form-control">
-                        @foreach($addressType as $index=>$value)
-                            <option value="Billing">
-                                   {{$value}} </option>
-                        @endforeach
 
-                    </select>
+                <div class="form-group clearfix">
+                    <label for="type" class="col-sm-4 control-label">Type</label>
+                    <div class="col-md-8">
+                        <?php $addressType = Config::get('distributor.address_type');?>
+                        <select name="type" class="form-control" required >
+                            {{--@foreach($addressType as $index=>$value)--}}
+                                {{--<option value="{{$index}}"--}}
+                                        {{--@if($type==$index) selected--}}
+                                        {{--@else--}}
+                                        {{--disabled></option>--}}
+                                        {{--@endif >{{$value}} </option>--}}
+                            {{--@endforeach--}}
+
+                        </select>
+                    </div>
                 </div>
-            </div>
+
 
 
             <div class="form-group clearfix">
@@ -44,7 +50,10 @@
                 <div class="col-md-8">
                     <?php $x = Config::get('distributor.zone');?>
                     <select class="form-control zones-dropdown" id="dropdown_selector " name="zone">
-                        <option selected="selected" value="{{$address['Billing']['zone']}}" >{{$address['Billing']['zone']}}</option>
+
+                      @if(isset($address[$value]['zone']))
+                            <option selected="selected" value="{{$address[$value]['zone']}}" >{{$address[$value]['zone']}}</option>
+                       @endif
                         @foreach($x as $dep)
                             <option id="{{$dep}}" value="{{$dep}}">
                                 {{ $dep  }}
@@ -57,19 +66,20 @@
             </div>
 
 
-            <div class="form-group clearfix">
-                <label for="zone" class="col-sm-4 control-label">District</label>
-                <div class="col-md-8">
-                    <?php $x = Config::get('distributor.zone'); ?>
+                <div class="form-group clearfix">
+                    <label for="zone" class="col-sm-4 control-label">District</label>
+                    <div class="col-md-8">
+                        <?php $x = Config::get('distributor.zone'); ?>
 
-                    <select class="form-control district-dropdown" id="dropdown_selector" name="district">
-                        <option selected="selected" value="{{$address['Billing']['district']}}" disabled>{{$address['Billing']['district']}} </option>
+                        <select class="form-control district-dropdown" id="dropdown_selector" name="district">
+                            @if(isset($address[$value]['zone']))
+                            <option selected="selected" value="{{$address[$value]['district']}}" disabled>{{$address[$value]['district']}} </option>
+                            @endif
 
+                        </select>
 
-                    </select>
-
+                    </div>
                 </div>
-            </div>
 
             <div class="form-group clearfix">
                 <label for="city" class="col-sm-4 control-label">City</label>

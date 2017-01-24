@@ -188,17 +188,19 @@ class DistributorRepository
 
         try {
             $query = DistributorAddress::find($id);
-            $query->type = $request->type;
-            $query->distributor_id = $request->distributor_id;
-            $query->zone = $request->zone;
-            $query->district = $request->district;
-            $query->city = $request->city;
-            $query->latitude = $request->latitude;
-            $query->longitude = $request->longitude;
-            $query->mobile = $request->mobile;
-            $query->phone = $request->phone;
-            $query->fax = $request->fax;
+            dd($query,$id);
+            $query->type = $request['type'];
+            $query->distributor_id = $request['distributor_id'];
+            $query->zone = $request['zone'];
+            $query->district = $request['district'];
+            $query->city = $request['city'];
+            $query->latitude = $request['latitude'];
+            $query->longitude = $request['longitude'];
+            $query->mobile = $request['mobile'];
+            $query->phone = $request['phone'];
+            $query->fax = $request['fax'];
             $query->save();
+
             $this->log->info("Customer Address Updated ");
             return true;
 
@@ -253,6 +255,12 @@ class DistributorRepository
         $query = $this->distributorAddress->where('distributor_id', '=', $id)->get();
         return $query;
     }
+    public function select_address($id)
+    {
+        $query = $this->distributorAddress->where('id', '=', $id)->first();
+        return $query;
+    }
+
 
     public function select_distributorguarantee($id)
     {
@@ -329,5 +337,14 @@ class DistributorRepository
                         ->where('distributor_details.id', '=', $id)->get();
 
         return $query->first();
+    }
+    public function shipping_address($id)
+    {
+        $query = $this->distributorAddress->select('*')
+            ->where('type', 'Shipping')
+            ->where('distributor_id', $id)
+            ->first();
+//dd($query);
+        return $query;
     }
 }

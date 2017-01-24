@@ -496,7 +496,7 @@ class OrderRepository
 
             return $query;
         }
-        if ($role=="admin" || $role=="generalmanager")
+        if ($role=="admin" || $role=="generalmanager" || $role="director")
         {
             $query = $this->orderApproval  ->where("order_id",$formData['order_id'])
                 ->update(["admin"=>$formData['user_id'],"admin_approval"=>$formData['admin_approval']]);
