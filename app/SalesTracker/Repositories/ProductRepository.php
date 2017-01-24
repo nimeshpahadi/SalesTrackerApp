@@ -79,8 +79,8 @@ class ProductRepository
             $data->description = $request->description;
             $data->price = $request->price;
 
-            $imagename = time() . '.' . $request->image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
+            $imagename =  $data->category.'_'.$data->sub_category.'_'.$data->name.'_'.time(). '.' . $request->image->getClientOriginalExtension();
+            $destinationPath = public_path('/storage/app/public/product');
             $request->image->move($destinationPath, $imagename);
             $data->image = $imagename;
             $data->save();
@@ -100,18 +100,23 @@ class ProductRepository
         try {
 
             $data = Product::find($id);
+
             $data->category = $request->category;
             $data->sub_category = $request->sub_category;
             $data->name = $request->name;
             $data->code = $request->code;
             $data->description = $request->description;
             $data->price = $request->price;
-
-            $imagename = time() . '.' . $request->image->getClientOriginalExtension();
-            $destinationPath = public_path('/images');
+                if (isset($data->image)) {
+                    $image_name = $data->image;
+                    $path = public_path() . '/storage/app/public/product/';
+                    File::delete($path . $image_name);
+                }
+            $imagename =  $data->category.'_'.$data->sub_category.'_'.$data->name.'_'.time(). '.' . $request->image->getClientOriginalExtension();
+            $destinationPath = public_path('/storage/app/public/product');
             $request->image->move($destinationPath, $imagename);
             $data->image = $imagename;
-            $data->save();
+            $data->update();
             $this->log->info("Product Updated", ['id' => $id]);
 
             return true;
@@ -127,7 +132,7 @@ class ProductRepository
         try {
             $data = Product::find($id);
             $filename = $data['image'];
-            $path = public_path().'/images/';
+            $path = public_path().'/storage/app/public/product/';
 
             if (File::exists($path . $filename) && !File::delete($path . $filename)) {
                     $this->log->info("Product image not found ", ['id' => $id]);

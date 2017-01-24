@@ -47,7 +47,7 @@
                                 @if(isset($data))
                                 @foreach($data as $row)
                                     <tr>
-                                        <td><img class="productimage" src="/images/{{ $row->image }}"></td>
+                                        <td><img class="productimage" src="/storage/app/public/product/{{ $row->image }}"></td>
 
                                         <td>{{$row->name }}</td>
                                         <td>{{$row->category }}</td>

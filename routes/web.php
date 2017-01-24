@@ -39,7 +39,7 @@ Route::put('/guarantee/{id}/update', 'DistributorController@updateguarantee')->n
 //address
 Route::get('/address/{id}', 'DistributorController@createaddress')->name("distributor_address");
 Route::post('/address', 'DistributorController@addAddress')->name('add_distributor_address');
-Route::get('/address/{id}/edit  ', 'DistributorController@editaddress')->name('edit_distributor_address');
+Route::get('/address/{id}/edit', 'DistributorController@editaddress')->name('edit_distributor_address');
 Route::put('/address/{id}/update', 'DistributorController@updateaddress')->name('update_distributor_address');
 Route::delete('/address/{id}/delete', 'DistributorController@destroy_address')->name('delete_distributor_address');
 

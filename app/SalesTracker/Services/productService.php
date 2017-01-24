@@ -32,8 +32,6 @@ class productService
 
     public function changeprice($request, $id)
     {
-//        $formData = $request->all();
-//        $price = trim($formData['price']);
         $data = $this->productRepository->changepriceId($request, $id);
         return $data;
     }
