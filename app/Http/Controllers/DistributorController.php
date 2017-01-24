@@ -209,12 +209,12 @@ class DistributorController extends Controller
     public function editaddress($id)
     {
         $dist = $this->distributorService->select_distributor($id);
-        $address = $this->distributorService->getaddress($id); //
+        $address = $this->distributorService->getaddress($id);
         return view('distributor/edit_address', compact('dist', 'address'));
 
     }
 
-    public function updateaddress(AddressRequest $request)
+    public function updateaddress(Request $request)
     {
         $id = $request['distributor_id'];
         $this->distributorService->update_dis_address($request, $id);
@@ -234,7 +234,7 @@ class DistributorController extends Controller
     public function editguarantee($id)
     {
         $dist = $this->distributorService->select_distributor($id);
-        $guarantee = $this->distributorService->getguarantee($id); //
+        $guarantee = $this->distributorService->getguarantee($id);
 
         return view('distributor/edit_guarantee', compact('dist', 'guarantee'));
 

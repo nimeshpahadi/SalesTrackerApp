@@ -193,7 +193,8 @@ class DistributorRepository
             $query->zone = $request->zone;
             $query->district = $request->district;
             $query->city = $request->city;
-            $query->location = $request->location;
+            $query->latitude = $request->latitude;
+            $query->longitude = $request->longitude;
             $query->mobile = $request->mobile;
             $query->phone = $request->phone;
             $query->fax = $request->fax;
