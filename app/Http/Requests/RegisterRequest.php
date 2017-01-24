@@ -57,7 +57,6 @@ class RegisterRequest extends FormRequest
                         'department' => 'required',
                         'role' => 'required',
                         'reportsto' => 'required',
-//                        'email' => 'required|email|max:255',
                         'email' => 'required|email|unique:users,email,'.$user->id,
                         'contact' => 'required|min:10',
                     ];
