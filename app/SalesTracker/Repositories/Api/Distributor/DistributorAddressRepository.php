@@ -50,4 +50,39 @@ class DistributorAddressRepository
         }
     }
 
+    /**
+     * @param $distAddress
+     * @param $id
+     * @return bool|null
+     */
+    public function insertEditAddress($distAddress, $id)
+    {
+        try {
+            $query = $this->distributorAddress->find($id);
+
+            if (is_null($query)) {
+                return null;
+            }
+
+            $query->type      = $distAddress['type'];
+            $query->zone      = $distAddress['zone'];
+            $query->district  = $distAddress['district'];
+            $query->city      = $distAddress['city'];
+            $query->latitude  = $distAddress['latitude'];
+            $query->longitude = $distAddress['longitude'];
+            $query->mobile    = $distAddress['mobile'];
+            $query->phone     = $distAddress['phone'];
+            $query->fax       = $distAddress['fax'];
+
+            $query->save();
+
+            $this->log->info("distributor updated");
+            return true;
+
+        } catch (QueryException $e) {
+            $this->log->error("distributor address  edit failed");
+            return false;
+        }
+    }
+
 }

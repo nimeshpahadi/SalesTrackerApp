@@ -54,4 +54,25 @@ class DistributorAddressController extends Controller
 
         return response()->json($response);
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function updateAddress(Request $request, $id)
+    {
+
+        $data = $request->all();
+
+        $t = $this->addressValidation->checkAddress($data);
+
+        if ($t != null) {
+
+            return $t;
+        }
+
+        $response = $this->addressService->updateAddressService($data, $id);
+
+        return response()->json($response);
+    }
 }

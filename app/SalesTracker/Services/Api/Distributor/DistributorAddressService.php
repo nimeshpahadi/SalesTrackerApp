@@ -81,7 +81,7 @@ class DistributorAddressService extends BaseService
 
                 "status"       => "true",
                 "token_status" => "true",
-                "message"      => "Distributor address created!"
+                "message"      => "distributor address created!"
 
             ];
 
@@ -92,11 +92,64 @@ class DistributorAddressService extends BaseService
 
             "status"       => "false",
             "token_status" => "true",
-            "message"      => "Oops !!! something went wrong"
+            "message"      => "oops !!! something went wrong"
 
         ];
 
         return $respo;
+    }
+
+    /**
+     * @param $serviceAddress
+     * @param $id
+     * @return array
+     */
+    public function updateAddressService($serviceAddress, $id)
+    {
+        if (!$this->validateToken($this->user, $serviceAddress['api_token'])) {
+
+            return $this->tokenMessage();
+        }
+
+        $this->storeData($this->baseRepository, $serviceAddress);
+
+        $distAddress = [];
+
+        if ($serviceAddress['type']=='Billing') {
+
+            $distAddress = $this->getAddress($serviceAddress, "Billing");
+        }
+
+        if ($serviceAddress['type']=='Shipping') {
+
+            $distAddress = $this->getAddress($serviceAddress, "Shipping");
+        }
+
+        $data = $this->addressRepository->insertEditAddress($distAddress, $id);
+
+            if ($data==null) {
+
+                $query = [
+
+                    "status"       => "false",
+                    "token_status" => "true",
+                    "message"      => "address not found"
+
+                ];
+
+                return $query;
+            }
+
+            $resp = [
+
+                "status"       => "true",
+                "token_status" => "true",
+                "message"      => "address updated"
+
+            ];
+
+            return $resp;
+
     }
 
     /**

@@ -273,7 +273,6 @@
                                         <th>Price/Sack</th>
                                         <th>Quantity</th>
                                         <th>Priority</th>
-                                        <th>Payment Term</th>
                                         <th>Delivery Date</th>
                                         <th>Created By</th>
                                     </tr>
@@ -286,7 +285,6 @@
                                             <td>{{$orders->price}}</td>
                                             <td>{{$orders->quantity}}</td>
                                             <td>{{$orders->priority}}</td>
-                                            <td>{{$orders->payment_term}}</td>
                                             <td>{{$orders->proposed_delivery_date}}</td>
                                             <td>{{$orders->userName}}</td>
                                         </tr>

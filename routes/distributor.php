@@ -11,5 +11,6 @@ Route::get('/distributor/{distributor_id}', 'DistributorDetailController@getDeta
 
 Route::post('/distributor/create', 'DistributorDetailController@createDetails');
 Route::post('/distributor/address', 'DistributorAddressController@createAddress');
+Route::post('/distributor/address/update/{update_id}', 'DistributorAddressController@updateAddress');
 Route::post('/distributor/tracking', 'DistributorTrackingController@createTracking');
 Route::post('/distributor/minute', 'DistributorMinuteController@createMinute');
