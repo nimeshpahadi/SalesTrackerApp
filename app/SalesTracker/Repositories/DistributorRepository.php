@@ -183,12 +183,11 @@ class DistributorRepository
     }
 
 
-    public function updatedisaddress($request, $id)
+    public function updatedisaddress($id,$request)
     {
 
         try {
             $query = DistributorAddress::find($id);
-            dd($query,$id);
             $query->type = $request['type'];
             $query->distributor_id = $request['distributor_id'];
             $query->zone = $request['zone'];
@@ -246,6 +245,7 @@ class DistributorRepository
 
     public function select_distributorID($id)
     {
+
         $query = $this->distributorDetails->find($id);
         return $query;
     }
@@ -255,10 +255,14 @@ class DistributorRepository
         $query = $this->distributorAddress->where('distributor_id', '=', $id)->get();
         return $query;
     }
-    public function select_address($id)
+    public function select_address( $did,$id)
     {
-        $query = $this->distributorAddress->where('id', '=', $id)->first();
+        $query = $this->distributorAddress->select('*')
+            ->where('id', $id)
+            ->where('distributor_id', '=', $did)
+            ->first();
         return $query;
+
     }
 
 
@@ -344,7 +348,6 @@ class DistributorRepository
             ->where('type', 'Shipping')
             ->where('distributor_id', $id)
             ->first();
-//dd($query);
         return $query;
     }
 }

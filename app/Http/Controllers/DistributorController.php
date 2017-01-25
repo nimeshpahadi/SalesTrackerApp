@@ -75,7 +75,8 @@ class DistributorController extends Controller
         $order=$this->orderService->getOrderlistdistributor($id);
         $payment=$this->orderService->getDistributorpayment($id);
         $dist = $this->distributorService->select_distributor($id);
-        $address = $this->distributorService->getaddress($id); //
+        $address = $this->distributorService->getaddress($id);
+//        $addressbyid = $this->distributorService->getaddressbyid();
         $guarantee = $this->distributorService->getguarantee($id); //
         $tracking = $this->distributorService->gettracking($id);
         $minute = $this->distributorService->getMinute($id);
@@ -206,28 +207,23 @@ class DistributorController extends Controller
         return back(compact('id'))->withErrors('Address was not added');
     }
 
-    public function editaddress($id, Request $request)
+    public function editaddress($did,$id, Request $request)
     {
-
         $type = $request['type'];
-
-        $dist = $this->distributorService->select_distributor($id);
-        $address = $this->distributorService->getaddress($id);
-        return view('distributor/edit_address', compact('dist', 'address','type'));
+        $dist = $this->distributorService->select_distributor($did);
+        $address = $this->distributorService->getaddress($did);
+        $addressbyid = $this->distributorService->getaddressbyid($did,$id);
+        return view('distributor/edit_address', compact('dist', 'address','type','addressbyid'));
 
     }
 
-    public function updateaddress(Request $request)
+    public function updateaddress($did,$id,Request $request)
     {
-        $id = $request['distributor_id'];
-
-       if( $this->distributorService->update_dis_address($request, $id)){
-
-        return redirect()->route('distributor.show', compact('id'))->withSuccess('Address was edited');
+       if( $this->distributorService->update_dis_address( $id,$request)){
+        return redirect()->route('distributor.show', compact('did'))->withSuccess('Address was edited');
         }
-    return back(compact('id'))->withErrors('Address was not edited');
+         return back(compact('did'))->withErrors('Address was not edited');
         }
-
 
     public function destroy_address($id)
     {
@@ -248,12 +244,10 @@ class DistributorController extends Controller
 
     public function updateguarantee(Request $request, $id)
     {
-
         if ($this->distributorService->update_dis_guarantee($request, $id)) {
             return redirect()->route('distributor.show', compact('id'))->withSuccess('guarentee update success');
         }
         return back()->withErrors('Guarantee not edited, something went wrong');
-
     }
 
     /**
