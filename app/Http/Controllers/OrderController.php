@@ -95,7 +95,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $shipaddress=$this->distributorService->shippingAddress($id);
+        $orderId= $this->orderService->getorderbyid($id);
+        $shipaddress=$this->distributorService->shippingAddress($orderId->distributor_id);
+
         $dispatched=$this->stockService->getstockoutbyorder($id);
         $orderout=$this->orderService->getorderoutdetail_id($id);
         $ware = $this->stockService->get_allwarehouse();
@@ -103,7 +105,7 @@ class OrderController extends Controller
         $marketingapproval=$this->orderService->getMarketingApproval($id);
         $adminapproval=$this->orderService->getAdminApproval($id);
         $approvalremark=$this->orderService->getApprovalRemark($id);
-        $orderId= $this->orderService->getorderbyid($id);
+
         $order_billings=$this->orderService->getcountorderBilling($id);
         $order_payment=$this->orderService->getpayment($id);
         $order=$this->orderService->getOrderListDetails();
@@ -252,7 +254,7 @@ class OrderController extends Controller
     public function orderdispatch(Request $request)
     {
         if ($this->orderService->orderDispatch($request)) {
-            return back()->withSuccess("Order Dispatched to the Distributor!");
+            return back()->withSuccess("Order Dispatched to the Customer!");
         }
         return back()->withErrors("Something went wrong");
 

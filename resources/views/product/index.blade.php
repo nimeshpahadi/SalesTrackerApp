@@ -20,6 +20,9 @@
                             </a>
                         </div>
                         @endrole
+{{--{{storage_path()}}--}}
+
+
                         <div class="box-header">
                             <h3 class="box-title">List of Products</h3>
                         </div>
@@ -47,7 +50,9 @@
                                 @if(isset($data))
                                 @foreach($data as $row)
                                     <tr>
-                                        <td><img class="productimage" src="/storage/app/public/product/{{ $row->image }}"></td>
+
+
+                                        <td><img class="productimage" src="/storage/product/{{$row->image}}"></td>
 
                                         <td>{{$row->name }}</td>
                                         <td>{{$row->category }}</td>

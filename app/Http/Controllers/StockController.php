@@ -59,7 +59,6 @@ class StockController extends Controller
                 $ware_stock = $this->stockService->get_warehousestock();
 
                 $stocks = $this->stockService->getStocks($userInfo);
-//                dd($stocks);
                 return view("inventory.index", compact('ware', 'ware_stock','orderoutabu','stockOut','stocks'));
     }
 

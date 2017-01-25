@@ -251,7 +251,8 @@ class OrderRepository
 
     public function getCountBilling($id)
     {
-        $query = $this->orderBilling->where('order_id', '=', $id)->get();
+        $query = $this->orderBilling->where('order_id', $id)->get();
+
         return $query;
     }
     public function orderpayment($formData)
