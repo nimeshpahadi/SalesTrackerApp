@@ -52,7 +52,7 @@ class CustomerApprovalController extends Controller
 
         Session::put('url.intended', URL::previous());
 
-        return Redirect::intended('/')->withSuccess('customer updated by sales manager ');
+        return Redirect::intended('/')->withSuccess('Customer Approval Updated by Sales manager ');
     }
 
     /**
@@ -76,16 +76,16 @@ class CustomerApprovalController extends Controller
         Session::put('url.intended', URL::previous());
 
         if (Auth::user()->roles[0]['display_name']=="Admin") {
-            return Redirect::intended('/')->withSuccess('customer updated by Admin');
+            return Redirect::intended('/')->withSuccess('Customer Approval Updated by Admin');
         }
 
         elseif (Auth::user()->roles[0]['display_name']=="General Manager") {
 
-            return Redirect::intended('/')->withSuccess('customer updated by General Manager');
+            return Redirect::intended('/')->withSuccess('Customer Approval Updated by General Manager');
         }
 
         else {
-            return Redirect::intended('/')->withSuccess('customer updated by Director');
+            return Redirect::intended('/')->withSuccess('Customer Approval Updated by Director');
         }
     }
 
@@ -109,6 +109,6 @@ class CustomerApprovalController extends Controller
 
         Session::put('url.intended', URL::previous());
 
-        return Redirect::intended('/')->withSuccess('distributor status updated');
+        return Redirect::intended('/')->withSuccess('Customer Approval Status Updated by Account');
     }
 }

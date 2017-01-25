@@ -196,14 +196,15 @@ class DistributorDetailService extends BaseService
     {
         return [
 
-            "zone"      =>  $ad['zone'],
-            "district"  =>  $ad['district'],
-            "city"      =>  $ad['city'],
-            "latitude"  =>  $ad['latitude'],
-            "longitude" =>  $ad['longitude'],
-            "phone"     =>  $ad['phone'],
-            "mobile"    =>  $ad['mobile'],
-            "fax"       =>  $ad['fax'],
+            "zone"      => $ad['zone'],
+            "district"  => $ad['district'],
+            "city"      => $ad['city'],
+            "latitude"  => $ad['latitude'],
+            "longitude" => $ad['longitude'],
+            "phone"     => $ad['phone'],
+            "mobile"    => $ad['mobile'],
+            "fax"       => $ad['fax'],
+            "id"        => $ad['id']
 
         ];
     }
