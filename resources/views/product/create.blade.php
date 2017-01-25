@@ -1,5 +1,5 @@
 
-@role((['admin', 'salesmanager','marketingmanager']))
+@role((['admin', 'salesmanager','marketingmanager','generalmanager','director']))
 @extends('Layout.app')
 
 @section('main-content')

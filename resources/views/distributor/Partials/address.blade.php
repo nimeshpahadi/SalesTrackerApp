@@ -1,11 +1,11 @@
 <div class="col-md-6 ">
     <div class="panel panel-info">
-        <div class="panel-heading" align="center"> <h4>{{strtoupper($add['type'])}}</h4>
+        <div class="panel-heading " align="center"> <h4>{{strtoupper($add['type'])}}</h4>
             <div class="col-md-offset-11">
                 @if($add['type']=='Billing')
-                <a class="btn btn-primary" href="{{route('edit_distributor_address',["did"=>$dist->id,"id"=>$add['id'],'type'=>1])}}">Edit</a>
+                <a class="btn btn-primary glyphicon glyphicon-edit" title="Edit Billing Address " href="{{route('edit_distributor_address',["did"=>$dist->id,"id"=>$add['id'],'type'=>1])}}"></a>
                     @else
-                    <a class="btn btn-primary" href="{{route('edit_distributor_address',["did"=>$dist->id,"id"=>$add['id'],'type'=>2])}}">Edit</a>
+                    <a class="btn btn-primary glyphicon glyphicon-edit" title="Edit Shipping Address "href="{{route('edit_distributor_address',["did"=>$dist->id,"id"=>$add['id'],'type'=>2])}}"></a>
                 @endif
             </div>
         </div>

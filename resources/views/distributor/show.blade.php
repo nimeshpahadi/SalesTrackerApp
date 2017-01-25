@@ -114,7 +114,7 @@
                                         <h3> Guarantee</h3>
                                         <hr>
                                         <a href="{!! route('guarantee_edit',$dist->id)!!}">
-                                            <span class="  btn btn-primary " title="Edit Guarantee for customer {{$dist->company_name}}">Edit</span>
+                                            <span class="  btn btn-primary glyphicon glyphicon-edit " title="Edit Guarantee for customer {{$dist->company_name}}"></span>
                                         </a>
                                         <div class="row">
                                             <label class="col-sm-6 ">Type :</label>

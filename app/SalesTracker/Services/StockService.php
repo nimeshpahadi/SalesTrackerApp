@@ -130,14 +130,14 @@ class StockService
     {
         $data = [];
         $wareshouse = $this->stockRepository->getwarehouse($userInfo);
-//dd($wareshouse);
+
         foreach ($wareshouse as $ware) {
             $getwareproduct = $this->stockRepository->getwareproduct($ware->id);
-
             $data[$ware->name] = [];
             $data[$ware->name]["ware_id"] =$ware->id ;
 
             foreach ($getwareproduct as $p) {
+
                 $stockin = $this->stockRepository->getstockin($ware->id,$p->pid);
                 $stockout = $this->stockRepository->getstockout($ware->id,$p->pid);
                 $data[$ware->name]['product'][$p->sub_category] = [
@@ -145,7 +145,6 @@ class StockService
                     'in' => ($stockin[0]->qty==null)?0:$stockin[0]->qty,
                     'out' => ($stockout[0]->qty==null)?0:$stockout[0]->qty,
                 ];
-//                dd($data);
 
             }
 
