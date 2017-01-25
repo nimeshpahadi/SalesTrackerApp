@@ -20,22 +20,26 @@
             {!! Form::open(array('route' => 'add_distributor_address'))!!}
 
             {{ Form::hidden('distributor_id', $disid->id) }}
+
+
             <div class="form-group clearfix">
                 <label for="type" class="col-sm-4 control-label">Type</label>
                 <div class="col-md-8">
                     <?php $addressType = Config::get('distributor.address_type');?>
                     <select name="type" class="form-control" required >
+
                         @foreach($addressType as $index=>$value)
                             <option value="{{$index}}"
                                     @if($type==$index) selected
-                                         @else
-                                             disabled
-                                    @endif >{{$value}} </option>
+                                    @else
+                                    disabled></option>
+                            @endif >{{$value}}
                         @endforeach
 
                     </select>
                 </div>
             </div>
+
 
             <div class="form-group clearfix">
                 <label for="zone" class="col-sm-4 control-label">Zone</label>

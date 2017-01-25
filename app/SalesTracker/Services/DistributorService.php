@@ -168,7 +168,7 @@ class DistributorService
         return $createTracking;
     }
 
-    public function update_dis_address($request, $id)
+    public function update_dis_address($id,$request)
     {
 
         $formData = $request->all();
@@ -184,7 +184,7 @@ class DistributorService
             $data = $shipping;
         }
 
-        $updateAddress = $this->distributorRepository->updatedisaddress($data,$id);
+        $updateAddress = $this->distributorRepository->updatedisaddress($id,$data);
         return $updateAddress;
 
     }
@@ -282,6 +282,13 @@ class DistributorService
     public function getPayingAmount($id)
     {
         $data = $this->distributorRepository->getPayingRepo($id);
+
+        return $data;
+    }
+
+    public function getaddressbyid($did,$id)
+    {
+        $data = $this->distributorRepository->select_address($did,$id);
 
         return $data;
     }

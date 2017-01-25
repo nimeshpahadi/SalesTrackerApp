@@ -9,21 +9,18 @@
 
     <?php $addressType = Config::get('distributor.address_type');?>
 
-    {{--@foreach($addressType as $index=>$value)--}}
-        {{--@if($type==$index)--}}
-            {{--<h3>edit {{$value}} Address</h3>--}}
-        {{--@endif--}}
+    @foreach($addressType as $index=>$value)
+        @if($type==$index)
+            <h3>Edit {{$value}} Address</h3>
+        @endif
 
-    {{--@endforeach--}}
+    @endforeach
 
     <div class="col-md-6 ">
         <div class="box box-info clearfix pad ">
-            {{--@foreach($addressType as $index=>$value)--}}
-                {{--@if($type==$index)--}}
-                    {{--{!! Form::model($address[$value], array('route'=>['update_distributor_address',$dist->id],'method'=>'PUT' ))!!}--}}
-                {{--@endif--}}
 
-            {{--@endforeach--}}
+                    {!! Form::model($addressbyid, array('route'=>['update_distributor_address',$addressbyid->distributor_id,'id'=>$addressbyid->id],'method'=>'PUT' ))!!}
+
                 {{ Form::hidden('distributor_id', $dist->id) }}
 
                 <div class="form-group clearfix">
@@ -31,18 +28,18 @@
                     <div class="col-md-8">
                         <?php $addressType = Config::get('distributor.address_type');?>
                         <select name="type" class="form-control" required >
-                            {{--@foreach($addressType as $index=>$value)--}}
-                                {{--<option value="{{$index}}"--}}
-                                        {{--@if($type==$index) selected--}}
-                                        {{--@else--}}
-                                        {{--disabled></option>--}}
-                                        {{--@endif >{{$value}} </option>--}}
-                            {{--@endforeach--}}
+
+                            @foreach($addressType as $index=>$value)
+                                <option value="{{$index}}"
+                                        @if($type==$index) selected
+                                        @else
+                                        disabled></option>
+                                        @endif >{{$value}} </option>
+                            @endforeach
 
                         </select>
                     </div>
                 </div>
-
 
 
             <div class="form-group clearfix">
@@ -51,9 +48,9 @@
                     <?php $x = Config::get('distributor.zone');?>
                     <select class="form-control zones-dropdown" id="dropdown_selector " name="zone">
 
-                      @if(isset($address[$value]['zone']))
-                            <option selected="selected" value="{{$address[$value]['zone']}}" >{{$address[$value]['zone']}}</option>
-                       @endif
+                        @if(isset($addressbyid->zone))
+                            <option selected="selected" value="{{$addressbyid->zone}}" >{{$addressbyid->zone}}</option>
+                        @endif
                         @foreach($x as $dep)
                             <option id="{{$dep}}" value="{{$dep}}">
                                 {{ $dep  }}
@@ -72,8 +69,8 @@
                         <?php $x = Config::get('distributor.zone'); ?>
 
                         <select class="form-control district-dropdown" id="dropdown_selector" name="district">
-                            @if(isset($address[$value]['zone']))
-                            <option selected="selected" value="{{$address[$value]['district']}}" disabled>{{$address[$value]['district']}} </option>
+                            @if(isset($addressbyid->district))
+                                <option selected="selected" value="{{$addressbyid->district}}" >{{$addressbyid->district}}</option>
                             @endif
 
                         </select>
