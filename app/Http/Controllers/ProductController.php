@@ -100,10 +100,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-
-
+        $ware = $this->stockService->get_allwarehouse();
         $product = Product::find($id);
-        return view('product.edit', compact('product'));
+        return view('product.edit', compact('product','ware'));
 
     }
 
@@ -117,12 +116,26 @@ class ProductController extends Controller
     public function update(ProductRequest $request, $id)
     {
 
-        if ($this->productService->editproduct($request, $id)) {
-            return redirect('/product')->withSuccess('Product Edited');
+
+        if ($product = $this->productService->editproduct($request, $id)) {
+            $ware = $request['warehouse_id'];
+            foreach ($ware as $w) {
+                $productwarehouse = [
+                    'product_id' => $id,
+                    'warehouse_id' => $w
+                ];
+                $this->assignupdatewarehouse($productwarehouse);
+            }
+            return redirect('/product')->withSuccess('Product edited');
         }
         return back()->withErrors('something went wrong');
-
     }
+
+        protected function assignupdatewarehouse(array $data)
+    {
+        return Warehouse_Product::create($data);
+    }
+
 
     /**
      * Remove the specified resource from storage.
@@ -137,11 +150,6 @@ class ProductController extends Controller
             return redirect('/product')->withSuccess('Product Deleted');
         }
         return back()->withErrors('something went wrong');
-
-//        $data = Product::find($id);
-//        $data->delete();
-//        session()->flash('alert-danger', 'Product was deleted successfully!');
-//        return redirect('product');
 
     }
 

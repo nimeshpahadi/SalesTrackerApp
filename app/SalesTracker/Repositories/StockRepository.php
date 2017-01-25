@@ -128,33 +128,13 @@ class StockRepository
             'stock_ins.created_at', 'stock_ins.updated_at')
             ->leftjoin('warehouses', 'stock_ins.warehouse_id', 'warehouses.id')
             ->leftjoin('products', 'stock_ins.product_id', 'products.id');
-//dd($query->toSql());
         return $query->get();
     }
 
 
-
-//
-
-//    /**
-//     * get stock in as per warehouse
-//     * @return mixed
-//     */
-    /*  public function get_warehouse_stock()
-        {
-            $query = $this->stock_in->select(DB::raw('warehouses.name as ware_name, products.sub_category as prod_subcat,
-            products.name as prod_name, sum(stock_ins.quantity) as total_stocksin,stock_ins.product_id as pid, stock_ins.warehouse_id as wid'))
-                ->join('warehouses', 'stock_ins.warehouse_id', 'warehouses.id')
-                ->join('products', 'stock_ins.product_id', 'products.id')
-                ->groupBy('stock_ins.product_id', 'stock_ins.warehouse_id');
-    //dd($query)->get();
-            return $query->get();
-        }*/
-
-
     public function get_warehouse_stock()
     {
-        $query = $this->stock_in->select(DB::raw('warehouses.name as ware_name, products.sub_category as prod_subcat,
+        $query = $this->stock_in->select(DB::raw('warehouses.name as ware_name, products.sub_category as prod_subcat,products.name as pname,
         sum(stock_ins.quantity) as total_stocksin, sum(stock_outs.quantity) as total_stocksout,
         stock_ins.product_id as pid, stock_ins.warehouse_id as wid'))
             ->join('warehouses', 'stock_ins.warehouse_id', 'warehouses.id')
@@ -189,7 +169,6 @@ class StockRepository
     public function updatestock($request, $id)
     {
         try {
-            // return $this->stock_in->update($request,$id);
             $query = Stock_in::find($id);
             $query->product_id = $request->product_id;
             $query->warehouse_id = $request->warehouse_id;
@@ -342,7 +321,6 @@ class StockRepository
             ->leftjoin('warehouses', 'order_outs.warehouse_id', 'warehouses.id')
             ->leftjoin('products', 'orders.product_id', 'products.id')
             ->leftjoin('users', 'users.id', 'stock_outs.dispatched_by');
-//        dd($query->toSql());
         return $query->get();
     }
 

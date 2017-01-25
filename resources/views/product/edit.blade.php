@@ -69,6 +69,23 @@
                     {{ Form::text('price',null,array('class'=>'form-control'))}}
                 </div>
             </div>
+            <div class="form-group{{ $errors->has('warehouse_id') ? ' has-error' : '' }} clearfix">
+                <label for="warehouse_id" class="col-sm-4 control-label">Warehouse </label>
+
+                <div class="col-md-8 warehouse">
+                    <select id="warehouse_id" name="warehouse_id[]"
+                            class=" form-control warehouse"  multiple>
+                    {{--<option></option>--}}
+
+                        @foreach ($ware as $warehouse)
+                            <option value="{{$warehouse->id}}">
+                                {{$warehouse->name}}
+                            </option>
+                        @endforeach
+                    </select>
+                </div>
+
+            </div>
                 <div class="form-group clearfix">
                     <label for="image" class="col-sm-4 control-label">Product Image</label>
                     <div class="col-sm-8">
