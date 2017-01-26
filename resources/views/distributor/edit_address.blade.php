@@ -19,27 +19,28 @@
     <div class="col-md-6 ">
         <div class="box box-info clearfix pad ">
 
-                    {!! Form::model($addressbyid, array('route'=>['update_distributor_address',$addressbyid->distributor_id,'id'=>$addressbyid->id],'method'=>'PUT' ))!!}
+            {!! Form::model($addressbyid, array('route'=>['update_distributor_address',
+                            $addressbyid->distributor_id,'id'=>$addressbyid->id],'method'=>'PUT' ))!!}
 
-                {{ Form::hidden('distributor_id', $dist->id) }}
+            {{ Form::hidden('distributor_id', $dist->id) }}
 
-                <div class="form-group clearfix">
-                    <label for="type" class="col-sm-4 control-label">Type</label>
-                    <div class="col-md-8">
-                        <?php $addressType = Config::get('distributor.address_type');?>
-                        <select name="type" class="form-control" required >
+            <div class="form-group clearfix">
+                <label for="type" class="col-sm-4 control-label">Type</label>
+                <div class="col-md-8">
+                    <?php $addressType = Config::get('distributor.address_type');?>
+                    <select name="type" class="form-control" required >
 
-                            @foreach($addressType as $index=>$value)
-                                <option value="{{$index}}"
-                                        @if($type==$index) selected
-                                        @else
-                                        disabled></option>
-                                        @endif >{{$value}} </option>
-                            @endforeach
+                        @foreach($addressType as $index=>$value)
+                            <option value="{{$index}}"
+                                    @if($type==$index) selected
+                                    @else
+                                    disabled></option>
+                                    @endif >{{$value}} </option>
+                        @endforeach
 
-                        </select>
-                    </div>
+                    </select>
                 </div>
+            </div>
 
 
             <div class="form-group clearfix">
@@ -63,20 +64,21 @@
             </div>
 
 
-                <div class="form-group clearfix">
-                    <label for="zone" class="col-sm-4 control-label">District</label>
-                    <div class="col-md-8">
-                        <?php $x = Config::get('distributor.zone'); ?>
+            <div class="form-group clearfix">
+                <label for="zone" class="col-sm-4 control-label">District</label>
+                <div class="col-md-8">
+                    <?php $x = Config::get('distributor.zone'); ?>
 
-                        <select class="form-control district-dropdown" id="dropdown_selector" name="district">
-                            @if(isset($addressbyid->district))
-                                <option selected="selected" value="{{$addressbyid->district}}" >{{$addressbyid->district}}</option>
-                            @endif
+                    <select class="form-control district-dropdown" id="dropdown_selector" name="district">
+                        @if(isset($addressbyid->district))
+                            <option selected="selected" value="{{$addressbyid->district}}" >{{$addressbyid->district}}</option>
+                        @endif
 
-                        </select>
+                    </select>
 
-                    </div>
                 </div>
+            </div>
+
 
             <div class="form-group clearfix">
                 <label for="city" class="col-sm-4 control-label">City</label>
@@ -87,7 +89,6 @@
             </div>
 
 
-            <div class="clearfix"></div>
             <div class="form-group clearfix">
                 <label for="latitude" class="col-sm-4 control-label">Latitude</label>
                 <div class="col-sm-8">
@@ -128,18 +129,14 @@
             </div>
 
 
-            <div class="clearfix"></div>
             {{Form::submit('Save changes', array('class'=>'btn btn-success col-md-offset-4 margin-top-20', 'title'=>'Save Edit Address'))}}
-            <a type="button" class="btn btn-warning margin-top-20" href="/dist_address/{{$dist->id}}">Cancel</a>
+            <a type="button" class="btn btn-warning margin-top-20" href="{{URL::previous()}}">Cancel</a>
             {!! Form::close() !!}
 
 
         </div>
 
     </div>
-
-
-
 
 @endsection
 
@@ -148,6 +145,3 @@
     var zonesDistrict = {!! json_encode($zonesDistrict) !!};
 
 </script>
-
-
-
