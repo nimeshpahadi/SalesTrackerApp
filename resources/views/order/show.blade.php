@@ -70,12 +70,15 @@
                         <div class="panel panel-warning pad">
                             <div class="panel-heading">
                                 <h5>Order Billing</h5>
-                            </div>
+                                <div align="right">
+                                    {!! Html::linkRoute('GetPdf','PDF',array($ob->id),array('class'=>'btn btn-success ', 'title'=>"View pdf"))!!}
+                                </div>
 
-                            <div class="row">
-                                <label class="col-sm-6 "> Discount :</label>
-                                {{$ob->discount}}%
                             </div>
+                        <div class="row">
+                            <label class="col-sm-6 "> Discount :</label>
+                            {{$ob->discount}}%
+                        </div>
 
                             <div class="row">
                                 <label class="col-sm-6 "> VAT :</label>
@@ -391,5 +394,4 @@
         </div>
     </section>
 @endsection
-
 
