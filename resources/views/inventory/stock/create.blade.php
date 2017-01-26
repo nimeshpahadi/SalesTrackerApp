@@ -51,7 +51,7 @@
 
         <div align="center">
             {{Form::submit('Add stock', array('class'=>'btn btn-primary','title'=>'Add the stocks in warehouse '))}}
-            <a type="button" class="btn btn-warning " href="/stock">Cancel</a>
+            <a type="button" class="btn btn-warning " href="/stockin">Cancel</a>
             {!! Form::close() !!}
         </div>
 

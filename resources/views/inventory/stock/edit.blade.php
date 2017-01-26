@@ -50,7 +50,7 @@
 
         <div class="clearfix" align="center">
         {{Form::submit('Save Changes', array('class'=>'btn btn-primary','title'=>'Save changes to the Stockin'))}}
-        <a type="button" class="btn btn-warning " href="/stock">Cancel</a>
+        <a type="button" class="btn btn-warning " href="/stockin">Cancel</a>
         {!! Form::close() !!}
 
         </div>
