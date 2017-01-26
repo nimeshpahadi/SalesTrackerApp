@@ -13,8 +13,6 @@ use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
-
-
     /**
      * @var OrderService
      */
@@ -32,9 +30,11 @@ class OrderController extends Controller
      */
     private $orderApprovalRemarks;
 
-    public function __construct( OrderService $orderService, DistributorService $distributorService,StockService $stockService,OrderApprovalRemarks $orderApprovalRemarks)
+    public function __construct( OrderService $orderService, DistributorService $distributorService,
+                                 StockService $stockService,OrderApprovalRemarks $orderApprovalRemarks)
     {
         $this->middleware(['role:admin|salesman|salesmanager|factoryincharge|accountmanagersales|generalmanager|director']);
+
         $this->orderService = $orderService;
         $this->distributorService = $distributorService;
         $this->stockService = $stockService;
@@ -109,7 +109,14 @@ class OrderController extends Controller
         $order_billings=$this->orderService->getcountorderBilling($id);
         $order_payment=$this->orderService->getpayment($id);
         $order=$this->orderService->getOrderListDetails();
-        return view('order.show',compact('order','orderId','order_payment','shipaddress','approvalremark','dispatched','order_billings','orderout','ware','order_approval','salesapproval','adminapproval','marketingapproval'));
+
+        $address = $this->distributorService->getaddress($orderId->distributor_id);
+        $dist = $this->distributorService->select_distributor($orderId->distributor_id);
+
+        return view('order.show',compact('order','orderId','order_payment','shipaddress',
+                                        'approvalremark','dispatched','order_billings','orderout',
+                                        'ware','order_approval','salesapproval','adminapproval',
+                                        'marketingapproval', 'address', 'dist'));
     }
 
     /**
@@ -148,36 +155,38 @@ class OrderController extends Controller
 
     public function createPayment($id)
     {
-
         $orderId= $this->orderService->getorderbyid($id);
-       $distId= $this->orderService->getDistributororder($id);
+        $distId= $this->orderService->getDistributororder($id);
 
         return view('order.payment',compact('distId','orderId','id'));
-
     }
 
     public function orderBilling(OrderRequest $request)
     {
         $orderid = $request['order_id'];
+
         if ($this->orderService->OrderBilling($request)) {
             return redirect()->route('order.show', compact('orderid'))->withSuccess(" Billing created success");
         }
+
         return back()->withErrors("Something went wrong");
     }
 
     public function orderPayment(Request $request)
     {
         $distributorid = $request['distributor_id'];
+
         if ($this->orderService->OrderPayment($request)) {
-            return redirect()->route('distributor.show', compact('distributorid'))->withSuccess(" Payment created success");
+            return redirect()->route('distributor.show', compact('distributorid'))
+                            ->withSuccess(" Payment created success");
         }
+
         return back()->withErrors("Something went wrong");
     }
 
 
     public function orderapproval(Request $request)
     {
-
         $user = Auth::user();
         $role = $user->roles[0]->name;
 
@@ -195,24 +204,18 @@ class OrderController extends Controller
                 'order_approval_id' => $orderRemark->id,
                 'remark'=>$request->get('approval_remark'),
                 'status'=>$status
-
-
             ];
+
             $this->orderApprovalRemark($orderApprovalRemark);
 
             return back()->withSuccess("Order Approval created by ".$role);
         }
 
-
-
        back()->withErrors("Something went wrong");
-
-
     }
 
     public function orderapprovalupdate(Request $request,$id)
     {
-
         $user = Auth::user();
         $role = $user->roles[0]->name;
         if ($orderRemark=$this->orderService->OrderApprovalUpdate($request,$id))
@@ -238,8 +241,6 @@ class OrderController extends Controller
         }
 
         return back()->withErrors("Something went wrong");
-
-
     }
 
     public function orderOut(Request $request)
@@ -256,10 +257,9 @@ class OrderController extends Controller
         if ($this->orderService->orderDispatch($request)) {
             return back()->withSuccess("Order Dispatched to the Customer!");
         }
+
         return back()->withErrors("Something went wrong");
-
     }
-
 
     public function salesAdminApproval(Request $request)
     {
@@ -281,7 +281,6 @@ class OrderController extends Controller
                 'remark'=>$request->get('approval_remark'),
                 'status'=>$status
 
-
             ];
             $this->orderApprovalRemark($orderApprovalRemark);
 
@@ -290,11 +289,9 @@ class OrderController extends Controller
 
         return back()->withErrors("Something went wrong");
     }
+
     protected function orderApprovalRemark(array $data)
     {
         return OrderApprovalRemarks::create($data);
     }
-
 }
-
-
