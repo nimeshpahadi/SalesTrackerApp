@@ -53,11 +53,22 @@ class productService
         $data = $this->productRepository->delete_product($id);
         return $data;
     }
-
+  
     public function subcat_list()
     {
         $data = $this->productRepository->subcatlist();
         return $data;
+    }
+
+    public function getwareofproduct($id)
+    {
+        $wareId=[];
+        $data = $this->productRepository->getWareofProduct($id);
+        foreach ($data as $ware)
+        {
+            array_push($wareId,$ware->wareid);
+        }
+        return $wareId;
     }
 
 }

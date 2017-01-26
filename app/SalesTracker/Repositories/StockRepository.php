@@ -324,7 +324,7 @@ class StockRepository
         return $query->get();
     }
 
-}
+    }
 
 
 
