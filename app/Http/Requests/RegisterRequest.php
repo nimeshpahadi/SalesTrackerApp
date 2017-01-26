@@ -25,9 +25,11 @@ class RegisterRequest extends FormRequest
     public function rules()
     {
         $user = User::find($this->user);
-        $rulesData = [];
+
         switch ($this->method()){
             case 'POST':{
+                $data = $this->all();
+
                 $rulesData= [
                     'fullname' => 'required|max:255',
                     'username' => 'required|max:255|unique:users',
@@ -38,6 +40,12 @@ class RegisterRequest extends FormRequest
                     'password' => 'required|min:6|confirmed',
                     'contact' => 'required|min:10|unique:users',
                 ];
+
+                if (isset($data['role']) && $data['role']==4)
+                {
+                    $rulesData['warehouse_id']='required';
+                }
+
                 return $rulesData;
             }
 
@@ -67,10 +75,7 @@ class RegisterRequest extends FormRequest
                     return $rulesData;
                 }
 
-
             default:break;
-    }
-
-
+        }
     }
 }
