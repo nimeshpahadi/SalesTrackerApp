@@ -1,10 +1,12 @@
 <?php
 namespace App\SalesTracker\Repositories;
 
+use App\SalesTracker\Entities\Inventory\Warehouse_Product;
 use App\SalesTracker\Entities\Product\Product;
 use File;
 use Illuminate\Contracts\Logging\Log;
 //use Illuminate\Http\File;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use League\Flysystem\Exception;
 //use PhpParser\Node\Scalar\MagicConst\File;
@@ -24,17 +26,22 @@ class ProductRepository
      * @var Log
      */
     private $log;
+    /**
+     * @var Warehouse_Product
+     */
+    private $warehouse_Product;
 
     /**
      * ProductRepository constructor.
      * @param Product $product
      */
-    public function __construct(Product $product, Log $log)
+    public function __construct(Product $product, Log $log, Warehouse_Product $warehouse_Product)
     {
 
 
         $this->product = $product;
         $this->log = $log;
+        $this->warehouse_Product = $warehouse_Product;
     }
 
 
@@ -100,7 +107,6 @@ class ProductRepository
         try {
 
             $data = Product::find($id);
-
             $data->category = $request->category;
             $data->sub_category = $request->sub_category;
             $data->name = $request->name;
@@ -148,4 +154,24 @@ class ProductRepository
             return false;
         }
     }
+
+
+    public function getWareofProduct($id)
+    {
+        $query = $this->product->select('warehouses.id as wareid','warehouses.name as warename','warehouse_product.id as wpid')
+                                    ->join('warehouse_product','warehouse_product.product_id','products.id')
+                                    ->join('warehouses','warehouses.id','warehouse_product.warehouse_id')
+                                    ->where('products.id',$id)
+                                    ->groupBy('warehouses.id');
+        return $query->get();
+    }
 }
+
+
+
+
+
+
+
+
+

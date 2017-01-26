@@ -79,7 +79,7 @@
                     <select id="warehouse_id" name="warehouse_id[]"
                             class=" form-control warehouse" multiple required>
                         @foreach ($ware as $warehouse)
-                            <option value="{{$warehouse->id}}">
+                            <option value="{{$warehouse->id}}" @if(in_array($warehouse->id,$wareofproduct)) selected @endif>
                                 {{$warehouse->name}}
                             </option>
                         @endforeach

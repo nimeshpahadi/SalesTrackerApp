@@ -183,9 +183,7 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        if (
-        $this->userService->deleteUser($id)
-        ) {
+        if ($this->userService->deleteUser($id)) {
             return redirect()->route('user.index')->withSuccess("User deleted");
         }
 

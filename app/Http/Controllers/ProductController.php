@@ -8,6 +8,7 @@ use App\SalesTracker\Entities\Product\Product;
 use App\SalesTracker\Services\productService;
 use App\SalesTracker\Services\StockService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Input;
 use phpDocumentor\Reflection\Types\String_;
 
@@ -102,7 +103,9 @@ class ProductController extends Controller
     {
         $ware = $this->stockService->get_allwarehouse();
         $product = Product::find($id);
-        return view('product.edit', compact('product','ware'));
+        $wareofproduct = $this->productService->getwareofproduct($id);
+
+        return view('product.edit', compact('product','ware','wareofproduct'));
 
     }
 
@@ -119,11 +122,13 @@ class ProductController extends Controller
 
         if ($product = $this->productService->editproduct($request, $id)) {
             $ware = $request['warehouse_id'];
+            DB::table('warehouse_product')->where('product_id', $id)->delete();
             foreach ($ware as $w) {
                 $productwarehouse = [
                     'product_id' => $id,
                     'warehouse_id' => $w
                 ];
+
                 $this->assignupdatewarehouse($productwarehouse);
             }
             return redirect('/product')->withSuccess('Product edited');
