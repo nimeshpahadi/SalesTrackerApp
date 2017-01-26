@@ -115,7 +115,6 @@ class OrderRepository
             ->where('order_approvals.marketing_approval','Approved')
             ->groupby('order_approvals.order_id')
             ->distinct()->get();
-//dd($query);
         $query1 = $this->order->select('orders.id','orders.distributor_id','orders.product_id','orders.user_id'
             ,'orders.quantity','orders.price','orders.priority',
             'orders.proposed_delivery_date','orders.created_at','products.sub_category as subCategory',
@@ -214,9 +213,7 @@ class OrderRepository
             ->join('users', 'orders.user_id', 'users.id')
             ->join('products', 'orders.product_id', 'products.id')
             ->join('distributor_details', 'orders.distributor_id', 'distributor_details.id')
-//            ->join('order_approvals', 'order_approvals.order_id', 'orders.id')
             ->where('orders.distributor_id', $id);
-//            ->where('order_approvals.admin_approval', '<>', "Approved");
         return $query->get();
     }
 
@@ -425,9 +422,6 @@ class OrderRepository
                        ->whereNotIn('orders.id',$query1) ;
 
         return $query->get();
-
-
-
     }
 
     public function OrderOut($formData)
@@ -540,8 +534,6 @@ class OrderRepository
             ->join('role_user','users.id','role_user.user_id')
             ->join('roles','roles.id','role_user.role_id')
             ->where('order_approvals.order_id',$id)
-//            ->where('order_approvals.salesmanager','role_role.user_id')
-//            ->where('order_approvals.order_id',$id)
             ->get();
         return $query;
     }
@@ -582,4 +574,5 @@ class OrderRepository
             ->where('order_id',$id)
             ->get();
     }
+
 }

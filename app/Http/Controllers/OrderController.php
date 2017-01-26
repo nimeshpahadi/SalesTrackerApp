@@ -8,7 +8,9 @@ use App\SalesTracker\Entities\Order\OrderApprovalRemarks;
 use App\SalesTracker\Services\DistributorService;
 use App\SalesTracker\Services\OrderService;
 use App\SalesTracker\Services\StockService;
+use Barryvdh\DomPDF\PDF;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -95,9 +97,9 @@ class OrderController extends Controller
      */
     public function show($id)
     {
+
         $orderId= $this->orderService->getorderbyid($id);
         $shipaddress=$this->distributorService->shippingAddress($orderId->distributor_id);
-
         $dispatched=$this->stockService->getstockoutbyorder($id);
         $orderout=$this->orderService->getorderoutdetail_id($id);
         $ware = $this->stockService->get_allwarehouse();
@@ -109,14 +111,11 @@ class OrderController extends Controller
         $order_billings=$this->orderService->getcountorderBilling($id);
         $order_payment=$this->orderService->getpayment($id);
         $order=$this->orderService->getOrderListDetails();
-
-        $address = $this->distributorService->getaddress($orderId->distributor_id);
-        $dist = $this->distributorService->select_distributor($orderId->distributor_id);
-
         return view('order.show',compact('order','orderId','order_payment','shipaddress',
                                         'approvalremark','dispatched','order_billings','orderout',
                                         'ware','order_approval','salesapproval','adminapproval',
-                                        'marketingapproval', 'address', 'dist'));
+                                        'marketingapproval'));
+
     }
 
     /**
@@ -293,5 +292,17 @@ class OrderController extends Controller
     protected function orderApprovalRemark(array $data)
     {
         return OrderApprovalRemarks::create($data);
+    }
+
+    public function getPdf($id)
+    {
+        $order_billings=$this->orderService->getcountorderBilling($id);
+        $orderId= $this->orderService->getorderbyid($id);
+        $shipaddress=$this->distributorService->shippingAddress($orderId->distributor_id);
+
+
+        $pdf = App::make('dompdf.wrapper');
+        $pdf->loadView('partials.pdf',compact('order_billings','orderId','shipaddress'));
+        return  ($pdf->stream());
     }
 }

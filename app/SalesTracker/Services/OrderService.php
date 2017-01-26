@@ -119,7 +119,6 @@ class OrderService
         $formData = $request->all();
         $formData = array_except($formData, ['_token', 'to', 'remove']);
         $formData = array_except($formData, ['remark', 'to', 'remove']);
-//dd($formData);
         $data=$this->orderRepository->orderapproval($formData);
         return $data;
     }
@@ -267,4 +266,6 @@ class OrderService
         $ordApp=$this->orderRepository->gerapprovalremark($id);
         return $ordApp;
     }
+
+
 }

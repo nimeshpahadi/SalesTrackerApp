@@ -63,6 +63,9 @@ Route::get('/stockout/history/warehouse={wid}/product={pid}', 'StockController@s
 
 // order
 Route::resource('/order','OrderController');
+Route::get('order/getpdf/{id}', 'OrderController@getPdf')->name("GetPdf");
+Route::get('pdf/{id}', 'OrderController@getPdf')->name("GetPdf");
+
 
 //payment
 Route::get('warehouse/{id}/orders', 'StockController@orderwarehouse')->name("orderwarehouse");
