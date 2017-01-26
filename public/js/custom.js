@@ -7,7 +7,8 @@ $(document).ready(function () {
     //select2
     $("select").select2({
         theme: "classic",
-        placeholder:"Select Item"
+        placeholder:"Select Item",
+        allowClear: true
     });
 
 
@@ -142,7 +143,6 @@ $(document).ready(function () {
     }
 
 
-
     //aaaaa
     $("#roles").change(function () {
            userform($(this).val());
@@ -202,16 +202,6 @@ $(".customer_approval").change(function () {
 
 $('[data-toggle="popover"]').popover();
 
-
-//warehouse disabled for other role
-/*$('.role').change(function () {
-    $(".warehouse").prop("disabled", this.value != 4);
-});*/
-//
-
-
-
-
 //datepicker
 
 $('#date').datepicker({
@@ -231,14 +221,3 @@ $('#date2').datepicker({
 today = yyyy + '-' + mm + '-' + dd;
 document.getElementById("datefield").setAttribute("max", today);
 document.getElementById("datefield1").setAttribute("max", today);
-
-
-
-// var number = document.getElementById('amount');
-// number.onkeydown = function(e) {
-//     if(!((e.keyCode > 95 && e.keyCode < 106)
-//         || (e.keyCode > 47 && e.keyCode < 58)
-//         || e.keyCode == 8)) {
-//         return false;
-//     }
-// }

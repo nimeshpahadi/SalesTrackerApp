@@ -110,7 +110,7 @@
 
             <div class="col-md-8 warehouse">
                 <select id="warehouse_id" name="warehouse_id[]"
-                        class=" form-control warehouse"  multiple>
+                        class=" form-control warehouse"  multiple required>
 
 
                     @foreach ($ware as $warehouse)

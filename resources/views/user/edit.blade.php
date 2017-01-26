@@ -42,7 +42,7 @@
                 {{ Form::label('department','Department :',array('class'=>'col-sm-2 control-label margin-top-5'))}}
                 <div class="col-sm-10 margin-top-10">
                     <?php $x = Config::get('department.name');?>
-                    <select name="department" class="form-control">
+                    <select name="department" class="form-control" required>
                         @foreach($x as $dep)
                             <option value="{{$dep}}">
                                 {{ $dep  }}
@@ -52,15 +52,13 @@
                 </div>
             </div>
 
+
             <div class="form-group">
                 {{ Form::label('role','Role :', array('class'=>'col-sm-2 control-label margin-top-5'))}}
                 <div class="col-sm-10 margin-top-10">
-                    <select id="roles" name="role" class="form-control role">
-                        <option selected="selected"
-                                value="{{$userRoleid->roles_id}}"> {{$userRoleid->role_name}}</option>
-
-                        @foreach ($role as $allrole)
-                            <option value="{{$allrole->id}}">
+                    <select id="roles" name="role" class="form-control role" required>
+                    @foreach ($role as $allrole)
+                            <option value="{{$allrole->id}}" @if(isset($userRoleid->roles_id) && $userRoleid->roles_id==$allrole->id) selected  @endif>
                                 {{$allrole->display_name}}
                             </option>
                         @endforeach
@@ -73,7 +71,7 @@
                 {{ Form::label('reportsto','Reports To :', array('class'=>'col-sm-2 control-label margin-top-5'))}}
 
                 <div class="col-sm-10 margin-top-10">
-                    <select name="reportsto" class="form-control">
+                    <select name="reportsto" class="form-control" required>
                         <option selected="selected"
                                 value="{{$reportsTo->role_id}}">{{$reportsTo->display_name}}</option>
                         @foreach ($role as $allrole)
@@ -90,11 +88,12 @@
             </div>
 
             <div class="form-group">
-                @if( $userRoleid->role_name=='factoryincharge')
+
+                @if( $userRoleid!=null && $userRoleid->role_name=='factoryincharge')
                     {{ Form::label('Warehouse :', null, array('id'=>'warehouse_id', 'class'=>'col-sm-2 control-label margin-top-5'))}}
                 <div class="col-sm-10 margin-top-10">
                     <div id="ware">
-                        <select id="warehouses" name="warehouse_id" class="form-control warehouses"
+                        <select id="warehouses" name="warehouse_id" class="form-control warehouses" required
                                 visibility="hidden">
                             <option selected="selected" value="{{$factoryWarehouse->warehouse_id}}"> {{$factoryWarehouse->warehousename}}
                             </option>
@@ -142,7 +141,7 @@
 
     <script>
         var edituser=true;
-        var roletype ='{{$userRoleid->roles_id}}';
+        var roletype ='{{isset($userRoleid->roles_id)?$userRoleid->roles_id:''}}';
     </script>
     <!-- /.register-box -->
 

@@ -55,7 +55,7 @@
                 <div class="form-group{{ $errors->has('department') ? ' has-error' : '' }}">
                     <?php $x = Config::get('department.name');?>
 
-                    <select name="department" class="form-control">
+                    <select name="department" class="form-control" required>
                         <option selected="selected" disabled>Choose Department</option>
                         @foreach($x as $dep)
                             <option value="{{ $dep}}">
@@ -67,7 +67,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('role') ? ' has-error' : '' }}">
-                        <select id="roles" name="role" class=" form-control roles">
+                        <select id="roles" name="role" class=" form-control roles" required>
 
                             <option selected="selected" disabled>Choose Role</option>
                             @foreach ($role as $allrole)
@@ -80,7 +80,7 @@
                 </div>
 
                 <div class="form-group{{ $errors->has('reportsto') ? ' has-error' : '' }}">
-                    <select name="reportsto" class="form-control">
+                    <select name="reportsto" class="form-control" required>
 
                         <option selected="selected" disabled>Choose Reports to</option>
                         @foreach ($role as $allrole)

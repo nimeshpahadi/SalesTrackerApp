@@ -116,7 +116,6 @@ class UserController extends Controller
                 'role_id' => $request->get('role')
 
             ];
-//            dd($userRole);
             $this->updateRole($userRole);
 
             if ((int)$data['role']==4)
@@ -156,7 +155,13 @@ class UserController extends Controller
     private function updateRole($userRole)
     {
 
-        return $x= Roleuser::where('user_id', $userRole['user_id'])->update(['role_id' => $userRole['role_id']]);
+         $x= Roleuser::where('user_id', (int)$userRole['user_id'])->update(['role_id' => (int)$userRole['role_id']]);
+        if (!$x)
+        {
+            $x=Roleuser::create($userRole);
+        }
+        return $x;
+
     }
     protected function assignWarehouse(array $data)
     {

@@ -56,6 +56,7 @@
                     {{ Form::text('code',null,array('class'=>'form-control'))}}
                 </div>
             </div>
+            
             <div class="clearfix"></div>
             <div class="form-group clearfix">
                 <label for="description" class="col-sm-4 control-label">Product Description</label>
@@ -63,20 +64,20 @@
                     {{ Form::text('description',null,array('class'=>'form-control'))}}
                 </div>
             </div>
+
             <div class="form-group clearfix">
                 <label for="price" class="col-sm-4 control-label">Product Price</label>
                 <div class="col-sm-8">
                     {{ Form::text('price',null,array('class'=>'form-control'))}}
                 </div>
             </div>
+
             <div class="form-group{{ $errors->has('warehouse_id') ? ' has-error' : '' }} clearfix">
                 <label for="warehouse_id" class="col-sm-4 control-label">Warehouse </label>
 
                 <div class="col-md-8 warehouse">
                     <select id="warehouse_id" name="warehouse_id[]"
-                            class=" form-control warehouse"  multiple>
-                    {{--<option></option>--}}
-
+                            class=" form-control warehouse" multiple required>
                         @foreach ($ware as $warehouse)
                             <option value="{{$warehouse->id}}">
                                 {{$warehouse->name}}
@@ -86,23 +87,18 @@
                 </div>
 
             </div>
-                <div class="form-group clearfix">
-                    <label for="image" class="col-sm-4 control-label">Product Image</label>
-                    <div class="col-sm-8">
-
-
-                        {{ Form::file('image',null,array('class'=>'form-control col-sm-8', 'name'=>"image", 'id'=>"image" ))}}
-
-
-
+            <div class="form-group clearfix">
+                <label for="image" class="col-sm-4 control-label">Product Image</label>
+                <div class="col-sm-8">
+                    {{ Form::file('image',null,array('class'=>'form-control col-sm-8', 'name'=>"image", 'id'=>"image" ))}}
 
                 </div>
-                </div>
+            </div>
 
             <div class="clearfix " align="right">
-            {{Form::submit('Save Changes', array('class'=>'btn btn-primary btn-sm ','title'=>'Save the changes in the product'))}}
-            <a type="button" class="btn btn-warning  btn-sm" href="/product">Cancel</a>
-            {!! Form::close() !!}
+                {{Form::submit('Save Changes', array('class'=>'btn btn-primary btn-sm ','title'=>'Save the changes in the product'))}}
+                <a type="button" class="btn btn-warning  btn-sm" href="/product">Cancel</a>
+                {!! Form::close() !!}
             </div>
 
         </div>
