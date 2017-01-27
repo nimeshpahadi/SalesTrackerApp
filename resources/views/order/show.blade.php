@@ -75,10 +75,11 @@
                                     {!! Html::linkRoute('GetPdf',' Pdf',array($ob->id),array('class'=>' btn btn-primary fa fa-file-pdf-o', 'title'=>"View pdf" ))!!}
                                 </div>
 
-                            <div class="row">
-                                <label class="col-sm-6 "> Discount :</label>
-                                {{$ob->discount}}%
                             </div>
+                        <div class="row">
+                            <label class="col-sm-6 "> Discount :</label>
+                            {{$ob->discount}}%
+                        </div>
 
 
                             <div class="row">
@@ -397,5 +398,3 @@
         </div>
     </section>
 @endsection
-
-
