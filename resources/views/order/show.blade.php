@@ -71,7 +71,8 @@
                             <div class="panel-heading">
                                 <h5>Order Billing</h5>
                                 <div align="right">
-                                    {!! Html::linkRoute('GetPdf','PDF',array($ob->id),array('class'=>'btn btn-success ', 'title'=>"View pdf"))!!}
+
+                                    {!! Html::linkRoute('GetPdf',' Pdf',array($ob->id),array('class'=>' btn btn-primary fa fa-file-pdf-o', 'title'=>"View pdf" ))!!}
                                 </div>
 
                             </div>
@@ -79,6 +80,7 @@
                             <label class="col-sm-6 "> Discount :</label>
                             {{$ob->discount}}%
                         </div>
+
 
                             <div class="row">
                                 <label class="col-sm-6 "> VAT :</label>
@@ -166,9 +168,9 @@
 
                         @endif
 
-                        @if(!empty($address["Shipping"]))
-                            @include('order.shippingAddress',["add"=>$address["Shipping"]])
-                        @endif
+                            @if(!empty($shipaddress))
+                                @include('order.shippingAddress')
+                            @endif
 
                         @if(isset($orderout->orderoutid) && !isset($dispatched->orderoutid))
                             @if(isset($shipaddress) && $shipaddress!=null)
@@ -251,6 +253,7 @@
 
                     </div>
                 </div>
+
 
                 <div class="col-md-5 ">
                     @role((['admin','salesmanager', 'generalmanager', 'director','factoryincharge','accountmanagersales']))
@@ -392,6 +395,6 @@
                 </div>
             </div>
         </div>
+        </div>
     </section>
 @endsection
-

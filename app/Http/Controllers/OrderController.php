@@ -111,9 +111,11 @@ class OrderController extends Controller
         $order_billings=$this->orderService->getcountorderBilling($id);
         $order_payment=$this->orderService->getpayment($id);
         $order=$this->orderService->getOrderListDetails();
+        return view('order.show',compact('order','orderId','order_payment','shipaddress',
+                                        'approvalremark','dispatched','order_billings','orderout',
+                                        'ware','order_approval','salesapproval','adminapproval',
+                                        'marketingapproval'));
 
-
-        return view('order.show',compact('order','orderId','order_payment','shipaddress','approvalremark','dispatched','order_billings','orderout','ware','order_approval','salesapproval','adminapproval','marketingapproval'));
     }
 
     /**
@@ -303,6 +305,4 @@ class OrderController extends Controller
         $pdf->loadView('partials.pdf',compact('order_billings','orderId','shipaddress'));
         return  ($pdf->stream());
     }
-
 }
-
