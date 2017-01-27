@@ -1,4 +1,4 @@
-<div class="col-md-10">
+
     <div class="panel panel-info">
         <div class="panel-heading " align="center"> <h4>{{strtoupper($shipaddress['type'])}}</h4>
             <div class="col-md-offset-11">
@@ -42,4 +42,3 @@
 
         </div>
     </div>
-</div>

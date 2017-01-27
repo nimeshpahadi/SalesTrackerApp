@@ -220,8 +220,8 @@ class DistributorController extends Controller
     public function updateaddress($did,$id,Request $request)
     {
        if( $this->distributorService->update_dis_address( $id,$request)){
-        return redirect()->route('distributor.show', compact('did'))->withSuccess('Address was edited');
-        }
+          return redirect()->route('distributor.show', compact('did'))->withSuccess('Address was edited');
+       }
          return back(compact('did'))->withErrors('Address was not edited');
         }
 
