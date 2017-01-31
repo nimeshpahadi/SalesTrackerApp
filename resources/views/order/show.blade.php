@@ -72,7 +72,7 @@
                                 <h5>Order Billing</h5>
                                 <div align="right">
 
-                                    {!! Html::linkRoute('GetPdf',' Pdf',array($ob->id),array('class'=>' btn btn-primary fa fa-file-pdf-o', 'title'=>"View pdf" ))!!}
+                                    {!! Html::linkRoute('GetPdf',' Pdf',array($orderId->id),array('class'=>' btn btn-primary fa fa-file-pdf-o', 'title'=>"View pdf" ))!!}
                                 </div>
 
                             </div>
