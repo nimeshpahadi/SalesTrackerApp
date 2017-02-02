@@ -254,6 +254,8 @@ class OrderController extends Controller
     public function orderdispatch(Request $request)
     {
         if ($this->orderService->orderDispatch($request)) {
+
+
             return back()->withSuccess("Order Dispatched to the Customer!");
         }
 
@@ -305,4 +307,53 @@ class OrderController extends Controller
         $pdf->loadView('partials.pdf',compact('order_billings','orderId','shipaddress'));
         return  ($pdf->stream());
     }
+<<<<<<< 923a2040ecd72345eddf21157636c0dcec43533f
 }
+=======
+    public function sms($id)
+    {
+        try {
+            $orderId = $this->orderService->getorderbyid($id);
+            $shipaddress = $this->distributorService->shippingAddress($orderId->distributor_id);
+            $billingaddress = $this->distributorService->billingAddress($orderId->distributor_id);
+            $dispatched = $this->stockService->getstockoutbyorder($id);
+
+
+             if ( isset($shipaddress) && $shipaddress->mobile == isset($billingaddress) && $billingaddress->mobile)
+                $contacts = $shipaddress->mobile . ',' . $orderId->distributor_mobile;
+             else
+                 $contacts= $shipaddress->mobile.','.$orderId->distributor_mobile.','.$billingaddress->mobile;
+
+            $smstext=('Name ='.'  '.$dispatched->driver_name ."\n".'Contact ='.'  '.$dispatched->driver_contact."\n".'vehicle No.='.'  '.$dispatched->vehicle_no);
+
+            $args =
+                http_build_query(array(
+                    'token' => 'iowL0UVqfQvUlzo3fFxi',
+                    'from'  => 'Demo',
+                    'to'    =>  $contacts,
+                    'text'  =>  $smstext));
+            $url = "http://api.sparrowsms.com/v2/sms/";
+
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS,$args);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+            $response = curl_exec($ch);
+            $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+            curl_close($ch);
+
+            return redirect()->route('order.show',compact('orderId'))->withSuccess("sms was send to the customer!");
+
+        } catch (Exception $e) {
+
+            return back()->withErrors("Something went wrong");
+        }
+
+
+
+    }
+}
+>>>>>>> sms api done

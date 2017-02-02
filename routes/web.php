@@ -63,7 +63,6 @@ Route::get('/stockout/history/warehouse={wid}/product={pid}', 'StockController@s
 
 // order
 Route::resource('/order','OrderController');
-Route::get('order/getpdf/{id}', 'OrderController@getPdf')->name("GetPdf");
 Route::get('pdf/{id}', 'OrderController@getPdf')->name("GetPdf");
 
 
@@ -108,4 +107,21 @@ Route::post('customer/admin/create', 'CustomerApprovalController@createAdminAppr
 
 Route::get('/customer/account/list', 'CustomerApprovalController@accountCustomerList');
 Route::get('customer/account/update', 'CustomerApprovalController@updateAccountApprove')->name('customerAccountApprove');
+
+
+//sms
+Route::get('/sms/{id}','OrderController@sms')->name("sms");
+
+
+
+
+
+
+
+
+
+
+
+
+
 

@@ -350,4 +350,13 @@ class DistributorRepository
             ->first();
         return $query;
     }
+
+    public function billing_address($id)
+    {
+        $query = $this->distributorAddress->select('*')
+            ->where('type', 'Billing')
+            ->where('distributor_id', $id)
+            ->first();
+        return $query;
+    }
 }

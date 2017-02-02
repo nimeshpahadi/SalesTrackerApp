@@ -293,5 +293,11 @@ class DistributorService
         return $data;
     }
 
+    public function billingAddress($id)
+    {
+        $data = $this->distributorRepository->billing_address($id);
+        return $data;
+    }
+
 
 }

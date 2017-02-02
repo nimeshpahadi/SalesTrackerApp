@@ -221,7 +221,7 @@ class OrderRepository
     {
         $query = $this->order->select(DB::raw('orders.id,orders.quantity, orders.price, orders.priority,
           orders.proposed_delivery_date, orders.user_id as userId,orders.created_at, orders.order_remark,
-          products.sub_category as subCategory,
+          products.sub_category as subCategory, distributor_details.mobile as distributor_mobile,
           users.fullname as userName,distributor_details.id as distributor_id,
           distributor_details.company_name as distributor_name'))
             ->join('users', 'orders.user_id', 'users.id')
@@ -455,6 +455,7 @@ class OrderRepository
         try {
             $this->stock_out->insert($formData);
             $this->log->info("Order dispatched Created");
+
             return true;
         } catch (Exception $e) {
             $this->log->error("Order dispatch Creation Failed");

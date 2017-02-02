@@ -207,6 +207,7 @@
                                             </div>
                                         </div>
 
+
                                         {{Form::submit('Dispatch', array('class'=>'btn btn-sm btn-primary ', 'title'=>"Dispatch the order to the customer "))}}
                                         {!! Form::close() !!}
 
@@ -225,6 +226,11 @@
                         @if(isset($dispatched->orderoutid) && $dispatched->orderid==$orderId->id)
                             <div class="panel panel-success pad ">
                                 <div class="panel-heading"><h5>Order Already Dispatched</h5></div>
+
+                                {!! Html::linkRoute('sms','sms',array($orderId->id),array('class'=>' btn btn-primary', 'title'=>"send sms" ))!!}
+
+
+
 
                                 <div class="row">
                                     <label class="col-sm-6 "> Dispatched By :</label>
