@@ -102,10 +102,11 @@
                                 {{$ob->created_at}}
                             </div>
                         </div>
+                        </div>
 
                     @endforeach
 
-                    <div class="col-md-12">
+
                         @if(isset($adminapproval->admin) && trim($adminapproval->admin_approval)=='Approved' && !isset($orderout->order_id))
                             @role((['admin','salesmanager','marketingmanager', 'factoryincharge', 'generalmanager', 'director', 'accountmanagersales']))
                             <h3>Send to warehouse</h3>
@@ -227,7 +228,7 @@
                             <div class="panel panel-success pad ">
                                 <div class="panel-heading"><h5>Order Already Dispatched</h5></div>
 
-                                {!! Html::linkRoute('sms','sms',array($orderId->id),array('class'=>' btn btn-primary', 'title'=>"send sms" ))!!}
+                                {!! Html::linkRoute('sms','sms',array($orderId->id),array('class'=>' btn btn-primary ', 'title'=>"send sms" ))!!}
 
 
 
@@ -257,8 +258,9 @@
                             </div>
                         @endif
 
-                    </div>
+
                 </div>
+
 
 
                 <div class="col-md-5 ">
