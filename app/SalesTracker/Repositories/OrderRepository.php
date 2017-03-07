@@ -111,7 +111,7 @@ class OrderRepository
             ->join('users','users.id','order_approvals.marketingmanager')
             ->join('role_user','users.id','role_user.user_id')
             ->join('roles','roles.id','role_user.role_id')
-            ->where('roles.name', "accountmanagersales")
+//            ->where('roles.name', "accountmanagersales")
             ->where('order_approvals.marketing_approval','Approved')
             ->groupby('order_approvals.order_id')
             ->distinct()->get();
@@ -123,7 +123,7 @@ class OrderRepository
             ->join('users', 'orders.user_id', 'users.id')
             ->join('products', 'orders.product_id', 'products.id')
             ->join('distributor_details', 'orders.distributor_id', 'distributor_details.id')
-                            ->whereNotIn('orders.id', $query);
+            ->whereNotIn('orders.id', $query);
 
         return $query1->get();
     }

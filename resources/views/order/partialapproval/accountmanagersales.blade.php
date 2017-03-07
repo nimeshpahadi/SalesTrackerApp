@@ -1,10 +1,30 @@
 <div>
     <h3>ORDER APPROVAL</h3>
-    @if(!isset($marketingapproval->marketingmanager))
+    @if(!isset($marketingapproval->marketingmanager)
+    /* || !isset($salesapproval->salesmanager)
+     || !isset($adminapproval->admin)*/)
         <div id="AccountManagersales approval">
-            @role((['accountmanagersales']))
+            @role((['accountmanagersales','salesmanager','admin', 'generalmanager', 'director']))
             <div class="pad" >
-                <h4>Account Manager-sales:</h4>
+
+                @role(('admin'))
+                <label> Admin : </label>
+                @endrole
+
+                @role(('generalmanager'))
+                <label> GM : </label>
+                @endrole
+
+                @role(('director'))
+                <label> Director : </label>
+                @endrole
+                @role(('accountmanagersales'))
+                <label> Account Manager-sales : </label>
+                @endrole
+                @role(('salesmanager'))
+                <label> SalesManager : </label>
+                @endrole
+
                 {!! Form::open(array('id'=>'form','route'=>'add_order_approval'))!!}
                 {{ Form::hidden('marketingmanager', Auth::user()->id) }}
                 {{ Form::hidden('order_id', $orderId->id) }}
@@ -39,11 +59,29 @@
         </div>
     @endif
     @if(isset($marketingapproval->marketingmanager ) && $marketingapproval->order_id==$orderId->id)
-        @role((['accountmanagersales']))
+        @role((['accountmanagersales','salesmanager','admin', 'generalmanager', 'director']))
         <div class="pad">
             @if($marketingapproval->marketing_approval=='On hold')
-                <h4>Account Manager:</h4>
+                @role(('admin'))
+                <label> Admin : </label>
+                @endrole
+
+                @role(('generalmanager'))
+                <label> GM : </label>
+                @endrole
+
+                @role(('director'))
+                <label> Director : </label>
+                @endrole
+                @role(('accountmanagersales'))
+                <label> Account Manager-sales : </label>
+                @endrole
+                @role(('salesmanager'))
+                <label> SalesManager : </label>
+                @endrole
+
                 {!! Form::model($marketingapproval,array('route'=>['update_order_approval',$marketingapproval->id],'method'=>'PUT' ))!!}
+                {{ Form::hidden('marketingmanager', Auth::user()->id) }}
                 <div class="form-group row">
                     <div class="col-md-8">
                         <?php $x = Config::get('distributor.orderApproval');?>
@@ -79,10 +117,26 @@
     @endif
 
     @if(isset($marketingapproval->marketingmanager ) && $marketingapproval->order_id==$orderId->id)
-        @role((['accountmanagersales']))
+        @role((['accountmanagersales','salesmanager','admin', 'generalmanager', 'director']))
         <div class="pad">
             @if($marketingapproval->marketing_approval=='Rejected')
-                <h4>Account Manager:</h4>
+                @role(('admin'))
+                <label> Admin : </label>
+                @endrole
+
+                @role(('generalmanager'))
+                <label> GM : </label>
+                @endrole
+
+                @role(('director'))
+                <label> Director : </label>
+                @endrole
+                @role(('accountmanagersales'))
+                <label> Account Manager-sales : </label>
+                @endrole
+                @role(('salesmanager'))
+                <label> SalesManager : </label>
+                @endrole
                 {!! Form::model($marketingapproval,array('route'=>['update_order_approval',$marketingapproval->id],'method'=>'PUT' ))!!}
                 <div class="form-group row">
                     <div class="col-md-8">
@@ -118,9 +172,9 @@
         @endrole
     @endif
 
-    @if(isset($marketingapproval->marketingmanager) && $marketingapproval->marketing_approval!=null)
-        <label> Account Manager-sales : </label>
-        <div>  {{$marketingapproval->marketing_approval}} by <a>{{$marketingapproval->user_name}}</a>
-        </div>
-    @endif
+    {{--@if(isset($marketingapproval->marketingmanager) && $marketingapproval->marketing_approval!=null)--}}
+        {{--<label>Approved by : </label>--}}
+        {{--<div>  {{$marketingapproval->marketing_approval}} by <a>{{$marketingapproval->marketingmanager}}<br>{{$marketingapproval->user_name}}</a>--}}
+        {{--</div>--}}
+    {{--@endif--}}
 </div>

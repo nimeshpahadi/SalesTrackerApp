@@ -49,12 +49,6 @@ class OrderController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function index()
-    {
-
-    }
-
-
     public function filterOrder(Request $request)
     {
         $filters['from'] = $request->get('from',date('Y-m-d'));
@@ -154,8 +148,8 @@ class OrderController extends Controller
 
     public function createPayment($id)
     {
-        $orderId= $this->orderService->getorderbyid($id);
         $distId= $this->orderService->getDistributororder($id);
+        $orderId= $this->orderService->getorderbyid($id);
 
         return view('order.payment',compact('distId','orderId','id'));
     }
@@ -191,11 +185,6 @@ class OrderController extends Controller
 
         if ($orderRemark=$this->orderService->OrderApproval($request))
         {
-            if ($role=='admin')
-                $status=$request->get('admin_approval');
-            elseif($role=='salesmanager')
-                $status=$request->get('salesmanager_approval');
-            else
                 $status=$request->get('marketing_approval');
 
             $orderApprovalRemark = [
@@ -219,11 +208,6 @@ class OrderController extends Controller
         $role = $user->roles[0]->name;
         if ($orderRemark=$this->orderService->OrderApprovalUpdate($request,$id))
         {
-            if ($role=='admin' || $role=='generalmanager'|| $role=='director')
-                $status=$request->get('admin_approval');
-            elseif($role=='salesmanager')
-                $status=$request->get('salesmanager_approval');
-            else
                 $status=$request->get('marketing_approval');
 
             $orderApprovalRemark = [
@@ -231,7 +215,6 @@ class OrderController extends Controller
                 'order_approval_id' => $orderRemark->id,
                 'remark'=>$request->get('approval_remark'),
                 'status'=>$status
-
 
             ];
             $this->orderApprovalRemark($orderApprovalRemark);
@@ -262,34 +245,6 @@ class OrderController extends Controller
         return back()->withErrors("Something went wrong");
     }
 
-    public function salesAdminApproval(Request $request)
-    {
-        $user = Auth::user();
-        $role = $user->roles[0]->name;
-        $formData = $request->all();
-        if ($orderApproval=$this->orderService->updateAdminOrder($formData,$role))
-        {
-            $orderAppId = $this->orderService->getOrderApproval($formData['order_id']);
-            if ($role=='admin' || $role=='generalmanager'|| $role=='director' )
-                $status=$request->get('admin_approval');
-            elseif($role=='salesmanager')
-                    $status=$request->get('sales_approval');
-            else
-                    $status=$request->get('marketing_approval');
-            $orderApprovalRemark = [
-                'user_id' => Auth::user()->id,
-                'order_approval_id' => $orderAppId->id,
-                'remark'=>$request->get('approval_remark'),
-                'status'=>$status
-
-            ];
-            $this->orderApprovalRemark($orderApprovalRemark);
-
-            return back()->withSuccess("Order Approval created by ".$role);
-        }
-
-        return back()->withErrors("Something went wrong");
-    }
 
     protected function orderApprovalRemark(array $data)
     {
@@ -307,31 +262,34 @@ class OrderController extends Controller
         $pdf->loadView('partials.pdf',compact('order_billings','orderId','shipaddress'));
         return  ($pdf->stream());
     }
-<<<<<<< 923a2040ecd72345eddf21157636c0dcec43533f
-}
-=======
-    public function sms($id)
+
+    public function smscreate($id)
+    {
+
+        $distId= $this->orderService->getDistributororder($id);
+        $orderId= $this->orderService->getorderbyid($id);
+        $dispatched = $this->stockService->getstockoutbyorder($id);
+        $shipaddress = $this->distributorService->shippingAddress($orderId->distributor_id);
+        $billingaddress = $this->distributorService->billingAddress($orderId->distributor_id);
+
+
+
+        return view('order.createsms',compact('distId','orderId','id','dispatched','shipaddress','billingaddress'));
+
+    }
+    public function sms(Request $request)
     {
         try {
+            $id=$request->id;
             $orderId = $this->orderService->getorderbyid($id);
-            $shipaddress = $this->distributorService->shippingAddress($orderId->distributor_id);
-            $billingaddress = $this->distributorService->billingAddress($orderId->distributor_id);
-            $dispatched = $this->stockService->getstockoutbyorder($id);
-
-
-             if ( isset($shipaddress) && $shipaddress->mobile == isset($billingaddress) && $billingaddress->mobile)
-                $contacts = $shipaddress->mobile . ',' . $orderId->distributor_mobile;
-             else
-                 $contacts= $shipaddress->mobile.','.$orderId->distributor_mobile.','.$billingaddress->mobile;
-
-            $smstext=('Name ='.'  '.$dispatched->driver_name ."\n".'Contact ='.'  '.$dispatched->driver_contact."\n".'vehicle No.='.'  '.$dispatched->vehicle_no);
 
             $args =
                 http_build_query(array(
                     'token' => 'iowL0UVqfQvUlzo3fFxi',
+                    'token' => $token,
                     'from'  => 'Demo',
-                    'to'    =>  $contacts,
-                    'text'  =>  $smstext));
+                    'to'    =>  $request->send_to,
+                    'text'  =>  $request->sms));
             $url = "http://api.sparrowsms.com/v2/sms/";
 
 
@@ -342,6 +300,7 @@ class OrderController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
             $response = curl_exec($ch);
+//            dd($response);
             $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
 
@@ -349,11 +308,10 @@ class OrderController extends Controller
 
         } catch (Exception $e) {
 
-            return back()->withErrors("Something went wrong");
+            return back()->withErrors('sms was not send to the customer!');
         }
 
 
 
     }
 }
->>>>>>> sms api done

@@ -71,8 +71,9 @@
                             <div class="panel-heading">
                                 <h5>Order Billing</h5>
                                 <div align="right">
-
+                                    @if(isset($shipaddress) && $shipaddress!=null)
                                     {!! Html::linkRoute('GetPdf',' Pdf',array($orderId->id),array('class'=>' btn btn-primary fa fa-file-pdf-o', 'title'=>"View pdf" ))!!}
+                               @endif
                                 </div>
 
                             </div>
@@ -106,9 +107,8 @@
 
                     @endforeach
 
-
-                        @if(isset($adminapproval->admin) && trim($adminapproval->admin_approval)=='Approved' && !isset($orderout->order_id))
-                            @role((['admin','salesmanager','marketingmanager', 'factoryincharge', 'generalmanager', 'director', 'accountmanagersales']))
+                        @if(isset($marketingapproval->marketing_approval) && trim($marketingapproval->marketing_approval)=='Approved' && !isset($orderout->order_id))
+                            @role((['admin','salesmanager', 'factoryincharge', 'generalmanager', 'director', 'accountmanagersales']))
                             <h3>Send to warehouse</h3>
                             {!! Form::open(array('route'=>'sendToWarehouse','method'=>'post'))!!}
 
@@ -217,7 +217,7 @@
                                 @endrole
                             @else
                                 <h4 style="color: red">
-                                    The Shipping address is not available.
+                                  The Shipping address is not available.
                                 </h4>
                             @endif
 
@@ -228,9 +228,9 @@
                             <div class="panel panel-success pad ">
                                 <div class="panel-heading"><h5>Order Already Dispatched</h5></div>
 
-                                {!! Html::linkRoute('sms','sms',array($orderId->id),array('class'=>' btn btn-primary ', 'title'=>"send sms" ))!!}
-
-
+                                @role((['factoryincharge']))
+                                <a href="/order_dispatch/sms/{{$orderId->id}}"> sms</a>
+                                @endrole
 
 
                                 <div class="row">
@@ -352,8 +352,7 @@
                     <div class=" box box-primary pad">
 
                         @include('order.partialapproval.accountmanagersales')
-                        @include('order.partialapproval.salesmanager')
-                        @include('order.partialapproval.admin')
+
                         @if(count($approvalremark)>0)
                             <div class="panel panel-info  ">
 

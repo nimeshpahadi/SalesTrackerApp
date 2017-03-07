@@ -33,14 +33,10 @@ class OrderApprovalController extends Controller
 
     public function index()
     {
-//        $user = Auth::user();
-//        $role=$user->roles[0]->name;
         $dis=$this->distributorService->distributor_list();
-
         $orderA = $this->orderService->getOrderApprovalAccount();
-        $ordersales=$this->orderService->getOrderApprovalsales();
-        $orderadmin=$this->orderService->getOrderApprovaladmin();
-        return view('orderApproval.index',compact('orderA','ordersales','orderadmin','dis'));
+
+        return view('orderApproval.index',compact('orderA','dis'));
     }
 
 

@@ -26,12 +26,11 @@
                             @foreach($customerList as $list)
 
                                 <tr>
-                                    {{--Salesmanager--}}
+
                                     <td>{{$list['company_name']}}</td>
                                     <td>{{$list['contact_name']}}</td>
                                     <td>
-                                        {{isset($list['approval']['username'])?$list['approval']['username']:"SalesManager"}}
-                                        {{isset($list['approval']['display_name'])?"(".$list['approval']['display_name'].")":""}}
+                                        {{isset($list['approval']['username'])?$list['approval']['username']:""}}
                                                                 :  {{(isset($list["approval"]["sales_approval"])
                                                                 && $list["approval"]["sales_approval"]!=null)
                                                                 ?ucfirst($list["approval"]["sales_approval"])
@@ -51,28 +50,9 @@
                                             </button>
                                         @endif
 
-                                        <br>
 
-                                        {{--Admin--}}
-                                        {{isset($list['adminApproval']['username'])?$list['adminApproval']['username']:"Admin"}}
-                                        {{isset($list['adminApproval']['display_name'])?"(".$list['adminApproval']['display_name'].")":""}}
-                                                                    : {{(isset($list["adminApproval"]["admin_approval"])
-                                                                    && $list["adminApproval"]["admin_approval"]!=null)
-                                                                    ?ucfirst($list["adminApproval"]["admin_approval"])
-                                                                    :"Waiting For Approval"}}
 
-                                        @if(isset($list['approval']['admin_approval']) && $list['approval']['admin_approval']!=null)
-                                            <button @if($list['approval']['admin_approval']=='Approved')
-                                                    class="btn btn-success glyphicon glyphicon-info-sign"
-                                                    @elseif($list['approval']['admin_approval']=='Rejected')
-                                                    class="btn btn-danger glyphicon glyphicon-info-sign"
-                                                    @else
-                                                    class="btn btn-warning glyphicon glyphicon-info-sign"
-                                                    @endif
-                                                    data-toggle="popover" data-trigger="hover"
-                                                    data-content="{{$list['approval']['admin_remark']}}">
-                                            </button>
-                                        @endif
+
 
                                     </td>
                                     <td>
@@ -83,15 +63,12 @@
                                         @if(isset($list["approval"]["sales_approval"])
                                               && $list["approval"]["sales_approval"]=="Approved")
 
-                                            @if(isset($list["approval"]["admin_approval"])
-                                              && $list["approval"]["admin_approval"]=="Approved")
 
                                                 {!! Html::linkRoute('customerAccountApprove', 'Approve',
                                                              array("distributor_id"=>$list['distributor_id'],
                                                                    "approval_status"=> "approved"),
                                                              array('class'=>'btn btn-success btn-block'))
                                                 !!}
-                                            @endif
                                         @endif
                                     </td>
                                 </tr>

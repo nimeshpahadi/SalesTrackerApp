@@ -23,6 +23,8 @@
                             </tr>
                             </thead>
                             <tbody>
+
+                            @if(isset($customerList))
                             @foreach($customerList as $list)
 
                                 <tr>
@@ -30,9 +32,9 @@
                                     <td>{{$list['contact_name']}}</td>
                                     <td>
                                         {{--Salesmanager--}}
-                                        {{isset($list['approval']['username'])?$list['approval']['username']:"SalesManager"}}
-                                        {{isset($list['approval']['display_name'])?"(".$list['approval']['display_name'].")":""}}
-                                                                :  {{(isset($list["approval"]["sales_approval"])
+                                        {{isset($list['approval']['username'])?$list['approval']['username']:""}}
+
+                                                                 {{(isset($list["approval"]["sales_approval"])
                                                                 && $list["approval"]["sales_approval"]!=null)
                                                                 ?ucfirst($list["approval"]["sales_approval"])
                                                                 :"Waiting For Approval"}}
@@ -52,29 +54,7 @@
                                             </button>
                                         @endif
 
-                                        <br>
 
-                                        {{--Admin--}}
-                                        {{isset($list['adminApproval']['username'])?$list['adminApproval']['username']:"Admin"}}
-                                        {{isset($list['adminApproval']['display_name'])?"(".$list['adminApproval']['display_name'].")":""}}
-                                                        :  {{(isset($list["adminApproval"]["admin_approval"])
-                                                        && $list["adminApproval"]["admin_approval"]!=null)
-                                                        ?ucfirst($list["adminApproval"]["admin_approval"]):"Waiting For Approval"}}
-
-
-                                        @if(isset($list['approval']['admin_approval']) && $list['approval']['admin_approval']!=null)
-
-                                            <button @if($list['approval']['admin_approval']=='Approved')
-                                                    class="btn btn-success glyphicon glyphicon-info-sign"
-                                                    @elseif($list['approval']['admin_approval']=='Rejected')
-                                                    class="btn btn-danger glyphicon glyphicon-info-sign"
-                                                    @else
-                                                    class="btn btn-warning glyphicon glyphicon-info-sign"
-                                                    @endif
-                                                    data-toggle="popover" data-trigger="hover"
-                                                    data-content="{{$list['approval']['admin_remark']}}">
-                                            </button>
-                                        @endif
                                     </td>
 
                                     <td>
@@ -120,7 +100,7 @@
 
                                 </tr>
                             @endforeach
-
+                            @endif
                             </tbody>
 
                         </table>

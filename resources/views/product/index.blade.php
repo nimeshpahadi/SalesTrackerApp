@@ -50,9 +50,9 @@
                                 @if(isset($data))
                                 @foreach($data as $row)
                                     <tr>
-
-
-                                        <td><img class="productimage" src="/storage/product/{{$row->image}}"></td>
+                                        {{--symlink to be created to access image--}}
+                                        {{--ln -s /path/to/laravel/storage/app/public /path/to/laravel/public/storage--}}
+                                        <td><img class="productimage" src="storage/product/{{$row->image}}"></td>
 
                                         <td>{{$row->name }}</td>
                                         <td>{{$row->category }}</td>

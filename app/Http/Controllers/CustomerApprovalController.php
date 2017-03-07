@@ -55,39 +55,7 @@ class CustomerApprovalController extends Controller
         return Redirect::intended('/')->withSuccess('Customer Approval Updated by Sales manager ');
     }
 
-    /**
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function adminCustomerList()
-    {
-        $customerList = $this->approvalService->customerList();
 
-        return view('distributor/adminApproveList', compact('customerList'));
-    }
-
-    /**
-     * @param Request $request
-     * @return mixed
-     */
-    public function createAdminApprove(Request $request)
-    {
-        $this->approvalService->adminApprove($request);
-
-        Session::put('url.intended', URL::previous());
-
-        if (Auth::user()->roles[0]['display_name']=="Admin") {
-            return Redirect::intended('/')->withSuccess('Customer Approval Updated by Admin');
-        }
-
-        elseif (Auth::user()->roles[0]['display_name']=="General Manager") {
-
-            return Redirect::intended('/')->withSuccess('Customer Approval Updated by General Manager');
-        }
-
-        else {
-            return Redirect::intended('/')->withSuccess('Customer Approval Updated by Director');
-        }
-    }
 
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View

@@ -54,7 +54,6 @@ class CustomerApprovalRepository
             ->select('*')
             ->where('distributor_details.status', 0)
             ->get();
-
         return $query;
     }
 
@@ -65,11 +64,11 @@ class CustomerApprovalRepository
     public function saleApproveRepo($id)
     {
         $query = DB::table('customer_approvals')
+            ->select('customer_approvals.*', 'users.username', 'roles.display_name')
             ->join('users', 'users.id', 'customer_approvals.salesmanager')
             ->join('role_user', 'role_user.user_id', 'users.id')
             ->join('roles', 'roles.id', 'role_user.role_id')
-            ->select('customer_approvals.*', 'users.username', 'roles.display_name')
-            ->where('distributor_id', $id)
+            ->where('customer_approvals.distributor_id', $id)
             ->first();
 
         return (array)$query;
@@ -129,6 +128,8 @@ class CustomerApprovalRepository
                                         ->first();
 
         $query->sales_approval = $request['sales_approval'];
+        $query->salesmanager = $request['salesmanager'];
+        $query->sale_remark = $request['sale_remark'];
         $query->sale_remark = $request['sale_remark'];
 
         $query->save();

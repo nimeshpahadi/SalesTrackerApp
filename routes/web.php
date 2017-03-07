@@ -110,7 +110,9 @@ Route::get('customer/account/update', 'CustomerApprovalController@updateAccountA
 
 
 //sms
-Route::get('/sms/{id}','OrderController@sms')->name("sms");
+
+Route::get('/order_dispatch/sms/{id}','OrderController@smscreate')->name("smscreate");
+Route::post('/sms','OrderController@sms')->name("sms");
 
 
 
