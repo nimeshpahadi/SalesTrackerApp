@@ -296,10 +296,11 @@ class OrderController extends Controller
                 http_build_query(array(
                     'token' => env('SPARROW_TOKEN'),
                     'from'  => 'Demo',
-                    'to'    =>  $request->send_to,
+                    'to'    =>  trim($request->send_to).',',
                     'text'  =>  $request->sms));
             $url = "http://api.sparrowsms.com/v2/sms/";
 
+//dd($args);
 
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $url);
@@ -308,6 +309,7 @@ class OrderController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
             $response = curl_exec($ch);
+//            dd($response);
             $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
 

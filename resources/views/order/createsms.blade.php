@@ -25,7 +25,7 @@
 
                         <div class="form-group ">
                             <label for="sms" class="col-sm-4 control-label">TEXT SMS</label>
-                            <textarea class="col-md-8" name="sms" style="height: 150px">{{$d->company_name}}&#13Quantity: {{$orderId->quantity}} &#13Driver: {{$dispatched->driver_name}},{{$dispatched->driver_contact}}. &#13Vehicle No.: {{$dispatched->vehicle_no}}&#13Dispatched Date:{{($dispatched->created_at)}}</textarea>
+                            <textarea class="col-md-8" name="sms" style="height: 150px">{{$d->company_name}}&#13Quantity: {{$orderId->quantity}} &#13Driver: {{$dispatched->driver_name}},{{$dispatched->driver_contact}} &#13Vehicle No.: {{$dispatched->vehicle_no}}&#13Dispatched Date:{{($dispatched->created_at)}}</textarea>
                         </div>
 
 

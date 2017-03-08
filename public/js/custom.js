@@ -1,8 +1,13 @@
 // distributor list
 $(document).ready(function () {
 
-    $("#example1").DataTable();
-    $("#example2").DataTable();
+    $("#example1").DataTable({
+        "pageLength": 25
+    } );
+    $("#example2").DataTable({
+        "pageLength": 25
+    } );
+
 
     //select2
     $("select").select2({
