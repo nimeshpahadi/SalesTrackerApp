@@ -51,7 +51,8 @@
                                 @foreach($data as $row)
                                     <tr>
                                         {{--symlink to be created to access image--}}
-                                        {{--ln -s /path/to/laravel/storage/app/public /path/to/laravel/public/storage--}}
+                                        {{--ln -s ~/web/salestrackerweb/storage/app/public/product ~/web/salestrackerweb/public/storage/--}}
+
                                         <td><img class="productimage" src="storage/product/{{$row->image}}"></td>
 
                                         <td>{{$row->name }}</td>

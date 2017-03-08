@@ -49,6 +49,11 @@
                                     <th> Action</th>
                                 </tr>
 
+
+                                {{--{{dd($value)}}--}}
+
+                                {{--{{dd($value['ware_id'])}}--}}
+                                {{--{{dd($value['product'])}}--}}
                                 @if(isset($value['product'] ))
                                 @foreach($value['product'] as $prodCat=>$stock)
                                     <tr>

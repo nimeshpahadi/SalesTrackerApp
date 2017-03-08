@@ -103,7 +103,7 @@
                                 {{$ob->created_at}}
                             </div>
                         </div>
-                        </div>
+
 
                     @endforeach
 
@@ -173,65 +173,86 @@
                                 @include('order.shippingAddress')
                             @endif
 
-                        @if(isset($orderout->orderoutid) && !isset($dispatched->orderoutid))
-                            @if(isset($shipaddress) && $shipaddress!=null)
-                                @role((['factoryincharge']))
-
-                                <div class="panel panel-success col-md-11">
-                                    <div class="panel-heading">
-                                        <h>Dispatch the Order</h>
-                                    </div>
-
-                                    <div align="right" class="pad">
-                                        {!! Form::open(array('route' => 'dispatch','method'=>'post'))!!}
-                                        {{ Form::hidden('dispatched_by',  Auth::user()->id) }}
-                                        {{ Form::hidden('order_out_id', $orderout->orderoutid) }}
-                                        {{ Form::hidden('quantity', $orderout->qty) }}
+                    @if(isset($stocks))
+                        @foreach($stocks as $ware=>$value)
+                            @if(isset($value['product'] ))
+                                @foreach($value['product'] as $prodCat=>$stock)
+                                    @if($stock['in']-$stock['out'] > $orderId->quantity)
 
 
-                                        <div class="form-group clearfix ">
-                                            <label class="col-sm-4 control-label">Driver Name</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" name="driver_name" class="form-control" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group clearfix">
-                                            <label class="col-sm-4 control-label">Driver's Mobile</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" name="driver_contact" class="form-control" required>
-                                            </div>
-                                        </div>
-                                        <div class="form-group clearfix">
-                                            <label class="col-sm-4 control-label"> Vehicle No.</label>
-                                            <div class="col-sm-8">
-                                                <input type="text" name="vehicle_no" class="form-control" required>
-                                            </div>
-                                        </div>
+                                        @if(isset($orderout->orderoutid) && !isset($dispatched->orderoutid))
+                                            @if(isset($shipaddress) && $shipaddress!=null)
+                                                @role((['factoryincharge']))
+
+                                                <div class="panel panel-success col-md-11">
+                                                    <div class="panel-heading">
+                                                        <h>Dispatch the Order</h>
+                                                    </div>
+
+                                                    <div align="right" class="pad">
+                                                        {!! Form::open(array('route' => 'dispatch','method'=>'post'))!!}
+                                                        {{ Form::hidden('dispatched_by',  Auth::user()->id) }}
+                                                        {{ Form::hidden('order_out_id', $orderout->orderoutid) }}
+                                                        {{ Form::hidden('quantity', $orderout->qty) }}
 
 
-                                        {{Form::submit('Dispatch', array('class'=>'btn btn-sm btn-primary ', 'title'=>"Dispatch the order to the customer "))}}
-                                        {!! Form::close() !!}
+                                                        <div class="form-group clearfix ">
+                                                            <label class="col-sm-4 control-label">Driver Name</label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" name="driver_name" class="form-control" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-4 control-label">Driver's Mobile</label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" name="driver_contact" class="form-control" required>
+                                                            </div>
+                                                        </div>
+                                                        <div class="form-group clearfix">
+                                                            <label class="col-sm-4 control-label"> Vehicle No.</label>
+                                                            <div class="col-sm-8">
+                                                                <input type="text" name="vehicle_no" class="form-control" required>
+                                                            </div>
+                                                        </div>
 
-                                    </div>
-                                </div>
-                                @endrole
-                            @else
-                                <h4 style="color: red">
-                                  The Shipping address is not available.
-                                </h4>
+
+                                                        {{Form::submit('Dispatch', array('class'=>'btn btn-sm btn-primary ', 'title'=>"Dispatch the order to the customer "))}}
+                                                        {!! Form::close() !!}
+
+                                                    </div>
+                                                </div>
+                                                @endrole
+                                            @else
+                                                <h4 style="color: red">
+                                                    The Shipping address is not available.
+                                                </h4>
+                                            @endif
+
+                                        @endif
+                                    @else
+                                        <h4 style="color: red">
+                                        The stock Quantity is not enough for dispatch.
+                                        </h4>
+
+                                    @endif
+                                @endforeach
+                            @endif
+                                @endforeach
                             @endif
 
-                        @endif
+
+
+
 
 
                         @if(isset($dispatched->orderoutid) && $dispatched->orderid==$orderId->id)
                             <div class="panel panel-success pad ">
-                                <div class="panel-heading"><h5>Order Already Dispatched</h5></div>
+                                <div class="panel-heading "><h5>Order Already Dispatched</h5>
+                                </div>
 
                                 @role((['factoryincharge']))
-                                <a href="/order_dispatch/sms/{{$orderId->id}}"> sms</a>
+                                <a  href="/order_dispatch/sms/{{$orderId->id}}"> <span class="btn btn-primary pad-bottom  col-md-2 col-md-offset-10" > sms</span></a>
                                 @endrole
-
 
                                 <div class="row">
                                     <label class="col-sm-6 "> Dispatched By :</label>
@@ -257,9 +278,9 @@
                                 </div>
                             </div>
                         @endif
-
-
                 </div>
+
+
 
 
 
@@ -402,6 +423,6 @@
                 </div>
             </div>
         </div>
-        </div>
+
     </section>
 @endsection

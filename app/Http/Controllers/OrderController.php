@@ -105,10 +105,20 @@ class OrderController extends Controller
         $order_billings=$this->orderService->getcountorderBilling($id);
         $order_payment=$this->orderService->getpayment($id);
         $order=$this->orderService->getOrderListDetails();
+
+
+
+        $user=Auth::user();
+        $userInfo=[
+            "id"=>$user->id,
+            "role"=>$user->roles[0]->name
+        ];
+        $stocks = $this->stockService->getStocks($userInfo);
+
         return view('order.show',compact('order','orderId','order_payment','shipaddress',
                                         'approvalremark','dispatched','order_billings','orderout',
                                         'ware','order_approval','salesapproval','adminapproval',
-                                        'marketingapproval'));
+                                        'marketingapproval','stocks'));
 
     }
 
@@ -266,8 +276,8 @@ class OrderController extends Controller
     public function smscreate($id)
     {
 
-        $distId= $this->orderService->getDistributororder($id);
         $orderId= $this->orderService->getorderbyid($id);
+        $distId= $this->orderService->getDistributororder($orderId->distributor_id);
         $dispatched = $this->stockService->getstockoutbyorder($id);
         $shipaddress = $this->distributorService->shippingAddress($orderId->distributor_id);
         $billingaddress = $this->distributorService->billingAddress($orderId->distributor_id);
@@ -280,13 +290,11 @@ class OrderController extends Controller
     public function sms(Request $request)
     {
         try {
-            $id=$request->id;
-            $orderId = $this->orderService->getorderbyid($id);
 
+            $orderId = $request->order_id;
             $args =
                 http_build_query(array(
-                    'token' => 'iowL0UVqfQvUlzo3fFxi',
-                    'token' => $token,
+                    'token' => env('SPARROW_TOKEN'),
                     'from'  => 'Demo',
                     'to'    =>  $request->send_to,
                     'text'  =>  $request->sms));
@@ -300,7 +308,6 @@ class OrderController extends Controller
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 
             $response = curl_exec($ch);
-//            dd($response);
             $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
             curl_close($ch);
 

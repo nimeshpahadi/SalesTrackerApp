@@ -11,12 +11,16 @@
                     {!! Form::open(array('id'=>'sms','route'=>'sms'))!!}
 
                     {{ Form::hidden('order_id', $orderId->id) }}
+
                     @foreach($distId as $d)
 
                         <div class="form-group clearfix pad-top">
                             <label for="vat" class="col-sm-4 control-label">Send to:</label>
                             <input class="col-md-8" type="text" name="send_to"
-                                   value="{{$d->mobile}},{{$shipaddress->mobile}},{{$billingaddress->mobile}}" required>
+
+                                   value="{{$d->mobile}},{{$shipaddress->mobile}},
+                                            @if(isset($billingaddress->mobile)){{$billingaddress->mobile}}  @endif"
+                                   required>
                         </div>
 
                         <div class="form-group ">
