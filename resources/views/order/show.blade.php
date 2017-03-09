@@ -1,6 +1,15 @@
 @extends('Layout.app')
 
 @section('main-content')
+
+    <?php
+
+
+    $showDispathcForm=false;
+
+            ?>
+
+
     <section class="content">
         <div class="row">
             <div class="col-md-12">
@@ -108,7 +117,7 @@
                     @endforeach
 
                         @if(isset($marketingapproval->marketing_approval) && trim($marketingapproval->marketing_approval)=='Approved' && !isset($orderout->order_id))
-                            @role((['admin','salesmanager', 'factoryincharge', 'generalmanager', 'director', 'accountmanagersales']))
+                            @role((['admin','salesmanager', 'generalmanager', 'director', 'accountmanagersales']))
                             <h3>Send to warehouse</h3>
                             {!! Form::open(array('route'=>'sendToWarehouse','method'=>'post'))!!}
 
@@ -182,49 +191,9 @@
                                 @foreach($stocks as $ware=>$value)
                                     @if(isset($value['product'] ))
                                         @foreach($value['product'] as $prodCat=>$stock)
-                                            @if($stock['in']-$stock['out'] > $orderId->quantity)
-                                                <div class="panel panel-success col-md-11">
-                                                    <div class="panel-heading">
-                                                        <h>Dispatch the Order</h>
-                                                    </div>
-
-                                                    <div align="right" class="pad">
-                                                        {!! Form::open(array('route' => 'dispatch','method'=>'post'))!!}
-                                                        {{ Form::hidden('dispatched_by',  Auth::user()->id) }}
-                                                        {{ Form::hidden('order_out_id', $orderout->orderoutid) }}
-                                                        {{ Form::hidden('quantity', $orderout->qty) }}
-
-
-                                                        <div class="form-group clearfix ">
-                                                            <label class="col-sm-4 control-label">Driver Name</label>
-                                                            <div class="col-sm-8">
-                                                                <input type="text" name="driver_name"
-                                                                       class="form-control" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group clearfix">
-                                                            <label class="col-sm-4 control-label">Driver's
-                                                                Mobile</label>
-                                                            <div class="col-sm-8">
-                                                                <input type="text" name="driver_contact"
-                                                                       class="form-control" required>
-                                                            </div>
-                                                        </div>
-                                                        <div class="form-group clearfix">
-                                                            <label class="col-sm-4 control-label"> Vehicle No.</label>
-                                                            <div class="col-sm-8">
-                                                                <input type="text" name="vehicle_no"
-                                                                       class="form-control" required>
-                                                            </div>
-                                                        </div>
-
-
-                                                        {{Form::submit('Dispatch', array('class'=>'btn btn-sm btn-primary ', 'title'=>"Dispatch the order to the customer "))}}
-                                                        {!! Form::close() !!}
-
-                                                    </div>
-                                                </div>
-                                            @else
+                                            @if($stock['in']-$stock['out'] >= $orderId->quantity)
+                                                <?php $showDispathcForm=true; ?>
+                                                @else
 
                                                 @if( isset($orderout->order_id))
                                                     <h4 style="color: red">
@@ -243,6 +212,55 @@
                             </h4>
                     @endif
                 @endif
+
+                   @if($showDispathcForm)
+
+                        <div class="panel panel-success col-md-11">
+                            <div class="panel-heading">
+                                <h>Dispatch the Order</h>
+                            </div>
+
+                            <div align="right" class="pad">
+                                {!! Form::open(array('route' => 'dispatch','method'=>'post'))!!}
+                                {{ Form::hidden('dispatched_by',  Auth::user()->id) }}
+                                {{ Form::hidden('order_out_id', $orderout->orderoutid) }}
+                                {{ Form::hidden('quantity', $orderout->qty) }}
+
+
+                                <div class="form-group clearfix ">
+                                    <label class="col-sm-4 control-label">Driver Name</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="driver_name"
+                                               class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-sm-4 control-label">Driver's
+                                        Mobile</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="driver_contact"
+                                               class="form-control" required>
+                                    </div>
+                                </div>
+                                <div class="form-group clearfix">
+                                    <label class="col-sm-4 control-label"> Vehicle No.</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="vehicle_no"
+                                               class="form-control" required>
+                                    </div>
+                                </div>
+
+
+                                {{Form::submit('Dispatch', array('class'=>'btn btn-sm btn-primary ', 'title'=>"Dispatch the order to the customer "))}}
+                                {!! Form::close() !!}
+
+                            </div>
+                        </div>
+
+                    @endif
+
+
+
 
                         @if(isset($dispatched->orderoutid) && $dispatched->orderid==$orderId->id)
                             <div class="panel panel-success pad ">
