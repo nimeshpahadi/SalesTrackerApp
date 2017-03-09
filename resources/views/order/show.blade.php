@@ -207,8 +207,8 @@
                             @endif
                         @endrole
                     @else
-                            <h4 style="color: red">
-                                The Shipping address is not available.
+                            <h4  style="color: red">
+                                The Shipping address is not available.<a href="/address/{{$orderId->distributor_id}}?type=2"> Click here to add.</a>
                             </h4>
                     @endif
                 @endif
