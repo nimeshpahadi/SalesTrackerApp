@@ -173,17 +173,16 @@
                                 @include('order.shippingAddress')
                             @endif
 
-                    @if(isset($stocks))
-                        @foreach($stocks as $ware=>$value)
-                            @if(isset($value['product'] ))
-                                @foreach($value['product'] as $prodCat=>$stock)
-                                    @if($stock['in']-$stock['out'] > $orderId->quantity)
 
+                    @if(isset($orderout->orderoutid) && !isset($dispatched->orderoutid))
+                        @if(isset($shipaddress) && $shipaddress!=null)
+                            @role((['factoryincharge']))
 
-                                        @if(isset($orderout->orderoutid) && !isset($dispatched->orderoutid))
-                                            @if(isset($shipaddress) && $shipaddress!=null)
-                                                @role((['factoryincharge']))
-
+                            @if(isset($stocks))
+                                @foreach($stocks as $ware=>$value)
+                                    @if(isset($value['product'] ))
+                                        @foreach($value['product'] as $prodCat=>$stock)
+                                            @if($stock['in']-$stock['out'] > $orderId->quantity)
                                                 <div class="panel panel-success col-md-11">
                                                     <div class="panel-heading">
                                                         <h>Dispatch the Order</h>
@@ -199,19 +198,23 @@
                                                         <div class="form-group clearfix ">
                                                             <label class="col-sm-4 control-label">Driver Name</label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" name="driver_name" class="form-control" required>
+                                                                <input type="text" name="driver_name"
+                                                                       class="form-control" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-group clearfix">
-                                                            <label class="col-sm-4 control-label">Driver's Mobile</label>
+                                                            <label class="col-sm-4 control-label">Driver's
+                                                                Mobile</label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" name="driver_contact" class="form-control" required>
+                                                                <input type="text" name="driver_contact"
+                                                                       class="form-control" required>
                                                             </div>
                                                         </div>
                                                         <div class="form-group clearfix">
                                                             <label class="col-sm-4 control-label"> Vehicle No.</label>
                                                             <div class="col-sm-8">
-                                                                <input type="text" name="vehicle_no" class="form-control" required>
+                                                                <input type="text" name="vehicle_no"
+                                                                       class="form-control" required>
                                                             </div>
                                                         </div>
 
@@ -221,29 +224,25 @@
 
                                                     </div>
                                                 </div>
-                                                @endrole
                                             @else
-                                                <h4 style="color: red">
-                                                    The Shipping address is not available.
-                                                </h4>
+
+                                                @if( isset($orderout->order_id))
+                                                    <h4 style="color: red">
+                                                        The stock Quantity is not enough for dispatch.
+                                                    </h4>
+                                                @endif
                                             @endif
-
-                                        @endif
-                                    @else
-                                        <h4 style="color: red">
-                                        The stock Quantity is not enough for dispatch.
-                                        </h4>
-
+                                        @endforeach
                                     @endif
                                 @endforeach
                             @endif
-                                @endforeach
-                            @endif
-
-
-
-
-
+                        @endrole
+                    @else
+                            <h4 style="color: red">
+                                The Shipping address is not available.
+                            </h4>
+                    @endif
+                @endif
 
                         @if(isset($dispatched->orderoutid) && $dispatched->orderid==$orderId->id)
                             <div class="panel panel-success pad ">

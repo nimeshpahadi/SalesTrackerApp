@@ -200,7 +200,7 @@
                         <h3 class="box-title">Addresses</h3>
                         <div align="right">
 
-                            @role((['admin','salesmanager','accountmanagersales','director','generalmanager','salesman']))
+                            @role((['admin','salesmanager','accountmanagersales','director','generalmanager','salesman','factoryincharge']))
                             @if(empty($address["Billing"]))
                                 <a class=" btn btn-success" title="Add Billing Address for customer {{$dist->company_name}}"
                                    href="{{route('distributor_address',["id"=>$dist->id,"type"=>1])}}">Add
