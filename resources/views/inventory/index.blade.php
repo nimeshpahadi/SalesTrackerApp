@@ -7,6 +7,9 @@
             <div class="box-header">
                 <h3 class="box-title"></h3>
             </div>
+
+
+            @role((['admin','generalmanager','director', 'accountmanagersales', 'salesmanager']))
             <div align="right" class="pad-right">
                 <a href="{{route('stockin')}}">
                     <span class=" btn btn-sm btn-primary" title="View all the stock in all warehouse">View StocksIn</span>
@@ -17,6 +20,7 @@
 
 
             </div>
+            @endrole
 
 
             <!-- /.box-header -->
@@ -49,6 +53,11 @@
                                     <th> Action</th>
                                 </tr>
 
+
+                                {{--{{dd($value)}}--}}
+
+                                {{--{{dd($value['ware_id'])}}--}}
+                                {{--{{dd($value['product'])}}--}}
                                 @if(isset($value['product'] ))
                                 @foreach($value['product'] as $prodCat=>$stock)
                                     <tr>
