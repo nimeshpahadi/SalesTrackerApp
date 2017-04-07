@@ -20,10 +20,11 @@
                                 @role((['admin','salesmanager','accountmanagersales','director','generalmanager','salesman']))
                                 <div align="right">
                                     <div>
-                                        <a href="{!! route('distributor.edit',$dist->id)!!}">
-                                            <span class="  btn btn-primary glyphicon glyphicon-pencil"   data-toggle="popover" data-trigger="hover"
-                                                  data-placement="top"   data-content="Edit the customer details of {{$dist->company_name}}"></span>
-                                        </a>
+                                        <a class="btn btn-primary"  title="Click to Upload Document"
+                                        href="{{route("document", $dist->id)}}">Upload Document</a>
+
+                                        <a class="btn btn-primary"  title="Click to View Document"
+                                        href="{{route("document.show", $dist->id)}}">View Document</a>
                                     </div>
                                 </div>
                                 @endrole
@@ -103,7 +104,7 @@
                                         @role((['admin','salesmanager','accountmanagersales','director','generalmanager']))
                                         <div align="right" class="pad">
 
-                                            <a href="{{route('distributor_guarantee',$dist->id)}}">
+                                            <a href="{{route('distributor_guarantee', $dist->id)}}">
                                                 <span class=" btn btn-success glyphicon glyphicon-plus" title="Add Guarantee for customer {{$dist->company_name}}">Guarantee</span>
                                             </a>
                                         </div>
@@ -113,7 +114,7 @@
 
                                         <h3> Guarantee</h3>
                                         <hr>
-                                        <a href="{!! route('guarantee_edit',$dist->id)!!}">
+                                        <a href="{!! route('guarantee_edit', $dist->id)!!}">
                                             <span class="  btn btn-primary glyphicon glyphicon-edit " title="Edit Guarantee for customer {{$dist->company_name}}"></span>
                                         </a>
                                         <div class="row">
@@ -151,9 +152,13 @@
 
                                 </div>
 
+                                <a href="{!! route('distributor.edit',$dist->id)!!}">
+                                            <span class="btn btn-primary glyphicon glyphicon-pencil" data-toggle="popover" data-trigger="hover"
+                                                  data-placement="top"   data-content="Edit the customer details of {{$dist->company_name}}"
+                                            style="margin-bottom: 5px">
 
-                                {{--<div class="col-md-6">--}}
-
+                                            </span>
+                                </a>
 
                                     <div id="map" class="col-md-6 map"></div>
                                     <script>
@@ -163,7 +168,7 @@
                                                 lng:<?php echo "$dist->longitude"?>};
 
                                             var map = new google.maps.Map(document.getElementById('map'), {
-                                                zoom: 17,
+                                                zoom: 5,
                                                 center: myLatLng
                                             });
 

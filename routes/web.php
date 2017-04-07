@@ -114,6 +114,12 @@ Route::get('customer/account/update', 'CustomerApprovalController@updateAccountA
 Route::get('/order_dispatch/sms/{id}','OrderController@smscreate')->name("smscreate");
 Route::post('/sms','OrderController@sms')->name("sms");
 
+// customer document
+Route::get('/customer/{id}/document', 'Web\CustomerDocumentWebController@create')->name('document');
+Route::get('/customer/{id}/document/show', 'Web\CustomerDocumentWebController@show')->name('document.show');
+Route::post('/customer/document', 'Web\CustomerDocumentWebController@store')->name('document.store');
+Route::delete('/customer/{id}/document/delete', 'Web\CustomerDocumentWebController@destroy')->name('document.destroy');
+
 
 
 
