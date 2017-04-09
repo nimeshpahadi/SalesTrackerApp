@@ -120,6 +120,10 @@ Route::get('/customer/{id}/document/show', 'Web\CustomerDocumentWebController@sh
 Route::post('/customer/document', 'Web\CustomerDocumentWebController@store')->name('document.store');
 Route::delete('/customer/{id}/document/delete', 'Web\CustomerDocumentWebController@destroy')->name('document.destroy');
 
+// customer area
+Route::get('/customer/area', 'Web\CustomerAreaWebController@create')->name('area');
+Route::post('/customer/area', 'Web\CustomerAreaWebController@store')->name('area.store');
+
 
 
 

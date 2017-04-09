@@ -156,6 +156,14 @@
                 </li>
                 @endrole
 
+                @role((['admin','generalmanager','director', 'salesmanager', 'accountmanagersales']))
+                <li class="active treeview">
+                    <a href="{{ url('customer/area') }}">
+                        <i class="fa fa-user-plus"></i> <span>Customer Area</span>
+                    </a>
+                </li>
+                @endrole
+
                 @role((['admin','salesmanager','accountmanagersales', 'director','generalmanager','salesman']))
                 <li class="active treeview">
                     <a href="{{ url('/order') }}">
