@@ -50,4 +50,43 @@ class CustomerAreaWebRepository
             return false;
         }
     }
+
+    public function getCustomerAreaList()
+    {
+        return $this->customerArea->select('*')->get();
+    }
+
+    public function getId($id)
+    {
+        return $this->customerArea->select('*')->where('id', $id)->first();
+    }
+
+    public function update($request, $id)
+    {
+        try {
+            $query = CustomerArea::find($id);
+            $query->district = $request->district;
+            $query->area_name = $request->area_name;
+            $query->places = $request->places;
+            $query->update();
+            $this->log->info('Customer Area Updated !!!');
+            return true;
+        } catch (QueryException $exception) {
+            $this->log->error('Customer Area Update Failed : ', [$exception->getMessage()]);
+            return false;
+        }
+    }
+
+    public function destroy($id)
+    {
+        try {
+            $query = $this->customerArea->find($id);
+            $query->delete();
+            $this->log->info("Customer Area Deleted");
+            return true;
+        } catch (QueryException $exception) {
+            $this->log->error("Customer AreaDeletion Failed : ", [$exception->getMessage()]);
+            return false;
+        }
+    }
 }

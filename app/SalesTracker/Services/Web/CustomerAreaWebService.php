@@ -35,4 +35,24 @@ class CustomerAreaWebService
     {
         return $this->areaWebRepository->store($request);
     }
+
+    public function getCustomerAreaList()
+    {
+        return $this->areaWebRepository->getCustomerAreaList();
+    }
+
+    public function getId($id)
+    {
+        return $this->areaWebRepository->getId($id);
+    }
+
+    public function update($request, $id)
+    {
+        return $this->areaWebRepository->update($request, $id);
+    }
+
+    public function destroy($id)
+    {
+        return $this->areaWebRepository->destroy($id);
+    }
 }

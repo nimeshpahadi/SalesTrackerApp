@@ -29,12 +29,18 @@ class CustomerAreaWebController extends Controller
         $this->areaWebService = $areaWebService;
     }
 
+    public function index()
+    {
+        $customerAreaList = $this->areaWebService->getCustomerAreaList();
+        return view('distributor/customer_area_index', compact('customerAreaList'));
+    }
+
     /**
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
     public function create()
     {
-        return view('distributor/customer_area');
+        return view('distributor/customer_area_create');
     }
 
     /**
@@ -47,9 +53,31 @@ class CustomerAreaWebController extends Controller
 
         if ($this->areaWebService->store($data))
         {
-            return redirect('/home')->withSuccess("Customer Area Created Successfully !!!");
+            return redirect()->route('area.index')->withSuccess("Customer Area Created Successfully !!!");
         }
 
         return back()->withErrors("Something Went Wrong");
+    }
+
+    public function edit($id)
+    {
+        $customerAreaId = $this->areaWebService->getId($id);
+        return view('distributor/customer_area_edit', compact('customerAreaId'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        if ($this->areaWebService->update($request, $id)) {
+            return redirect()->route('area.index')->withSuccess("Customer Area Updated Successfully !!!");
+        }
+        return back()->withErrors('Something Went Wrong');
+    }
+
+    public function destroy($id)
+    {
+        if ($this->areaWebService->destroy($id)) {
+            return redirect()->route('area.index')->withSuccess('Customer Area Deleted');
+        }
+        return back()->withErrors('Something Went Wrong');
     }
 }

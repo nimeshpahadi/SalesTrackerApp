@@ -11,13 +11,12 @@
 
                 {!! Form::open(array('route'=>'area.store'))!!}
 
-                {{--{{ Form::hidden('customer_id', $customerId->id) }}--}}
-
                 <div class="form-group{{ $errors->has('district') ? ' has-error' : '' }} clearfix">
                     <label for="district" class="col-sm-4 control-label">District</label>
 
                     <div class="col-sm-8">
-                        <input id="district" type="text" class="form-control" name="district" value="{{ old('district') }}" required
+                        <input id="district" type="text" class="form-control" name="district"
+                               value="{{ old('district') }}" required
                                autofocus>
 
                         @if ($errors->has('district'))
@@ -27,7 +26,6 @@
                         @endif
                     </div>
                 </div>
-
 
                 <div class="form-group{{ $errors->has('area_name') ? ' has-error' : '' }} clearfix">
                     <label for="area_name" class="col-sm-4 control-label">Area Name</label>
@@ -47,7 +45,7 @@
                     <label for="places" class="col-sm-4 control-label">Places</label>
 
                     <div class="col-sm-8">
-                        <input id="places" type="text" class="form-control" name="places[]"
+                        <input id="places" type="text" class="form-control" name="places"
                                value="{{ old('places') }}" required autofocus>
                         @if ($errors->has('places'))
                             <span class="help-block">
@@ -61,7 +59,7 @@
 
                 <div align="right">
                     {{Form::submit('Create', array('class'=>'btn btn-sm btn-primary ','title'=>'create customer area'))}}
-                    <a type="button" class="btn btn-sm btn-warning" href="/home">Cancel</a>
+                    <a type="button" class="btn btn-sm btn-warning" href="{{ route('area.index') }}">Cancel</a>
                     {!! Form::close() !!}
                 </div>
 

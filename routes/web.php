@@ -121,8 +121,12 @@ Route::post('/customer/document', 'Web\CustomerDocumentWebController@store')->na
 Route::delete('/customer/{id}/document/delete', 'Web\CustomerDocumentWebController@destroy')->name('document.destroy');
 
 // customer area
-Route::get('/customer/area', 'Web\CustomerAreaWebController@create')->name('area');
-Route::post('/customer/area', 'Web\CustomerAreaWebController@store')->name('area.store');
+Route::get('/customer/area', 'Web\CustomerAreaWebController@index')->name('area.index');
+Route::get('/customer/area/create', 'Web\CustomerAreaWebController@create')->name('area.create');
+Route::post('/customer/area/store', 'Web\CustomerAreaWebController@store')->name('area.store');
+Route::get('/customer/area/{id}/edit', 'Web\CustomerAreaWebController@edit')->name('area.edit');
+Route::put('/customer/area/{id}/update', 'Web\CustomerAreaWebController@update')->name('area.update');
+Route::delete('/customer_area/{id}/delete', 'Web\CustomerAreaWebController@destroy')->name('area.destroy');
 
 
 
