@@ -9,43 +9,70 @@
         </a>
     </h1>
 
-    <table class="table table-bordered table-striped">
-        <thead>
-        <tr>
-            <th>Document Name</th>
-            <th>Document Type</th>
-            <th>Action</th>
-        </tr>
-        </thead>
+    <!-- Main content -->
 
-        <tbody>
-        @foreach($customerDocument as $customer)
-            <tr>
-                <td>
-                    <a href="{{asset('storage/customer/')}}/{{$customer->document_name}}" target="_blank">
-                        {{$customer->document_name}}
-                    </a>
-                </td>
+    <section class="content">
+        <div class="row">
+            <div class="col-md-12">
 
-                <td>{{$customer->document_type}}</td>
+                <!-- /.box -->
 
-                <td>
-                    {!! Form::open(['method' => 'DELETE','route' => ['document.destroy', $customer->id]]) !!}
+                <div class="box">
 
-                    <button type="submit" class="btn btn-sm btn-danger"
-                            data-toggle="popover"
-                            data-trigger="hover"
-                            data-placement="top" data-content="Delete Current Document"
-                            onclick="return confirm('Are you sure you want to delete this item?');">Delete
+                    <div class="box-header">
+                        <h3 class="box-title">List of All Customer Document</h3>
+                    </div>
 
-                    </button>
+                    <!-- /.box-header -->
+                    <div class="box-body table-responsive ">
+                        <table id="example1" class="table table-bordered table-striped">
+                            <thead>
+                            <tr>
+                                <th>Document Name</th>
+                                <th>Document Type</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            @foreach($customerDocument as $customer)
+                                <tr>
+                                    <td>
+                                        <a href="{{asset('storage/customer/')}}/{{$customer->document_name}}"
+                                           target="_blank">
+                                            {{$customer->document_name}}
+                                        </a>
+                                    </td>
 
-                    {!! Form::close() !!}
-                </td>
-            </tr>
-        @endforeach
-        </tbody>
+                                    <td>{{$customer->document_type}}</td>
 
-    </table>
+                                    <td>
+                                        {!! Form::open(['method' => 'DELETE','route' => ['document.destroy', $customer->id]]) !!}
+
+                                        <button type="submit" class="btn btn-sm btn-danger"
+                                                data-toggle="popover"
+                                                data-trigger="hover"
+                                                data-placement="top" data-content="Delete Current Document"
+                                                onclick="return confirm('Are you sure you want to delete this item?');">
+                                            Delete
+
+                                        </button>
+
+                                        {!! Form::close() !!}
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+
+                        </table>
+                    </div>
+                    <!-- /.box-body -->
+                </div>
+                <!-- /.box -->
+            </div>
+            <!-- /.col -->
+        </div>
+        <!-- /.row -->
+    </section>
+    <!-- /.content -->
 
 @endsection
