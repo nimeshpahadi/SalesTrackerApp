@@ -51,16 +51,28 @@ class CustomerAreaWebRepository
         }
     }
 
+    /**
+     * @return mixed
+     */
     public function getCustomerAreaList()
     {
         return $this->customerArea->select('*')->get();
     }
 
+    /**
+     * @param $id
+     * @return mixed
+     */
     public function getId($id)
     {
         return $this->customerArea->select('*')->where('id', $id)->first();
     }
 
+    /**
+     * @param $request
+     * @param $id
+     * @return bool
+     */
     public function update($request, $id)
     {
         try {
@@ -77,6 +89,10 @@ class CustomerAreaWebRepository
         }
     }
 
+    /**
+     * @param $id
+     * @return bool
+     */
     public function destroy($id)
     {
         try {
