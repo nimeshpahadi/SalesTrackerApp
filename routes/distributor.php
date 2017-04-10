@@ -15,4 +15,8 @@ Route::post('/distributor/address/update/{update_id}', 'DistributorAddressContro
 Route::post('/distributor/tracking', 'DistributorTrackingController@createTracking');
 Route::post('/distributor/minute', 'DistributorMinuteController@createMinute');
 
-Route::post('/customer/document', 'CustomerDocumentApiController@create');
+// customer document
+Route::post('/customer/document/create', 'CustomerDocumentApiController@create');
+
+// customer area
+Route::post('/customer/area/create', 'CustomerAreaApiController@create');
