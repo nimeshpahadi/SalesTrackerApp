@@ -19,6 +19,7 @@ Route::post('/distributor/minute', 'DistributorMinuteController@createMinute');
 Route::post('/customer/document/create', 'CustomerDocumentApiController@create');
 
 // customer area
+Route::post('/customer/area', 'CustomerAreaApiController@getCustomerArea');
 Route::post('/customer/area/create', 'CustomerAreaApiController@create');
 Route::put('/customer/area/{id}/edit', 'CustomerAreaApiController@edit');
 Route::delete('/customer/area/{id}/delete', 'CustomerAreaApiController@delete');

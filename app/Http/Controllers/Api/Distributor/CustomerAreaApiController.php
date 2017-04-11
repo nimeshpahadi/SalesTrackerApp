@@ -58,32 +58,13 @@ class CustomerAreaApiController extends Controller
 
     /**
      * @param Request $request
-     * @param $id
      * @return \Illuminate\Http\JsonResponse
      */
-    public function edit(Request $request, $id)
+    public function getCustomerArea(Request $request)
     {
         $data = $request->all();
 
-        $t = $this->areaValidation->editValidation($data);
-
-        if ($t != null)
-        {
-            return $t;
-        }
-
-        $response = $this->areaApiService->edit($data, $id);
-
-        return response()->json($response);
-    }
-
-    /**
-     * @param $id
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function delete($id)
-    {
-        $response = $this->areaApiService->delete($id);
+        $response = $this->areaApiService->getCustomerArea($data);
 
         return response()->json($response);
     }

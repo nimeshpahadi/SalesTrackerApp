@@ -56,45 +56,10 @@ class CustomerAreaApiRepository
 
     /**
      * @param $request
-     * @param $id
-     * @return bool
+     * @return mixed
      */
-    public function edit($request, $id)
+    public function getCustomerArea($request)
     {
-        try
-        {
-            $query = CustomerArea::find($id);
-            $query->district = $request['district'];
-            $query->area_name = $request['area_name'];
-            $query->places = $request['places'];
-            $query->update();
-            $this->log->info('Customer Area Updated');
-            return true;
-        }
-        catch (QueryException $exception)
-        {
-            $this->log->error('Customer Area Update Failed : ', [$exception->getMessage()]);
-            return false;
-        }
-    }
-
-    /**
-     * @param $id
-     * @return bool
-     */
-    public function delete($id)
-    {
-        try
-        {
-            $query = CustomerArea::find($id);
-            $query->delete();
-            $this->log->info('Customer Area Deleted');
-            return true;
-        }
-        catch (QueryException $exception)
-        {
-            $this->log->error('Customer Area Delete Failed : ', [$exception->getMessage()]);
-            return false;
-        }
+        return CustomerArea::where('district', $request['district'])->pluck('area_name');
     }
 }

@@ -105,4 +105,9 @@ class CustomerAreaWebRepository
             return false;
         }
     }
+
+    public function getCustomerArea()
+    {
+        return $this->customerArea->select('area_name')->get();
+    }
 }

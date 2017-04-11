@@ -2,6 +2,12 @@
 
 @section('main-content')
 
+    <?php
+
+    $zonesDistrict = config('distributor.district');
+
+    ?>
+
     <div class="panel-body">
 
         <div class="col-md-8 col-md-offset-2">
@@ -11,19 +17,36 @@
 
                 {!! Form::open(array('route'=>'area.store'))!!}
 
-                <div class="form-group{{ $errors->has('district') ? ' has-error' : '' }} clearfix">
-                    <label for="district" class="col-sm-4 control-label">District</label>
-
-                    <div class="col-sm-8">
-                        <input id="district" type="text" class="form-control" name="district"
-                               value="{{ old('district') }}" required
-                               autofocus>
-
-                        @if ($errors->has('district'))
-                            <span class="help-block">
-                                        <strong>{{ $errors->first('district') }}</strong>
+                <div class="form-group{{ $errors->has('zone') ? ' has-error' : '' }} clearfix">
+                    <label for="zone" class="col-sm-4 control-label">Zone</label>
+                    <div class="col-md-8">
+                        <?php $x = Config::get('distributor.zone');?>
+                        <select class="form-control zones-dropdown" required id="dropdown_selector " name="zone">
+                            <option selected="selected" value="" disabled>Choose Zone</option>
+                            @foreach($x as $dep)
+                                <option id="{{$dep}}" value=" {{ $dep}}" value="{{ old('zone') }}">
+                                    {{ $dep  }}
+                                </option>
+                                @if ($errors->has('zone'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('zone') }}</strong>
                                     </span>
-                        @endif
+                                @endif
+                            @endforeach
+                        </select>
+
+                    </div>
+                </div>
+
+                <div class="form-group clearfix">
+                    <label for="zone" class="col-sm-4 control-label">District</label>
+                    <div class="col-md-8">
+                        <?php $x = Config::get('distributor.zone'); ?>
+
+                        <select class="form-control district-dropdown" required id="dropdown_selector" name="district">
+                            <option selected="selected" value="" disabled>Choose district</option>
+                        </select>
+
                     </div>
                 </div>
 
@@ -64,5 +87,11 @@
                 </div>
 
             </div>
+
+            <script>
+
+                var zonesDistrict = {!! json_encode($zonesDistrict) !!};
+
+            </script>
 
 @endsection

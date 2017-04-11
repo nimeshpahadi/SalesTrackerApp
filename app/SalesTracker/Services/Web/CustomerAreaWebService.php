@@ -87,4 +87,9 @@ class CustomerAreaWebService
     {
         return $this->areaWebRepository->destroy($id);
     }
+
+    public function getCustomerArea()
+    {
+        return $this->areaWebRepository->getCustomerArea();
+    }
 }

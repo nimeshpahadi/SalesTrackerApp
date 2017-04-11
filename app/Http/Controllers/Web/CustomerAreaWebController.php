@@ -43,6 +43,7 @@ class CustomerAreaWebController extends Controller
      */
     public function create()
     {
+        $customerArea = $this->areaWebService->getCustomerArea();
         return view('distributor/customer_area_create');
     }
 
