@@ -77,4 +77,24 @@ class CustomerAreaApiRepository
             return false;
         }
     }
+
+    /**
+     * @param $id
+     * @return bool
+     */
+    public function delete($id)
+    {
+        try
+        {
+            $query = CustomerArea::find($id);
+            $query->delete();
+            $this->log->info('Customer Area Deleted');
+            return true;
+        }
+        catch (QueryException $exception)
+        {
+            $this->log->error('Customer Area Delete Failed : ', [$exception->getMessage()]);
+            return false;
+        }
+    }
 }

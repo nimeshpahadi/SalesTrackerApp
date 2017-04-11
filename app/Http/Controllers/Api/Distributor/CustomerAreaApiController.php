@@ -76,4 +76,15 @@ class CustomerAreaApiController extends Controller
 
         return response()->json($response);
     }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function delete($id)
+    {
+        $response = $this->areaApiService->delete($id);
+
+        return response()->json($response);
+    }
 }

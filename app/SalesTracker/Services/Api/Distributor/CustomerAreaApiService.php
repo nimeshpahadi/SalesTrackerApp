@@ -146,4 +146,30 @@ class CustomerAreaApiService extends BaseService
 
         return $respo;
     }
+
+    /**
+     * @param $id
+     * @return array
+     */
+    public function delete($id)
+    {
+        if ($this->areaApiRepository->delete($id))
+        {
+            $respo = [
+                "status" => "true",
+                "token_status" => "true",
+                "message" => "customer area deleted !!!"
+            ];
+
+            return $respo;
+        }
+
+        $respo = [
+            "status" => "false",
+            "token_status" => "true",
+            "message" => "oops !!! something went wrong"
+        ];
+
+        return $respo;
+    }
 }
