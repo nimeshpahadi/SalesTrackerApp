@@ -53,4 +53,28 @@ class CustomerAreaApiRepository
             return false;
         }
     }
+
+    /**
+     * @param $request
+     * @param $id
+     * @return bool
+     */
+    public function edit($request, $id)
+    {
+        try
+        {
+            $query = CustomerArea::find($id);
+            $query->district = $request['district'];
+            $query->area_name = $request['area_name'];
+            $query->places = $request['places'];
+            $query->update();
+            $this->log->info('Customer Area Updated');
+            return true;
+        }
+        catch (QueryException $exception)
+        {
+            $this->log->error('Customer Area Update Failed : ', [$exception->getMessage()]);
+            return false;
+        }
+    }
 }

@@ -94,4 +94,56 @@ class CustomerAreaApiService extends BaseService
         return $respo;
 
     }
+
+    /**
+     * @param $request
+     * @param $id
+     * @return array
+     */
+    public function edit($request, $id)
+    {
+        if (!$this->validateToken($this->user, $request['api_token']))
+        {
+            return $this->tokenMessage();
+        }
+
+        $places = explode(",", trim($request['places']));
+
+        foreach ($places as $key => $value)
+        {
+            if (trim($value) == "")
+            {
+                unset($places[$key]);
+            }
+        }
+
+        $this->storeData($this->baseRepository, $request);
+
+        $request['places'] = json_encode($places);
+
+        $data = [
+            'district' => $request['district'],
+            'area_name' => $request['area_name'],
+            'places' => $request['places']
+        ];
+
+        if ($this->areaApiRepository->edit($data, $id))
+        {
+            $respo = [
+                "status" => "true",
+                "token_status" => "true",
+                "message" => "customer area updated !!!"
+            ];
+
+            return $respo;
+        }
+
+        $respo = [
+            "status" => "false",
+            "token_status" => "true",
+            "message" => "oops !!! something went wrong"
+        ];
+
+        return $respo;
+    }
 }

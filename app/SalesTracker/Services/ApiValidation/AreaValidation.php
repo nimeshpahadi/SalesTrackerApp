@@ -47,4 +47,39 @@ class AreaValidation
             'places' => 'required|max:255',
         ]);
     }
+
+    /**
+     * @param $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function editValidation($request)
+    {
+        $detail = $this->editValidator($request);
+
+        $errors = $detail->errors()->toArray();
+
+        if (!empty($errors))
+        {
+            $response = [
+                "status"       => "false",
+                "token_status" => "true",
+                "message"      => $errors
+            ];
+
+            return response()->json($response);
+        }
+    }
+
+    /**
+     * @param $data
+     * @return mixed
+     */
+    public function editValidator($data)
+    {
+        return Validator::make($data, [
+            'district' => 'required|max:255',
+            'area_name' => 'required|max:255',
+            'places' => 'required|max:255',
+        ]);
+    }
 }

@@ -20,3 +20,4 @@ Route::post('/customer/document/create', 'CustomerDocumentApiController@create')
 
 // customer area
 Route::post('/customer/area/create', 'CustomerAreaApiController@create');
+Route::put('/customer/area/{id}/edit', 'CustomerAreaApiController@edit');
