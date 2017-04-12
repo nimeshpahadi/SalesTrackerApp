@@ -13,7 +13,6 @@
 {!! Html::style('https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css') !!}
 <!-- Theme style -->
 {!! Html::style('dist/css/AdminLTE.min.css') !!}
-{!!Html::style('dist/plugins/iCheck/all.css') !!}
 <!-- AdminLTE Skins. Choose a skin from the css/skins
          folder instead of downloading all of them to reduce the load. -->
 {!! Html::style('dist/css/_all-skins.min.css') !!}
@@ -27,7 +26,6 @@
     {!! Html::style('/plugins/datatables/dataTables.bootstrap.min.css') !!}
     {!! Html::style('/plugins/datatables/responsive.bootstrap.min.css') !!}
     {{--leaflet--}}
-    {!! Html::style('/leaflet/leaflet.css') !!}
 
     {{--datepicker--}}
 

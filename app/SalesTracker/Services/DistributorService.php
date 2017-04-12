@@ -299,5 +299,12 @@ class DistributorService
         return $data;
     }
 
-
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public function getCustomerArea($request)
+    {
+        return $this->distributorRepository->getCustomerArea($request);
+    }
 }

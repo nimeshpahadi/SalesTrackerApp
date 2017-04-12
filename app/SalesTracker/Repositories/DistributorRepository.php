@@ -9,6 +9,7 @@
 namespace App\SalesTracker\Repositories;
 
 
+use App\SalesTracker\Entities\Distributor\CustomerArea;
 use App\SalesTracker\Entities\Distributor\DistributorAddress;
 use App\SalesTracker\Entities\Distributor\DistributorDetails;
 use App\SalesTracker\Entities\Distributor\DistributorGuarantee;
@@ -118,6 +119,7 @@ class DistributorRepository
             $query->type = $request->type;
             $query->open_date = $request->open_date;
             $query->vat_no = $request->vat_no;
+            $query->area = $request->area;
             $query->save();
             $this->log->info("Customer Updated", ['id' => $id]);
 
@@ -358,5 +360,14 @@ class DistributorRepository
             ->where('distributor_id', $id)
             ->first();
         return $query;
+    }
+
+    /**
+     * @param $request
+     * @return mixed
+     */
+    public function getCustomerArea($request)
+    {
+        return CustomerArea::where('district', $request->dist)->pluck('area_name','id')->toArray();
     }
 }

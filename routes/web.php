@@ -128,16 +128,5 @@ Route::get('/customer/area/{id}/edit', 'Web\CustomerAreaWebController@edit')->na
 Route::put('/customer/area/{id}/update', 'Web\CustomerAreaWebController@update')->name('area.update');
 Route::delete('/customer_area/{id}/delete', 'Web\CustomerAreaWebController@destroy')->name('area.destroy');
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+// ajax call
+Route::get('/find/customer_area', 'DistributorController@findCustomerArea');

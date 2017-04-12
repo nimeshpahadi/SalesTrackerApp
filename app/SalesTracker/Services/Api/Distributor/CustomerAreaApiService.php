@@ -106,7 +106,7 @@ class CustomerAreaApiService extends BaseService
             return $this->tokenMessage();
         }
 
-        $data['area_name'] = $this->areaApiRepository->getCustomerArea($request);
+        $data = $this->areaApiRepository->getCustomerArea($request);
 
         return $data;
 

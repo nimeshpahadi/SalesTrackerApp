@@ -271,4 +271,14 @@ class DistributorController extends Controller
 
         return view('distributor/visit', compact('visitData'));
     }
+
+    /**
+     * @param Request $request
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function findCustomerArea(Request $request)
+    {
+        $customerArea = $this->distributorService->getCustomerArea($request);
+        return response()->json($customerArea);
+    }
 }

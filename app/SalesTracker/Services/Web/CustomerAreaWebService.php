@@ -76,6 +76,10 @@ class CustomerAreaWebService
      */
     public function update($request, $id)
     {
+        $places = explode(",", $request->places);
+        $places = json_encode($places);
+        $request->places = $places;
+
         return $this->areaWebRepository->update($request, $id);
     }
 
@@ -88,8 +92,12 @@ class CustomerAreaWebService
         return $this->areaWebRepository->destroy($id);
     }
 
-    public function getCustomerArea()
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getPlaces($id)
     {
-        return $this->areaWebRepository->getCustomerArea();
+        return $this->areaWebRepository->getPlaces($id);
     }
 }

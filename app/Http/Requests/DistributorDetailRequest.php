@@ -40,6 +40,7 @@ class DistributorDetailRequest extends FormRequest
                     'lead_source' => 'required',
                     'type' => 'required',
                     'open_date' => 'required',
+                    'area' => 'required|max:25',
                 ];
 
 
@@ -60,6 +61,7 @@ class DistributorDetailRequest extends FormRequest
                     'lead_source' => 'required',
                     'type' => 'required',
                     'open_date' => 'required',
+                    'area' => 'required|max:25',
                 ];
 
 

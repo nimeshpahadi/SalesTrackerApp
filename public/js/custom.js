@@ -1,24 +1,23 @@
-// distributor list
-$(document).ready(function () {
+    // distributor list
+    $(document).ready(function () {
 
-    $("#example1").DataTable({
-        "pageLength": 25
-    } );
-    $("#example2").DataTable({
-        "pageLength": 25
-    } );
-
-
-    //select2
-    $("select").select2({
-        theme: "classic",
-        placeholder:"Select Item",
-        allowClear: true
-    });
+        $("#example1").DataTable({
+            "pageLength": 25
+        });
+        $("#example2").DataTable({
+            "pageLength": 25
+        });
 
 
-//district choose as per zones
+    // select2
+        $("select").select2({
+            theme: "classic",
+            placeholder: "Select Item",
+            allowClear: true
+        });
 
+
+    // district choose as per zones
     $('.zones-dropdown').change(function () {
         $(".district-dropdown").empty();
         var zone = $(this).find('option:selected').val();
@@ -38,8 +37,37 @@ $(document).ready(function () {
         })
     })
 
+    // using ajax for area dropdown
+    $('.district-dropdown').change(function () {
+        $(".area-dropdown").empty();
+        var district = $(this).find('option:selected').val();
+        district = $.trim(district);
 
-//limit date to current
+        $.ajax({
+            type: 'GET',
+            url: app_url + '/find/customer_area',
+            data: {dist: district},
+            success: function (data) {
+                $.each(data, function (i, area) {
+                    $(".area-dropdown").append(
+                        $('<option>', {
+                            value: area,
+                            text: area,
+                            id: i
+                        })
+                    );
+
+                })
+            },
+            error: function (data) {
+                console.log('Error:', data);
+            }
+        });
+
+    })
+
+
+    // limit date to current
     var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth() + 1; //January is 0!
@@ -87,7 +115,7 @@ $(document).ready(function () {
     }
 
     function selectStage(Stage) {
-        if (Stage=="Closed") {
+        if (Stage == "Closed") {
             $("#lossreason").show();
             $(".lossreason").attr("type", "show");
 
@@ -102,7 +130,7 @@ $(document).ready(function () {
     }
 
     function visitForm(lossreason) {
-        if (lossreason =="Other") {
+        if (lossreason == "Other") {
             $("#remark").show();
             $(".remark").attr("type", "show");
         }
@@ -114,7 +142,7 @@ $(document).ready(function () {
     }
 
     function paymentForm(type) {
-        if (type =="Cheque") {
+        if (type == "Cheque") {
             $("#bankname").show();
             $(".bankname").attr("type", "show");
             $("#chequeno").show();
@@ -134,6 +162,7 @@ $(document).ready(function () {
         }
 
     }
+
     //aaaaa ,"disabled"
     function userform(rid) {
 
@@ -148,12 +177,12 @@ $(document).ready(function () {
     }
 
 
-    //aaaaa
+    // aaaaa
     $("#roles").change(function () {
-           userform($(this).val());
+        userform($(this).val());
     }).change();
 
-    $("#stage").on('change',function () {
+    $("#stage").on('change', function () {
         var stage = $('#stage :selected').text();
         selectStage(stage.trim());
     }).change();
@@ -183,46 +212,45 @@ $(document).ready(function () {
         guaranteeForm(guaranteeType);
     }
 
-       if (edituser) {
+    if (edituser) {
         userform(roletype);
     }
 
 
-});
+    });
 
 
-$(".customer_approval").change(function () {
-    var status = $(this).val();
-    var distId = $(this).attr("data-dist");
+    $(".customer_approval").change(function () {
+        var status = $(this).val();
+        var distId = $(this).attr("data-dist");
 
-    if (status != "") {
-        $('.customer-approval-modal').modal('show');
+        if (status != "") {
+            $('.customer-approval-modal').modal('show');
 
-        $('#sales_approval_input').val(status);
-        $('#distributor_id').val(distId);
-    }
+            $('#sales_approval_input').val(status);
+            $('#distributor_id').val(distId);
+        }
 
-});
-
-
-$('[data-toggle="popover"]').popover();
-
-//datepicker
-
-$('#date').datepicker({
-    autoclose: true,
-    todayHighlight: true
-});
-$('#date1').datepicker({
-    autoclose: true,
-    todayHighlight: true
-});
-$('#date2').datepicker({
-    autoclose: true,
-    todayHighlight: true
-});
+    });
 
 
-today = yyyy + '-' + mm + '-' + dd;
-document.getElementById("datefield").setAttribute("max", today);
-document.getElementById("datefield1").setAttribute("max", today);
+    $('[data-toggle="popover"]').popover();
+
+    // datepicker
+    $('#date').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+    $('#date1').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+    $('#date2').datepicker({
+        autoclose: true,
+        todayHighlight: true
+    });
+
+
+    today = yyyy + '-' + mm + '-' + dd;
+    document.getElementById("datefield").setAttribute("max", today);
+    document.getElementById("datefield1").setAttribute("max", today);

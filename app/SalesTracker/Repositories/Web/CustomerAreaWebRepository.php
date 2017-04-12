@@ -106,8 +106,12 @@ class CustomerAreaWebRepository
         }
     }
 
-    public function getCustomerArea()
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getPlaces($id)
     {
-        return $this->customerArea->select('area_name')->get();
+        return $this->customerArea->select('places')->where('id', $id)->first();
     }
 }

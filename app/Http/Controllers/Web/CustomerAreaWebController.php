@@ -43,7 +43,6 @@ class CustomerAreaWebController extends Controller
      */
     public function create()
     {
-        $customerArea = $this->areaWebService->getCustomerArea();
         return view('distributor/customer_area_create');
     }
 
@@ -68,7 +67,9 @@ class CustomerAreaWebController extends Controller
     public function edit($id)
     {
         $customerAreaId = $this->areaWebService->getId($id);
-        return view('distributor/customer_area_edit', compact('customerAreaId'));
+        $customerAreaPlaces = $this->areaWebService->getPlaces($id);
+
+        return view('distributor/customer_area_edit', compact('customerAreaId', 'customerAreaPlaces'));
     }
 
     /**

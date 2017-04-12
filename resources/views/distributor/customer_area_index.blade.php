@@ -40,8 +40,8 @@
                             @foreach($customerAreaList as $area)
                                 <tr>
                                     <td>{{$area->district}}</td>
-                                    <td>{{$area->area_name}}
-                                    <td>{{$area->places}}
+                                    <td>{{$area->area_name}}</td>
+                                    <td>{{join(",", json_decode($area->places))}}</td>
                                     <td>
                                         <div class="col-md-12">
                                             <div class="col-md-4">
