@@ -2,9 +2,9 @@
 
 @section('main-content')
 
-    <h1 align="center"><a href="/distributor/{{$customerName->id}}">{{$customerName->company_name}}</a></h1>
+    <h1 align="center"><a href="/distributor/{{$customerDetails->id}}">{{$customerDetails->company_name}}</a></h1>
     <h1 align="right">
-        <a class="btn btn-primary" title="Click to Upload Document" href="/customer/{{$customerName->id}}/document">
+        <a class="btn btn-primary" title="Click to Upload Document" href="/customer/{{$customerDetails->id}}/document">
             Upload Document
         </a>
     </h1>
@@ -37,7 +37,7 @@
                             @foreach($customerDocument as $customer)
                                 <tr>
                                     <td>
-                                        <a href="{{asset('storage/customer/')}}/{{$customer->document_name}}"
+                                        <a href="{{asset('storage/customer/'.$customerDetails->id.'_'.'customer')}}/{{$customer->document_name}}"
                                            target="_blank">
                                             {{$customer->document_name}}
                                         </a>

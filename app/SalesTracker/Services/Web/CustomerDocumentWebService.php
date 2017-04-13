@@ -10,6 +10,7 @@ namespace App\SalesTracker\Services\Web;
 
 
 use App\SalesTracker\Repositories\Web\CustomerDocumentWebRepository;
+use Illuminate\Support\Facades\File;
 
 class CustomerDocumentWebService
 {
@@ -31,11 +32,9 @@ class CustomerDocumentWebService
      * @param $id
      * @return mixed
      */
-    public function getCustomerId($id)
+    public function getCustomerDetails($id)
     {
-        $customerDocument = $this->documentWebRepository->getCustomerId($id);
-
-        return $customerDocument;
+        return $this->documentWebRepository->getCustomerDetails($id);
     }
 
     /**
@@ -44,9 +43,14 @@ class CustomerDocumentWebService
      */
     public function uploadDocument($request)
     {
-        $fileName = $request['customer_id'] . '_' . rand(0, 10000) . '.' . $request['document_name']->getClientOriginalExtension();
+        $fileName = $request['customer_id'] .'_'.rand(0, 10000).'.'.$request['document_name']->getClientOriginalExtension();
 
-        $destinationPath = storage_path('app/public/customer');
+        $destinationPath = storage_path('app/public/customer/').$request['customer_id'].'_'.'customer';
+
+        if (!File::exists($destinationPath))
+        {
+            File::makeDirectory($destinationPath, 0775, true, true);
+        }
 
         $request['document_name']->move($destinationPath, $fileName);
 
@@ -58,12 +62,12 @@ class CustomerDocumentWebService
     }
 
     /**
-     * @param $id
+     * @param $customer_id
      * @return mixed
      */
-    public function getCustomerDocument($id)
+    public function getCustomerDocument($customer_id)
     {
-        return $this->documentWebRepository->getCustomerDocument($id);
+        return $this->documentWebRepository->getCustomerDocument($customer_id);
     }
 
     /**
@@ -72,6 +76,15 @@ class CustomerDocumentWebService
      */
     public function deleteDocument($id)
     {
+        $data = $this->documentWebRepository->getCustomerDocumentData($id);
+
+        $destinationPath = storage_path('app/public/customer/').$data->customer_id.'_'.'customer'.'/'.$data->document_name;
+
+        if (File::exists($destinationPath))
+        {
+            File::delete($destinationPath);
+        }
+
         return $this->documentWebRepository->deleteDocument($id);
     }
 }

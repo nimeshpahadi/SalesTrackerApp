@@ -39,7 +39,7 @@ class CustomerDocumentWebController extends Controller
      */
     public function create($id)
     {
-        $customerId = $this->documentWebService->getCustomerId($id);
+        $customerId = $this->documentWebService->getCustomerDetails($id);
 
         return view('distributor/upload_document', compact('customerId'));
     }
@@ -68,9 +68,9 @@ class CustomerDocumentWebController extends Controller
     public function show($id)
     {
         $customerDocument = $this->documentWebService->getCustomerDocument($id);
-        $customerName = $this->documentWebService->getCustomerId($id);
+        $customerDetails = $this->documentWebService->getCustomerDetails($id);
 
-        return view('distributor/upload_document_show', compact('customerDocument', 'customerName'));
+        return view('distributor/upload_document_show', compact('customerDocument', 'customerDetails'));
 
     }
 

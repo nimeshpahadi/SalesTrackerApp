@@ -47,7 +47,7 @@ class CustomerDocumentWebRepository
      * @param $id
      * @return mixed
      */
-    public function getCustomerId($id)
+    public function getCustomerDetails($id)
     {
         return $this->distributorDetails->find($id);
     }
@@ -69,12 +69,12 @@ class CustomerDocumentWebRepository
     }
 
     /**
-     * @param $id
+     * @param $customer_id
      * @return mixed
      */
-    public function getCustomerDocument($id)
+    public function getCustomerDocument($customer_id)
     {
-        return $this->customerDocument->select('*')->where('customer_id', $id)->get();
+        return $this->customerDocument->select('*')->where('customer_id', $customer_id)->get();
     }
 
     /**
@@ -92,5 +92,15 @@ class CustomerDocumentWebRepository
             $this->log->error('File delete failed');
             return false;
         }
+    }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getCustomerDocumentData($id)
+    {
+        return $this->customerDocument->select('*')->where('id', $id)->first();
+
     }
 }
