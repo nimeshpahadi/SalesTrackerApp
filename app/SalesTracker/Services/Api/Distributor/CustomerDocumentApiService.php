@@ -66,22 +66,51 @@ class CustomerDocumentApiService extends BaseService
 
         if ($this->documentApiRepository->create($request)) {
 
-            $respo = [
+            $response = [
                 "status"       => "true",
                 "token_status" => "true",
                 "message"      => "customer document created !!!"
             ];
 
-            return $respo;
+            return $response;
         }
 
-        $respo = [
+        $response = [
             "status"       => "false",
             "token_status" => "true",
             "message"      => "oops !!! something went wrong"
         ];
 
-        return $respo;
+        return $response;
 
+    }
+
+    /**
+     * @param $request
+     * @param $id
+     * @return array
+     */
+    public function getCustomerDocument($request, $id)
+    {
+        if (!$this->validateToken($this->user, $request['api_token']))
+        {
+            return $this->tokenMessage();
+        }
+
+        $documentData = $this->documentApiRepository->getCustomerDocument($id);
+
+        $destinationPath = asset('/storage/customer/');
+
+        $document = [];
+
+        foreach ($documentData as $data)
+        {
+            $document[] = [
+                'document_type' => $data->document_type,
+                'document_name' => $destinationPath.'/'.$id.'_'.'customer'.'/'.$data->document_name
+            ];
+        }
+
+        return $document;
     }
 }

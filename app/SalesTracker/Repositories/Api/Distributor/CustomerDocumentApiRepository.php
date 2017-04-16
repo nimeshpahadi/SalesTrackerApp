@@ -50,4 +50,15 @@ class CustomerDocumentApiRepository
             return false;
         }
     }
+
+    /**
+     * @param $id
+     * @return mixed
+     */
+    public function getCustomerDocument($id)
+    {
+        $query = $this->customerDocument->select('*')->where('customer_id', $id)->get();
+
+        return $query;
+    }
 }

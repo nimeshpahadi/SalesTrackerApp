@@ -16,6 +16,7 @@ Route::post('/distributor/tracking', 'DistributorTrackingController@createTracki
 Route::post('/distributor/minute', 'DistributorMinuteController@createMinute');
 
 // customer document
+Route::get('/customer/{id}/document', 'CustomerDocumentApiController@getCustomerDocument');
 Route::post('/customer/document/create', 'CustomerDocumentApiController@create');
 
 // customer area

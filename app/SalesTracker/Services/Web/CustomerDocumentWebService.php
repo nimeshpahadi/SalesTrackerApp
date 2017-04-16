@@ -65,9 +65,9 @@ class CustomerDocumentWebService
      * @param $customer_id
      * @return mixed
      */
-    public function getCustomerDocument($customer_id)
+    public function getCustomerDocument($id)
     {
-        return $this->documentWebRepository->getCustomerDocument($customer_id);
+        return $this->documentWebRepository->getCustomerDocument($id);
     }
 
     /**

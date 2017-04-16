@@ -12,7 +12,6 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\DocumentRequest;
 use App\SalesTracker\Services\Web\CustomerDocumentWebService;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\URL;
@@ -45,10 +44,10 @@ class CustomerDocumentWebController extends Controller
     }
 
     /**
-     * @param Request $documentRequest
+     * @param DocumentRequest $documentRequest
      * @return $this
      */
-    public function store(Request $documentRequest)
+    public function store(DocumentRequest $documentRequest)
     {
         $data = $documentRequest->all();
 

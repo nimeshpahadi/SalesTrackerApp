@@ -72,9 +72,9 @@ class CustomerDocumentWebRepository
      * @param $customer_id
      * @return mixed
      */
-    public function getCustomerDocument($customer_id)
+    public function getCustomerDocument($id)
     {
-        return $this->customerDocument->select('*')->where('customer_id', $customer_id)->get();
+        return $this->customerDocument->select('*')->where('customer_id', $id)->get();
     }
 
     /**

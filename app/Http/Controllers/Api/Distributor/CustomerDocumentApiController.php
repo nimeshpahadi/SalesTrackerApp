@@ -55,4 +55,16 @@ class CustomerDocumentApiController extends Controller
 
         return response()->json($response);
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function getCustomerDocument(Request $request, $id)
+    {
+        $response = $this->documentApiService->getCustomerDocument($request, $id);
+
+        return response()->json($response);
+    }
 }
