@@ -13,6 +13,7 @@ use App\SalesTracker\Repositories\Api\BaseRepository;
 use App\SalesTracker\Repositories\Api\Distributor\CustomerDocumentApiRepository;
 use App\SalesTracker\Repositories\Api\User\UserApiRepository;
 use App\SalesTracker\Services\Api\BaseService;
+use Illuminate\Support\Facades\File;
 
 class CustomerDocumentApiService extends BaseService
 {
@@ -56,7 +57,12 @@ class CustomerDocumentApiService extends BaseService
 
         $fileName = $request['customer_id'] . '_' . rand(0, 10000) . '.' . $request['document_name']->getClientOriginalExtension();
 
-        $destinationPath = storage_path('app/public/customer');
+        $destinationPath = storage_path('app/public/customer/').$request['customer_id'].'_'.'customer';
+
+        if (!File::exists($destinationPath))
+        {
+            File::makeDirectory($destinationPath, 0775, true, true);
+        }
 
         $request['document_name']->move($destinationPath, $fileName);
 
