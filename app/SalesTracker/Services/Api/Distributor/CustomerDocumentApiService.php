@@ -111,7 +111,7 @@ class CustomerDocumentApiService extends BaseService
 
         foreach ($documentData as $data)
         {
-            $document[] = [
+            $document['documents'][] = [
                 'document_type' => $data->document_type,
                 'document_name' => $destinationPath.'/'.$id.'_'.'customer'.'/'.$data->document_name
             ];
