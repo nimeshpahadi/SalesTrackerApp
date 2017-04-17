@@ -29,7 +29,7 @@ class DocumentRequest extends FormRequest
         return [
             'customer_id' => 'required|integer|max:255',
             'document_type' => 'required|max:255',
-            'document_name' => 'mimes:jpeg,jpg,png,pdf|required|max:2048',
+            'document_name' => 'mimes:jpeg,jpg,png,pdf|required',
         ];
     }
 }

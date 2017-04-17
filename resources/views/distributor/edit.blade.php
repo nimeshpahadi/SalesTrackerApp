@@ -73,15 +73,23 @@
                 <label for="zone" class="col-sm-4 control-label">District</label>
                 <div class="col-md-8">
                     <?php $x = Config::get('distributor.zone'); ?>
-
                     <select class="form-control district-dropdown" required id="dropdown_selector" name="district">
                         <option selected="selected" value="{{$dist->district}}">{{$dist->district}}</option>
-
-
                     </select>
 
                 </div>
             </div>
+
+            <div class="form-group clearfix">
+                <label for="zone" class="col-sm-4 control-label">Area</label>
+                <div class="col-md-8">
+                    <select class="form-control area-dropdown" required name="area">
+                        <option selected="selected" value="{{ $dist->area }}" disabled>{{ $dist->area }}</option>
+                    </select>
+
+                </div>
+            </div>
+
             <div class="form-group clearfix">
                 <label for="latitude" class="col-sm-4 control-label">Latitude</label>
                 <div class="col-sm-8">
