@@ -13,4 +13,9 @@ class CustomerArea extends Model
         'area_name',
         'places',
     ];
+
+    public function distributorDetails()
+    {
+        return $this->belongsTo('App\SalesTracker\Entities\Distributor\DistributorDeatils', 'area_id', 'id');
+    }
 }

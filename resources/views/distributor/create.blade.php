@@ -136,9 +136,9 @@
             </div>
 
             <div class="form-group clearfix">
-                <label for="zone" class="col-sm-4 control-label">Area</label>
+                <label for="area_id" class="col-sm-4 control-label">Area</label>
                 <div class="col-md-8">
-                    <select class="form-control area-dropdown" required name="area">
+                    <select class="form-control area-dropdown" required name="area_id">
                         <option selected="selected" value="" disabled>Choose Area</option>
                     </select>
 

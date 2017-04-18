@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DistributorDetailRequest;
 use App\Http\Requests\AddressRequest;
 use App\Http\Requests\GuaranteeRequest;
+use App\SalesTracker\Entities\Distributor\DistributorDetails;
 use App\SalesTracker\Services\DistributorService;
 use App\SalesTracker\Services\OrderService;
 use Illuminate\Http\Request;
@@ -75,9 +76,9 @@ class DistributorController extends Controller
         $order=$this->orderService->getOrderlistdistributor($id);
         $payment=$this->orderService->getDistributorpayment($id);
         $dist = $this->distributorService->select_distributor($id);
+        $areaName = isset($dist->customerArea()->first()->area_name)?$dist->customerArea()->first()->area_name:'';
         $address = $this->distributorService->getaddress($id);
-//        $addressbyid = $this->distributorService->getaddressbyid();
-        $guarantee = $this->distributorService->getguarantee($id); //
+        $guarantee = $this->distributorService->getguarantee($id);
         $tracking = $this->distributorService->gettracking($id);
         $minute = $this->distributorService->getMinute($id);
 
@@ -85,7 +86,7 @@ class DistributorController extends Controller
         $paying_transaction = $this->distributorService->getPayingAmount($id);
 
         return view('distributor/show', compact('dist', 'address', 'guarantee', 'tracking', 'minute','distributor',
-                                                'order', 'payment', 'billing_transaction', 'paying_transaction'));
+                                                'order', 'payment', 'billing_transaction', 'paying_transaction', 'areaName'));
     }
 
     /**
@@ -97,7 +98,8 @@ class DistributorController extends Controller
     public function edit($id)
     {
         $dist = $this->distributorService->select_distributor($id);
-        return view('distributor/edit', compact('dist'));
+        $areaName = isset($dist->customerArea()->first()->area_name)?$dist->customerArea()->first()->area_name:'';
+        return view('distributor/edit', compact('dist', 'areaName'));
     }
 
 

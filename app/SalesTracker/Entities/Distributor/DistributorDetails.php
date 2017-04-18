@@ -25,5 +25,11 @@ class DistributorDetails extends Model
         'open_date',
         'status',
         'vat_no',
+        'area_id',
     ];
+
+    public function customerArea()
+    {
+        return $this->hasOne('App\SalesTracker\Entities\Distributor\CustomerArea', 'id', 'area_id');
+    }
 }

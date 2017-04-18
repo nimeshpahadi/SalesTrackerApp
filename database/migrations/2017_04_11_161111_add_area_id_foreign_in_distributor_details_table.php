@@ -15,7 +15,10 @@ class AddAreaIdForeignInDistributorDetailsTable extends Migration
     {
         Schema::table('distributor_details', function (Blueprint $table) {
             $table->integer('area_id')->unsigned()->nullable();
-            $table->string('area');
+            $table->foreign('area_id')->references('id')
+                ->on('customer_areas')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 
@@ -28,7 +31,6 @@ class AddAreaIdForeignInDistributorDetailsTable extends Migration
     {
         Schema::table('distributor_details', function (Blueprint $table) {
             $table->dropColumn('area_id');
-            $table->dropColumn('area');
         });
     }
 }

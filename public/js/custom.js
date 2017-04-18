@@ -51,12 +51,11 @@
                 $.each(data, function (i, area) {
                     $(".area-dropdown").append(
                         $('<option>', {
-                            value: area,
+                            value: i,
                             text: area,
-                            id: i
+                            id: area
                         })
                     );
-
                 })
             },
             error: function (data) {

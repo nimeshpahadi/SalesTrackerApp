@@ -119,7 +119,7 @@ class DistributorRepository
             $query->type = $request->type;
             $query->open_date = $request->open_date;
             $query->vat_no = $request->vat_no;
-            $query->area = $request->area;
+            $query->area_id = $request->area_id;
             $query->save();
             $this->log->info("Customer Updated", ['id' => $id]);
 
@@ -247,9 +247,7 @@ class DistributorRepository
 
     public function select_distributorID($id)
     {
-
-        $query = $this->distributorDetails->find($id);
-        return $query;
+        return $this->distributorDetails->find($id);
     }
 
     public function select_distributoraddress($id)

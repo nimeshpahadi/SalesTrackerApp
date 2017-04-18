@@ -24,7 +24,6 @@ class DistributorDetailRequest extends FormRequest
      */
     public function rules()
     {
-//        $dis=DistributorDetails::find($this->distributor_details);
         switch ($this->method()){
             case 'POST':{
                 return [
@@ -40,10 +39,8 @@ class DistributorDetailRequest extends FormRequest
                     'lead_source' => 'required',
                     'type' => 'required',
                     'open_date' => 'required',
-                    'area' => 'required|max:25',
+                    'area_id' => 'required|integer',
                 ];
-
-
             }
             case 'PUT':
             case 'PATCH':
@@ -61,14 +58,10 @@ class DistributorDetailRequest extends FormRequest
                     'lead_source' => 'required',
                     'type' => 'required',
                     'open_date' => 'required',
-                    'area' => 'required|max:25',
+                    'area_id' => 'required|integer',
                 ];
-
-
             }
             default:break;
         }
-
     }
-
 }

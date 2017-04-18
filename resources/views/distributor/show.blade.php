@@ -56,6 +56,11 @@
                                         <label class="col-sm-6 ">District :</label>
                                         {{$dist->district}}
                                     </div>
+
+                                    <div class="row">
+                                        <label class="col-sm-6 ">Area :</label>
+                                        {{$areaName }}
+                                    </div>
                                     <div class="row">
                                         <label class="col-sm-6 ">Lead Source :</label>
                                         {{$dist->lead_source}}
