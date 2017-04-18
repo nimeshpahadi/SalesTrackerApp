@@ -67,9 +67,10 @@ class CustomerAreaWebController extends Controller
     public function edit($id)
     {
         $customerAreaId = $this->areaWebService->getId($id);
+        $zone = isset($customerAreaId->distributorDetails()->first()->zone)?$customerAreaId->distributorDetails()->first()->zone:'';
         $customerAreaPlaces = $this->areaWebService->getPlaces($id);
 
-        return view('distributor/customer_area_edit', compact('customerAreaId', 'customerAreaPlaces'));
+        return view('distributor/customer_area_edit', compact('customerAreaId', 'customerAreaPlaces', 'zone'));
     }
 
     /**

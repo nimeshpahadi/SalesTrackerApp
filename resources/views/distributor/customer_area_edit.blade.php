@@ -18,8 +18,8 @@
                 <label for="zone" class="col-sm-4 control-label">Zone</label>
                 <div class="col-md-8">
                     <?php $x = Config::get('distributor.zone');?>
-                    <select class="form-control zones-dropdown" required id="dropdown_selector " name="zone">
-                        <option selected="selected" value="" disabled>Choose Zone</option>
+                    <select class="form-control zones-dropdown" id="dropdown_selector " name="zone">
+                        <option selected="selected" value="{{ $zone }}">{{ $zone }}</option>
                         @foreach($x as $dep)
                             <option id="{{$dep}}" value=" {{ $dep}}" value="{{ old('zone') }}">
                                 {{ $dep  }}
@@ -41,7 +41,7 @@
                     <?php $x = Config::get('distributor.zone'); ?>
 
                     <select class="form-control district-dropdown" required id="dropdown_selector" name="district">
-                        <option selected="selected" value="" disabled>Choose district</option>
+                        <option selected="selected" value="{{ $customerAreaId->district }}">{{ $customerAreaId->district }}</option>
                     </select>
 
                 </div>

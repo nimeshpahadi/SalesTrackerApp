@@ -16,6 +16,6 @@ class CustomerArea extends Model
 
     public function distributorDetails()
     {
-        return $this->belongsTo('App\SalesTracker\Entities\Distributor\DistributorDeatils', 'area_id', 'id');
+        return $this->belongsTo('App\SalesTracker\Entities\Distributor\DistributorDetails', 'id', 'area_id');
     }
 }

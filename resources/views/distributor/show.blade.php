@@ -59,7 +59,7 @@
 
                                     <div class="row">
                                         <label class="col-sm-6 ">Area :</label>
-                                        {{$areaName }}
+                                        {{ $areaName }}
                                     </div>
                                     <div class="row">
                                         <label class="col-sm-6 ">Lead Source :</label>

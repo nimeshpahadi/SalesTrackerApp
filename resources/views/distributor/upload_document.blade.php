@@ -6,8 +6,16 @@
 
         <div class="col-md-8 col-md-offset-2">
 
-            <h3>Upload Customer Document</h3>
-            <div class="box box-info clearfix pad ">
+            <div class="col-sm-6">
+                <h3>Upload Customer Document</h3>
+            </div>
+
+            <div align="right" class=" pad">
+                <a class="btn btn-primary" title="Click to View Document"
+                   href="{{route("document.show", $customerId->id)}}">View Document</a>
+            </div>
+
+            <div class="box box-info pad">
 
                 {!! Form::open(array('route'=>'document.store', 'method'=>'post','enctype'=>'multipart/form-data'))!!}
 
@@ -17,7 +25,8 @@
                     <label for="document_type" class="col-sm-4 control-label">Document Type</label>
 
                     <div class="col-sm-8">
-                        <input id="document_type" type="text" class="form-control" name="document_type" value="{{ old('document_type') }}" required
+                        <input id="document_type" type="text" class="form-control" name="document_type"
+                               value="{{ old('document_type') }}" required
                                autofocus>
 
                         @if ($errors->has('document_type'))
@@ -43,7 +52,7 @@
                     </div>
                 </div>
 
-                <div class="clearfix pad"></div>
+
 
                 <div align="right">
                     {{Form::submit('Create', array('class'=>'btn btn-sm btn-primary ','title'=>'upload customer document'))}}
@@ -52,5 +61,7 @@
                 </div>
 
             </div>
+        </div>
+    </div>
 
 @endsection
